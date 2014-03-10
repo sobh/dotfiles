@@ -7,13 +7,38 @@
 " Modified:	2010-12-16
 "
 
+
+"""" Configure vundle """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set nocompatible		" Be iMproved (Required)
+filetype off
+"Set the runtime path to include Vundle and initialize.
+set rtp+=~/.vim/bundle/vundle
+call vundle#rc()
+" Let Vundle manage Vundle (Required)
+Bundle 'gmarik/vundle'
+"""" Plugins """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Note: Don't put comments in the same line as the Bundle command, it will cause
+" error E116: Invalid arguments for function vundle#config#bundle. Somehow the
+" comment would be interpreted as an argument.
+"""" GitHub repos
+" Port of the Monokai theme for TextMate
+Bundle 'tomasr/molokai'
+" Keep bundle commands between here and filetype plugin indent on.
+filetype plugin indent on	" Required for vundle.
+" To ignore plugin indent changes use:
+" filetype plugin on
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " Turn-on spelling checker, and set language to English(US)
 "set spell spelllang=en_us
 
 " Set syntax highlighting
 syntax on
+" Highlight current line
+set cursorline
 " Set highlighting color theme
-colors jellybeans
+set background=dark
+colorscheme molokai
 
 " Enable hidden buffers
 set hidden
@@ -39,6 +64,7 @@ set formatoptions+=c
 
 				  " Mappings "
 nmap	<F12>		:set arabic!<CR>
+" Switch between recent buffers with Shift+Tab
 nmap	<S-Tab>		:b#<CR>
 
 				" Autocommands "
@@ -65,14 +91,4 @@ augroup END
 augroup tex
 	autocmd BufReadPre	*.tex	let tex_fold_enabled=1
 	autocmd BufEnter	*.tex	set autoindent formatoptions=tcqro
-augroup END
-
-" VIm
-augroup vimscript
-	autocmd BufEnter *.vim	set foldcolumn=4 autoindent
-augroup END
-
-" BibTeX files
-augroup bibtex
-	autocmd BufEnter *.bib	set autoindent formatoptions=cqro
 augroup END
