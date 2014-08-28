@@ -22,10 +22,12 @@ complete -cf man
 # 
 dpsvn=http://dangerous-prototypes-open-hardware.googlecode.com/svn/trunk/
 
+# Set default applicaitons for non-graphical programs
+export EDITOR=vim
+export BROWSER=chromium
+
 # Packer Temporary Directory
-TMPDIR=$HOME/packertmp/
-export TMPDIR
-EDITOR=vim;	export EDITOR;
+export TMPDIR=$HOME/packertmp/
 # My Scripts
 PATH=$PATH:$HOME/bin
 # Android SDK
