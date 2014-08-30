@@ -17,7 +17,7 @@
 dir=$PWD			# dotfiles directory
 olddir=~/dotfiles_old		# old dotfiles backup directory
 # Dotfiles to manage
-files="bashrc vimrc vim"
+files="bashrc vimrc vim xinitrc"
 # zshrc oh-my-zsh private scrotwm.conf Xresources"    # list of files/folders to symlink in homedir
 
 
