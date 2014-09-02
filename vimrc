@@ -1,12 +1,6 @@
-" File:		.vimrc
 "
-" Purpose:	Define my VIm settings.
+" Purpose:	Define VIm settings.
 "
-" Author:	Mohamed Sobh <mohamed.alhusieny@gmail.com>
-" Created:	2010-09-07
-" Modified:	2010-12-16
-"
-
 
 """" Configure vundle """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible		" Be iMproved (Required)
@@ -27,16 +21,20 @@ Plugin 'scrooloose/nerdtree'
 " Plugin 'taglist.vim'
 " Plugin 'Raimondi/delimitMate'
 Plugin 'bling/vim-airline'
+" Plugin 'Lokaltog/vim-powerline'
 " Edit GNUPG encrypted files
 Plugin 'jamessan/vim-gnupg'
 " HTML/XML
-Plugin 'docunext/closetag.vim'
-Plugin 'mattn/emmet-vim'
+" Plugin 'docunext/closetag.vim'
+" Plugin 'mattn/emmet-vim'
 " Syntax
 Plugin 'kien/rainbow_parentheses.vim'
 " Color Schemes
 Plugin 'tomasr/molokai'
+Plugin 'nanotech/jellybeans.vim'
 Plugin 'altercation/vim-colors-solarized'
+" Plugin 'chriskempson/base16-vim'
+" Plugin 'flazz/vim-colorschemes'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -53,8 +51,15 @@ syntax on
 " Highlight current line
 set cursorline
 " Set highlighting color theme
+set t_Co=256
 set background=dark
+" let g:molokai_original = 1
+" let g:rehash256 = 1
 colorscheme molokai
+" let g:solarized_termcolors=256
+" colorscheme solarized
+" let base16colorspace=256  " Access colors present in 256 colorspace
+" colorscheme base16-3024
 
 " Enable Mouse for all modes
 set mouse=a
