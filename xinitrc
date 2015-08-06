@@ -23,10 +23,13 @@ setxkbmap -layout "us, ara" -variant ",qwerty_digits" -option "grp:alt_caps_togg
 # Parse .Xresources File -------------------------------------------------------
 [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
 
+#---- Applets ------------------------------------------------------------------
+exec volumeicon &
+exec nm-applet &
 # Set Window Manger Name to be recogonized by Java -----------------------------
 #wmname LG3D
 
 # Start The Window Manager -----------------------------------------------------
-exec /usr/bin/dwm
+#exec /usr/bin/dwm
 #exec /usr/bin/openbox-session
-#/usr/bin/i3
+exec /usr/bin/i3
