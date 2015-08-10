@@ -17,6 +17,9 @@ Plugin 'gmarik/Vundle.vim'
 " Keep Plugin commands between vundle#begin/end.
 "---- General Purpose --------------------------------------
 Plugin 'scrooloose/nerdtree'
+"Plugin 'Shougo/neocomplete.vim'
+"Plugin 'Valloric/YouCompleteMe'
+"Plugin 'ervandew/supertab'
 " Plugin 'Lokaltog/vim-easymotion'
 " Plugin 'taglist.vim'
 " Plugin 'Raimondi/delimitMate'
@@ -26,16 +29,22 @@ Plugin 'bling/vim-airline'
 Plugin 'jamessan/vim-gnupg'
 Plugin 'kien/rainbow_parentheses.vim'
 "---- Language Specific ------------------------------------
+" C++
+Plugin 'Townk/vim-qt'
+" C
+"Plugin 'vim-scripts/gtk-vim-syntax'
 " Python
-Plugin 'davidhalter/jedi-vim'
+" Plugin 'davidhalter/jedi-vim'
+" Javascript
+"Plugin 'pangloss/vim-javascript'
 " HTML/XML
-" Plugin 'docunext/closetag.vim'
+Plugin 'docunext/closetag.vim'
 " Plugin 'mattn/emmet-vim'
 "---- Color Schemes ----------------------------------------
 Plugin 'tomasr/molokai'
 Plugin 'nanotech/jellybeans.vim'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'chriskempson/base16-vim'
+"Plugin 'altercation/vim-colors-solarized'
+"Plugin 'chriskempson/base16-vim'
 " Plugin 'flazz/vim-colorschemes'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -51,8 +60,8 @@ set incsearch		" Incremental Search
 set mouse=a		" Enable Mouse for all modes
 set number		" Show line numbers
 set showcmd		" Show Command being typed
-set spell spelllang=en_us	" English Spell Check
-"set fileformat=unix	" Unix File Format
+"set spell spelllang=en_us	" English Spell Check
+set fileformat=unix	" Unix File Format
 "---- Format -------------------------------------------------------------------
 set foldcolumn=8	" Set Folding
 set foldmethod=syntax	" Default foldmethod 
@@ -62,15 +71,15 @@ set colorcolumn=+1      " Highlight end of text width
 set nowrap		" Disable line wrapping
 
 "---- Colorscheme --------------------------------------------------------------
-"set t_Co=256
+set t_Co=256
 set background=dark
-" let g:molokai_original = 1
-" let g:rehash256 = 1
-" colorscheme molokai
+let g:molokai_original = 1
+let g:rehash256 = 1
+colorscheme molokai
 " let g:solarized_termcolors=256
 " colorscheme solarized
 " let base16colorspace=256  " Access colors present in 256 colorspace
-colorscheme base16-default
+" colorscheme base16-default
 
 "---- Plugin Options -----------------------------------------------------------
 "---- Airline ----------------------------------------------
@@ -88,15 +97,19 @@ let g:GPGPreferSymmetric=1
 "---- HTML/XML ---------------------------------------------
 "inoremap <C-_> <C-R>=GetCloseTag()<CR><ESC>%i
 
+"source ~/.vim/scripts/config-neocomplete.vim
 "---- Mappings -----------------------------------------------------------------
 " Switch between recent buffers with Shift+Tab
-nmap	<S-Tab>		:b#<CR>
+noremap  <S-Tab>         :b#<CR>
 " NERDTree
-map	<F11>		:NERDTreeToggle<CR>
-nmap	<F11>		<Esc>:NERDTreeToggle<CR>
+noremap  <F11>           :NERDTreeToggle<CR>
+inoremap <F11>      <Esc>:NERDTreeToggle<CR>
 " Taglist
-map	<F12>		:TlistToggle<CR>
-nmap	<F12>		<Esc>:TlistToggle<CR>
+noremap  <F12>            :TlistToggle<CR>
+inoremap <F12>       <Esc>:TlistToggle<CR>
+
+" Frome Learn Vim The Hard Way
+
 
 				" Autocommands "
 "---- Autocommand --------------------------------------------------------------
