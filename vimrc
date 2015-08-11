@@ -1,8 +1,8 @@
 "
-" Purpose:	Define VIm settings.
+" .vimrc
 "
 
-"---- Configure vundle ---------------------------------------------------------
+"---- Configure vundle ------------------------------------------------------{{{
 set nocompatible		" Be iMproved (Required)
 filetype off
 "Set the runtime path to include Vundle and initialize.
@@ -49,7 +49,9 @@ Plugin 'nanotech/jellybeans.vim'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
-"-------------------------------------------------------------------------------
+"}}}
+
+"---- General ---------------------------------------------------------------{{{
 syntax on		" Set syntax highlighting
 set autoindent		" Autoindent
 set cursorline		" Highlight current line
@@ -80,8 +82,9 @@ colorscheme molokai
 " colorscheme solarized
 " let base16colorspace=256  " Access colors present in 256 colorspace
 " colorscheme base16-default
+" }}}
 
-"---- Plugin Options -----------------------------------------------------------
+"---- Plugin Options --------------------------------------------------------{{{
 "---- Airline ----------------------------------------------
 set laststatus=2
 let g:airline_powerline_fonts=1
@@ -98,21 +101,29 @@ let g:GPGPreferSymmetric=1
 "inoremap <C-_> <C-R>=GetCloseTag()<CR><ESC>%i
 
 "source ~/.vim/scripts/config-neocomplete.vim
-"---- Mappings -----------------------------------------------------------------
+" }}}
+
+"---- Mappings --------------------------------------------------------------{{{
 " Switch between recent buffers with Shift+Tab
-noremap  <S-Tab>         :b#<CR>
+noremap  <S-Tab>          :b#<CR>
 " NERDTree
-noremap  <F11>           :NERDTreeToggle<CR>
-inoremap <F11>      <Esc>:NERDTreeToggle<CR>
+noremap  <F11>            :NERDTreeToggle<CR>
+inoremap <F11>       <Esc>:NERDTreeToggle<CR>
 " Taglist
 noremap  <F12>            :TlistToggle<CR>
 inoremap <F12>       <Esc>:TlistToggle<CR>
 
-" Frome Learn Vim The Hard Way
+" From Learn Vim The Hard Way
+" Edit and resouce ~/.vimrc
+nnoremap <leader>ev       :vsplit $MYVIMRC<cr> 
+nnoremap <leader>sv       :source $MYVIMRC<cr> 
+" Faster Insert -> Normal Transitions
+inoremap <esc>            <nop>
+inoremap jk               <esc>
 
+" }}}
 
-				" Autocommands "
-"---- Autocommand --------------------------------------------------------------
+"---- Autocommand -----------------------------------------------------------{{{
 if has("autocmd")
 	" Markdown
 	augroup markdown
@@ -120,3 +131,4 @@ if has("autocmd")
 		autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
 	augroup END
 end
+" }}}
