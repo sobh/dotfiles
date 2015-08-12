@@ -16,7 +16,12 @@ Plugin 'gmarik/Vundle.vim'
 " comment would be interpreted as an argument.
 " Keep Plugin commands between vundle#begin/end.
 "---- General Purpose --------------------------------------
+"Plugin 'xolox/vim-easytags'
+"Plugin 'xolox/vim-misc'
 Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'majutsushi/tagbar'
+Plugin 'tpope/vim-fugitive'
 "Plugin 'Shougo/neocomplete.vim'
 "Plugin 'Valloric/YouCompleteMe'
 "Plugin 'ervandew/supertab'
@@ -110,25 +115,15 @@ noremap  <S-Tab>          :b#<CR>
 noremap  <F11>            :NERDTreeToggle<CR>
 inoremap <F11>       <Esc>:NERDTreeToggle<CR>
 " Taglist
-noremap  <F12>            :TlistToggle<CR>
-inoremap <F12>       <Esc>:TlistToggle<CR>
+noremap  <F12>            :TagbarToggle<CR>
+inoremap <F12>       <Esc>:TagbarToggle<CR>
 
 " From Learn Vim The Hard Way
 " Edit and resouce ~/.vimrc
 nnoremap <leader>ev       :vsplit $MYVIMRC<cr> 
 nnoremap <leader>sv       :source $MYVIMRC<cr> 
 " Faster Insert -> Normal Transitions
-inoremap <esc>            <nop>
+"inoremap <esc>            <nop>
 inoremap jk               <esc>
 
-" }}}
-
-"---- Autocommand -----------------------------------------------------------{{{
-if has("autocmd")
-	" Markdown
-	augroup markdown
-		autocmd!
-		autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
-	augroup END
-end
 " }}}
