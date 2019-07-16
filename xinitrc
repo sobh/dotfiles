@@ -16,10 +16,16 @@ fi
 #xrandr --output LVDS1 --off
 #xrandr --output VGA1 --mode 1920x1080
 #xrandr --output VGA1 --mode 1280x1024 --above LVDS1
+#xrandr --output VGA1 --mode 1920x1080 --above LVDS1
+
+[[ -f ~/.config/xrandr/config ]] && source ~/.config/xrandr/config
+
 
 # Allow Switching Keyboard map usint [alt+caps] --------------------------------
 setxkbmap -layout "us, ara" -variant ",qwerty_digits" -option "grp:alt_caps_toggle"
 
+# Disable Beeps
+xset -b
 # Parse .Xresources File -------------------------------------------------------
 [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
 
@@ -27,7 +33,9 @@ setxkbmap -layout "us, ara" -variant ",qwerty_digits" -option "grp:alt_caps_togg
 exec volumeicon &
 exec nm-applet &
 # Set Window Manger Name to be recogonized by Java -----------------------------
-#wmname LG3D
+wmname gnome
+
+exec dropbox &
 
 # Start The Window Manager -----------------------------------------------------
 #exec /usr/bin/dwm
