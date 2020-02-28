@@ -36,6 +36,7 @@ exec nm-applet &
 wmname gnome
 
 exec dropbox &
+exec firejail dropbox-atc.sh &
 
 # Start The Window Manager -----------------------------------------------------
 #exec /usr/bin/dwm
