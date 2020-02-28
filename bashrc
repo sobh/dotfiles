@@ -14,7 +14,7 @@ PS1='[\u@\h \W]\$ '				# Default
 # Fancy Prompt
 #PS1='\[\e[0;32m\]\u@\h\[\e[m\] \[\e[1;34m\]\w\[\e[m\] \[\e[1;32m\]\$\[\e[m\] \[\e[1;37m\]'
 
-# 
+#
 dpsvn=http://dangerous-prototypes-open-hardware.googlecode.com/svn/trunk/
 
 # Set default applicaitons for non-graphical programs
