@@ -31,9 +31,6 @@ export TERMINAL=st
 # Packer Temporary Directory
 export TMPDIR=$HOME/packertmp/
 
-# My Scripts
-PATH=$PATH:$HOME/bin
-export PATH
 
 #export QT_QPA_PLATFORMTHEME=qt5ct
 export QT_QPA_PLATFORMTHEME=qt5ct
