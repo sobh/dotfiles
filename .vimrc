@@ -44,8 +44,6 @@ Plug 'dart-lang/dart-vim-plugin'
 Plug 'alvan/vim-closetag'
 Plug 'mattn/emmet-vim'
 "Plug 'tpope/vim-surround'
-" i3 wm Configuration
-Plug 'PotatoesMaster/i3-vim-syntax'
 " Javascript
 "Plug 'jelera/vim-javascript-syntax'
 Plug 'pangloss/vim-javascript'
@@ -58,6 +56,10 @@ Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'leafgarland/typescript-vim'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'Quramy/tsuquyomi'
+"---- Configurations Syntax --------------------------------
+" i3 wm Configuration
+Plug 'PotatoesMaster/i3-vim-syntax'
+Plug 'gisphm/vim-gitignore'
 "---- Color Schemes ----------------------------------------
 Plug 'tomasr/molokai'
 Plug 'nanotech/jellybeans.vim'
