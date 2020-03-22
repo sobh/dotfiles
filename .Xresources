@@ -1,0 +1,28 @@
+! ------------------------------------------------------------------------------
+! vim: set fenc=utf-8:nu:ai:si:et:ts=4:sw=4:ft=xdefaults:
+! File:		.Xresources
+! Author:	Mohamed Sobh
+! Modified:	2012-02-24
+! ------------------------------------------------------------------------------
+
+xterm*TermName:		xterm-256color
+! For font testing use 'xfontsel'
+!*faceName:		Terminus:style=Regular:size=12
+!xterm*faceName:		style=Semibold:size=14:antialias=true
+!*truetypefonts:	enable
+
+!---- Color Theme --------------------------------------------------------------
+#include ".config/xresources/colors/base16-3024-256.Xresources"
+
+!---- Fonts --------------------------------------------------------------------
+st*font:	DejaVu Sans Mono:style=Regular:size=12
+st*fontalt0:	PowerlineSymbols:size=12
+xterm*FaceName:	DejaVu Sans Mono:style=Regular:size=12
+
+Xft.dpi: 192
+Xft.autohint: 0
+Xft.lcdfilter:  lcddefault
+Xft.hintstyle:  hintfull
+Xft.hinting: 1
+Xft.antialias: 1
+Xft.rgba: rgb

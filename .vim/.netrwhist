@@ -1,0 +1,7 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_1='/home/sobh/.vim/scripts'
+let g:netrw_dirhist_2='/home/sobh/templates'
+let g:netrw_dirhist_3='/home/sobh/oshw/launchpad/firmware/had_demo'
+let g:netrw_dirhist_4='/home/sobh/workspace/stm32/boards/stm32f0-discovery/stm32f0-discovery-basic-template/Libraries'
+let g:netrw_dirhist_5='/home/sobh/playground/pulseview/pv'
