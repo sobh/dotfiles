@@ -1,19 +1,93 @@
-# vim: filetype=i3
-# i3 config file (v4)
+# vim: filetype=i3 : foldmethod=marker
 #
-# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+# i3 config file
+#
 
+#---- General Configuration -------------------------------------------------{{{
 # Set modifier to Superkey
 set $mod Mod4
 
-# Font for window titles. Will also be used by the bar unless a different font is used in the bar {} block below.
-# font pango:Roboto Bold 10
-font pango:System San Francisco Display Regular 10
-# font pango:DejaVu Sans Mono Bold 10
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
+# }}}
 
+#---- Appearance ------------------------------------------------------------{{{
+#---- Font -------------------------------------------------
+font pango:System San Francisco Display Regular 12
+# font pango:Roboto Bold 10
+# font pango:DejaVu Sans Mono Bold 10
+
+#---- Window Borders ---------------------------------------
+# Border style for new windows [normal | none | pixel ]
+default_floating_border normal
+
+# Hide borders adjacent to the screen
+hide_edge_borders both
+
+#---- Color Scheme -----------------------------------------
+set $bg-color 	         #000000
+set $border-color        #505050
+set $fg-color            #E00000
+set $inactive-bg-color   #000000
+set $text-color          #ffffff
+set $inactive-text-color #676E7D
+set $urgent-bg-color     #E53935
+
+# window colors
+#                       border              background         text                  indicator
+#client.focused          $fg-color           $bg-color          $text-color           #00ff00
+#client.unfocused        $fg-color           $inactive-bg-color $inactive-text-color  #00ff00
+#client.focused_inactive $fg-color           $inactive-bg-color $inactive-text-color  #00ff00
+#client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color           #00ff00
+
+# }}}
+
+#---- Workspaces Definitions ------------------------------------------------{{{
+set $ws1  "1  "
+set $ws2  "2  "
+set $ws3  "3"
+set $ws4  "4"
+set $ws5  "5"
+set $ws6  "6"
+set $ws7  "7"
+set $ws8  "8"
+set $ws9  "9"
+set $ws10 "10"
+# }}}
+
+#---- Application Configurations --------------------------------------------{{{
+#---- Assign Application to Workspace ----------------------
+# Web Browsers
+assign [window_role="browser"] $ws1
+
+# Terminal
+assign [class="UXTerm"]   $ws2
+
+#---- Application Modes and Borders ------------------------
+for_window [class="Bluetooth"] floating enable
+for_window [class="Chromium"] border none
+# }}}
+
+#---- i3bar -----------------------------------------------------------------{{{
+bar {
+	mode dock
+	position top
+	#tray_output primary
+#        status_command i3blocks
+        status_command i3status
+	colors {
+		background $bg-color
+		separator #757575
+		#Workspace         border             background         text
+		focused_workspace  $bg-color          $bg-color          $text-color
+		inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
+		urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
+	}
+}
+# }}}
+
+#---- Bindings --------------------------------------------------------------{{{
 # start a terminal
 #bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Return exec --no-startup-id uxterm
@@ -23,48 +97,29 @@ bindsym $mod+Return exec --no-startup-id uxterm
 bindsym $mod+Shift+q kill
 
 
-# There also is the (new) i3-dmenu-desktop which only displays applications
-# shipping a .desktop file. It is a wrapper around dmenu, so you need that
-# installed.
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
-
-# Change focus
-bindsym $mod+h focus left
-bindsym $mod+l focus right
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-
-bindsym $mod+comma focus output left
-bindsym $mod+period focus output right
-
-# alternatively, you can use the cursor keys:
-bindsym $mod+Left  focus left
-bindsym $mod+Down  focus down
-bindsym $mod+Up    focus up
-bindsym $mod+Right focus right
-
-# Move focused window
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
-
-# Move Workspace between monitors
-bindsym $mod+Shift+comma move workspace to output left
-bindsym $mod+Shift+period move workspace to output right
-
-# alternatively, you can use the cursor keys:
-bindsym $mod+Shift+Left  move left
-bindsym $mod+Shift+Down  move down
-bindsym $mod+Shift+Up    move up
-bindsym $mod+Shift+Right move right
+# start (a program launcher)
+bindsym $mod+d exec --no-startup-id dmenu_run
+#bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+#bindsym $mod+d exec rofi -show run -lines 5 -eh 2 -padding 100 -opacity "85" -bw 0 -hide-scrollbar -separator-style none \
+#	-font "System San Francisco Display 12"
+#-bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd"
 
 # split in horizontal orientation
 bindsym $mod+b split h
-
 # split in vertical orientation
 bindsym $mod+v split v
 
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+# Lock Screen
+bindsym $mod+Shift+x exec "i3lock"
+
+
+#---- Modes/Layouts ----------------------------------------
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen
 
@@ -80,23 +135,28 @@ bindsym $mod+Shift+space floating toggle
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 
+#---- Change Focus -----------------------------------------
+#-------- Windows ----------------------
+# vim focus bindings
+bindsym $mod+h focus left
+bindsym $mod+l focus right
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+# Arrow keys
+bindsym $mod+Left  focus left
+bindsym $mod+Down  focus down
+bindsym $mod+Up    focus up
+bindsym $mod+Right focus right
+
 # focus the parent container
 bindsym $mod+p focus parent
 
 # focus the child container
 bindsym $mod+c focus child
 
-# Set Workspace Variables
-set $ws1  "1 "
-set $ws2  "2 "
-set $ws3  "3"
-set $ws4  "4"
-set $ws5  "5"
-set $ws6  "6"
-set $ws7  "7"
-set $ws8  "8"
-set $ws9  "9"
-set $ws10 "10"
+#-------- Workspaces -------------------
+# Switch to the last workspace
+bindsym $mod+Tab workspace back_and_forth
 
 # Switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -110,6 +170,24 @@ bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
 
+#-------- Screens ----------------------
+bindsym $mod+comma focus output left
+bindsym $mod+period focus output right
+
+#---- Shifting/Moving --------------------------------------
+#-------- Windows ----------------------
+# Move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left  move left
+bindsym $mod+Shift+Down  move down
+bindsym $mod+Shift+Up    move up
+bindsym $mod+Shift+Right move right
+
 # Move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2
@@ -122,24 +200,19 @@ bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
-# Move focused between monitors
+#-------- Workspaces -------------------
+# Move Workspace between monitors
+bindsym $mod+Shift+comma move workspace to output left
+bindsym $mod+Shift+period move workspace to output right
+
+# Move Workspace between monitors
 bindsym $mod+Shift+u move workspace to output up
 bindsym $mod+Shift+i move workspace to output down
 bindsym $mod+Shift+y move workspace to output left
 bindsym $mod+Shift+o move workspace to output right
 
-# Switch to the last workspace
-bindsym $mod+Tab workspace back_and_forth
 
-# reload the configuration file
-bindsym $mod+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
-# Lock Screen
-bindsym $mod+Shift+x exec "i3lock"
-
+#---- Resizing --------------------------------------------
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
@@ -165,64 +238,10 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
+# }}}
 
-#---- Appearance ---------------------------------------------------------------
-#---- Color Scheme -----------------------------------------
-set $bg-color 	         #000000
-set $border-color        #505050
-set $fg-color            #E00000
-set $inactive-bg-color   #000000
-set $text-color          #ffffff
-set $inactive-text-color #676E7D
-set $urgent-bg-color     #E53935
-
-# window colors
-#                       border              background         text                  indicator
-#client.focused          $fg-color           $bg-color          $text-color           #00ff00
-#client.unfocused        $fg-color           $inactive-bg-color $inactive-text-color  #00ff00
-#client.focused_inactive $fg-color           $inactive-bg-color $inactive-text-color  #00ff00
-#client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color           #00ff00
-
-#---- i3bar ------------------------------------------------
-bar {
-#	tray_output primary
-	position top
-#        status_command i3blocks
-        status_command i3status
-	colors {
-		background $bg-color
-	    	separator #757575
-		#                  border             background         text
-		focused_workspace  $bg-color          $bg-color          $text-color
-		inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
-		urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
-	}
-}
-
-# start (a program launcher)
-bindsym $mod+d exec dmenu_run
-#bindsym $mod+d exec rofi -show run -lines 5 -eh 2 -padding 100 -opacity "85" -bw 0 -hide-scrollbar -separator-style none \
-#	-font "System San Francisco Display 12"
-#-bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd"
-
-#---- Window Borders ---------------------------------------
-# Border style for new windows [normal | none | pixel ]
-new_float normal
-
-# Hide borders adjacent to the screen
-hide_edge_borders both
-
-#---- Application to Workspace -------------------------------------------------
-# Web Browsers
-assign [window_role="browser"] $ws1
-
-# Terminal
-assign [class="UXTerm"]   $ws2
-
-#---- Application Specific -----------------------------------------------------
-for_window [class="Bluetooth"] floating enable
-for_window [class="Chromium"] border none
-#---- Auto-start Applications --------------------------------------------------
+#---- Auto-start Applications -----------------------------------------------{{{
 exec chromium
 exec uxterm
 #exec compton --no-fading-openclose --no-fading-destroyed-argb
+# }}}
