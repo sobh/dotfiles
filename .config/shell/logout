@@ -1,0 +1,13 @@
+#!/bin/sh
+# vim: filetype=sh
+#
+# Description:	Universal shell logout script.
+#
+
+#echo "Executing: shell logout script."
+# when leaving the console, clear the screen to increase privacy
+#if [ "$SHLVL" = 1 ]; then
+#    if which clear_console &> /dev/null; then
+#        clear_console -q
+#    fi
+#fi

@@ -1,0 +1,8 @@
+#!/bin/zsh
+# vim: filetype=zsh
+#
+# Description: zsh env startup script.
+#
+
+#echo "Executing: zsh env startup script."
+source ~/.config/shell/env

@@ -1,0 +1,9 @@
+#!/bin/sh
+# vim: filetype=sh
+#
+# Descrioption:	sh interactive shell startup.
+#
+
+# echo "Executing: sh interactive startup."
+source ~/.config/shell/interactive
+

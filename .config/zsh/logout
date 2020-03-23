@@ -1,0 +1,8 @@
+#!/bin/zsh
+# vim: filetype=zsh
+#
+# Description: zsh logout startup script.
+#
+
+#echo "Executing: zsh logout startup script."
+source ~/.config/shell/logout

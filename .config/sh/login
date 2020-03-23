@@ -1,0 +1,9 @@
+#!/bin/sh
+# vim: filetype=sh
+#
+# Descrioption:	sh login shell startup.
+#
+
+#echo "Executing: sh login startup."
+source ~/.config/shell/login
+

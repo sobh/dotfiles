@@ -1,0 +1,9 @@
+#!/bin/bash
+# vim: filetype=bash
+#
+# Description:	bash logout shell.
+#
+
+#echo "Executing: bash logout script."
+source ~/.config/shell/logout
+

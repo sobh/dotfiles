@@ -1,0 +1,11 @@
+#!/bin/bash
+# vim: filetype=bash
+#
+# Description:  bash login shell startup.
+#
+
+#echo "Executing: bash login shell startup."
+source ~/.config/shell/login
+
+# Start X
+#[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx

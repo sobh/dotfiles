@@ -1,0 +1,54 @@
+#!/bin/sh
+# vim: filetype=sh
+#
+# Description: Universal shell enviroment startup.
+#
+
+#echo "Executing: shell env startup."
+# We need to set $ENV so that if you use shell X as your login shell,
+# and then start "sh" as a non-login interactive shell the startup scripts will
+# correctly run.
+export ENV=~/.config/sh/interactive
+
+# We also need to set BASH_ENV, which is run for *non-interactive* shells.
+# (unlike $ENV, which is for interactive shells)
+export BASH_ENV=~/.config/bash/env
+
+source ~/.config/shell/env_functions
+
+# Personal information
+export NAME='Mohamed Sobh'
+export EMAIL='mohamed.alhusieny@gmail.com'
+# Set default applicaitons for non-graphical programs
+export EDITOR=vim
+export VISUAL=$EDITOR
+export BROWSER=chromium
+export TERMINAL=st
+export PAGER=less
+
+
+# Language
+#export LANG='en_EN.UTF-8'
+#export LC_ALL=$LANG
+#export LC_COLLATE=$LANG
+#export LC_CTYPE=$LANG
+#export LC_MESSAGES=$LANG
+#export LC_MONETARY=$LANG
+#export LC_NUMERIC=$LANG
+#export LC_TIME=$LANG
+
+#umask 0077
+
+ssource ~/.config/shell/env_local
+
+
+# Path settings
+pathprepend ~/bin PATH
+pathappend ~/.dotfiles/bin PATH
+pathprepend ~/lib LD_LIBRARY_PATH
+pathprepend ~/include CPATH
+
+
+# The current directory should never be in $PATH
+pathremove . PATH
+pathremove "" PATH

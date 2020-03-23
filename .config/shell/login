@@ -1,0 +1,10 @@
+#!/bin/sh
+# vim: filetype=sh
+#
+# Description:	Universal login shell-startup.
+#
+# Put your environment variables here
+#
+
+#echo "Executing: shell login startup."
+

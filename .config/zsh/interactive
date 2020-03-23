@@ -1,0 +1,10 @@
+#!/bin/zsh
+# vim: filetype=zsh
+#
+# Description: zsh interactive startup script.
+#
+
+#echo "Executing: zsh interactive startup script."
+source ~/.config/shell/interactive
+# Enable zsh syntax highlighting
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

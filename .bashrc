@@ -1,32 +1,15 @@
+#!/bin/bash
 #
-# ~/.bashrc
+# This is Peter Ward's flowback shell shell-startup standard, adjusted for my dotfiles structure.
 #
+# This file gets run in two cases:
+# 1. non-login interactive shell
+# 2. remote shell (over ssh or similar)
 
-# If not running interactively, don't do anything
-[[ $- != *i* ]] && return
+# #2 happens when you run "ssh user@host bash" explicitly.
+# in this case, /etc/bash.bashrc has not been previous executed (unlike #1).
+# however, we assume that #2 is a recovery mode, so we don't want to do much.
+# (also, my google-fu didn't find a way to distinguish them)
 
-#---- Aliases ----------------------------------------------------------------------------------------------------------
-alias grep='grep --color=auto'
-alias info='info --vi-keys'
-alias la='ls -a'
-alias ll='ls -l'
-alias ls='ls --group-directories-first --color=auto'
-alias lsmovies='(ls /media/sdc5/sobh/movies; ls ~/movies;)'
-alias spacaur='pacaur --noconfirm --noedit'
-
-# Prompt
-PS1='[\u@\h \W]\$ '				# Default
-#PS1='\[\e[1;32m\][\u@\h \W]\$\[\e[0m\] '	# Green
-# Fancy Prompt
-#PS1='\[\e[0;32m\]\u@\h\[\e[m\] \[\e[1;34m\]\w\[\e[m\] \[\e[1;32m\]\$\[\e[m\] \[\e[1;37m\]'
-
-#
-#dpsvn=http://dangerous-prototypes-open-hardware.googlecode.com/svn/trunk/
-
-# Set default applicaitons for non-graphical programs
-export EDITOR=vim
-export BROWSER=chromium
-export TERMINAL=st
-
-#export QT_QPA_PLATFORMTHEME=qt5ct
-export QT_QPA_PLATFORMTHEME=qt5ct
+. ~/.config/bash/env
+. ~/.config/bash/interactive
