@@ -14,34 +14,45 @@ floating_modifier $mod
 
 #---- Appearance ------------------------------------------------------------{{{
 #---- Font -------------------------------------------------
-font pango:System San Francisco Display Regular 12
+font pango:display Light 12
 # font pango:Roboto Bold 10
 # font pango:DejaVu Sans Mono Bold 10
 
 #---- Window Borders ---------------------------------------
 # Border style for new windows [normal | none | pixel ]
+default_border normal
 default_floating_border normal
 
 # Hide borders adjacent to the screen
-hide_edge_borders both
-gaps inner 10
-gaps outer 0
+hide_edge_borders smart
 
 #---- Color Scheme -----------------------------------------
-set $bg-color 	         #000000
-set $border-color        #505050
-set $fg-color            #E00000
-set $inactive-bg-color   #000000
-set $text-color          #ffffff
-set $inactive-text-color #676E7D
-set $urgent-bg-color     #E53935
+set $fg_color		#FFFFFF
+set $bg_color		#000000
+set $arch_color		#0088CC
+set $urgent_color	#E00000
+
+set $urgent_color_def	#900000
+
+set $focused_fg		#FFFFFF
+set $focused_bg		#285577
+set $focused_border	#4C7899
+
+set $unfocused_fg	#888888
+set $unfocused_bg	#222222
+set $unfocused_border	#333333
+
+set $inactive_bg	#5F676A
+set $inactive_fg	#676E7D
+
+set $seperator_color	#757575
 
 # window colors
-#                       border              background         text                  indicator
-#client.focused          $fg-color           $bg-color          $text-color           #00ff00
-#client.unfocused        $fg-color           $inactive-bg-color $inactive-text-color  #00ff00
-#client.focused_inactive $fg-color           $inactive-bg-color $inactive-text-color  #00ff00
-#client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color           #00ff00
+#			border			background	text		indicator
+client.focused		$arch_color		$arch_color	$focused_fg	#00ff00
+client.unfocused	$unfocused_border	$unfocused_bg	$unfocused_fg	#00ff00
+client.focused_inactive $inactive_bg		$inactive_bg	$fg_color	#00ff00
+client.urgent           $urgent_color		$urgent_color  	$focused_fg	#00ff00
 
 # }}}
 
@@ -84,12 +95,12 @@ bar {
 #        status_command i3blocks
         status_command i3status
 	colors {
-		background $bg-color
-		separator #757575
-		#Workspace         border             background         text
-		focused_workspace  $bg-color          $bg-color          $text-color
-		inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
-		urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
+		background	$bg_color
+		separator	$seperator_color
+#		#Workspace		Border		Background	Text
+		focused_workspace	$bg_color	$bg_color	$fg_color
+		inactive_workspace	$bg_color	$bg_color	$inactive_fg
+		urgent_workspace	$urgent_color	$urgent_color	$focused_fg
 	}
 }
 # }}}
@@ -97,7 +108,8 @@ bar {
 #---- Bindings --------------------------------------------------------------{{{
 # start a terminal
 #bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec --no-startup-id st
+#bindsym $mod+Return exec --no-startup-id st
+bindsym $mod+Return exec --no-startup-id uxterm
 #bindsym $mod+Return exec --no-startup-id gnome-terminal
 
 # kill focused window
@@ -109,7 +121,7 @@ bindsym $mod+d exec --no-startup-id dmenu_run
 #bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 #bindsym $mod+d exec rofi -show run -lines 5 -eh 2 -padding 100 -opacity "85" -bw 0 -hide-scrollbar -separator-style none \
 #	-font "System San Francisco Display 12"
-#-bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd"
+#-bw 0 -bc "$bg_color" -bg "$bg_color" -fg "$active-fg_color" -hlbg "$bg_color" -hlfg "#9575cd"
 
 # split in horizontal orientation
 bindsym $mod+b split h
