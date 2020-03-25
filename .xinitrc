@@ -27,7 +27,10 @@ setxkbmap -layout "us, ara" -variant ",qwerty_digits" -option "grp:alt_caps_togg
 # Disable Beeps
 xset -b
 # Parse .Xresources File -------------------------------------------------------
-[[ -f ~/.Xresources ]] && xrdb -I$HOME -merge ~/.Xresources
+XRS_HOME=$XDG_CONFIG_HOME/xresources
+XRS_HOST=$XRS_HOME/hosts/$HOSTNAME.Xresources
+[[ -f $XRS_HOME/Xresources ]] && xrdb -merge -I$XRS_HOME $XRS_HOME/Xresources
+#[[ -f $XRS_HOST ]] && xrdb -merge -I$XRS_HOME $XRS_HOST
 
 #---- Applets ------------------------------------------------------------------
 exec volumeicon &
