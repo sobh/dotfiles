@@ -4,17 +4,24 @@
 # Description: Universal shell enviroment startup.
 #
 
+#---- Set XDG Directories ----------------------------------------------------------------------------------------------
+export XDG_CONFIG_HOME=$HOME/.config	# Configurations Directory (analogous to /etc).
+export XDG_CACHE_HOME=$HOME/.cache	# Non-essential (cached) data should be written (analogous to /var/cache).
+export XDG_LOCAL_HOME=$HOME/.local	# Local data (Not in the standarad)
+export XDG_DATA_HOME=$XDG_LOCAL_HOME/share	# User-specific Data Dreictory (analogous to /usr/share).
+
 #echo "Executing: shell env startup."
 # We need to set $ENV so that if you use shell X as your login shell,
 # and then start "sh" as a non-login interactive shell the startup scripts will
 # correctly run.
-export ENV=~/.config/sh/interactive
+export ENV=$XDG_CONFIG_HOME/sh/interactive
 
 # We also need to set BASH_ENV, which is run for *non-interactive* shells.
 # (unlike $ENV, which is for interactive shells)
-export BASH_ENV=~/.config/bash/env
+export BASH_ENV=$XDG_CONFIG_HOME/bash/env
 
-source ~/.config/shell/env_functions
+# Load Environment manipulation functions
+source $XDG_CONFIG_HOME/shell/env_functions
 
 # Personal information
 export NAME='Mohamed Sobh'
@@ -23,7 +30,7 @@ export EMAIL='mohamed.alhusieny@gmail.com'
 export EDITOR=vim
 export VISUAL=$EDITOR
 export BROWSER=chromium
-export TERMINAL=st
+export TERMINAL=uxterm
 export PAGER=less
 
 
@@ -44,7 +51,6 @@ ssource ~/.config/shell/env_local
 
 # Path settings
 pathprepend ~/bin PATH
-pathappend ~/.dotfiles/bin PATH
 pathprepend ~/lib LD_LIBRARY_PATH
 pathprepend ~/include CPATH
 
