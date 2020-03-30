@@ -1,0 +1,59 @@
+! vim: ft=xdefaults : foldmethod=marker
+! File:		.Xresources
+! Author:	Mohamed Sobh
+! ------------------------------------------------------------------------------
+
+
+!---- Load Host Configurations -------------------------------------------------
+#if HOST==optiplex
+	#include "xresources/hosts/optiplex.Xresources"
+#endif
+
+!---- Color Scheme -------------------------------------------------------------
+#include ".config/xresources/colors/archery.Xresources"
+
+!---- Fonts -----------------------------------------------------------------{{{
+Xft.autohint:	0
+Xft.lcdfilter:	lcddefault
+Xft.hintstyle:	hintfull
+Xft.hinting:	1
+Xft.antialias:	1
+Xft.rgba:	rgb
+!---- Fonts }}}
+
+!---- Applications ----------------------------------------------------------{{{
+!-------- st ----------------------------------------------------------------{{{
+st*alpha:	opacity
+st*font:	TermFont
+st*fontalt0:	fontalt
+!--- st }}}
+
+!-------- XTerm -------------------------------------------------------------{{{
+xterm*TermName:		xterm-256color
+xterm*FaceName:		TermFont
+
+xterm*CursorColor:	cursorcolor
+xterm*Background:	background
+xterm*Foreground:	foreground
+
+xterm*color0:	color_black
+xterm*color1:	color_red
+xterm*color2:	color_green
+xterm*color3:	color_yellow
+xterm*color4:	color_blue
+xterm*color5:	color_magenta
+xterm*color6:	color_cyan
+xterm*color7:	color_white
+
+xterm*color8:	color_bright_black
+xterm*color9:	color_bright_red
+xterm*color10:	color_bright_green
+xterm*color11:	color_bright_yellow
+xterm*color12:	color_bright_blue
+xterm*color13:	color_bright_magenta
+xterm*color14:	color_bright_cyan
+xterm*color15:	color_bright_white
+
+!---- XTerm }}}
+
+!---- Applications }}}

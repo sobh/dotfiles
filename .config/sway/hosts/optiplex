@@ -1,0 +1,7 @@
+# vim: filetype=i3 : foldmethod=marker : tabstop=4 : shiftwidth=4
+#
+# Description: Host specific sway config file.
+#
+
+# Used Font
+set $font "display Light 26"
