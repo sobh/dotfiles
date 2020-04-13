@@ -1,0 +1,27 @@
+#!/bin/sh
+
+# This function return the emoji clock value closest to the current time.
+get_emoji_icon(){
+	icon=0x1F54F		# Value of 1 O'clock icon - 1
+
+	hours=$(date '+%l')	# Actual Hours
+	mins=$(date '+%M')	# Actual Mins
+
+	h=$hours		# Value of hours represented by the icon
+	m=0			# Icon half-hour shift value 0 or 12
+
+	# Set the icon based on the minutes
+	[ $mins -le 14 ] 			&& h=$hours && m=0
+	[ $mins -ge 15 ] && [ $mins -le 44 ]	&& h=$hours &&  m=12
+	[ $mins -ge 45 ]			&& h=$(( hours%12 + 1 )) && m=0
+
+	icon=$(( $icon + $h + $m ))	# Icon in numeral notation
+	icon=$(printf '\U%08x' $icon)	# Icon in UTF-8 hexadecimal notation
+	env printf $icon
+}
+
+case $UI_ICON in
+	emoji)	ICON=$(get_emoji_icon);;
+	nerd | *) ICON= ;;
+esac
+printf "$ICON $(date '+%l:%M')\n"

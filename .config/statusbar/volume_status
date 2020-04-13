@@ -1,0 +1,42 @@
+#!/bin/sh
+
+# Set Volume based on mouse command
+case $BLOCK_BUTTON in
+	1) $TERMINAL -e "alsamixer;" ;;
+	3) amixer -q set Master toggle ;;
+	4) amixer -q set Master 5%+ ;;
+	5) amixer -q set Master 5%- ;;
+esac
+
+# Set icon set based on style.
+case $UI_ICON in
+	emoji)
+		VOL_MUTE_ICON=🔇
+		VOL_LOW_ICON=🔈
+		VOL_MID_ICON=🔉
+		VOL_HIGH_ICON=🔊
+		;;
+	nerd | *)
+		VOL_MUTE_ICON=
+		VOL_LOW_ICON=
+		VOL_MID_ICON=
+		VOL_HIGH_ICON=
+		;;
+esac
+
+# Check if sound is muted
+mute="$(amixer get Master | tail -1 | awk '{print $6}' | sed 's/[^a-z]*//g')"
+[ $mute = "off" ] && echo $VOL_MUTE_ICON && exit
+
+volume="$(amixer get Master | tail -1 | awk '{print $4}' | sed 's/[^0-9]*//g')"
+
+# Set Proper icon
+if [ $volume -lt 30 ]; then
+	icon=$VOL_LOW_ICON
+elif [ $volume -lt 70 ]; then
+	icon=$VOL_MID_ICON
+else
+	icon=$VOL_HIGH_ICON
+fi
+
+echo "$icon  $volume%"

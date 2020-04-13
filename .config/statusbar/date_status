@@ -1,0 +1,14 @@
+#!/bin/sh
+case $UI_ICON in
+	emoji) ICON=📅 ;;
+	nerd | *) ICON= ;;
+esac
+
+echo "$ICON  "$(date '+%a %d %b')
+
+case $BLOCK_BUTTON in
+	1) $TERMINAL -name cal -title cal -geometry 20x9-0+60  -e "cal && read" ;;
+	3) $TERMINAL -name cal -title cal -geometry 64x9-0+60  -e "cal -3 && read" ;;
+	# Open clacurse if installed.
+#	3) $TERMINAL -name calcurse -title calcurse -e calcurse -D $XDG_CONFIG_HOME/calcurse ;;
+esac
