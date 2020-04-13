@@ -1,0 +1,39 @@
+! vim: ft=xdefaults
+! Description:	Custome built Color Scheme
+!
+
+! black
+!#define term_color00	#303030
+#define term_color00	black
+#define term_color08	#606060
+! red
+#define term_color01	#FF2020
+#define term_color09	#FF8080
+! green
+#define term_color02	#40B040
+#define term_color10	#80FF80
+! yellow
+#define term_color03	#FFFF40
+#define term_color11	#FFFF80
+! blue
+#define term_color04	#3060FF
+#define term_color12	#80C0FF
+! magenta
+#define term_color05	#B040B0
+#define term_color13	#B080B0
+! cyan
+#define term_color06	#40C0B0
+#define term_color14	#80C0B0
+! white
+#define term_color07	#808080
+#define term_color15	#C0C0C0
+
+! Accent Color
+#define accent_color	term_color04
+
+! special
+#define	term_opacity		0.98
+#define term_foreground		#B0B0B0
+#define term_background		#000000
+#define term_cursorcolor	#FFFFFF
+

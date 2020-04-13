@@ -1,0 +1,38 @@
+! vim: ft=xdefaults
+! Description:	Custome built Color Scheme
+!
+
+! black
+#define term_color00	Black
+#define term_color08	DimGray
+! red
+#define term_color01	FireBrick
+#define term_color09	Salmon
+! green
+#define term_color02	SeaGreen
+#define term_color10	LightGreen
+! yellow
+#define term_color03	Gold
+#define term_color11	Khaki
+! blue
+#define term_color04	SteelBlue
+#define term_color12	DodgerBlue
+! magenta
+#define term_color05	DarkMagenta
+#define term_color13	Plum
+! cyan
+#define term_color06	DarkCyan
+#define term_color14	Turquoise
+! white
+#define term_color07	AntiqueWhite
+#define term_color15	Ivory
+
+! Accent Color
+#define accent_color	term_color04
+
+! special
+#define	term_opacity		0.98
+#define term_foreground		Gray
+#define term_background		Black
+#define term_cursorcolor	White
+

@@ -1,0 +1,35 @@
+! vim: ft=xdefaults
+! Description:	3024 Dark Color Scheme
+
+#define term_color00	#000000
+#define term_color08	#5c5855
+! Red
+#define term_color01	#db2d20
+#define term_color09	#e8bbd0
+! Green
+#define term_color02	#01a252
+#define term_color10	#3a3432
+! Yellow
+#define term_color03	#fded02
+#define term_color11	#4a4543
+! Blue
+#define term_color04	#01a0e4
+#define term_color12	#807d7c
+! Magenta
+#define term_color05	#a16a94
+#define term_color13	#d6d5d4
+! Cyan
+#define term_color06	#b5e4f4
+#define term_color14	#cdab53
+! White
+#define term_color07	#a5a2a2
+#define term_color15	#FFFFFF
+
+
+! Accent Color
+#define accent_color	term_color04
+
+#define	term_opacity		0.98
+#define term_background		term_color00
+#define	term_foreground		grey
+#define term_cursorcolor	term_color15

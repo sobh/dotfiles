@@ -1,0 +1,37 @@
+! vim: ft=xdefaults
+! Description:	Vim colorscheme inspired by Arch Linux colors
+!
+
+! black
+#define term_color00	#282A2E
+#define term_color08	#373B41
+! red
+#define term_color01	#A54242
+#define term_color09	#CC6666
+! green
+#define term_color02	#8C9440
+#define term_color10	#B5BD68
+! yellow
+#define term_color03	#DE935F
+#define term_color11	#F0C674
+! blue
+#define term_color04	#5F819D
+#define term_color12	#81A2BE
+! magenta
+#define term_color05	#85678F
+#define term_color13	#B294BB
+! cyan
+#define term_color06	#5E8D87
+#define term_color14	#8ABEB7
+! white
+#define term_color07	#707880
+#define term_color15	#FFFFFF
+
+
+! Accent Color
+#define accent_color	term_color04
+
+#define	term_opacity		0.98
+#define term_background		#000000
+#define	term_foreground		grey
+#define term_cursorcolor	term_color15

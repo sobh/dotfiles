@@ -1,8 +1,13 @@
-! ------------------------------------------------------------------------------
+! -----------------------------------------------------------------------------
 ! vim: ft=xdefaults
 ! File:		.Xresources
 ! Author:	Mohamed Sobh
 ! ------------------------------------------------------------------------------
 
+#define term_font	monospace:size=14
+!#define term_font_alt	JoyPixels:size=14
+!#define term_font_alt	Font Awesome 5 Free:size=14
+#define term_font_alt	Symbols Nerd Font:size=14
+#define display_font	display:size=14
 ! Set DPI
-Xft.dpi: 160
+Xft.dpi: 200
