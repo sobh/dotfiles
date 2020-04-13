@@ -1,0 +1,19 @@
+# Faster Tab Completion
+set show-all-if-ambiguous on
+set show-all-if-unmodified on
+
+set colored-stats on
+
+# vi Mode
+set editing-mode vi
+set show-mode-in-prompt on
+set vi-cmd-mode-string "\e[1;94m[N]\e[m\1\e[2 q\2"
+set vi-ins-mode-string "\e[1;92m[I]\e[m\1\e[5 q\2"
+# Key Maps
+$if mode=vi
+	set keymap vi-command
+	Control-l: clear-screen
+
+	set keymap vi-insert
+	Control-l: clear-screen
+$endif
