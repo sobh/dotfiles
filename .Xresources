@@ -6,13 +6,14 @@
 
 !---- Load Host Configurations -------------------------------------------------
 #if HOST==optiplex
-	#include "xresources/hosts/optiplex.Xresources"
+	#include ".config/xresources/hosts/optiplex.Xresources"
 #endif
 
 !---- Color Scheme -------------------------------------------------------------
-#include ".config/xresources/colors/archery.Xresources"
+#include ".config/xresources/colors/sobh.Xresources"
 
 !---- Fonts -----------------------------------------------------------------{{{
+! Xft.dpi => Defined in HOST file
 Xft.autohint:	0
 Xft.lcdfilter:	lcddefault
 Xft.hintstyle:	hintfull
@@ -22,38 +23,67 @@ Xft.rgba:	rgb
 !---- Fonts }}}
 
 !---- Applications ----------------------------------------------------------{{{
-!-------- st ----------------------------------------------------------------{{{
-st*alpha:	opacity
-st*font:	TermFont
-st*fontalt0:	fontalt
+!-------- st ------------------------{{{
+/* St*termname:	st-256color */
+st*alpha:	term_opacity
+st*font:	term_font
+st*fontalt0:	term_font_alt
+
+st*cursorColor:	term_cursorcolor
+st*background:	term_background
+st*foreground:	term_foreground
+
+st*color0:	term_color00
+st*color1:	term_color01
+st*color2:	term_color02
+st*color3:	term_color03
+st*color4:	term_color04
+st*color5:	term_color05
+st*color6:	term_color06
+st*color7:	term_color07
+st*color8:	term_color08
+st*color9:	term_color09
+st*color10:	term_color10
+st*color11:	term_color11
+st*color12:	term_color12
+st*color13:	term_color13
+st*color14:	term_color14
+st*color15:	term_color15
 !--- st }}}
 
-!-------- XTerm -------------------------------------------------------------{{{
-xterm*TermName:		xterm-256color
-xterm*FaceName:		TermFont
+!-------- XTerm ---------------------{{{
+UXTerm*TermName:	xterm-256color
+UXTerm*FaceName:	monospace
+UXTerm*FaceSize:	14
 
-xterm*CursorColor:	cursorcolor
-xterm*Background:	background
-xterm*Foreground:	foreground
+UXTerm*CursorColor:	term_cursorcolor
+UXTerm*Background:	term_background
+UXTerm*Foreground:	term_foreground
 
-xterm*color0:	color_black
-xterm*color1:	color_red
-xterm*color2:	color_green
-xterm*color3:	color_yellow
-xterm*color4:	color_blue
-xterm*color5:	color_magenta
-xterm*color6:	color_cyan
-xterm*color7:	color_white
+UXTerm*color0:	term_color00
+UXTerm*color1:	term_color01
+UXTerm*color2:	term_color02
+UXTerm*color3:	term_color03
+UXTerm*color4:	term_color04
+UXTerm*color5:	term_color05
+UXTerm*color6:	term_color06
+UXTerm*color7:	term_color07
 
-xterm*color8:	color_bright_black
-xterm*color9:	color_bright_red
-xterm*color10:	color_bright_green
-xterm*color11:	color_bright_yellow
-xterm*color12:	color_bright_blue
-xterm*color13:	color_bright_magenta
-xterm*color14:	color_bright_cyan
-xterm*color15:	color_bright_white
+UXTerm*color8:	term_color08
+UXTerm*color9:	term_color09
+UXTerm*color10:	term_color10
+UXTerm*color11:	term_color11
+UXTerm*color12:	term_color12
+UXTerm*color13:	term_color13
+UXTerm*color14:	term_color14
+UXTerm*color15:	term_color15
 
 !---- XTerm }}}
 
+!-------- sxiv ----------------------{{{
+Sxiv*font:	display_font
+Sxiv*background:	black
+Sxiv*foreground:	white
+!-------- sxiv }}}
+!
 !---- Applications }}}
