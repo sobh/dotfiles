@@ -88,7 +88,6 @@ let &t_EI="\e[2 q" "EI = NORMAL mode (ELSE)
 " Always start in Normal Mode
 silent !echo -ne "\e[2 q"
 
-syntax on		" Set syntax highlighting
 set autoindent		" Autoindent
 set cursorline		" Highlight current line
 set encoding=utf-8	" Set UTF-8
@@ -120,11 +119,13 @@ set smartcase		" Override 'ignorecase' if search pattern has uppercase
 set listchars=tab:\├─➜,space:·	" String to use in 'list' mode
 
 "---- Colorscheme --------------------------------------------------------------
-set t_Co=256
 set background=dark
-let g:molokai_original = 1
-let g:rehash256 = 1
-colorscheme molokai
+if &term !=? 'linux'
+	let g:molokai_original = 1
+	let g:rehash256 = 1
+	colorscheme molokai
+endif
+syntax on		" Set syntax highlighting
 " let g:solarized_termcolors=256
 " colorscheme solarized
 " let base16colorspace=256  " Access colors present in 256 colorspace
