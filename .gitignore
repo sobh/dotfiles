@@ -1,3 +1,3 @@
-.vim/swap/*
-.vim/plugged/*
+.config/nvim/plugged/*
+.config/nvim/swap/*
 #!.vim/plugged/vim-plug/
