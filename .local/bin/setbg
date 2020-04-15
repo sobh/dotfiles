@@ -1,0 +1,21 @@
+#!/bin/sh
+# Author:	Luke Smith <www.lukesmith.xyz>
+# Depends On:	coreutils findutils xwallpaper libnotify
+#
+
+# ~/.cache/wall.png is the location of the system wallpaper.  This
+# script, if given an argument, moves it there.  This script without an
+# argument sets ~/.cache/wall.png as the wallpaper, which is required on login
+# if you don't want a black screen.
+#
+# You may also give a directory name to select a random image from that
+# directory as a wallpaper. Be careful that the directory only has images.
+
+WP=$XDG_CACHE_HOME/wallpaper
+
+[ -f "$1" ] && cp "$1" $WP && notify-send -i "$WP" "Wallpaper changed."
+[ -d "$1" ] &&
+	cp "$(find "$1" -iregex '.*.\(jpg\|jpeg\|png\)' -type f | shuf -n 1)" $WP &&
+	notify-send -i "$WP" "Random Wallpaper chosen."
+
+xwallpaper --zoom $WP

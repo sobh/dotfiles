@@ -1,0 +1,4 @@
+#!/bin/sh
+# Description:	Get display resolution (returns the highest for multiples)
+# Depends On:	xdpyinfo awk coreutils
+xdpyinfo | awk '/dimensions/ {print $2}' | sort -rn | head -n1

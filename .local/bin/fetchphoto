@@ -1,0 +1,25 @@
+#!/bin/sh
+# Description:	Fetch a random photo from the internet.
+# Depends On:	curl
+#
+
+PNAME=$(basename $0)
+URL=https://source.unsplash.com/random
+
+usage(){
+	cat << EOF
+Usage:
+	$PNAME	output-file
+EOF
+	exit
+}
+
+while getopts "h" opt ; do
+	case $opt in
+		o)  echo "Option -o has value of $OPTARG" ;;
+		\?|h) usage ;;
+	esac
+done
+
+[ -z $1 ] && usage
+curl -L --output $1 $URL/$(getresol)?architecutre

@@ -1,0 +1,11 @@
+#!/bin/sh
+# Description:	Fetch random photo from the internet, and set it as background.
+# Depends On:	coreutils imagemagick
+
+! gotweb && exit -1
+TMP=$(mktemp)
+fetchphoto $TMP
+# Reduce Brightness
+convert -brightness-contrast -30x0 $TMP $TMP
+setbg $TMP
+rm $TMP

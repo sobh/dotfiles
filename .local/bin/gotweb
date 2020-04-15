@@ -1,0 +1,6 @@
+#!/bin/sh
+# Description:	Test internet connection
+# Depends On:	netcat
+CLOUDFLARE=1.1.1.1
+GOOGLE=8.8.8.8
+exit $(nc -zw1 $GOOGLE 443)
