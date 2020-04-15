@@ -4,5 +4,7 @@
 # Description: zsh env startup script.
 #
 
-#echo "Executing: zsh env startup script."
-source ~/.config/shell/env
+. $HOME/.config/shell/env
+
+# Use POSIX format for timing function
+export TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S'

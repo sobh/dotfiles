@@ -4,5 +4,4 @@
 # Description: zsh login startup script.
 #
 
-#echo "Executing: zsh login startup script."
-source ~/.config/shell/login
+. $HOME/.config/shell/login
