@@ -27,12 +27,14 @@ source $XDG_CONFIG_HOME/shell/env_functions
 export NAME='Mohamed Sobh'
 export EMAIL='mohamed.alhusieny@gmail.com'
 # Set default applicaitons for non-graphical programs
-export EDITOR=vim
+export EDITOR=nvim
 export VISUAL=$EDITOR
 export BROWSER=chromium
 export TERMINAL=uxterm
 export PAGER=less
 
+# Adjust config files locoations
+export INPUTRC="$XDG_CONFIG_HOME/inputrc"
 
 # Language
 #export LANG='en_EN.UTF-8'
@@ -46,14 +48,14 @@ export PAGER=less
 
 #umask 0077
 
-ssource ~/.config/shell/env_local
-
+ssource $XDG_CONFIG_HOME/shell/env_local
 
 # Path settings
-pathprepend ~/bin PATH
-pathprepend ~/lib LD_LIBRARY_PATH
-pathprepend ~/include CPATH
-
+pathprepend $HOME/bin PATH
+pathprepend $XDG_LOCAL_HOME/bin PATH
+pathprepend $XDG_CONFIG_HOME/statusbar PATH
+pathprepend $HOME/lib LD_LIBRARY_PATH
+pathprepend $HOME/include CPATH
 
 # The current directory should never be in $PATH
 pathremove . PATH
