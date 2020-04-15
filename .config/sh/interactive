@@ -4,6 +4,5 @@
 # Descrioption:	sh interactive shell startup.
 #
 
-# echo "Executing: sh interactive startup."
-source ~/.config/shell/interactive
+. $HOME/.config/shell/interactive
 
