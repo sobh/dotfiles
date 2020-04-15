@@ -6,5 +6,5 @@
 # WARNING: this will $BASH_ENV to get a correct startup sequence
 
 #echo "Executing: bash env shell startup."
-source ~/.config/shell/env
+. $HOME/.config/shell/env
 

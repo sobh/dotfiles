@@ -11,5 +11,5 @@
 # however, we assume that #2 is a recovery mode, so we don't want to do much.
 # (also, my google-fu didn't find a way to distinguish them)
 
-. ~/.config/bash/env
-. ~/.config/bash/interactive
+. $HOME/.config/bash/env
+. $HOME/.config/bash/interactive

@@ -1,7 +1,7 @@
 # We need to do two things here:
 
-# 1. Ensure ~/.bash/env gets run first
-source ~/.config/bash/env
+# 1. Ensure $HOME/.bash/env gets run first
+source $HOME/.config/bash/env
 
 # 2. Prevent it from being run later, since we need to use $BASH_ENV for
 # non-login non-interactive shells.
@@ -12,11 +12,11 @@ BASH_ENV=
 # 3. Join the spanish inquisition. ;)
 # so much for only two things...
 
-# 4. Run ~/.bash/login
-. ~/.config/bash/login
+# 4. Run $HOME/.bash/login
+. $HOME/.config/bash/login
 
-# 5. Run ~/.bash/interactive if this is an interactive shell.
+# 5. Run $HOME/.bash/interactive if this is an interactive shell.
 if [ "$PS1" ]; then
-    . ~/.config/bash/interactive
+	. $HOME/.config/bash/interactive
 fi
 
