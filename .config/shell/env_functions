@@ -11,8 +11,8 @@ indirect_expand () {
 }
 
 # Usage: pathremove /path/to/bin [PATH]
-# Eg, to remove ~/bin from $PATH
-#     pathremove ~/bin PATH
+# Eg, to remove $HOME/bin from $PATH
+#     pathremove $HOME/bin PATH
 pathremove () {
     local IFS=':'
     local newpath
@@ -29,8 +29,8 @@ pathremove () {
 }
 
 # Usage: pathprepend /path/to/bin [PATH]
-# Eg, to prepend ~/bin to $PATH
-#     pathprepend ~/bin PATH
+# Eg, to prepend $HOME/bin to $PATH
+#     pathprepend $HOME/bin PATH
 pathprepend () {
     # if the path is already in the variable,
     # remove it so we can move it to the front
@@ -42,8 +42,8 @@ pathprepend () {
 }
 
 # Usage: pathappend /path/to/bin [PATH]
-# Eg, to append ~/bin to $PATH
-#     pathappend ~/bin PATH
+# Eg, to append $HOME/bin to $PATH
+#     pathappend $HOME/bin PATH
 pathappend () {
     pathremove "${1}" "${2}"
     #[ -d "${1}" ] || return
