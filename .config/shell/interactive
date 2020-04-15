@@ -6,13 +6,16 @@
 # put your aliases here
 #
 
-# if in a terminal
-if [ -t 0 ]; then
-#	echo "Executing: shell interactive startup."
-	# other users shouldn't be able to message by default
-	mesg n
+# If not running interactively, don't do anything
+[ $- = ${-%i*} ] && return
 
-	# enable colours
-	#if [ `tput colors` -ge 8 ]; then
-	#fi
-fi
+#---- Aliases ----------------------------------------------------------------------------------------------------------
+alias aur='pacaur --noconfirm --noedit'
+alias grep='grep --color=auto'
+alias info='info --vi-keys'
+alias l='ls '
+alias la='ls -a'
+alias ll='ls -l'
+alias ls='ls --group-directories-first -X --human-readable --color=auto'
+alias lsmovies='(ls /media/sdc5/sobh/movies; ls $HOME/movies;)'
+#alias vim='nvim'
