@@ -1,10 +1,28 @@
 #!/bin/zsh
 # vim: filetype=zsh
 #
-# Description: zsh interactive startup script.
+# Description:	zsh interactive startup script.
 #
 
-#echo "Executing: zsh interactive startup script."
-source ~/.config/shell/interactive
-# Enable zsh syntax highlighting
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# If not running interactively, don't do anything
+[ $- = ${-%i*} ] && return
+
+# Source common interactive shell configurations
+. $XDG_CONFIG_HOME/shell/interactive
+
+setopt vi		# Set vi-mode
+#---- prompt -------------------------------------------------------------------
+type prompt 1>/dev/null && prompt off		    # Disable GRML prompt
+. $XDG_CONFIG_HOME/zsh/prompts/sobh.zsh
+
+#---- History ------------------------------------------------------------------
+HISTFILE="$XDG_CACHE_HOME/zsh_history"
+SAVEHIST=100000	    # Number of lines to save to $HISTFILE.
+HISTSIZE=100000	    # Number of lines to read from $HISTFILE.
+setopt SHARE_HISTORY		# Share history between sessions.
+setopt HIST_EXPIRE_DUPS_FIRST	# Trim duplicates first.
+setopt HIST_IGNORE_ALL_DUPS	# Remove old history duplicates.
+setopt HIST_IGNORE_SPACE	# Ignore commands starting with a space.
+
+#---- Syntax Highlighting ------------------------------------------------------
+. /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
