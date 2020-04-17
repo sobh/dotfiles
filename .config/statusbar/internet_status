@@ -2,15 +2,24 @@
 
 case $BLOCK_BUTTON in
 	1) $TERMINAL -e nmtui ;;
-	3) pgrep -x dunst >/dev/null && notify-send "🌐 Internet module" "\- Click to connect
-📡: no wifi connection
-📶: wifi connection with quality
-❎: no ethernet
-🌐: ethernet working
-" ;;
 esac
 
-[ "$(cat /sys/class/net/w*/operstate)" = 'down' ] && wifiicon="📡" ||
-	wifiicon=$(grep "^\s*w" /proc/net/wireless | awk '{ print "📶", int($3 * 100 / 70) "%" }')
+# Set icon set based on style.
+X_OVERLAY="<span foreground='#FF0000'>\u036F</span>"
+case $UI_ICON in
+	emoji)
+		WEB_UP="🌐"
+		WEB_DOWN="$WEB_UP$X_OVERLAY "
+		;;
 
-printf "%s %s\n" "$wifiicon" "$(sed "s/down/❎/;s/up/🌐/" /sys/class/net/e*/operstate)"
+	nerd | *)
+		WEB_UP="爵"
+		WEB_DOWN="<span foreground='#FF8080'>$WEB_UP</span>"
+		;;
+esac
+
+gotweb && printf "$WEB_UP\n" || printf "$WEB_DOWN\n"
+# [ "$(cat /sys/class/net/w*/operstate)" = 'down' ] && wifiicon="📡" ||
+# 	wifiicon=$(grep "^\s*w" /proc/net/wireless | awk '{ print "📶", int($3 * 100 / 70) "%" }')
+
+# printf "%s %s\n" "$wifiicon" "$(sed "s/down/❎/;s/up/🌐/" /sys/class/net/e*/operstate)"
