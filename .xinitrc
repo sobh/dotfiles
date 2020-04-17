@@ -11,6 +11,8 @@
 #---- Displays' Settings -------------------------------------------------------
 [ -f $XDG_CONFIG_HOME/xrandr/$HOST ] && . $XDG_CONFIG_HOME/xrandr/$HOST
 
+# Set keyboard
+exec setkeyboard &
 # Disable Beeps
 xset -b
 
