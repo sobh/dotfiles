@@ -5,7 +5,7 @@
 #
 
 # If not running interactively, don't do anything
-[ $- = ${-%i*} ] && return
+[ "$-" = "${-%i*}" ] && return
 
 # Source common interactive shell configurations
 . $XDG_CONFIG_HOME/shell/interactive
