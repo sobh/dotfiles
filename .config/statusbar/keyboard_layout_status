@@ -5,9 +5,23 @@ case $BLOCK_BUTTON in
 	3) toggle_keyboard_layout ;;
 esac
 
+case $UI_ICON in
+	emoji)
+		EN_ICON='🇺🇸'
+		AR_ICON='🇪🇬'
+		KNOWN_ICON='❓'
+		;;
+	nerd | *)
+		LANG_ICON=''
+		EN_ICON=$LANG_ICON' E'
+		AR_ICON=$LANG_ICON' ض'
+		KNOWN_ICON=$LANG_ICON' '''
+		;;
+esac
+
 layout=$(setxkbmap -print -v 7 | awk '/layout/ {print $2}')
 case $layout in
-	'us') echo '🇺🇸';;
-	'ara') echo '🇪🇬' ;;
-	*) echo '❓' ;;
+	'us') echo $EN_ICON;;
+	'ara') echo $AR_ICON;;
+	*) echo $KNOWN_ICON ;;
 esac
