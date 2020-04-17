@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# Description:	loads the xresources from my custom directory
+#
+
+[ -f $HOME/.Xresources ] && xrdb $HOME/.Xresources
