@@ -61,22 +61,22 @@ markup=pango
 
 [pkg_status]
 interval=once
-signal=8
 
 [date_status]
-label=
 interval=60
 
 [time_status]
-label=
 interval=60
 
 [volume_status]
 interval=once
-signal=10
 
 [internet_status]
 interval=10
+
+[keyboard_layout_status]
+interval=once
+signal=1
 
 # [help]
 # interval=once

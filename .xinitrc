@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #
 # $HOME/.xinitrc
 #
@@ -9,17 +9,14 @@
 : ${UI_ICON:=emoji}; export UI_ICON
 
 #---- Displays' Settings -------------------------------------------------------
-[[ -f $XDG_CONFIG_HOME/xrandr/$HOSTNAME ]] && source $XDG_CONFIG_HOME/xrandr/$HOSTNAME
-
-# Allow Switching Keyboard map usint [alt+caps] --------------------------------
-setxkbmap -layout "us, ara" -variant ",qwerty_digits" -option "grp:alt_caps_toggle"
+[ -f $XDG_CONFIG_HOME/xrandr/$HOST ] && . $XDG_CONFIG_HOME/xrandr/$HOST
 
 # Disable Beeps
 xset -b
 
 #---- Xresources ---------------------------------------------------------------
 # We don't merge :p
-[[ -f $HOME/.Xresources ]] && xrdb $HOME/.Xresources
+[ -f $HOME/.Xresources ] && xrdb $HOME/.Xresources
 
 #---- HiDPI --------------------------------------------------------------------
 #-------- GTK-3.0 ----------------------
@@ -31,7 +28,7 @@ export QT_AUTO_SCREEN_SCALE_FACTOR=1
 
 #---- Startup Applications -----------------------------------------------------
 
-if [ $WM = i3 ] ; then
+if [ "$WM" = "i3" ] ; then
 	exec dropbox &
 	exec firejail dropbox-atc.sh &
 fi
@@ -48,7 +45,7 @@ case $WM in
 		exec /usr/bin/i3 ;;
 	dwm)
 		while : ; do
-			ssh-agent $HOME/bin/dwm
+			ssh-agent /usr/local/bin/dwm
 		done
 		;;
 	*)

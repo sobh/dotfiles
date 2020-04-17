@@ -135,6 +135,9 @@ bindsym $mod+Return exec --no-startup-id $term
 # kill focused window
 bindsym $mod+q kill
 
+# Toggle keyboard Layout
+bindsym Mod1+Shift+Tab exec toggle_keyboard_layout && pkill -SIGRTMIN+1 i3blocks;
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
