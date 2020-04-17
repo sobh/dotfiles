@@ -1,0 +1,13 @@
+#!/bin/sh
+# Description:	Show, and sw
+# Set Volume based on mouse command
+case $BLOCK_BUTTON in
+	3) toggle_keyboard_layout ;;
+esac
+
+layout=$(setxkbmap -print -v 7 | awk '/layout/ {print $2}')
+case $layout in
+	'us') echo '🇺🇸';;
+	'ara') echo '🇪🇬' ;;
+	*) echo '❓' ;;
+esac
