@@ -9,8 +9,19 @@
 # If not running interactively, don't do anything
 [ "$-" = "${-%i*}" ] && return
 
-#---- Aliases ----------------------------------------------------------------------------------------------------------
-alias aur='pacaur --noconfirm --noedit'
+# Load shortcuts
+SHORTCUT=$XDG_CACHE_HOME/shortcutrc
+[ -f "$SHORTCUT" ] && . "$SHORTCUT"
+#---- less colors for man pages ------------------------------------------------
+export LESS_TERMCAP_mb=$'\E[5;33m'	# Begin blinking
+export LESS_TERMCAP_md=$'\E[1;34m'	# Begin Bold
+export LESS_TERMCAP_me=$'\E[0m'		# End mode
+export LESS_TERMCAP_se=$'\E[0m'		# End standout-mode
+export LESS_TERMCAP_so=$'\E[44;30m'	# Begin standout-mode - info box
+export LESS_TERMCAP_ue=$'\E[0m'		# End underline
+export LESS_TERMCAP_us=$'\E[4;92m'	# Begin underline
+#---- Aliases ------------------------------------------------------------------
+#-------- base -------------------------
 alias grep='grep --color=auto'
 alias info='info --vi-keys'
 alias l='ls '
@@ -18,4 +29,16 @@ alias la='ls -a'
 alias ll='ls -l'
 alias ls='ls --group-directories-first -X --human-readable --color=auto'
 alias lsmovies='(ls /media/sdc5/sobh/movies; ls $HOME/movies;)'
-#alias vim='nvim'
+#-------- git --------------------------
+alias \
+	ga='git add'	\
+	gc='git commit'	\
+	gd='git diff'	\
+	gs='git status'	\
+
+#-------- pacman -----------------------
+alias p='pacman'
+alias pu='sudo pacman -Syu'
+alias pq='pacman -Q'
+alias po='pacman -Qo'
+poc(){ pacman -Qo $(which $1); }	# Package Owns Command
