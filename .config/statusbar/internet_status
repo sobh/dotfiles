@@ -5,7 +5,7 @@ case $BLOCK_BUTTON in
 esac
 
 # Set icon set based on style.
-X_OVERLAY="<span foreground='#FF0000'>\u036F</span>"
+X_OVERLAY="<span foreground='#FF0000' weight='heavy'>\u036F</span>"		# Unicode Combining Latin Small x
 case $UI_ICON in
 	emoji)
 		WEB_UP="🌐"
@@ -13,7 +13,7 @@ case $UI_ICON in
 		;;
 
 	nerd | *)
-		WEB_UP="爵"
+		WEB_UP="<span size='x-large' weight='ultralight'>爵</span>"
 		WEB_DOWN="<span foreground='#FF8080'>$WEB_UP</span>"
 		;;
 esac
