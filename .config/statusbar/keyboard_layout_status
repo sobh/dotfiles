@@ -1,6 +1,7 @@
 #!/bin/sh
-# Description:	Show, and sw
-# Set Volume based on mouse command
+# Description:	Show, and toggle keyboard layout.
+#
+
 case $BLOCK_BUTTON in
 	3) toggle_keyboard_layout ;;
 esac
@@ -14,14 +15,14 @@ case $UI_ICON in
 	nerd | *)
 		LANG_ICON=''
 		EN_ICON=$LANG_ICON' E'
-		AR_ICON=$LANG_ICON' ض'
-		KNOWN_ICON=$LANG_ICON' '''
+		AR_ICON=$LANG_ICON' ؏'
+		KNOWN_ICON=$LANG_ICON' '
 		;;
 esac
 
 layout=$(setxkbmap -print -v 7 | awk '/layout/ {print $2}')
 case $layout in
-	'us') echo $EN_ICON;;
-	'ara') echo $AR_ICON;;
-	*) echo $KNOWN_ICON ;;
+	'us') printf "$EN_ICON\n";;
+	'ara') printf "$AR_ICON\n";;
+	*) printf "$KNOWN_ICON\n" ;;
 esac
