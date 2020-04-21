@@ -166,6 +166,9 @@ let g:GPGPreferSymmetric=1
 " }}}
 
 "---- Mappings --------------------------------------------------------------{{{
+" Save n Run
+noremap  <F2>            :w<CR>:!clear; ./%<CR>
+inoremap <F2>       <Esc>:w<CR>:!clear; ./%<CR>
 " NERDTree
 noremap  <F11>            :NERDTreeToggle<CR>
 inoremap <F11>       <Esc>:NERDTreeToggle<CR>
