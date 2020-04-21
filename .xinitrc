@@ -3,10 +3,18 @@
 # $HOME/.xinitrc
 #
 
+#---- Set the Environment Parameters -------------------------------------------
 # Set Defautl window manager (values: i3, dwm)
 : ${WM:=i3}; export WM
 # Set Defautl UI icone style (values: emoji, nerd)
 : ${UI_ICON:=emoji}; export UI_ICON
+# DPI Settings based on host
+case $HOST in
+	optiplex) DPI=200;;
+	satellite |t420) DPI=150;;
+	*)  DPI=92;;
+esac
+export DPI
 
 #---- Displays' Settings -------------------------------------------------------
 [ -f $XDG_CONFIG_HOME/xrandr/$HOST ] && . $XDG_CONFIG_HOME/xrandr/$HOST
@@ -17,8 +25,7 @@ exec setkeyboard &
 xset -b
 
 #---- Xresources ---------------------------------------------------------------
-# We don't merge :p
-[ -f $HOME/.Xresources ] && xrdb $HOME/.Xresources
+loadxresources
 
 #---- HiDPI --------------------------------------------------------------------
 #-------- GTK-3.0 ----------------------
