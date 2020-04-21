@@ -4,16 +4,27 @@
 ! ------------------------------------------------------------------------------
 
 
-!---- Load Host Configurations -------------------------------------------------
-#if HOST==optiplex
-	#include ".config/xresources/hosts/optiplex.Xresources"
+!---- DPI Dependant ------------------------------------------------------------
+#if DPI > 190
+	#define term_font	monospace:size=14
+	#define term_font_alt	Symbols Nerd Font:size=14
+	#define display_font	system-ui:size=14
+	#define font_size	14
+#else
+! DPI > 140
+	#define term_font	monospace:size=12
+	#define term_font_alt	Symbols Nerd Font:size=12
+	#define display_font	system-ui:size=12
+	#define font_size	12
 #endif
 
+#define font_name	monospace
 !---- Color Scheme -------------------------------------------------------------
 #include ".config/xresources/colors/sobh.Xresources"
 
 !---- Fonts -----------------------------------------------------------------{{{
-! Xft.dpi => Defined in HOST file
+! DPI must be set in .xinit
+Xft.dpi:	DPI
 Xft.autohint:	0
 Xft.lcdfilter:	lcddefault
 Xft.hintstyle:	hintfull
@@ -53,8 +64,8 @@ st*color15:	term_color15
 
 !-------- XTerm ---------------------{{{
 UXTerm*TermName:	xterm-256color
-UXTerm*FaceName:	monospace
-UXTerm*FaceSize:	14
+UXTerm*FaceName:	font_name
+UXTerm*FaceSize:	font_size
 
 UXTerm*CursorColor:	term_cursorcolor
 UXTerm*Background:	term_background
