@@ -7,3 +7,20 @@
 [ $- = ${-%i*} ] && return
 
 . $HOME/.config/shell/interactive
+#---- Prompt -------------------------------------------------------------------
+# Define formatting
+BOLD='\e[1m'
+RESET='\e[0m'
+
+YELLOW='\e[33m'
+MAGENTA='\e[35m'
+CYAN='\e[36m'
+# Prompt Blocks
+_jobs () {
+	j='\j'
+	jj=${j@P}
+	[ "$jj" -gt 0 ] && echo -e "$YELLOW↓$jj "
+}
+P_PWD="$MAGENTA\w"
+P_SYM="$CYAN\\$ >"
+PS1="$BOLD $P_PWD \$(_jobs)$P_SYM $RESET"
