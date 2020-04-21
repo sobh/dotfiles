@@ -1,0 +1,17 @@
+# vim: ft=cfg
+# Description:	shortcut templates to be used by 'genshortcuts'
+#
+
+#bw	$XDG_CONFIG_HOME/bookmarks
+bd	$XDG_CONFIG_HOME/shortcuts/directories
+bf	$XDG_CONFIG_HOME/shortcuts/files
+
+#---- Configuration Files ------------------------------------------------------
+
+cfb	$XDG_CONFIG_HOME/i3blocks/config
+cfi	$XDG_CONFIG_HOME/i3/config
+cfk	$XDG_CONFIG_HOME/sxhkd/sxhkdrc
+cfr	$HOME/.Xresources
+cfs	$XDG_CONFIG_HOME/shell/interactive
+cfv	$XDG_CONFIG_HOME/nvim/init.vim
+cfz	$XDG_CONFIG_HOME/zsh/interactive

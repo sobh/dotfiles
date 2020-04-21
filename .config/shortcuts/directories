@@ -1,0 +1,13 @@
+# vim: ft=cfg
+# Description:	shortcut templates to be used by 'genshortcuts'
+#
+
+# You can add comments to these files with #
+h	$HOME/
+d	$HOME/downloads
+m	$HOME/music
+pp	$HOME/photos
+mm	$HOME/movies
+cf	$XDG_CONFIG_HOME
+sc	$XDG_LOCAL_HOME/bin
+mn	/mnt
