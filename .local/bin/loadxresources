@@ -3,4 +3,4 @@
 # Description:	loads the xresources from my custom directory
 #
 
-[ -f $HOME/.Xresources ] && xrdb $HOME/.Xresources
+[ -f $HOME/.Xresources ] && xrdb -DDPI=$DPI $HOME/.Xresources
