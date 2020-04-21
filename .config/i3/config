@@ -110,10 +110,7 @@ for_window [class="Chromium"]	    border none
 bar {
 	mode dock
 	position top
-	height $bar_height
-	#tray_output primary
 	status_command i3blocks
-#        status_command i3status
 	colors {
 		background	$bg_color
 		separator	$seperator_color
