@@ -1,6 +1,6 @@
 #!/bin/sh
 layout=$(setxkbmap -print -v 7 | awk '/layout/ {print $2}')
-if [ $layout = us ] ;then
+if [ "$layout" = "us" ] ;then
 	setxkbmap -layout ara -variant qwerty_digits;
 else
 	setxkbmap -layout us ;
