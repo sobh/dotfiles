@@ -21,15 +21,18 @@ export LESS_TERMCAP_so=$'\E[44;30m'	# Begin standout-mode - info box
 export LESS_TERMCAP_ue=$'\E[0m'		# End underline
 export LESS_TERMCAP_us=$'\E[4;92m'	# Begin underline
 #---- Aliases ------------------------------------------------------------------
-#-------- base -------------------------
-alias grep='grep --color=auto'
-alias info='info --vi-keys'
-alias l='ls '
-alias la='ls -a'
-alias ll='ls -l'
-alias ls='ls --group-directories-first -X --human-readable --color=auto'
 unalias lsd 2>/dev/null
-alias lsmovies='(ls /media/sdc5/sobh/movies; ls $HOME/movies;)'
+#-------- base -------------------------
+alias \
+	diff='diff --color=auto'    \
+	grep='grep --color=auto'    \
+	info='info --vi-keys'	    \
+	l='ls '			    \
+	la='ls -a'		    \
+	ll='ls -l'		    \
+	ls='ls --group-directories-first -X --human-readable --color=auto'	\
+	lsmovies='(ls /media/sdc5/sobh/movies; ls $HOME/movies;)'		\
+
 #-------- git --------------------------
 alias \
 	ga='git add'	\
@@ -38,8 +41,10 @@ alias \
 	gs='git status'	\
 
 #-------- pacman -----------------------
-alias p='pacman'
-alias pu='sudo pacman -Syu'
-alias pq='pacman -Q'
-alias po='pacman -Qo'
+alias	\
+	p='pacman'		\
+	pu='sudo pacman -Syu'	\
+	pq='pacman -Q'		\
+	po='pacman -Qo'		\
+
 poc(){ pacman -Qo $(which $1); }	# Package Owns Command
