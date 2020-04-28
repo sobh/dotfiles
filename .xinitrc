@@ -4,6 +4,8 @@
 #
 
 #---- Set the Environment Parameters -------------------------------------------
+# Set Session Type
+export XDG_SESSION_TYPE='x11'
 # Set Defautl window manager (values: i3, dwm)
 : ${WM:=i3}; export WM
 # Set Defautl UI icone style (values: emoji, nerd)
