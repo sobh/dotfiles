@@ -55,10 +55,6 @@ markup=pango
 # interval=60
 # command=disk /home 🏠
 
-# [battery]
-# command=battery BAT0
-# interval=5
-
 [pkg_status]
 interval=once
 
@@ -77,6 +73,10 @@ interval=10
 [keyboard_layout_status]
 interval=once
 signal=1
+
+[battery]
+command=battery_status BAT0
+interval=5
 
 # [help]
 # interval=once
