@@ -2,13 +2,17 @@
 .config/autostart
 .config/chromium
 .config/dconf
+.config/htop
+.config/l3afpad
 .config/menus
 .config/nvim/plugged
 .config/nvim/swap
 .local/share/applications/chrom*
 .local/share/desktop-directories
 .local/share/icons
+.local/share/meld
 .local/share/nvim/shada
 .local/share/nvim/swap
 .local/share/recently-used.xbel
 .local/share/xorg
+.local/share/zathura
