@@ -3,20 +3,14 @@
 # $HOME/.xinitrc
 #
 
+#---- Source X11/Wayland common configurations ---------------------------------
+. $XDG_CONFIG_HOME/xw_common
+
 #---- Set the Environment Parameters -------------------------------------------
 # Set Session Type
 export XDG_SESSION_TYPE='x11'
 # Set Defautl window manager (values: i3, dwm)
 : ${WM:=i3}; export WM
-# Set Defautl UI icone style (values: emoji, nerd)
-: ${UI_ICON:=emoji}; export UI_ICON
-# DPI Settings based on host
-case $HOST in
-	optiplex) DPI=200;;
-	t420 |ed) DPI=140;;
-	*)  DPI=92;;
-esac
-export DPI
 
 #---- Displays' Settings -------------------------------------------------------
 [ -f $XDG_CONFIG_HOME/xrandr/$HOST ] && . $XDG_CONFIG_HOME/xrandr/$HOST
@@ -28,16 +22,6 @@ xset -b
 
 #---- Xresources ---------------------------------------------------------------
 loadxresources
-
-#---- HiDPI --------------------------------------------------------------------
-if [ $DPI -ge 180 ] ; then
-	#-------- GTK-3.0 ----------------------
-	export GDK_SCALE=2		# Scale UI Element
-	export GDK_DPI_SCALE=0.5	# Scale Back Text
-	#-------- QT5 --------------------------
-	# Make QT5 Applications honor screen DPI
-	export QT_AUTO_SCREEN_SCALE_FACTOR=1
-fi
 
 #---- Startup Applications -----------------------------------------------------
 
