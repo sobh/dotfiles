@@ -43,7 +43,7 @@ set $bg_color		#000000
 set $arch_color		#0088CC
 set $urgent_color	#E00000
 
-set $accent_color	$arch_color
+set $accent_color	#0088CC
 set $urgent_color_def	#900000
 
 set $focused_fg		#FFFFFF
@@ -66,7 +66,7 @@ client.focused		$accent_color		$accent_color		$focused_fg	$indicator_color
 client.unfocused	$unfocused_border	$unfocused_bg		$unfocused_fg	$indicator_color
 client.focused_inactive	$inactive_bg		$inactive_bg		$fg_color	$indicator_color
 client.urgent		$urgent_color		$urgent_color		$focused_fg	$indicator_color
-C
+
 # }}}
 
 #---- Workspaces Definitions ------------------------------------------------{{{
