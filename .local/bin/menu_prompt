@@ -1,0 +1,16 @@
+#!/bin/sh
+# Description:	X11/Wayland menu prompt.
+
+# Gives a menu prompt labeled with $1 to perform command $2.
+# For example:
+# menu_prompt "Do you want to shutdown?" "shutdown -h now"
+PROMPT=$1
+ACTION=$2
+
+if [ "$XDG_SESSION_TYPE" = "wayland" ] ; then
+	alias menu="bemenu -ni -p \"$PROMPT\" --tb=#FF0000 --tf=#FFFFFF --fn \"$UI_FONT\""
+else
+	alias menu="dmenu -i -p \"$PROMPT\" -nb darkred -sb red -sf white -nf gray"
+fi
+
+[ "$(printf "No\\nYes\\n" | menu )" = "Yes" ] && $ACTION

@@ -1,0 +1,34 @@
+#!/bin/sh
+#
+# Description:	Common settings for X11, and wayland.
+#		This file should be sourced by '.xinit', and 'startw'
+#
+
+# Set Defautl UI icone style (values: emoji, nerd)
+: ${UI_ICON:=emoji}; export UI_ICON
+
+# DPI Settings based on host
+case $HOST in
+	optiplex) DPI=200;;
+	satellite |t420)
+		DPI=150
+		UI_FONT_SIZE=18
+		;;
+	*)  DPI=92;;
+esac
+
+export DPI
+export UI_FONT_SIZE
+export UI_FONT_NAME="system-ui Light"
+export UI_FONT="$UI_FONT_NAME $UI_FONT_SIZE"
+
+#---- HiDPI --------------------------------------------------------------------
+if [ $DPI -ge 180 ] ; then
+	#-------- GTK-3.0 ----------------------
+	export GDK_SCALE=2		# Scale UI Element
+	export GDK_DPI_SCALE=0.5	# Scale Back Text
+	#-------- QT5 --------------------------
+	# Make QT5 Applications honor screen DPI
+	export QT_AUTO_SCREEN_SCALE_FACTOR=1
+fi
+
