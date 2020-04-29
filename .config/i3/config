@@ -9,8 +9,6 @@ set $mod Mod4
 
 # Used Font
 set $font system-ui Light 12
-# font pango:Roboto Bold 10
-# font pango:DejaVu Sans Mono Bold 10
 
 # Bar Height in pixels
 set $bar_height 60
@@ -45,6 +43,7 @@ set $bg_color		#000000
 set $arch_color		#0088CC
 set $urgent_color	#E00000
 
+set $accent_color	$arch_color
 set $urgent_color_def	#900000
 
 set $focused_fg		#FFFFFF
@@ -62,12 +61,12 @@ set $seperator_color	#757575
 set $indicator_color	#00FF00
 
 # window colors
-#			border			background	text		indicator
-client.focused		$arch_color		$arch_color	$focused_fg	$indicator_color
-client.unfocused	$unfocused_border	$unfocused_bg	$unfocused_fg	$indicator_color
-client.focused_inactive $inactive_bg		$inactive_bg	$fg_color	$indicator_color
-client.urgent           $urgent_color		$urgent_color  	$focused_fg	$indicator_color
-
+# Window Status		Border			Background		Text		Indicator
+client.focused		$accent_color		$accent_color		$focused_fg	$indicator_color
+client.unfocused	$unfocused_border	$unfocused_bg		$unfocused_fg	$indicator_color
+client.focused_inactive	$inactive_bg		$inactive_bg		$fg_color	$indicator_color
+client.urgent		$urgent_color		$urgent_color		$focused_fg	$indicator_color
+C
 # }}}
 
 #---- Workspaces Definitions ------------------------------------------------{{{
@@ -106,7 +105,7 @@ for_window [instance="cal"]	    floating enable border none
 for_window [class="Chromium"]	    border none
 # }}}
 
-#---- i3bar -----------------------------------------------------------------{{{
+#---- Status Bar ------------------------------------------------------------{{{
 bar {
 	mode dock
 	position top
@@ -114,7 +113,7 @@ bar {
 	colors {
 		background	$bg_color
 		separator	$seperator_color
-		#Workspace		Border		Background	Text
+		# Workspace		Border		Background	Text
 		focused_workspace	$bg_color	$bg_color	$fg_color
 		inactive_workspace	$bg_color	$bg_color	$inactive_bg
 		urgent_workspace	$urgent_color	$urgent_color	$focused_fg
@@ -123,11 +122,9 @@ bar {
 # }}}
 
 #---- Bindings --------------------------------------------------------------{{{
+#-------- General Bindings ------------------------------{{{
 # start a terminal
-#bindsym $mod+Return exec i3-sensible-terminal
-#bindsym $mod+Return exec --no-startup-id st
 bindsym $mod+Return exec --no-startup-id $term
-#bindsym $mod+Return exec --no-startup-id gnome-terminal
 
 # kill focused window
 bindsym $mod+q kill
@@ -135,7 +132,8 @@ bindsym $mod+q kill
 # Toggle keyboard Layout
 bindsym Mod1+Shift+Tab exec toggle_keyboard_layout && pkill -SIGRTMIN+1 i3blocks;
 
-# Use Mouse+$mod to drag floating windows to their wanted position
+# Drag floating windows by holding down $mod and left mouse button.
+# Resize them with right mouse button + $mod.
 floating_modifier $mod
 
 # start (a program launcher)
@@ -149,45 +147,48 @@ bindsym $mod+d exec --no-startup-id dmenu_run
 bindsym $mod+b split h
 bindsym $mod+v split v
 
-# reload the configuration file
+# Reload confiugration file
 bindsym $mod+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+# Restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "dmenu_prompt 'Exit i3?' 'i3-msg exit'"
+
+# Exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "menu_prompt 'Exit i3?' 'i3-msg exit'"
 # Lock Screen
 bindsym $mod+Shift+x exec "i3lock"
 
+#---- General Bindings }}}
 
-#---- Modes/Layouts ----------------------------------------
+#-------- Modes/Layouts ---------------------------------{{{
 # Enter fullscreen mode for the focused container
-bindsym $mod+f border toggle
-bindsym $mod+Shift+f fullscreen
+bindsym $mod+f fullscreen
 
-# change container layout (stacked, tabbed, toggle split)
+# Toggle between tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# Change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# Change container layout (stacked, tabbed, toggle split)
 bindsym $mod+a layout default
 bindsym $mod+s layout stacking
 bindsym $mod+t layout tabbed
 bindsym $mod+e layout toggle split
 
-# toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+# Modes/Layouts }}}
 
-# change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
-
-#---- Change Focus -----------------------------------------
+#-------- Moving Around ---------------------------------{{{
 #-------- Windows ----------------------
 # vim focus bindings
-bindsym $mod+h focus left
-bindsym $mod+l focus right
-bindsym $mod+j focus down
-bindsym $mod+k focus up
+bindsym $mod+$up	focus up
+bindsym $mod+$down	focus down
+bindsym $mod+$left	focus left
+bindsym $mod+$right	focus right
 # Arrow keys
-bindsym $mod+Left  focus left
-bindsym $mod+Down  focus down
-bindsym $mod+Up    focus up
-bindsym $mod+Right focus right
+bindsym $mod+Up		focus up
+bindsym $mod+Down	focus down
+bindsym $mod+Left	focus left
+bindsym $mod+Right	focus right
 
 # focus the parent container
 bindsym $mod+p focus parent
@@ -212,22 +213,23 @@ bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
 
 #-------- Screens ----------------------
-bindsym $mod+comma focus output left
-bindsym $mod+period focus output right
+bindsym $mod+comma	focus output left
+bindsym $mod+period	focus output right
+#---- Moving Around }}}
 
-#---- Shifting/Moving --------------------------------------
+#-------- Shifting --------------------------------------{{{
 #-------- Windows ----------------------
 # Move focused window
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
+bindsym $mod+Shift+$up		move up
+bindsym $mod+Shift+$down	move down
+bindsym $mod+Shift+$left	move left
+bindsym $mod+Shift+$right	move right
 
 # alternatively, you can use the cursor keys:
-bindsym $mod+Shift+Left  move left
-bindsym $mod+Shift+Down  move down
-bindsym $mod+Shift+Up    move up
-bindsym $mod+Shift+Right move right
+bindsym $mod+Shift+Up		move up
+bindsym $mod+Shift+Down		move down
+bindsym $mod+Shift+Left		move left
+bindsym $mod+Shift+Right	move right
 
 # Move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
@@ -251,38 +253,47 @@ bindsym $mod+Shift+u move workspace to output up
 bindsym $mod+Shift+i move workspace to output down
 bindsym $mod+Shift+y move workspace to output left
 bindsym $mod+Shift+o move workspace to output right
+#---- Shifting }}}
 
+#-------- Scratch Pad ----------------------------------{{{
+# The "scratchpad" is a bag of holding for windows.
+# You can send windows there and get them back later.
 
-#---- Resizing --------------------------------------------
+# Move the currently focused window to the scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+bindsym $mod+minus scratchpad show
+#---- Scratch Pad }}}
+
+#-------- Resizing -------------------------------------{{{
 # resize window (you can also use the mouse for that)
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
+	# Use movement keys to grow, and shrink the clients.
+	bindsym $down	resize grow	height	10px
+	bindsym $right	resize grow	width	10px
+	bindsym $up	resize shrink	height	10px
+	bindsym $left	resize shrink	width	10px
 
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym h resize shrink width 10 px or 10 ppt
-        bindsym j resize grow height 10 px or 10 ppt
-        bindsym k resize shrink height 10 px or 10 ppt
-        bindsym l resize grow width 10 px or 10 ppt
+	# Ditto, with arrow keys
+	bindsym Right	resize grow	width	10px
+	bindsym Down	resize grow	height	10px
+	bindsym Left	resize shrink	width	10px
+	bindsym Up	resize shrink	height	10px
 
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
-
-        # back to normal: Enter or Escape
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+	# Return to default mode
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
 }
 
 bindsym $mod+r mode "resize"
-# }}}
+#---- Resizing }}}
+
+#---- Bindings }}}
 
 #---- Auto-start Applications -----------------------------------------------{{{
 exec chromium
 exec $term
-#exec compton --no-fading-openclose --no-fading-destroyed-argb
 # }}}
+
