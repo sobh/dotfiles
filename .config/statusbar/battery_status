@@ -1,0 +1,93 @@
+#!/bin/sh
+
+#---- Functions ----------------------------------------------------------------
+UI_ICON=nerd
+# This function return the emoji clock value closest to the current time.
+get_nerd_icon(){
+	icon=''
+	status=$1
+	capacity=$2
+
+	# First Cover corner cases
+	case $status in
+		Full ) icon='' ;;
+		Charging )
+			status_inc=0xC
+			scale=16
+			[ $capacity -ge 96 ] && icon=''
+			;;
+		*)
+			status_inc=0
+			scale=12
+			[ $capacity -ge 99 ] && icon=''
+			;;
+	esac
+	# If icon is not set by corner cases, calculate it from capacity, and
+	# status
+	if [ -z "$icon" ] ; then
+		# Icon Capacity Representation
+		icon=0xF579
+		icon=$(( $icon + ( $capacity / $scale ) + $status_inc ))
+		icon=$(printf '\\U%08X' $icon)	# Icon in UTF-8 hexadecimal notation
+	fi
+
+	env printf $icon
+}
+get_emoji_icon(){
+	status=$1
+	capacity=$2
+	case $status in
+		Full ) icon='⚡' ;;
+		Discharging | Charging )
+			[ $capacity -gt 10 ] && icon='🔋' || icon='❗'
+			;;
+		'Not charging' ) icon='🛑' ;;
+		*) icon='♻' ;;
+	esac
+	env printf $icon
+}
+
+debug(){
+	for s in "Discharging" "Charging" ; do
+		c=0
+		while [ $c -le 100 ] ; do
+			icon=$(get_icon $s $c)
+			printf "$s %3d%% %s    " $c $icon
+			[ $(( ($c + 1) % 7 )) -eq 0 ] && echo ""
+			c=$(( $c + 1 ))
+		done
+		printf "\n\n\n"
+	done
+	s="Full"
+	c="100"
+	icon=$(get_icon $s $c)
+	printf "$s %2d%% %s   " $c $icon
+}
+
+
+#---- Money Shot----------------------------------------------------------------
+case $UI_ICON in
+	emoji)
+		alias get_icon=get_emoji_icon
+		ICON_ONLINE='🔌'
+		ICON_OFFLINE='🛑'
+		;;
+	nerd | *)
+		ICON_ONLINE='\U200E\UFBA3\U200E'
+		ICON_OFFLINE='\U200E\UFBA4\U200E'
+		alias get_icon=get_nerd_icon ;;
+esac
+power_status=''
+
+# Get AC Power Status
+online=$(cat /sys/class/power_supply/AC/online)
+[ "$online" -eq 1 ] && power_status="$ICON_ONLINE" || power_status="$ICON_OFFLINE"
+
+for battery in /sys/class/power_supply/BAT? ; do
+	capacity=$(cat "$battery"/capacity) || exit
+	status=$(cat "$battery"/status)
+	icon=$(get_icon $status $capacity)
+	power_status="$power_status  $capacity%%  $icon  "
+done
+printf "$power_status \n"
+
