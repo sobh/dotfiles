@@ -2,6 +2,7 @@
 .config/autostart
 .config/chromium
 .config/dconf
+.config/galculator
 .config/htop
 .config/l3afpad
 .config/menus
