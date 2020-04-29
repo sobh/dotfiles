@@ -14,4 +14,5 @@ cfk	$XDG_CONFIG_HOME/sxhkd/sxhkdrc
 cfr	$HOME/.Xresources
 cfs	$XDG_CONFIG_HOME/shell/interactive
 cfv	$XDG_CONFIG_HOME/nvim/init.vim
+cfw	$XDG_CONFIG_HOME/sway/config
 cfz	$XDG_CONFIG_HOME/zsh/interactive
