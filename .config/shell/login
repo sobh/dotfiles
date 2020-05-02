@@ -6,5 +6,12 @@
 # Put your environment variables here
 #
 
-#echo "Executing: shell login startup."
+# Load Linux Console colors
+_color_theme="$XDG_CONFIG_HOME/xresources/colors/sobh.Xresources"
+if [ "$TERM" = "linux" ] && [ -f "$_color_theme" ] ; then
+	load_console_colors "$_color_theme"
+fi
+unset _color_theme
+
+# Start ssh-agent
 eval $(ssh-agent)
