@@ -4,16 +4,16 @@
 # Description: Universal shell enviroment startup.
 #
 
-#---- HOST -------------------------------------------------------------------------------------------------------------
+#---- HOST ---------------------------------------------------------------------
 export HOST=$(hostname)
 export HOSTNAME=$(hostname)
-#---- Set XDG Directories ----------------------------------------------------------------------------------------------
+#---- Set XDG Directories ------------------------------------------------------
 export XDG_CONFIG_HOME=$HOME/.config	# Configurations Directory (analogous to /etc).
 export XDG_CACHE_HOME=$HOME/.cache	# Non-essential (cached) data should be written (analogous to /var/cache).
 export XDG_LOCAL_HOME=$HOME/.local	# Local data (Not in the standarad)
 export XDG_DATA_HOME=$XDG_LOCAL_HOME/share	# User-specific Data Dreictory (analogous to /usr/share).
 
-#---- Bash -------------------------------------------------------------------------------------------------------------
+#---- Bash ---------------------------------------------------------------------
 #echo "Executing: shell env startup."
 # We need to set $ENV so that if you use shell X as your login shell,
 # and then start "sh" as a non-login interactive shell the startup scripts will
@@ -27,17 +27,18 @@ export BASH_ENV=$XDG_CONFIG_HOME/bash/env
 # Load Environment manipulation functions
 source $XDG_CONFIG_HOME/shell/env_functions
 
-#---- Personal Info ----------------------------------------------------------------------------------------------------
+#---- Personal Info ------------------------------------------------------------
 # Personal information
 export NAME='Mohamed Sobh'
 export EMAIL='mohamed.alhusieny@gmail.com'
-#---- Default Applications ---------------------------------------------------------------------------------------------
+#---- Default Applications -----------------------------------------------------
 export EDITOR=nvim
 export VISUAL=$EDITOR
 export BROWSER=chromium
 export TERMINAL=uxterm
 export PAGER=less
 
+#---- Configurations -----------------------------------------------------------
 # Adjust config files locoations
 export INPUTRC="$XDG_CONFIG_HOME/inputrc"
 
@@ -55,7 +56,7 @@ export INPUTRC="$XDG_CONFIG_HOME/inputrc"
 
 ssource $XDG_CONFIG_HOME/shell/env_local
 
-# Path settings
+#---- Path and Library ---------------------------------------------------------
 pathprepend $HOME/bin PATH
 pathprepend $XDG_LOCAL_HOME/bin PATH
 pathprepend $XDG_CONFIG_HOME/statusbar PATH
