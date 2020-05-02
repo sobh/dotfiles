@@ -21,10 +21,11 @@ Plug 'itchyny/lightline.vim'		" Status Line
 Plug 'tpope/vim-surround'		" Surrounded text
 Plug 'tpope/vim-commentary'		" Comment code
 "---- Syntax -------------------
-Plug 'PotatoesMaster/i3-vim-syntax'	    " i3 wm Configuration
-Plug 'gisphm/vim-gitignore'		    " Git Ignore
 Plug 'Glench/Vim-Jinja2-Syntax'		    " Python Jinja2
 Plug 'Matt-Deacalion/vim-systemd-syntax'    " systemd syntax
+Plug 'PotatoesMaster/i3-vim-syntax'	    " i3 wm Configuration
+Plug 'cespare/vim-toml'			    " TOML
+Plug 'gisphm/vim-gitignore'		    " Git Ignore
 "---- Color Schemes ------------
 Plug 'ap/vim-css-color'			" Preview colours in source code.
 Plug 'tomasr/molokai'
@@ -166,6 +167,7 @@ let g:GPGPreferSymmetric=1
 " }}}
 
 "---- Mappings --------------------------------------------------------------{{{
+let mapleader=" "	" Set <Leader> to space
 " Save n Run
 noremap  <F2>            :w<CR>:!clear; ./%<CR>
 inoremap <F2>       <Esc>:w<CR>:!clear; ./%<CR>
