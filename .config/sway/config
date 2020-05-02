@@ -13,7 +13,7 @@ set $font 'system-ui Light 18'
 set $term uxterm
 
 # Application launcher
-set $menu bemenu-run -n --fn $font | xargs swaymsg exec
+set $menu bemenu-run -n | xargs swaymsg exec
 
 # Home row direction keys, like vim
 set $left	h
