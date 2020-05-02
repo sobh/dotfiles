@@ -9,18 +9,25 @@
 
 # DPI Settings based on host
 case $HOST in
-	optiplex) DPI=200;;
+	optiplex)
+		DPI=200
+		UI_FONT_SIZE=12
+		;;
 	satellite |t420)
 		DPI=150
 		UI_FONT_SIZE=18
 		;;
-	*)  DPI=92;;
+	*)
+		DPI=92
+		UI_FONT_SIZE=12
+		;;
 esac
 
 export DPI
 export UI_FONT_SIZE
-export UI_FONT_NAME="system-ui Light"
-export UI_FONT="$UI_FONT_NAME $UI_FONT_SIZE"
+export UI_FONT_FAMILY="system-ui"
+export UI_FONT_WEIGHT="Light"
+export UI_FONT="$UI_FONT_FAMILY $UI_FONT_WEIGHT $UI_FONT_SIZE"
 
 #---- HiDPI --------------------------------------------------------------------
 if [ $DPI -ge 180 ] ; then
