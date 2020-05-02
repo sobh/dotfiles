@@ -1,0 +1,19 @@
+#!/bin/dash
+# Description:	Set the Linux Virtual Console colors.
+#
+
+fname="$1"
+[ -z "$fname" ] && fname="/dev/stdin"
+
+# This 'sed' command picks lines that define terminal colors that has the
+# '#define term_colorXX  #XXXXXX' and outputs the color number, and value.
+sed_cmd='s/#define\s+term_color([0-9]{2})\s+#([0-F]{6}).*/\1 \2/p'
+
+# This 'awk' prints the escape sequence '\e]PXRRGGBB', where X is the
+# hexadecimal index of the color from 0-F, and RRGGBB is a traditional
+# hexadecimal RGB code.
+awk_cmd='$1 < 16 {printf "\033]P%X%s", $1, $2}'
+#awk_cmd='$1 < 16 {printf "<ESC>]P%X %s\n", $1, $2}'	# This is for testing
+
+sed -En "$sed_cmd" "$fname" | awk "$awk_cmd"
+
