@@ -138,10 +138,6 @@ floating_modifier $mod
 
 # start (a program launcher)
 bindsym $mod+d exec --no-startup-id dmenu_run
-#bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
-#bindsym $mod+d exec rofi -show run -lines 5 -eh 2 -padding 100 -opacity "85" -bw 0 -hide-scrollbar -separator-style none \
-#	-font "System San Francisco Display 12"
-#-bw 0 -bc "$bg_color" -bg "$bg_color" -fg "$active-fg_color" -hlbg "$bg_color" -hlfg "#9575cd"
 
 # Split in horizontal/vertical orientation
 bindsym $mod+b split h
