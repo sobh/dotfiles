@@ -19,6 +19,8 @@ export XDG_SESSION_TYPE='x11'
 exec setkeyboard &
 # Disable Beeps
 xset -b
+# Hide mouse cursor when idle
+exec unclutter &
 
 #---- Xresources ---------------------------------------------------------------
 loadxresources
