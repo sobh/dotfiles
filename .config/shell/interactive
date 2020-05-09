@@ -24,7 +24,7 @@ export LESS_TERMCAP_us=$'\E[4;92m'	# Begin underline
 unalias lsd 2>/dev/null
 #-------- base -------------------------
 alias	\
-	cp='cp -iv'		    \
+	cp='cp -v'		    \
 	diff='diff --color=auto'    \
 	egrep='egrep --color=auto'  \
 	grep='egrep'		    \
@@ -36,8 +36,8 @@ alias	\
 	ls='ls --group-directories-first -X --human-readable --color=auto'	\
 	lsmovies='(ls /media/sdc5/sobh/movies; ls $HOME/movies;)'		\
 	mkd='mkdir -pv'		    \
-	mv='mv -iv'		    \
-	rm='rm -iv'		    \
+	mv='mv -v'		    \
+	rm='rm -v'		    \
 
 #-------- Preferred Apps ---------------
 alias	\
