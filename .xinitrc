@@ -29,7 +29,7 @@ loadxresources
 
 if [ "$WM" = "i3" ] ; then
 	exec dropbox &
-	exec firejail dropbox-atc.sh &
+	exec dropbox-atc.sh &
 fi
 
 # Import DISPLAY from environemtn for Xapplication services (e.g. dunst)
