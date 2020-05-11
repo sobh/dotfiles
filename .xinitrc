@@ -40,14 +40,8 @@ systemctl --user import-environment DISPLAY XAUTHORITY
 wmname gnome
 
 case $WM in
-	i3)
-		exec /usr/bin/i3 ;;
-	dwm)
-		while : ; do
-			ssh-agent /usr/local/bin/dwm
-		done
-		;;
-	*)
-		echo "Unkown window manager $WM" ;;
+	i3) exec /usr/bin/i3 ;;
+	dwm) exec /usr/local/bin/dwm ;;
+	*) echo "Unkown window manager $WM" ;;
 esac
 
