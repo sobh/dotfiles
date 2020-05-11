@@ -5,13 +5,12 @@
 
 
 !---- DPI Dependant ------------------------------------------------------------
-#if DPI > 190
+#if DPI > 100
 	#define term_font	monospace:size=14
 	#define term_font_alt	Symbols Nerd Font:size=14
 	#define display_font	system-ui:size=14
 	#define font_size	14
 #else
-! DPI > 140
 	#define term_font	monospace:size=12
 	#define term_font_alt	Symbols Nerd Font:size=12
 	#define display_font	system-ui:size=12
