@@ -13,7 +13,7 @@ case $HOST in
 		DPI=200
 		UI_FONT_SIZE=12
 		;;
-	satellite |t420)
+	satellite |t420 |ed)
 		DPI=150
 		UI_FONT_SIZE=18
 		;;
