@@ -13,9 +13,9 @@ case $HOST in
 		DPI=200
 		UI_FONT_SIZE=12
 		;;
-	satellite |t420)
-		DPI=150
-		UI_FONT_SIZE=18
+	satellite |t420 |ed)
+		DPI=120
+		UI_FONT_SIZE=14
 		;;
 	*)
 		DPI=92
@@ -30,7 +30,7 @@ export UI_FONT_WEIGHT='Light'
 export UI_FONT="$UI_FONT_FAMILY $UI_FONT_WEIGHT $UI_FONT_SIZE"
 
 #---- HiDPI --------------------------------------------------------------------
-if [ $DPI -ge 180 ] ; then
+if [ $DPI -ge 150 ] ; then
 	#-------- GTK-3.0 ----------------------
 	export GDK_SCALE=2		# Scale UI Element
 	export GDK_DPI_SCALE=0.5	# Scale Back Text
