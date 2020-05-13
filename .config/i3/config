@@ -14,7 +14,7 @@ set $font system-ui Light 12
 set $bar_height 60
 
 # Set prefered terminal emulator
-set $term uxterm
+set $term lxterminal
 
 # Home row direction keys, like vim
 set $left	h
