@@ -1,0 +1,12 @@
+#!/bin/sh
+# Description:	Convert Hexadecmial color to RGB notation
+#
+hex=$1
+[ -z "$hex" ] && read -r hex
+echo $hex | tr -d '#' |
+	awk '{
+		red   = strtonum("0x" substr($1,1,2));
+		green = strtonum("0x" substr($1,3,2));
+		blue  = strtonum("0x" substr($1,5,2));
+		printf "%d %d %d", red, green, blue
+	}'

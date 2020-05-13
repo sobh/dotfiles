@@ -1,0 +1,49 @@
+#!/bin/sh
+# Description:	Set the Linux Virtual Console colors.
+#
+
+#---- Load Libraries -----------------------------------------------------------
+libs=${XDG_LOCAL_HOME:-$HOME/.local}/lib/sh
+. $libs/config.sh	    # Manipulate Configuration files
+
+#---- Parameters ---------------------------------------------------------------
+lxt_cfg=${XDG_CONFIG_HOME:-$HOME/.config}/lxterminal/lxterminal.conf
+
+#---- Parse Arguments ----------------------------------------------------------
+theme_fname="$1"
+[ -z "$theme_fname" ] && theme_fname="/dev/stdin"
+theme_fname='/home/sobh/.config/xresources/colors/sobh.Xresources'
+
+printf "Setting the color theme for LXTerminal in '$lxt_cfg'\n\n"
+fmt='%-20s %-20s %-20s\n'
+printf "$fmt" 'Key' 'Old Value' 'New Value'
+echo '---------------------------------------------------------------------'
+# Iterate over the 16 color
+for num in $(seq 0 15); do
+	def=$(printf 'term_color%02d' $num)
+	color_hex=$(cfg_get_def $def $theme_fname)
+	color_rgb="rgb($(hex2rgb $color_hex | tr ' ' ','))"
+	key="palette_color_$num"
+	printf "$fmt" "$key" "$(cfg_get_key "$key" "$lxt_cfg")" "$color_rgb"
+	cfg_set_key "$key" "$color_rgb" "$lxt_cfg"
+done
+
+#---- Set Background Color
+color_hex=$(cfg_get_def 'term_background' "$theme_fname")
+color_rgb="rgb($(hex2rgb $color_hex| tr ' ' ,))"
+key='bgcolor'
+printf "$fmt" "$key" "$(cfg_get_key "$key" "$lxt_cfg")" "$color_rgb"
+cfg_set_key "$key" "$color_rgb" "$lxt_cfg"
+
+#---- Set Foreground Color
+color_hex=$(cfg_get_def 'term_foreground' "$theme_fname")
+color_rgb="rgb($(hex2rgb $color_hex| tr ' ' ,))"
+key='fgcolor'
+printf "$fmt" "$key" "$(cfg_get_key "$key" "$lxt_cfg")" "$color_rgb"
+cfg_set_key "$key" "$color_rgb" "$lxt_cfg"
+
+#---- Set Color Preset to Custom
+key='color_preset'
+value='Custom'
+printf "$fmt" "$key" "$(cfg_get_key "$key" "$lxt_cfg")" "$value"
+cfg_set_key "$key" "$value" "$lxt_cfg"
