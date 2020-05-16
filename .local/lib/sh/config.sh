@@ -30,6 +30,7 @@ cfg_set_key(){
 	value=$2
 	fname=${3}
 	sed_opt='-E'
+	key_pattern="/^\s*$key\s*=/"
 
 	if [ -z "$fname" ] ; then	# No file read from stdin
 		fname=/dev/stdin
@@ -39,8 +40,14 @@ cfg_set_key(){
 		error "File: '$fname' does not exist." >&2
 		return 1
 	fi
-	sed $sed_opt "/^\s*$key\s*=/ c $key=$value" $fname
 
+	# If key does not exist in file, append it. Otherwise change it to
+	# value.
+	if [ -z "$(sed -En "$key_pattern p" "$fname")" ] ; then
+		echo "$key=$value" >> $fname
+	else
+		sed $sed_opt "$key_pattern c $key=$value" $fname
+	fi
 }
 
 # Gets the value of C Header definition where #define DEF VALUE
@@ -66,6 +73,7 @@ cfg_set_def(){
 	value=$2
 	fname=${3}
 	sed_opt='-E'
+	def_pattern="/^#define\s+$def/"
 
 	if [ -z "$fname" ] ; then	# No file read from stdin
 		fname=/dev/stdin
@@ -76,6 +84,12 @@ cfg_set_def(){
 		return 1
 	fi
 	# sed $sed_opt "s/^#define\s+$def/#define $def $value/" $fname
-	sed $sed_opt "/^#define\s+$def/ c #define $def $value" $fname
+	# If definition does not exist in file, then append it. Otherwise change
+	# it to value.
+	if [ -z "$(sed -En "$def_pattern p" "$fname")" ] ; then
+		echo "#define $key $value" >> $fname
+	else
+		sed $sed_opt "$def_pattern c #define $def $value" $fname
+	fi
 
 }
