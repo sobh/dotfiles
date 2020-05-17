@@ -1,0 +1,60 @@
+{
+    "keyboard.dispatch": "keyCode",         // Respect keyCode
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "editor.minimap.enabled": false,
+    "editor.fontSize": 16,
+    "editor.fontFamily": "monospace, \"Symbols Nerd Font\"",
+    "editor.tokenColorCustomizations": {
+        "textMateRules": [
+            { // Italics
+                "scope": [
+                    //following will be in italic
+                    "entity.name.class", // Class Names
+                    "keyword", // import, export, return...
+                    "constant", // String, Number, Boolean…, this, super
+                    "storage.modifier", // static keyword
+                    "storage.type.class.js", //class keyword
+                ],
+                "settings": {
+                    "fontStyle": "italic"
+                }
+            },
+            {
+                "scope": [
+                    // The following will be excluded from italics (VSCode has some defaults for italics)
+                    "invalid",
+                    "keyword.operator",
+                    "constant.numeric.css",
+                    "keyword.other.unit.px.css",
+                    "constant.numeric.decimal.js",
+                    "constant.numeric.json"
+                ],
+                "settings": {
+                    "fontStyle": ""
+                }
+            }
+        ]
+    },
+    "C_Cpp.updateChannel": "Insiders",
+    "editor.insertSpaces": false,
+    "editor.tabSize": 8,
+    "explorer.sortOrder": "type",
+    "files.associations": {
+        "*.zsh": "shellscript"
+    },
+    "files.autoSave": "afterDelay",
+    "files.trimTrailingWhitespace": true,
+    "workbench.iconTheme": "ayu",
+    "editor.cursorBlinking": "solid",
+    "git.autofetch": true,
+    "dart.flutterSdkPath": "/home/sobh/flutter",
+    //---- Languages -----------------------------------------------------------
+    //---- Python ----------------------
+    "python.jediEnabled": false,
+    "python.linting.flake8Args": ["--ignore=E501"],
+    "[python]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 4,
+    },
+}
