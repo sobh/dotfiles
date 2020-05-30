@@ -24,5 +24,9 @@ setopt HIST_EXPIRE_DUPS_FIRST	# Trim duplicates first.
 setopt HIST_IGNORE_ALL_DUPS	# Remove old history duplicates.
 setopt HIST_IGNORE_SPACE	# Ignore commands starting with a space.
 
+#---- Completion ---------------------------------------------------------------
+# Auto-expand aliases
+zstyle ':completion:*' completer _expand_alias _complete _ignored
+
 #---- Syntax Highlighting ------------------------------------------------------
 . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
