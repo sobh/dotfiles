@@ -1,9 +1,20 @@
 [Default Applications]
+application/pdf=org.pwmt.zathura.desktop
+application/postscript=org.pwmt.zathura.desktop
+application/rss+xml=rss.desktop
 application/vnd.adobe.flash.movie=chromium.desktop
 application/vnd.comicbook-rar=mcomix.desktop
+application/x-bittorrent=qbittorent.desktop;
+application/xhtml+xml=chromium.desktop
+image/gif=sxiv.desktop
 image/jpeg=sxiv.desktop
-image/png=sxivfeh.desktop
+image/png=sxiv.desktop
+image/svg+xml-compressed=inkview.desktop
+image/svg+xml=inkview.desktop
+inode/directory=pcmanfm.desktop
 text/html=chromium.desktop
+text/plain=nvim.desktop
+text/x-shellscript=nvim.desktop
 video/mp4=mpv.desktop
 video/mpg=mpv.desktop
 video/x-matroska=mpv.desktop
@@ -12,15 +23,14 @@ video/x-msvideo=mpv.desktop
 x-scheme-handler/about=chromium.desktop
 x-scheme-handler/http=chromium.desktop
 x-scheme-handler/https=chromium.desktop
-x-scheme-handler/mailspring=mailspring.desktop
-x-scheme-handler/postman=Postman.desktop
+x-scheme-handler/mailto=chromium.desktop
 x-scheme-handler/unknown=chromium.desktop
 x-scheme-handler/webcal=chromium.desktop
-application/pdf=evince.desktop
 
 [Added Associations]
-inode/directory=vlc.desktop;
-application/pdf=zathura.desktop;
+x-scheme-handler/mailto=chromium.desktop
+x-scheme-handler/http=chromium.desktop;firefox.desktop
+x-scheme-handler/https=chromium.desktop;firefox.desktop
+application/pdf=org.pwmt.zathura.desktop;evince.desktop
 application/vnd.adobe.flash.movie=chromium.desktop;
-text/x-log=geany.desktop;
-text/plain=vlc.desktop;mpv.desktop;
+application/xhtml+xml=chromium.desktop;
