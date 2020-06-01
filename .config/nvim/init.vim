@@ -2,7 +2,7 @@
 " .vimrc
 "
 
-"---- Configure Plugins -----------------------------------------------------{{{
+" ---- Configure Plugins -----------------------------------------------------{{{
 set nocompatible    " Be iMproved (Required)
 filetype off
 
@@ -11,30 +11,43 @@ filetype off
 call plug#begin('$HOME/.vim/plugged')
 " Let vim-plug manage vim-plug
 Plug 'junegunn/vim-plug'
-"---- Plugs ------------------------------------------------------------------
-"---- General Purpose ----------
+" ---- Plugs -------------------------------------------------------------------
+" -------- General Purpose -------------
 Plug 'nathanaelkane/vim-indent-guides'	" Indent Guides
-Plug 'majutsushi/tagbar'		" Source Code Outline
-Plug 'scrooloose/nerdtree'		" File Explorer
+Plug 'majutsushi/tagbar',		{ 'on': 'TagbarToggle' }
+Plug 'scrooloose/nerdtree',		{ 'on': 'NERDTreeToggle' }
 Plug 'itchyny/lightline.vim'		" Status Line
-"---- Editing ------------------
+" -------- Code Completion -------------
+Plug 'neoclide/coc.nvim',		{'branch': 'release'}
+" -------- Editing ---------------------
 Plug 'tpope/vim-surround'		" Surrounded text
 Plug 'tpope/vim-commentary'		" Comment code
-"---- Syntax -------------------
+" -------- Syntax ----------------------
+Plug 'Valloric/vim-operator-highlight'	    " Highlight Operator Characters
+Plug 'vim-python/python-syntax'
 Plug 'Glench/Vim-Jinja2-Syntax'		    " Python Jinja2
 Plug 'Matt-Deacalion/vim-systemd-syntax'    " systemd syntax
 Plug 'PotatoesMaster/i3-vim-syntax'	    " i3 wm Configuration
 Plug 'cespare/vim-toml'			    " TOML
 Plug 'gisphm/vim-gitignore'		    " Git Ignore
-"---- Color Schemes ------------
+" -------- Color Schemes ---------------
 Plug 'ap/vim-css-color'			" Preview colours in source code.
-Plug 'tomasr/molokai'
-Plug 'nanotech/jellybeans.vim'
+Plug 'tomasiser/vim-code-dark'		" VS Code
+Plug 'dunstontc/vim-vscode-theme'	" VS Code +
+Plug 'rafi/awesome-vim-colorschemes'
+" Plug 'tomasr/molokai'
+" Plug 'nanotech/jellybeans.vim'
 " Plug 'altercation/vim-colors-solarized'
 " Plug 'chriskempson/base16-vim'
 " Plug 'flazz/vim-colorschemes'
+" -------- Last ------------------------
+" Adds file type icons to Vim plugins
+Plug 'ryanoasis/vim-devicons'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+" Faster alternative to 'tiagofumo/vim-nerdtree-syntax-highlight'
+" Plug 'vwxyutarooo/nerdtree-devicons-syntax'
 
-"---- General Purpose --------------------------------------
+" ---- General Purpose --------------------------------------
 "Plug 'xolox/vim-easytags'
 "Plug 'xolox/vim-misc'
 "Plug 'scrooloose/nerdcommenter'
@@ -50,16 +63,16 @@ Plug 'nanotech/jellybeans.vim'
 " Edit GNUPG encrypted files
 " Plug 'jamessan/vim-gnupg'
 "Plug 'kien/rainbow_parentheses.vim'
-"---- Language Specific ------------------------------------
+" ---- Language Specific ------------------------------------
 " C
 "Plug 'vim-scripts/gtk-vim-syntax'
 " Dart
 " Plug 'dart-lang/dart-vim-plugin'
-"---- HTML/XML
+" ---- HTML/XML
 "Plug 'alvan/vim-closetag'
 "Plug 'mattn/emmet-vim'
 "Plug 'tpope/vim-surround'
-"---- Javascript
+" ---- Javascript
 " Plug 'jelera/vim-javascript-syntax'
 " Plug 'pangloss/vim-javascript'
 " Python
@@ -71,11 +84,12 @@ Plug 'nanotech/jellybeans.vim'
 
 " Initialize plugin system
 call plug#end()
+call plug#load('vim-devicons')
 "}}}
 
 filetype indent on    " required
 
-"---- General ---------------------------------------------------------------{{{
+" ---- General ---------------------------------------------------------------{{{
 "Cursor settings:
 "  1 -> blinking block
 "  2 -> solid block
@@ -89,9 +103,10 @@ let &t_EI="\e[2 q" "EI = NORMAL mode (ELSE)
 " Always start in Normal Mode
 silent !echo -ne "\e[2 q"
 
+" set conceallevel=3
 set autoindent		" Autoindent
 set cursorline		" Highlight current line
-set encoding=utf-8	" Set UTF-8
+set encoding=UTF-8	" Set UTF-8
 set hidden		" Enable hidden buffers
 set hlsearch		" Highlight Searched Words
 set incsearch		" Incremental Search
@@ -101,14 +116,14 @@ set relativenumber	" Show line numbers relative to current line
 set showcmd		" Show Command being typed
 "set spell spelllang=en_us	" English Spell Check
 set fileformat=unix	" Unix File Format
-"---- Format -------------------------------------------------------------------
+" ---- Format -------------------------------------------------------------------
 " Tabs
 set tabstop=8		" Number of spaces of the <Tab>
 set shiftwidth=8	" Number of spaces for indents ('cinednt', '<<', '>>')
 set noexpandtab		" Do not expands <Tab> into spaces
 set softtabstop=4	" Number of space of <Tab> while editing
 
-set foldcolumn=8	" Set Folding
+set foldcolumn=8	" Set Folding Column width
 set foldmethod=syntax	" Default foldmethod
 set formatoptions+=c	" Format Options
 set textwidth=80	" Set Text width
@@ -117,56 +132,76 @@ set nowrap		" Disable line wrapping
 set ignorecase		" Ignore case in search patterns
 set smartcase		" Override 'ignorecase' if search pattern has uppercase
 
-set listchars=tab:\├─➜,space:·	" String to use in 'list' mode
-
-"---- Colorscheme --------------------------------------------------------------
+" ---- UI -----------------------------------------------------------------------
+set listchars=tab:\├─>,space:·	" String to use in 'list' mode
+set fillchars=vert:│		" Use Vertical Box Drawing for vertical seperator
+" ---- Colorscheme --------------------------------------------------------------
 set background=dark
 if &term !=? 'linux'
-	let g:molokai_original = 1
-	let g:rehash256 = 1
+	set termguicolors
+	let g:t_Co=256
+	" let g:molokai_original=1
 	colorscheme molokai
+	" let g:rehash256 = 1
+	" colorscheme codedark
 endif
-syntax on		" Set syntax highlighting
-" let g:solarized_termcolors=256
-" colorscheme solarized
-" let base16colorspace=256  " Access colors present in 256 colorspace
-" colorscheme base16-default
+" Enable Syntax Highlighting
+syntax enable
 
-"---- Highlight and Remove Trailing Space --------------------------------------
+" ---- Highlight and Remove Trailing Space --------------------------------------
 " highlight ExtraWhitespace ctermbg=red guibg=red
 " match ExtraWhitespace /\s\+$/
 autocmd BufWritePre * :%s/\s\+$//e
 
 " }}}
 
-"---- Plugin Options --------------------------------------------------------{{{
-"---- Indent Guides --------------------
+" ---- Plugin Options -------------------------------------------------------{{{
+"
+let g:tagbar_iconchars = ['►', '▼ ']
+" -------- NERDTree ----------
+" NERDTree automatically when vim starts up on opening a directory
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
+" Close vim if the only window left open is a NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" Folder Characters
+" let g:NERDTreeDirArrowExpandable = ''		" 📁
+" let g:NERDTreeDirArrowCollapsible = ''		" 📂
+
+" -------- DevIcons --------------------
+let g:DevIconsEnableFoldersOpenClose = 1
+let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = ''	" 
+let g:DevIconsDefaultFolderOpenSymbol = ''			" 
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['html'] = ''
+" Fix brackets around icons
+autocmd VimEnter * syntax enable | call webdevicons#refresh()
+" -------- Operator Highlight ----------
+let g:ophigh_highlight_link_group='Operator'
+" -------- Indent Guides ---------------
 let g:indent_guides_guide_size=1
 let g:indent_guides_start_level=2
 let g:indent_guides_enable_on_vim_startup = 1
-"---- Status Bar (lightline) ---
+" -------- Status Bar - lightline ------
 set laststatus=2
-set noshowmode	    " No need to show mode
-"---- Syntastic ------------------------
-" let g:syntastic_cpp_compiler = 'g++'
-" let g:syntastic_cpp_compiler_options = ' -std=c++11'
-"---- GNUPG ----------------------------
+set noshowmode	    " No need to show mode as lightline shows it on the left
+" -------- GNUPG -----------------------
 let g:GPGPreferSymmetric=1
 
-"---- Rainbo Parenthesese ----------------------------------
+" -------- Rainbo Parenthesese ---------
 " " Enable Rainbow Parentheses
 " au VimEnter * RainbowParenthesesToggle
 " au Syntax * RainbowParenthesesLoadRound
 " au Syntax * RainbowParenthesesLoadSquare
 " au Syntax * RainbowParenthesesLoadBraces
 
-"---- HTML/XML ---------------------------------------------
+" -------- HTML/XML --------------------
 "inoremap <C-_> <C-R>=GetCloseTag()<CR><ESC>%i
 
 "source $HOME/.vim/scripts/config-neocomplete.vim
 " }}}
 
-"---- Mappings --------------------------------------------------------------{{{
+" ---- Mappings --------------------------------------------------------------{{{
 let mapleader=" "	" Set <Leader> to space
 " Save n Run
 noremap  <F2>            :w<CR>:!clear; ./%<CR>
@@ -189,5 +224,6 @@ nnoremap <leader>sv       :source $MYVIMRC<CR>
 " Faster Insert -> Normal Transitions
 "inoremap <esc>            <nop>
 inoremap jk               <esc>
+inoremap jj               <esc>
 
 " }}}
