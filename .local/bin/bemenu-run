@@ -1,3 +1,3 @@
 #!/bin/sh
-FONT="$UI_FONT_FAMILY $UI_FONT_WEIGHT $((UI_FONT_SIZE + 4 ))"
+FONT="$UI_FONT_FAMILY $UI_FONT_WEIGHT $UI_FONT_SIZE"
 /bin/bemenu-run --fn "$FONT" "$@"
