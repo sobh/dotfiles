@@ -8,7 +8,7 @@
 set $mod Mod4
 
 # Used Font
-set $font system-ui Light 12
+set $font systemui Light 12
 
 # Bar Height in pixels
 set $bar_height 60
