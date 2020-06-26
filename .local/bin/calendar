@@ -1,0 +1,3 @@
+#!/bin/sh
+# Description:	Start calendar app.
+chromium --app=https://calendar.google.com
