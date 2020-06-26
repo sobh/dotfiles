@@ -96,6 +96,7 @@ assign [class="code-oss"]	$ws3
 assign [window_role="browser"] $ws1
 
 #---- Application Modes and Borders ------------------------
+for_window [class="Galculator"]	    floating enable
 for_window [class="Bluetooth"]	    floating enable
 for_window [title="Open Folder"]    floating enable
 for_window [title="Open Font"]	    floating enable
