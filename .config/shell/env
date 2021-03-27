@@ -25,7 +25,7 @@ export ENV=$XDG_CONFIG_HOME/sh/interactive
 export BASH_ENV=$XDG_CONFIG_HOME/bash/env
 
 # Load Environment manipulation functions
-source $XDG_CONFIG_HOME/shell/env_functions
+. $XDG_CONFIG_HOME/shell/env_functions
 
 #---- Python -------------------------------------------------------------------
 # Make pipenv creates the virtualenv inside the project's directory
