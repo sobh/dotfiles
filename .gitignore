@@ -3,6 +3,9 @@
 .config/autostart
 .config/chromium
 .config/Code - OSS/*
+.config/Code - OSS/User/globalStorage
+.config/Code - OSS/User/snippets
+.config/Code - OSS/User/workspaceStorage
 !.config/Code - OSS/User
 .config/dconf
 .config/galculator
