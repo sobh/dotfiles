@@ -1,0 +1,6 @@
+#!/bin/sh
+# Description:	Returns needed DPI for a scale
+# Depends On:	getdpi bc
+scale=$1
+[ -z  "$scale" ] && exit -1
+echo "scale=0; ($(getdpi) * $scale) / 1" | bc

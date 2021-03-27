@@ -1,0 +1,4 @@
+#!/bin/sh
+# Description:	Get ratio between set DPI, and actual DPI
+# Depends On:	getdpi bc
+echo "scale=2; $DPI / $(getdpi)" | bc

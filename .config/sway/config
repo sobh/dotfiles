@@ -8,9 +8,9 @@
 set $mod Mod4
 
 # Used Font
-set $font 'system-ui Light 18'
+set $font 'systemui Light 18'
 # Set prefered terminal emulator
-set $term uxterm
+set $term lxterminal
 
 # Application launcher
 set $menu bemenu-run -n | xargs swaymsg exec
