@@ -49,6 +49,8 @@ fi
 
 # Set keyboard
 exec setkeyboard &
+# Configure Logitech Trackman Marble
+#exec $XDG_CONFIG_HOME/trackman_marble/trackman-marble_xinput.sh
 # Disable Beeps
 xset -b
 # Hide mouse cursor when idle
@@ -61,7 +63,6 @@ loadxresources
 
 if [ "$WM" = "i3" ] ; then
 	exec dropbox &
-	exec dropbox-atc.sh &
 fi
 
 # Import DISPLAY from environemtn for Xapplication services (e.g. dunst)
