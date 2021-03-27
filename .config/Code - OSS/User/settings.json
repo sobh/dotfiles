@@ -1,60 +1,101 @@
 {
-    "keyboard.dispatch": "keyCode",         // Respect keyCode
-    "editor.suggestSelection": "first",
-    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-    "editor.minimap.enabled": false,
+    "keyboard.dispatch": "keyCode",
+    "explorer.sortOrder": "type",
+    //---- Editor --------------------------------------------------------------
+    "editor.cursorBlinking": "solid",
+    "editor.fontFamily": "Victor Mono, DankMono,  \"Symbols Nerd Font\"",
     "editor.fontSize": 16,
-    "editor.fontFamily": "monospace, \"Symbols Nerd Font\"",
+    "editor.insertSpaces": false,
+    "editor.minimap.enabled": false,
+    "editor.tabSize": 8,
+    "editor.rulers": [
+        80,
+        120
+    ],
     "editor.tokenColorCustomizations": {
         "textMateRules": [
             { // Italics
+                "settings": {
+                    "fontStyle": "italic"
+                },
                 "scope": [
-                    //following will be in italic
                     "entity.name.class", // Class Names
                     "keyword", // import, export, return...
                     "constant", // String, Number, Boolean…, this, super
                     "storage.modifier", // static keyword
-                    "storage.type.class.js", //class keyword
-                ],
-                "settings": {
-                    "fontStyle": "italic"
-                }
+                    "storage.type.class.js" //class keyword
+                ]
             },
-            {
+            { // Normal
+                "settings": {
+                    "fontStyle": ""
+                },
                 "scope": [
-                    // The following will be excluded from italics (VSCode has some defaults for italics)
                     "invalid",
                     "keyword.operator",
                     "constant.numeric.css",
                     "keyword.other.unit.px.css",
                     "constant.numeric.decimal.js",
                     "constant.numeric.json"
-                ],
-                "settings": {
-                    "fontStyle": ""
-                }
+                ]
             }
         ]
     },
-    "C_Cpp.updateChannel": "Insiders",
-    "editor.insertSpaces": false,
-    "editor.tabSize": 8,
-    "explorer.sortOrder": "type",
     "files.associations": {
         "*.zsh": "shellscript"
     },
     "files.autoSave": "afterDelay",
     "files.trimTrailingWhitespace": true,
-    "workbench.iconTheme": "ayu",
-    "editor.cursorBlinking": "solid",
     "git.autofetch": true,
-    "dart.flutterSdkPath": "/home/sobh/flutter",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    //---- Extensions ----------------------------------------------------------
+    //-------- Complete Line -----------
+    "completeline.desiredCharacter": "-",
+    "completeline.desiredLength": 40,
+    "prettier.tabWidth": 4,
+    "vscode-neovim.highlightGroups.unknownHighlight": {},
+    "vscode-neovim.mouseSelectionStartVisualMode": true,
+    "vscode-neovim.neovimInitPath": "$XDG_CONFIG_HOME/Code\\ -\\ OSS/init.vim",
+    "vscode-neovim.neovimPath": "/usr/bin/nvim",
+    "vscode-neovim.useCtrlKeysForNormalMode": false,
     //---- Languages -----------------------------------------------------------
-    //---- Python ----------------------
-    "python.jediEnabled": false,
-    "python.linting.flake8Args": ["--ignore=E501"],
+    //-------- Python ------------------
     "[python]": {
-    "editor.insertSpaces": true,
-    "editor.tabSize": 4,
+        "editor.insertSpaces": true,
+        "editor.tabSize": 4,
+        "editor.defaultFormatter": "ms-python.python",
     },
+    "python.autoComplete.addBrackets": true,
+    "python.formatting.autopep8Args": [
+        "--max-line-length=120"
+    ],
+    "python.jediEnabled": false,
+    "python.linting.flake8Args": [
+        "--ignore=E265,E305,E501"
+    ],
+    //-------- HTML --------------------
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    },
+    //-------- Javascript --------------
+    "[javascript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    //-------- JSON --------------------
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    //-------- Auto --------------------
+    "editor.columnSelection": false,
+    "editor.multiCursorModifier": "ctrlCmd",
+    "editor.suggestSelection": "first",
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "editor.formatOnType": true,
+    "editor.fontLigatures": true,
+    "workbench.iconTheme": "material-icon-theme",
+    "terminal.integrated.fontSize": 16,
+    "clojureVSCode.autoStartNRepl": false,
+    "python.languageServer": "Microsoft",
 }
