@@ -1,6 +1,9 @@
 **.cache
+.config/Insomnia
 .config/autostart
 .config/chromium
+.config/Code - OSS/*
+!.config/Code - OSS/User
 .config/dconf
 .config/galculator
 .config/htop
@@ -8,8 +11,10 @@
 .config/menus
 .config/nvim/plugged
 .config/nvim/swap
+.local/lib/python*
 .local/share/applications/chrom*
 .local/share/desktop-directories
+.local/share/fonts
 .local/share/icons
 .local/share/meld
 .local/share/nvim/shada
