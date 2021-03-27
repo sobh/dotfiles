@@ -30,13 +30,14 @@ alias	\
 	grep='egrep'		    \
 	info='info --vi-keys'	    \
 	ka='killall'		    \
-	ls='ls --group-directories-first -X --human-readable --color=auto'	\
 	l='ls -1'		    \
 	la='ls -a'		    \
 	ll='ls -l'		    \
+	ls='ls --group-directories-first -X --human-readable --color=auto'	\
 	lsmovies='(ls /media/sdc5/sobh/movies; ls $HOME/movies;)'		\
 	mkd='mkdir -pv'		    \
 	mv='mv -v'		    \
+	qmv='qmv -f destination-only'   \
 	rm='rm -v'		    \
 
 #-------- Preferred Apps ---------------
