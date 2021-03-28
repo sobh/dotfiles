@@ -7,7 +7,9 @@ esac
 echo "$ICON  "$(date '+%a %d %b')
 
 case $BLOCK_BUTTON in
-	1) calendar ;;
+	# 1) calendar ;;
+	1) $TERMINAL -name cal -title cal -geometry 20x9-0+60  -e "cal && single-key-input.sh" ;;
+	3) $TERMINAL -name cal -title cal -geometry 64x9-0+60  -e "cal -3 && single-key-input.sh" ;;
 	# Open clacurse if installed.
 	# 3) $TERMINAL -name calcurse -title calcurse -e calcurse -D $XDG_CONFIG_HOME/calcurse ;;
 	# 3) $TERMINAL -name cal -title cal -geometry 64x9-0+60  -e "cal -3 && read" ;;

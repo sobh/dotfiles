@@ -28,5 +28,9 @@ setopt HIST_IGNORE_SPACE	# Ignore commands starting with a space.
 # Auto-expand aliases
 zstyle ':completion:*' completer _expand_alias _complete _ignored
 
+#---- Correction ---------------------------------------------------------------
+# Disable correction
+unsetopt correct
+
 #---- Syntax Highlighting ------------------------------------------------------
 . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

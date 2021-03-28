@@ -1,2 +1,2 @@
 #!/usr/bin/sh
-xrandr --output DP-1 --mode  2560x1440
+xrandr --output DP-2 --primary --mode 3840x2160

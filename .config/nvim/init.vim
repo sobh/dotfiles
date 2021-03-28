@@ -2,35 +2,41 @@
 " .vimrc
 "
 
-" ---- Configure Plugins -----------------------------------------------------{{{
+"---- Configure Plugins -----------------------------------------------------{{{
 set nocompatible    " Be iMproved (Required)
 filetype off
 
 " vim-plug is located in $HOME/.vim/autoload/plug.vim
-"Set the runtime path to include vim-plug and initialize.
+" Set the runtime path to include vim-plug and initialize.
 call plug#begin('$HOME/.vim/plugged')
 " Let vim-plug manage vim-plug
 Plug 'junegunn/vim-plug'
-" ---- Plugs -------------------------------------------------------------------
-" -------- General Purpose -------------
+"---- Plugs --------------------------------------------------------------------
+"-------- UI --------------------------
 Plug 'nathanaelkane/vim-indent-guides'	" Indent Guides
 Plug 'majutsushi/tagbar',		{ 'on': 'TagbarToggle' }
 Plug 'scrooloose/nerdtree',		{ 'on': 'NERDTreeToggle' }
 Plug 'itchyny/lightline.vim'		" Status Line
-" -------- Code Completion -------------
+"-------- Code Completion -------------
 Plug 'neoclide/coc.nvim',		{'branch': 'release'}
-" -------- Editing ---------------------
+"-------- Editing ---------------------
 Plug 'tpope/vim-surround'		" Surrounded text
 Plug 'tpope/vim-commentary'		" Comment code
-" -------- Syntax ----------------------
+Plug 'easymotion/vim-easymotion'	" Easy Motion
+"-------- Syntax ----------------------
+Plug 'jaxbot/semantic-highlight.vim'	    " Different Color for each word
 Plug 'Valloric/vim-operator-highlight'	    " Highlight Operator Characters
-Plug 'vim-python/python-syntax'
+Plug 'luochen1990/rainbow'		    " Rainbow Parentheses
+Plug 'PotatoesMaster/i3-vim-syntax'	    " i3 wm Configuration
+Plug 'gisphm/vim-gitignore'		    " Git Ignore
+Plug 'mechatroner/rainbow_csv'		    " CSV Rainbow Fields
+" Plug 'vim-python/python-syntax'		    " Python
+" Python Semantic Highlighting
+Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 Plug 'Glench/Vim-Jinja2-Syntax'		    " Python Jinja2
 Plug 'Matt-Deacalion/vim-systemd-syntax'    " systemd syntax
-Plug 'PotatoesMaster/i3-vim-syntax'	    " i3 wm Configuration
 Plug 'cespare/vim-toml'			    " TOML
-Plug 'gisphm/vim-gitignore'		    " Git Ignore
-" -------- Color Schemes ---------------
+"-------- Color Schemes ---------------
 Plug 'ap/vim-css-color'			" Preview colours in source code.
 Plug 'tomasiser/vim-code-dark'		" VS Code
 Plug 'dunstontc/vim-vscode-theme'	" VS Code +
@@ -40,39 +46,37 @@ Plug 'rafi/awesome-vim-colorschemes'
 " Plug 'altercation/vim-colors-solarized'
 " Plug 'chriskempson/base16-vim'
 " Plug 'flazz/vim-colorschemes'
-" -------- Last ------------------------
+"-------- Last ------------------------
 " Adds file type icons to Vim plugins
 Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 " Faster alternative to 'tiagofumo/vim-nerdtree-syntax-highlight'
 " Plug 'vwxyutarooo/nerdtree-devicons-syntax'
 
-" ---- General Purpose --------------------------------------
+"---- General Purpose --------------------------------------
 "Plug 'xolox/vim-easytags'
 "Plug 'xolox/vim-misc'
 "Plug 'scrooloose/nerdcommenter'
 "Plug 'scrooloose/syntastic'
-" Plug 'tpope/vim-fugitive'
+"Plug 'tpope/vim-fugitive'
 "Plug 'Shougo/neocomplete.vim'
 "Plug 'Valloric/YouCompleteMe'
 "Plug 'ervandew/supertab'
 " Plug 'Lokaltog/vim-easymotion'
 " Plug 'taglist.vim'
 " Plug 'Raimondi/delimitMate'
-" Plug 'Lokaltog/vim-powerline'
 " Edit GNUPG encrypted files
 " Plug 'jamessan/vim-gnupg'
-"Plug 'kien/rainbow_parentheses.vim'
-" ---- Language Specific ------------------------------------
+"---- Language Specific ------------------------------------
 " C
 "Plug 'vim-scripts/gtk-vim-syntax'
 " Dart
 " Plug 'dart-lang/dart-vim-plugin'
-" ---- HTML/XML
+"---- HTML/XML
 "Plug 'alvan/vim-closetag'
 "Plug 'mattn/emmet-vim'
 "Plug 'tpope/vim-surround'
-" ---- Javascript
+"---- Javascript
 " Plug 'jelera/vim-javascript-syntax'
 " Plug 'pangloss/vim-javascript'
 " Python
@@ -89,7 +93,7 @@ call plug#load('vim-devicons')
 
 filetype indent on    " required
 
-" ---- General ---------------------------------------------------------------{{{
+"---- General ---------------------------------------------------------------{{{
 "Cursor settings:
 "  1 -> blinking block
 "  2 -> solid block
@@ -116,7 +120,7 @@ set relativenumber	" Show line numbers relative to current line
 set showcmd		" Show Command being typed
 "set spell spelllang=en_us	" English Spell Check
 set fileformat=unix	" Unix File Format
-" ---- Format -------------------------------------------------------------------
+"---- Format -------------------------------------------------------------------
 " Tabs
 set tabstop=8		" Number of spaces of the <Tab>
 set shiftwidth=8	" Number of spaces for indents ('cinednt', '<<', '>>')
@@ -132,10 +136,10 @@ set nowrap		" Disable line wrapping
 set ignorecase		" Ignore case in search patterns
 set smartcase		" Override 'ignorecase' if search pattern has uppercase
 
-" ---- UI -----------------------------------------------------------------------
+"---- UI -----------------------------------------------------------------------
 set listchars=tab:\├─>,space:·	" String to use in 'list' mode
 set fillchars=vert:│		" Use Vertical Box Drawing for vertical seperator
-" ---- Colorscheme --------------------------------------------------------------
+"---- Colorscheme --------------------------------------------------------------
 set background=dark
 if &term !=? 'linux'
 	set termguicolors
@@ -148,17 +152,20 @@ endif
 " Enable Syntax Highlighting
 syntax enable
 
-" ---- Highlight and Remove Trailing Space --------------------------------------
+"---- Highlight and Remove Trailing Space --------------------------------------
 " highlight ExtraWhitespace ctermbg=red guibg=red
 " match ExtraWhitespace /\s\+$/
 autocmd BufWritePre * :%s/\s\+$//e
 
 " }}}
 
-" ---- Plugin Options -------------------------------------------------------{{{
-"
+"---- Plugin Options --------------------------------------------------------{{{
+"-------- Rainbo Parenthesese ----------
+let g:rainbow_active=1
+autocmd VimEnter * RainbowToggleOn
+"-------- TagBar -----------------------
 let g:tagbar_iconchars = ['►', '▼ ']
-" -------- NERDTree ----------
+"-------- NERDTree ----------
 " NERDTree automatically when vim starts up on opening a directory
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
@@ -167,8 +174,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " Folder Characters
 " let g:NERDTreeDirArrowExpandable = ''		" 📁
 " let g:NERDTreeDirArrowCollapsible = ''		" 📂
-
-" -------- DevIcons --------------------
+"-------- DevIcons ---------------------
 let g:DevIconsEnableFoldersOpenClose = 1
 let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = ''	" 
 let g:DevIconsDefaultFolderOpenSymbol = ''			" 
@@ -176,36 +182,33 @@ let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['html'] = ''
 " Fix brackets around icons
 autocmd VimEnter * syntax enable | call webdevicons#refresh()
-" -------- Operator Highlight ----------
+"-------- Operator Highlight -----------
 let g:ophigh_highlight_link_group='Operator'
-" -------- Indent Guides ---------------
+"-------- Indent Guides ---------------
 let g:indent_guides_guide_size=1
 let g:indent_guides_start_level=2
 let g:indent_guides_enable_on_vim_startup = 1
-" -------- Status Bar - lightline ------
+"-------- Status Bar - lightline -------
 set laststatus=2
 set noshowmode	    " No need to show mode as lightline shows it on the left
-" -------- GNUPG -----------------------
+"-------- GNUPG ------------------------
 let g:GPGPreferSymmetric=1
 
-" -------- Rainbo Parenthesese ---------
-" " Enable Rainbow Parentheses
-" au VimEnter * RainbowParenthesesToggle
-" au Syntax * RainbowParenthesesLoadRound
-" au Syntax * RainbowParenthesesLoadSquare
-" au Syntax * RainbowParenthesesLoadBraces
 
-" -------- HTML/XML --------------------
+
+"-------- HTML/XML ---------------------
 "inoremap <C-_> <C-R>=GetCloseTag()<CR><ESC>%i
 
+"-------- Python ----------------------
+let g:python_highlight_all=1
 "source $HOME/.vim/scripts/config-neocomplete.vim
 " }}}
 
-" ---- Mappings --------------------------------------------------------------{{{
+"---- Mappings --------------------------------------------------------------{{{
 let mapleader=" "	" Set <Leader> to space
 " Save n Run
-noremap  <F2>            :w<CR>:!clear; ./%<CR>
-inoremap <F2>       <Esc>:w<CR>:!clear; ./%<CR>
+noremap  <F2>            :w<CR>:!clear; exec %<CR>
+inoremap <F2>       <Esc>:w<CR>:!clear; exec %<CR>
 " NERDTree
 noremap  <F11>            :NERDTreeToggle<CR>
 inoremap <F11>       <Esc>:NERDTreeToggle<CR>
