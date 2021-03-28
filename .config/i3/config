@@ -86,8 +86,8 @@ set $ws10 "10"
 #---- Assign Application to Workspace ----------------------
 
 # Terminals
-assign [instance="xterm"]	$ws2
-assign [instance="st"]		$ws2
+# assign [instance="xterm"]	$ws2
+# assign [instance="st"]		$ws2
 
 # Text Editor
 assign [class="code-oss"]	$ws3
@@ -102,8 +102,7 @@ for_window [title="Open Folder"]    floating enable
 for_window [title="Open Font"]	    floating enable
 for_window [title="Warning"]	    floating enable
 for_window [title="FontForge"]	    floating enable
-for_window [instance="cal"]	    floating enable border none
-for_window [class="Chromium"]	    border none
+# for_window [class="Chromium"]	    border none
 # }}}
 
 #---- Status Bar ------------------------------------------------------------{{{
@@ -116,7 +115,8 @@ bar {
 		background	$bg_color
 		separator	$seperator_color
 		# Workspace		Border		Background	Text
-		focused_workspace	$bg_color	$bg_color	$fg_color
+		focused_workspace	$accent_color	$accent_color	$fg_color
+		active_workspace	$inactive_bg	$inactive_bg	$bg_color
 		inactive_workspace	$bg_color	$bg_color	$inactive_bg
 		urgent_workspace	$urgent_color	$urgent_color	$focused_fg
 	}
@@ -160,6 +160,9 @@ bindsym $mod+Shift+x exec "i3lock"
 #-------- Modes/Layouts ---------------------------------{{{
 # Enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen
+
+# Toggle the Window Border
+bindsym $mod+Shift+f border toggle
 
 # Toggle between tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -216,8 +219,12 @@ bindsym $mod+period	focus output right
 #---- Moving Around }}}
 
 #-------- Shifting --------------------------------------{{{
-#-------- Windows ----------------------
-# Move focused window
+#-------- Containers -------------------
+# Move Containers between monitors
+bindsym $mod+Shift+comma move container to output left
+bindsym $mod+Shift+period move container to output right
+
+# Move Containers
 bindsym $mod+Shift+$up		move up
 bindsym $mod+Shift+$down	move down
 bindsym $mod+Shift+$left	move left
@@ -243,13 +250,7 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 
 #-------- Workspaces -------------------
 # Move Workspace between monitors
-bindsym $mod+Shift+comma move workspace to output left
-bindsym $mod+Shift+period move workspace to output right
-
-# Move Workspace between monitors
-bindsym $mod+Shift+u move workspace to output up
-bindsym $mod+Shift+i move workspace to output down
-bindsym $mod+Shift+y move workspace to output left
+bindsym $mod+Shift+i move workspace to output left
 bindsym $mod+Shift+o move workspace to output right
 #---- Shifting }}}
 
@@ -292,6 +293,6 @@ bindsym $mod+r mode "resize"
 
 #---- Auto-start Applications -----------------------------------------------{{{
 exec chromium
-exec $term
+# exec $term
 # }}}
 
