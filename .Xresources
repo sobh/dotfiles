@@ -8,10 +8,6 @@
 <<<<<<< Updated upstream
 #if DPI > 150
 	#define term_font	monospace:size=14
-=======
-#if DPI > 100
-	#define term_font	monospace:style=italic:size=14
->>>>>>> Stashed changes
 	#define term_font_alt	Symbols Nerd Font:size=14
 	#define display_font	systemui:size=14
 	#define font_size	14
