@@ -1,0 +1,36 @@
+#!/bin/sh
+# Description:	Set the system theme to either dark, or light.
+#
+
+#---- Load Libraries -----------------------------------------------------------
+libs=${XDG_LOCAL_HOME:-$HOME/.local}/lib/sh
+. $libs/config.sh	    # Manipulate Configuration files
+
+#---- Constants ----------------------------------------------------------------
+: ${XDG_CONFIG_HOME:=$HOME/.config}
+GTK3_CONFIG_FILE="$XDG_CONFIG_HOME/gtk-3.0/settings.ini"
+GTK3_THEME_KEY='gtk-application-prefer-dark-theme'
+theme=$1
+
+#---- Functions ----------------------------------------------------------------
+usage (){
+	cat << _EOF_
+Usage:	$(basename $0) <THEME>
+	Where THEME is either 'light', or 'dark'.
+_EOF_
+}
+
+set_theme_light(){
+	cfg_set_key "$GTK3_THEME_KEY" 'false' "$GTK3_CONFIG_FILE"
+}
+
+set_theme_dark(){
+	cfg_set_key "$GTK3_THEME_KEY" 'true' "$GTK3_CONFIG_FILE"
+}
+
+#---- Money Shot ---------------------------------------------------------------
+case $theme in
+	light) set_theme_light ;;
+	dark)  set_theme_dark  ;;
+	*)     usage; exit 1 ;;
+esac

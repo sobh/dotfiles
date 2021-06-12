@@ -93,9 +93,12 @@
         "editor.defaultFormatter": "vscode.json-language-features"
     },
     "editor.formatOnType": true,
-    "editor.fontLigatures": true,
+    "editor.fontLigatures": false,
     "workbench.iconTheme": "material-icon-theme",
     "terminal.integrated.fontSize": 16,
     "clojureVSCode.autoStartNRepl": false,
     "python.languageServer": "Microsoft",
+    "liveServer.settings.donotShowInfoMsg": true,
+    "go.toolsManagement.autoUpdate": true,
+
 }

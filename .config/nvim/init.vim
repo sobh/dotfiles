@@ -18,7 +18,7 @@ Plug 'majutsushi/tagbar',		{ 'on': 'TagbarToggle' }
 Plug 'scrooloose/nerdtree',		{ 'on': 'NERDTreeToggle' }
 Plug 'itchyny/lightline.vim'		" Status Line
 "-------- Code Completion -------------
-Plug 'neoclide/coc.nvim',		{'branch': 'release'}
+" Plug 'neoclide/coc.nvim',		{'branch': 'release'}
 "-------- Editing ---------------------
 Plug 'tpope/vim-surround'		" Surrounded text
 Plug 'tpope/vim-commentary'		" Comment code

@@ -1,0 +1,4 @@
+#!/bin/sh
+# Description: Re-start Google Chrome in Dark Mode
+killall chrome
+google-chrome-stable --force-dark-mode $*

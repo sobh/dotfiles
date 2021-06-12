@@ -62,7 +62,7 @@ loadxresources
 #---- Startup Applications -----------------------------------------------------
 
 if [ "$WM" = "i3" ] ; then
-	exec dropbox &
+	exec udiskie -t &
 fi
 
 # Import DISPLAY from environemtn for Xapplication services (e.g. dunst)

@@ -1,0 +1,4 @@
+#!/bin/sh
+# Description: Re-start Chromium in Dark Mode
+killall chromium
+chromium --force-dark-mode $*

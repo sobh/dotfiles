@@ -292,7 +292,7 @@ bindsym $mod+r mode "resize"
 #---- Bindings }}}
 
 #---- Auto-start Applications -----------------------------------------------{{{
-exec chromium
+exec google-chrome-stable
 # exec $term
 # }}}
 
