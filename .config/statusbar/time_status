@@ -7,16 +7,15 @@ get_emoji_icon(){
 	hours=$(date '+%l')	# Actual Hours
 	mins=$(date '+%M')	# Actual Mins
 
-	h=$hours		# Value of hours represented by the icon
-	m=0			# Icon half-hour shift value 0 or 12
-
-	# Set the icon based on the minutes
+	# Set the icon offsets (i.e. $h, $m) based on the time
+	# Each hour offsets the icon by 1
+	# A half-hour offsets the icon by 12
 	[ $mins -le 14 ] 			&& h=$hours && m=0
 	[ $mins -ge 15 ] && [ $mins -le 44 ]	&& h=$hours &&  m=12
 	[ $mins -ge 45 ]			&& h=$(( hours%12 + 1 )) && m=0
 
-	icon=$(( $icon + $h + $m ))	# Icon in numeral notation
-	icon=$(printf '\U%08x' $icon)	# Icon in UTF-8 hexadecimal notation
+	icon=$(( $icon + $h + $m ))	# Offseted icon in numeral notation
+	icon=$(printf '\\U%08x' $icon)	# Icon in UTF-8 hexadecimal notation
 	env printf $icon
 }
 
