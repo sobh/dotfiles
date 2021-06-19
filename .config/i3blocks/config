@@ -4,79 +4,79 @@
 # Credits:   Luke Smith <lukesmith.xyz>
 #
 
-command=$XDG_CONFIG_HOME/statusbar/$BLOCK_NAME
+command=$BLOCK_NAME
 separator_block_width=40
 markup=pango
 
-# [record]
+# [sb-record]
 # command=cat /tmp/recordingicon
 # interval=once
 # signal=9
 
-# [music]
+# [sb-music]
 # label=🎼
 # interval=once
 # signal=11
 
-# [news]
+# [sb-news]
 # interval=once
 # signal=6
 
-# [iplocate]
+# [sb-iplocate]
 # interval=30
 
 
-# [torrent]
+# [sb-torrent]
 # interval=20
 # signal=7
 
-# [weather]
+# [sb-weather]
 # interval=18000
 # signal=5
 
-# [mailbox]
+# [sb-mailbox]
 # interval=180
 # signal=12
 
-# [memory]
+# [sb-memory]
 # interval=30
 # label=🧠
 
-# [cpu]
+# [sb-cpu]
 # interval=15
 # label=💻
 
 
-# [disk]
+# [sb-disk]
 # interval=60
 # command=disk /
 
-# [disk]
+# [sb-disk]
 # interval=60
 # command=disk /home 🏠
 
-[pkg_status]
+[sb-pkg]
 interval=once
 
-[date_status]
+[sb-date]
 interval=60
 
-[time_status]
+[sb-time]
 interval=60
 
-[volume_status]
+[sb-volume]
 interval=once
 
-[internet_status]
+[sb-internet]
 interval=10
 
-[keyboard_layout_status]
+[sb-keyboard_layout]
 interval=once
 signal=1
 
-[battery]
-command=battery_status BAT0
+[sb-battery]
+command=sb-battery BAT0
 interval=5
 
-# [help]
+# [sb-help]
 # interval=once
