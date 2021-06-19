@@ -5,7 +5,6 @@
 
 
 !---- DPI Dependant ------------------------------------------------------------
-<<<<<<< Updated upstream
 #if DPI > 150
 	#define term_font	monospace:size=14
 	#define term_font_alt	Symbols Nerd Font:size=14
