@@ -63,7 +63,7 @@ ssource $XDG_CONFIG_HOME/shell/env_local
 #---- Path and Library ---------------------------------------------------------
 pathprepend $HOME/bin PATH
 pathprepend $XDG_LOCAL_HOME/bin PATH
-pathprepend $XDG_CONFIG_HOME/statusbar PATH
+pathprepend $XDG_LOCAL_HOME/bin/statusbar PATH
 pathprepend $HOME/lib LD_LIBRARY_PATH
 pathprepend $HOME/include CPATH
 
