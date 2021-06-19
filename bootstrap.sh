@@ -43,3 +43,5 @@ for file in $files; do
 	ln -s "$rdir/$file" "$HOME/$file"
 done
 
+# Save the repo directory in the configuration directory
+echo -n $rdir > $HOME/.config/repo_dir

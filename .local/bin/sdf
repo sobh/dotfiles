@@ -1,0 +1,3 @@
+#!/bin/sh
+rdir=$(cat $XDG_CONFIG_HOME/repo_dir)
+exec $rdir/bootstrap.sh
