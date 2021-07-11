@@ -9,7 +9,8 @@ rdir=$(realpath $(dirname $0) )			# dotfiles repository directory
 bdir=$HOME/dotfiles_backup/$(date "+%Y-%m-%d_%H%M%S")	# old dotfiles backup directory
 
 #---- Main ---------------------------------------------------------------------
-IFS=$'\n'
+IFS='
+'
 # Get Symlinks
 links=$(find $rdir -type l -path "$rdir/.*" ! -path "*/.git*" -printf "%P\n")
 # Synthesis a list of file to link to
@@ -18,7 +19,7 @@ files=$(find $rdir -type f -path "$rdir/.*" ! -path "*/.git*" -printf "%P\n")
 
 # Backup Direcotry
 echo "Backing-up the existing dotfiles to the directory: '$rdir'"
-all_files=$links$'\n'$files
+all_files=$links'\n'$files
 for file in $all_files; do
 	tdir="$bdir/$(dirname $file)"
 	mkdir -p $tdir
