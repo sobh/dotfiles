@@ -13,13 +13,13 @@
 SHORTCUT=$XDG_CACHE_HOME/shortcutrc
 [ -f "$SHORTCUT" ] && . "$SHORTCUT"
 #---- less colors for man pages ------------------------------------------------
-export LESS_TERMCAP_mb=$'\E[5;33m'	# Begin blinking
-export LESS_TERMCAP_md=$'\E[1;34m'	# Begin Bold
+export LESS_TERMCAP_mb=$'\E[5;93m'	# Begin blinking -> Bright Yellow
+export LESS_TERMCAP_md=$'\E[1;94m'	# Begin Bold -> Bright Blue
 export LESS_TERMCAP_me=$'\E[0m'		# End mode
 export LESS_TERMCAP_se=$'\E[0m'		# End standout-mode
-export LESS_TERMCAP_so=$'\E[44;30m'	# Begin standout-mode - info box
+export LESS_TERMCAP_so=$'\E[96;30m'	# Begin standout-mode - info box
 export LESS_TERMCAP_ue=$'\E[0m'		# End underline
-export LESS_TERMCAP_us=$'\E[4;92m'	# Begin underline
+export LESS_TERMCAP_us=$'\E[4;92m'	# Begin underline -> Bright Green
 #---- Aliases ------------------------------------------------------------------
 unalias lsd 2>/dev/null
 #-------- base -------------------------
@@ -43,7 +43,6 @@ alias	\
 #-------- Preferred Apps ---------------
 alias	\
 	e='$EDITOR'	\
-	v='$EDITOR'	\
 
 #-------- git --------------------------
 alias \
