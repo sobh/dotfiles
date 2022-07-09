@@ -47,24 +47,6 @@ get_emoji_icon(){
 	env printf $icon
 }
 
-debug(){
-	for s in "Discharging" "Charging" ; do
-		c=0
-		while [ $c -le 100 ] ; do
-			icon=$(get_icon $s $c)
-			printf "$s %3d%% %s    " $c $icon
-			[ $(( ($c + 1) % 7 )) -eq 0 ] && echo ""
-			c=$(( $c + 1 ))
-		done
-		printf "\n\n\n"
-	done
-	s="Full"
-	c="100"
-	icon=$(get_icon $s $c)
-	printf "$s %2d%% %s   " $c $icon
-}
-
-
 #---- Money Shot----------------------------------------------------------------
 case $UI_ICON in
 	emoji)
@@ -84,10 +66,31 @@ online=$(cat /sys/class/power_supply/AC/online)
 [ "$online" -eq 1 ] && power_status="$ICON_ONLINE" || power_status="$ICON_OFFLINE"
 
 for battery in /sys/class/power_supply/BAT? ; do
-	capacity=$(cat "$battery"/capacity) || exit
+	capacity=$(cat "$battery"/capacity)
 	status=$(cat "$battery"/status)
-	icon=$(get_icon $status $capacity)
+	icon=$(get_icon "$status" "$capacity")
 	power_status="$power_status  $capacity%%  $icon  "
 done
 printf "$power_status \n"
+
+#---- Debugging ----------------------------------------------------------------
+debug(){
+	for s in "Discharging" "Charging" ; do
+		c=0
+		while [ $c -le 100 ] ; do
+			icon=$(get_icon $s $c)
+			printf "$s %3d%% %s    " $c $icon
+			[ $(( ($c + 1) % 7 )) -eq 0 ] && echo ""
+			c=$(( $c + 1 ))
+		done
+		printf "\n\n\n"
+	done
+	s="Full"
+	c="100"
+	icon=$(get_icon $s $c)
+	printf "$s %2d%% %s   " $c $icon
+}
+
+
+# debug
 
