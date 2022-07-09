@@ -1,0 +1,8 @@
+#!/bin/sh
+# Description: Start Visual Studio Code
+#
+
+[ "$XDG_SESSION_TYPE" = "wayland" ] &&
+	FLAGS="--enable-features=UseOzonePlatform --ozone-platform=wayland"
+
+/bin/code $FLAGS $*
