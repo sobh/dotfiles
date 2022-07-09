@@ -97,3 +97,7 @@ Sxiv*foreground:	white
 !-------- sxiv }}}
 !
 !---- Applications }}}
+
+Xcursor.theme: Vanilla-DMZ-AA
+
+Xcursor.size: 24
