@@ -26,8 +26,7 @@ unalias lsd 2>/dev/null
 alias	\
 	cp='cp -v'		    \
 	diff='diff --color=auto'    \
-	egrep='egrep --color=auto'  \
-	grep='egrep'		    \
+	grep='grep -E --color=auto' \
 	info='info --vi-keys'	    \
 	ka='killall'		    \
 	l='ls -1'		    \
