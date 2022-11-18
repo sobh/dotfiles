@@ -12,9 +12,9 @@ bdir=$HOME/dotfiles_backup/$(date "+%Y-%m-%d_%H%M%S")	# old dotfiles backup dire
 IFS='
 '
 # Get Symlinks
-links=$(find $rdir -type l -path "$rdir/.*" ! -path "*/.git*" -printf "%P\n")
+links=$(find $rdir -type l -path "$rdir/.*" ! -path "*/.git*" | sed -e "s|$rdir/||g")
 # Synthesis a list of file to link to
-files=$(find $rdir -type f -path "$rdir/.*" ! -path "*/.git*" -printf "%P\n")
+files=$(find $rdir -type f -path "$rdir/.*" ! -path "*/.git*" | sed -e "s|$rdir/||g")
 
 
 # Backup Direcotry
