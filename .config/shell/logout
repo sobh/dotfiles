@@ -11,3 +11,6 @@
 #        clear_console -q
 #    fi
 #fi
+
+# Kill the ssh-agent process that was started in the 'login' script
+kill $SSH_AGENT_PID
