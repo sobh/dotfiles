@@ -13,22 +13,15 @@ export XDG_SESSION_TYPE='x11'
 : ${UI_ICON:=emoji}; export UI_ICON
 
 #---- Host Configuration -------------------------------------------------------
-# DPI Settings based on host
-case $HOST in
-	optiplex)
-		DPI=200
-		UI_FONT_SIZE=12
-		;;
-	satellite |t420 |ed)
-		DPI=144		    # Scale of 1.5
-		UI_FONT_SIZE=10
-		;;
-	*)
-		DPI=92
-		UI_FONT_SIZE=12
-		;;
-esac
+HOST_CONFIG_DIR=$XDG_CONFIG_HOME/host/$HOST
+# Load defualt host configuration
+. $XDG_CONFIG_HOME/host/default/xinitrc
+# Load host specific configuration
+[ -f $HOST_CONFIG_DIR/xinitrc ] && . $HOST_CONFIG_DIR/xinitrc
 
+echo $DPI
+echo $UI_FONT_SIZE
+# DPI and UI_FONT_SIZE are host specific
 export DPI
 export UI_FONT_SIZE
 export UI_FONT_FAMILY='systemui'
@@ -62,19 +55,15 @@ loadxresources
 #---- Startup Applications -----------------------------------------------------
 
 if [ "$WM" = "i3" ] ; then
-	exec udiskie -t &
+	exec /usr/bin/udiskie -t &
+	exec /usr/bin/nm-applet &
+	exec /usr/bin/syncthing-gtk -m &
 fi
 
 # Import DISPLAY from environemtn for Xapplication services (e.g. dunst)
-systemctl --user import-environment DISPLAY XAUTHORITY
+#systemctl --user import-environment DISPLAY XAUTHORITY
 
 #---- Window Manager -----------------------------------------------------------
 # Set Window Manger Name to be recogonized by Java
 wmname gnome
-
-case $WM in
-	i3) exec /usr/bin/i3 ;;
-	dwm) exec /usr/local/bin/dwm ;;
-	*) echo "Unkown window manager $WM" ;;
-esac
-
+exec $WM
