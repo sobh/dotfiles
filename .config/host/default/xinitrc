@@ -1,0 +1,3 @@
+# vim: filetype=sh
+DPI=96
+UI_FONT_SIZE=12
