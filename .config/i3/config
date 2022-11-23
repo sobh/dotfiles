@@ -8,10 +8,7 @@
 set $mod Mod4
 
 # Used Font
-set $font systemui Light 16
-
-# Bar Height in pixels
-set $bar_height 60
+set_from_resource $font i3.font
 
 # Set prefered terminal emulator
 set $term lxterminal
@@ -292,7 +289,7 @@ bindsym $mod+r mode "resize"
 #---- Bindings }}}
 
 #---- Auto-start Applications -----------------------------------------------{{{
-exec google-chrome-stable
+# exec chromium
 # exec $term
 # }}}
 

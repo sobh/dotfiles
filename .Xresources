@@ -32,7 +32,16 @@ Xft.antialias:	1
 Xft.rgba:	rgb
 !---- Fonts }}}
 
+!---- Cursor ----------------------------------------------------------------{{{
+Xcursor.theme: Vanilla-DMZ-AA
+Xcursor.size: 24
+!---- Cursor }}}
+
 !---- Applications ----------------------------------------------------------{{{
+!-------- i3 ------------------------{{{
+i3.font:	UI_FONT
+!--- i3 }}}
+
 !-------- st ------------------------{{{
 /* St*termname:	st-256color */
 st*alpha:	term_opacity
@@ -95,9 +104,6 @@ Sxiv*font:	display_font
 Sxiv*background:	black
 Sxiv*foreground:	white
 !-------- sxiv }}}
-!
+
 !---- Applications }}}
 
-Xcursor.theme: Vanilla-DMZ-AA
-
-Xcursor.size: 24

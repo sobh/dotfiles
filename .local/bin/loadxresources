@@ -3,4 +3,7 @@
 # Description:	loads the xresources from my custom directory
 #
 
-[ -f $HOME/.Xresources ] && xrdb -DDPI=$DPI $HOME/.Xresources
+[ -f $HOME/.Xresources ] && xrdb \
+	-DDPI="$DPI" \
+	-DUI_FONT="$UI_FONT" \
+	$HOME/.Xresources
