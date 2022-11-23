@@ -15,6 +15,8 @@
 .config/nvim/plugged
 .config/nvim/swap
 .local/lib/python*
+.local/bin/uimp
+.local/bin/w3imp
 .local/share/applications/chrom*
 .local/share/desktop-directories
 .local/share/fonts
