@@ -19,7 +19,7 @@ files=$(find $rdir -type f -path "$rdir/.*" ! -path "*/.git*" | sed -e "s|$rdir/
 
 # Backup Direcotry
 echo "Backing-up the existing dotfiles to the directory: '$rdir'"
-all_files=$links'\n'$files
+all_files=$(printf "$links\n$files")
 for file in $all_files; do
 	tdir="$bdir/$(dirname $file)"
 	mkdir -p $tdir
