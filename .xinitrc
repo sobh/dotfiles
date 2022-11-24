@@ -38,7 +38,7 @@ if [ $DPI -ge 180 ] ; then
 	export QT_AUTO_SCREEN_SCALE_FACTOR=1
 fi
 #---- Displays' Settings -------------------------------------------------------
-[ -f $XDG_CONFIG_HOME/xrandr/$HOST ] && . $XDG_CONFIG_HOME/xrandr/$HOST
+[ -f $HOST_CONFIG_DIR/xrandr ] && . $HOST_CONFIG_DIR/xrandr
 
 # Set keyboard
 exec setkeyboard &
