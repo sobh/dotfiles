@@ -33,4 +33,10 @@ zstyle ':completion:*' completer _expand_alias _complete _ignored
 unsetopt correct
 
 #---- Syntax Highlighting ------------------------------------------------------
-. /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+_uname=$(uname -s)
+if [ $_uname = "Linux" ]; then
+	. /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+elif [ $_uname = "OpenBSD" ]; then
+	. /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+
