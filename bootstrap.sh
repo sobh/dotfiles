@@ -35,7 +35,7 @@ find $rdir -type d ! -path "*/.git*" |  \
 # Copy symlinks
 echo "Copying symlinks from '$rdir' to '$HOME'"
 for link in $links; do
-	cp -P "$rdir/$link" "$HOME/$link"
+	cp -RP "$rdir/$link" "$HOME/$link"
 done
 
 # Create the symlinks of files
