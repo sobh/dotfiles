@@ -10,6 +10,9 @@ set $mod Mod4
 # Used Font
 set_from_resource $font i3.font
 
+# Status Command
+set_from_resource $status_cmd i3.status.cmd
+
 # Set prefered terminal emulator
 set $term lxterminal
 
@@ -106,7 +109,7 @@ for_window [title="FontForge"]	    floating enable
 bar {
 	mode dock
 	position top
-	status_command i3blocks
+	status_command $status_cmd
 	tray_output primary
 	colors {
 		background	$bg_color

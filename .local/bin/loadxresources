@@ -6,4 +6,5 @@
 [ -f $HOME/.Xresources ] && xrdb \
 	-DDPI="$DPI" \
 	-DUI_FONT="$UI_FONT" \
+	-DI3_STATUS_CMD="$I3_STATUS_CMD" \
 	$HOME/.Xresources
