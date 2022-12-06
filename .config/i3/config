@@ -139,7 +139,7 @@ bindsym Mod1+Shift+Tab exec toggle_keyboard_layout && pkill -SIGRTMIN+1 i3blocks
 floating_modifier $mod
 
 # start (a program launcher)
-bindsym $mod+d exec --no-startup-id dmenu_run
+bindsym $mod+d exec --no-startup-id sdmenu_run
 
 # Split in horizontal/vertical orientation
 bindsym $mod+b split h

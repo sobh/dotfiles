@@ -1,4 +1,4 @@
 #!/bin/sh
 DMENU_FONT_SIZE=$(echo "$UI_FONT_SIZE/1.8"| bc)
 FONT="$UI_FONT_FAMILY:weight=$UI_FONT_WEIGHT:size=$DMENU_FONT_SIZE"
-/usr/local/bin/dmenu -fn "$FONT" "$@"
+dmenu -fn "$FONT" "$@"
