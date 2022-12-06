@@ -9,7 +9,7 @@ export XDG_SESSION_TYPE='x11'
 # Set Default window manager (values: i3, dwm)
 : ${WM:=i3}; export WM
 
-# Set Defautl UI icone style (values: emoji, nerd)
+# Set Defautl UI icon style (values: emoji, nerd)
 : ${UI_ICON:=emoji}; export UI_ICON
 
 #---- Host Configuration -------------------------------------------------------
@@ -19,11 +19,7 @@ HOST_CONFIG_DIR=$XDG_CONFIG_HOME/host/$HOST
 # Load host specific configuration
 [ -f $HOST_CONFIG_DIR/xinitrc ] && . $HOST_CONFIG_DIR/xinitrc
 
-echo $DPI
-echo $UI_FONT_SIZE
 # DPI and UI_FONT_SIZE are host specific
-export DPI
-export UI_FONT_SIZE
 export UI_FONT_FAMILY='systemui'
 export UI_FONT_WEIGHT='Light'
 export UI_FONT="$UI_FONT_FAMILY $UI_FONT_WEIGHT $UI_FONT_SIZE"
@@ -51,6 +47,7 @@ exec unclutter &
 
 #---- Xresources ---------------------------------------------------------------
 loadxresources
+xsetroot -solid SlateGrey
 
 #---- Startup Applications -----------------------------------------------------
 
