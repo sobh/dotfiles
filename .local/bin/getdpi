@@ -1,4 +1,8 @@
 #!/bin/sh
 # Description:	Get actual DPI (returns the highest for multiples)
 # Depends On:	xdpyinfo sed coreutils
-xdpyinfo | sed -En 's/\s*resolution:\s*([0-9]+).*/\1/p' | sort -rn | head -n1
+
+if [ "$XDG_SESSION_TYPE" = "x11" ] ; then
+	xdpyinfo | sed -En 's/\s*resolution:\s*([0-9]+).*/\1/p' | sort -rn | head -n1
+else # $XDG_SESSION_TYPE = "wayland"
+fi
