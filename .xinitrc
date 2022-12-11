@@ -34,7 +34,17 @@ if [ $DPI -ge 180 ] ; then
 	export QT_AUTO_SCREEN_SCALE_FACTOR=1
 fi
 #---- Displays' Settings -------------------------------------------------------
-[ -f $HOST_CONFIG_DIR/xrandr ] && . $HOST_CONFIG_DIR/xrandr
+# DDX drivers other than that of the modesetting(4) driver may take time to
+# properly enumerate the modes of attached devices, to where xrandr may not work
+# right away. This seems to be the case for the xf86-video-intel driver, with
+# which using xrandr early in the startup sets the incorrect resolution.
+# Solution: Wait in the background for a couple of seconds berfore invoking
+# 'xrandr'
+
+{
+	sleep	2
+	[ -f $HOST_CONFIG_DIR/xrandr ] && $HOST_CONFIG_DIR/xrandr
+} &
 
 # Set keyboard
 exec setkeyboard &
