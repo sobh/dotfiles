@@ -1,4 +1,18 @@
 #!/bin/sh
+#
+# Description: This script shows, and control the volume of ALSA default card.
+#
+# Note: For this script to work properly, the default card must be set
+# correctly. Assuming we have 2 cards with index 0 and 1 respectively and wish
+# to simply change the default card to index 1, would lead to the following
+# configuration in `/etc/asound.conf` or the user-specific `~/.asoundrc` to
+# change both the playback and the mixer control card.
+#
+# ```~/.asoundrc
+#   defaults.pcm.card 1
+#   defaults.ctl.card 1
+# ```
+#
 
 # Set Volume based on mouse command
 case $BLOCK_BUTTON in
