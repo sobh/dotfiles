@@ -67,6 +67,9 @@ interval=60
 [sb-volume]
 interval=once
 
+[sb-brightness]
+interval=once
+
 [sb-internet]
 interval=10
 
