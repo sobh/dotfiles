@@ -26,7 +26,7 @@ Plug 'itchyny/lightline.vim'		" Status Line
 "-------- Code Completion -------------
 " Plug 'neoclide/coc.nvim',		{'branch': 'release'}
 "-------- Editing ---------------------
-Plug 'tpope/vim-surround'		" Surrounded text
+" Plug 'tpope/vim-surround'		" Surrounded text
 Plug 'tpope/vim-commentary'		" Comment code
 Plug 'easymotion/vim-easymotion'	" Easy Motion
 "-------- Syntax ----------------------
@@ -38,7 +38,7 @@ Plug 'gisphm/vim-gitignore'		    " Git Ignore
 Plug 'mechatroner/rainbow_csv'		    " CSV Rainbow Fields
 " Plug 'vim-python/python-syntax'		    " Python
 " Python Semantic Highlighting
-Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
+"Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 Plug 'Glench/Vim-Jinja2-Syntax'		    " Python Jinja2
 Plug 'Matt-Deacalion/vim-systemd-syntax'    " systemd syntax
 Plug 'cespare/vim-toml'			    " TOML
@@ -131,7 +131,7 @@ set fileformat=unix	" Unix File Format
 set tabstop=8		" Number of spaces of the <Tab>
 set shiftwidth=8	" Number of spaces for indents ('cinednt', '<<', '>>')
 set noexpandtab		" Do not expands <Tab> into spaces
-set softtabstop=4	" Number of space of <Tab> while editing
+set softtabstop=8	" Number of space of <Tab> while editing
 
 set foldcolumn=8	" Set Folding Column width
 set foldmethod=syntax	" Default foldmethod
@@ -161,7 +161,14 @@ syntax enable
 "---- Highlight and Remove Trailing Space --------------------------------------
 " highlight ExtraWhitespace ctermbg=red guibg=red
 " match ExtraWhitespace /\s\+$/
-autocmd BufWritePre * :%s/\s\+$//e
+function! StripTrailingWhiteSpace()
+	" Don't strip on these filetypes
+	if &filetype =~ 'tsv'
+		return
+	endif
+	:%s/\s\+$//e
+endfunction
+autocmd BufWritePre * call StripTrailingWhiteSpace()
 
 " }}}
 
