@@ -38,9 +38,9 @@ export EMAIL='mohamed.alhusieny@gmail.com'
 #---- Default Applications -----------------------------------------------------
 export EDITOR=nvim
 export VISUAL=$EDITOR
-export BROWSER=goolge-chrome-stable
+export BROWSER=chromium
 export TERMINAL=uxterm
-export PAGER=less
+export PAGER='less -r'
 
 #---- Configurations -----------------------------------------------------------
 # Adjust config files locoations
