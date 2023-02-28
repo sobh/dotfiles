@@ -220,8 +220,8 @@ let g:python_highlight_all=1
 "---- Mappings --------------------------------------------------------------{{{
 let mapleader=" "	" Set <Leader> to space
 " Save n Run
-noremap  <F2>            :w<CR>:!clear; exec %<CR>
-inoremap <F2>       <Esc>:w<CR>:!clear; exec %<CR>
+noremap  <F2>            :w<CR>:!clear; %:p<CR>
+inoremap <F2>       <Esc>:w<CR>:!clear; %:p<CR>
 " NERDTree
 noremap  <F11>            :NERDTreeToggle<CR>
 inoremap <F11>       <Esc>:NERDTreeToggle<CR>
