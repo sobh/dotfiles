@@ -105,7 +105,7 @@
     "editor.formatOnType": true,
     "workbench.iconTheme": "material-icon-theme",
     "terminal.integrated.fontSize": 16,
-    "python.languageServer": "Microsoft",
+    "python.languageServer": "Default",
     "liveServer.settings.donotShowInfoMsg": true,
     "go.toolsManagement.autoUpdate": true,
     "window.zoomLevel": 2,
