@@ -36,6 +36,8 @@ unset _uname
 alias	\
 	cp='cp -v'		    \
 	diff='diff --color=auto'    \
+	idate='date --iso'		\
+	idt='idate'			\
 	info='info --vi-keys'	    \
 	ka='killall'		    \
 	l='ls -1'		    \
@@ -44,7 +46,7 @@ alias	\
 	mkd='mkdir -pv'		    \
 	mv='mv -v'		    \
 	qmv='qmv -f destination-only'   \
-	rm='rm -v'		    \
+	rm='trash'		    \
 
 #-------- Preferred Apps ---------------
 alias	\
