@@ -55,8 +55,8 @@ case $UI_ICON in
 		ICON_OFFLINE='🛑'
 		;;
 	nerd | *)
-		ICON_ONLINE='\U200E\UFBA3\U200E'
-		ICON_OFFLINE='\U200E\UFBA4\U200E'
+		ICON_ONLINE='󰚥'
+		ICON_OFFLINE='󰚦'
 		alias get_icon=get_nerd_icon ;;
 esac
 power_status=''
