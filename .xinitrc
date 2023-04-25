@@ -62,7 +62,6 @@ xsetroot -solid SlateGrey
 #---- Startup Applications -----------------------------------------------------
 
 if [ "$WM" = "i3" ] ; then
-	exec /usr/bin/udiskie -t &
 	exec /usr/bin/nm-applet &
 	exec /usr/bin/syncthing-gtk -m &
 fi
