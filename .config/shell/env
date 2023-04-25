@@ -5,8 +5,8 @@
 #
 
 #---- HOST ---------------------------------------------------------------------
-export HOST=$(cat /etc/hostname)
-export HOSTNAME=$HOST
+: ${HOST:=$(hostname -s)}; export HOST
+: ${HOSTNAME:=$HOST}; export HOSTNAME
 #---- Set XDG Directories ------------------------------------------------------
 export XDG_CONFIG_HOME=$HOME/.config	# Configurations Directory (analogous to /etc).
 export XDG_CACHE_HOME=$HOME/.cache	# Non-essential (cached) data should be written (analogous to /var/cache).
