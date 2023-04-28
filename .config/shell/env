@@ -5,7 +5,7 @@
 #
 
 #---- HOST ---------------------------------------------------------------------
-: ${HOST:=$(hostname -s)}; export HOST
+: ${HOST:=$(hostname)}; export HOST
 : ${HOSTNAME:=$HOST}; export HOSTNAME
 #---- Set XDG Directories ------------------------------------------------------
 export XDG_CONFIG_HOME=$HOME/.config	# Configurations Directory (analogous to /etc).
