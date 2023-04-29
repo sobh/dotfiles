@@ -1,0 +1,9 @@
+# vim: filetype=sh
+#
+# Description:	OpenBSD specific 'xinitrc' file.
+#
+
+#---- Applications -------------------------------------------------------------
+#-------- i3 -----------------------------------------------
+export I3_STATUS_CMD=i3status
+

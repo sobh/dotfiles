@@ -1,0 +1,8 @@
+# vim: filetype=sh
+#
+# Description:	Linux specific 'xinitrc' file.
+#
+
+#---- Applications -------------------------------------------------------------
+#-------- i3 -----------------------------------------------
+export I3_STATUS_CMD=i3blocks
