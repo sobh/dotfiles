@@ -6,7 +6,7 @@
 ESC='\033'
 CSI="$ESC["
 
-if [ "$ESCAPE_PREIX" = "true" ]; then
+if [ "$ESCAPE_PREFIX" = "true" ]; then
 	#---- Style Codes -----------------------------------------
 	E_RESET="$ESC[0m"
 	E_DOUBLE_UNDERLINE="$ESC[21m"	# Per ECMA-48, but disables bold
@@ -87,7 +87,7 @@ fi
 
 #---- Test Function ------------------------------------------------------------
 _test_escape() {
-	if [ "$ESCAPE_PREIX" = "true" ]; then
+	if [ "$ESCAPE_PREFIX" = "true" ]; then
 		printf -- "-------- Styles --------\n"
 		printf "This is regular text.\n"
 		printf "This is a ${E_BOLD}Bold${E_RESET_BOLD} text.\n"
