@@ -14,11 +14,15 @@ export XDG_SESSION_TYPE='x11'
 
 #---- Host Configuration -------------------------------------------------------
 HOST_CONFIG_DIR=$XDG_CONFIG_HOME/host/$HOST
+OS_CONFIG_DIR=$XDG_CONFIG_HOME/os/`uname -s`
 # Load defualt host configuration
 . $XDG_CONFIG_HOME/host/default/xinitrc
+# Load OS specific configuration
+[  -f $OS_CONFIG_DIR/xinitrc  ] && . $OS_CONFIG_DIR/xinitrc
 # Load host specific configuration
 [ -f $HOST_CONFIG_DIR/xinitrc ] && . $HOST_CONFIG_DIR/xinitrc
 
+#---- Host Configuration -------------------------------------------------------
 # DPI and UI_FONT_SIZE are host specific
 export UI_FONT_FAMILY='systemui'
 export UI_FONT_WEIGHT='Light'
