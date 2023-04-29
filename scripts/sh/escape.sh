@@ -3,7 +3,7 @@
 # Description:	Definition of ANSI Escape Sequences
 #
 
-ESC='\e'
+ESC='\033'
 CSI="$ESC["
 
 if [ "$ESCAPE_PREIX" = "true" ]; then
