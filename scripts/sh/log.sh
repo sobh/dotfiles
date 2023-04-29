@@ -77,3 +77,7 @@ _test_log() {
 	failure "This is an failure test."
 	status CUSTOM "This is an custom message type."
 }
+
+# If script is executed, and not source, execute the test function.
+[ `basename "$0"` = 'log.sh' ] && _test_log
+

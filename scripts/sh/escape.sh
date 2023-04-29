@@ -191,3 +191,6 @@ _test_escape() {
 		printf "This is a ${BG_WHITE}Bright White Background${BG_DEFAULT}.\n"
 	fi
 }
+
+# If script is executed, and not source, execute the test function.
+[ `basename "$0"` = 'escape.sh' ] && _test_escape
