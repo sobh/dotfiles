@@ -2,8 +2,24 @@
 # Description:	Helper for logging info, warning, errors, etc...
 #
 
-. $HOME/scripts/sh/escape.sh
 
+#---- Helper Functions ---------------------------------------------------------
+_source_script ()
+{
+	fname="$1"
+	command -v $fname >/dev/null 2>&1 && { . $fname             ; return 0; }
+	[ -e $fname ]                     && { . ./$fname           ; return 0; }
+	[ -e $HOME/lib/sh/$fname ]        && { . $HOME/lib/sh/$fname; return 0; }
+
+	echo "Error: Unable to load script, please add the shell libraries'\
+	directory to the \$PATH."
+	return 1;
+}
+
+#---- Includes -----------------------------------------------------------------
+_source_script escape.sh
+
+#---- Functions ----------------------------------------------------------------
 log(){
 	time_stamp=$(date --rfc-3339='seconds')
 	# Positional Parameters
