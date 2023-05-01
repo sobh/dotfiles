@@ -109,6 +109,7 @@ for_window [title="FontForge"]	    floating enable
 bar {
 	mode dock
 	position top
+	# status_command `printf "$I3_STATUS_CMD"`
 	status_command $status_cmd
 	tray_output primary
 	colors {
