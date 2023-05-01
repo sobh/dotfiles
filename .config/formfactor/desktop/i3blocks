@@ -1,0 +1,85 @@
+# vim: ft=cfg
+#
+# License:  GPLv3
+# Credits:   Luke Smith <lukesmith.xyz>
+#
+
+command=$BLOCK_NAME
+separator_block_width=40
+markup=pango
+
+# [sb-record]
+# command=cat /tmp/recordingicon
+# interval=once
+# signal=9
+
+# [sb-music]
+# label=🎼
+# interval=once
+# signal=11
+
+# [sb-news]
+# interval=once
+# signal=6
+
+# [sb-iplocate]
+# interval=30
+
+
+# [sb-torrent]
+# interval=20
+# signal=7
+
+# [sb-weather]
+# interval=18000
+# signal=5
+
+# [sb-mailbox]
+# interval=180
+# signal=12
+
+# [sb-memory]
+# interval=30
+# label=🧠
+
+# [sb-cpu]
+# interval=15
+# label=💻
+
+
+# [sb-disk]
+# interval=60
+# command=disk /
+
+# [sb-disk]
+# interval=60
+# command=disk /home 🏠
+
+[sb-pkg]
+interval=once
+
+[sb-date]
+interval=60
+
+[sb-time]
+interval=60
+
+[sb-volume]
+interval=once
+
+[sb-brightness]
+interval=once
+
+[sb-internet]
+interval=10
+
+[sb-keyboard_layout]
+interval=once
+signal=1
+
+[Spacer]
+full_text=""
+
+
+# [sb-help]
+# interval=once
