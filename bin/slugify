@@ -1,0 +1,21 @@
+#!/bin/sh
+#
+# Author:	Mohamed Sobh
+# Email:	mohamed.alhusieny@gmail.com
+#
+# Description:	It converts input into a string of lowercase letters, digits and
+#		hyphens.
+#
+# Actions:
+#	1. Translate into ASCII encoding
+#	2. Convert upper case to lower.
+#	3. Change all non-alpha into hyphens with exeptions of '.' and '_'.
+#	4. Trim heading, and trailing non-alpha.
+#	5. Remove non-alpha surrounding '.' and '_'.
+#
+
+iconv -t ascii//TRANSLIT | tr [:upper:] [:lower:]	|
+	sed -E	-e 's/[^a-z0-9._]+/-/g'			\
+		-e 's/^[^[:alpha:]]+|[^[:alpha:]]+$//g' |
+	sed -E  -e 's/[^[:alpha:]]*\.[^[:alpha:]]*/./g'	\
+		-e 's/[^[:alpha:]]*_[^[:alpha:]]*/_/g'
