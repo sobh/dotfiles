@@ -5,8 +5,16 @@
 # Prompt Blocks
 P_BG='%F{yellow}%(1j.↓%j .)'
 P_PWD='%F{magenta}%~'
-P_SYM='%(!,%F{red}#,%F{cyan}%%) >'
 P_EXIT='%(?..%B%F{red}:('
+
+# On an SSH session, or not?
+if [ $SSH_TTY ]; then
+	P_HOST='%F{white}@%F{cyan}%m %F{white}: '
+	P_SYM='%(!,%F{red}#,%F{blue}%%) >'
+else
+	P_HOST=''
+	P_SYM='%(!,%F{red}#,%F{cyan}%%) >'
+fi
 
 # Initialize Prompt
 zle-line-init () {
@@ -30,7 +38,7 @@ zle-keymap-select ()
 		# Set beam cursor
 		echo -ne '\e[5 q'
 	fi
-	export PROMPT="%B$VIMODE $P_PWD $P_BG$P_SYM %f%b"
+	export PROMPT="%B$VIMODE ${P_HOST}$P_PWD $P_BG$P_SYM %f%b"
 	zle reset-prompt
 }
 zle -N zle-keymap-select
