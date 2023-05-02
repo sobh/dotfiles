@@ -1,4 +1,5 @@
 !.stignore
+!.stfolder
 .*
 /LICENSE
 /README.md
@@ -13,6 +14,8 @@
 /screenshots
 /scripts
 /sync
+/Sync
+/service
 /test
 /videos
 desktop.ini
