@@ -1,5 +1,16 @@
 #!/bin/sh
 # Description:	Setup the keyboard maps
+#
+
+#---- Includes -----------------------------------------------------------------
+. $HOME/lib/sh/log.sh
+
+#---- Main ---------------------------------------------------------------------
+# Check if Preprocessor exists.
+if ! command -v setxkbmap >/dev/null 2>&1; then
+	log_error "'setxkbmap' binary not found. Please install 'setxkbmap'."
+	exit 1
+fi
 
 # Set keyboard Layout
 setxkbmap -layout us
