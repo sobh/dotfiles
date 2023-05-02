@@ -3,11 +3,20 @@
 # Description:	loads the xresources from my custom directory
 #
 
+. $HOME/lib/sh/log.sh
+
 # Check if Preprocessor exists.
-if ! command -v cpp 2>&1 >/dev/null; then
-	echo "Error: Unable to find a preprocessor." >&2
+if ! command -v cpp >/dev/null 2>&1; then
+	log_error "Unable to find the C preprocessor. Please install 'gcc'."
 	exit 1
 fi
+# Check for xrdb binary
+if ! command -v xrdb >/dev/null 2>&1; then
+	log_error "Unable to find the 'xrdb' binary. Please install 'xrdb'."
+	exit 1
+fi
+
+# Check if Preprocessor exists.
 
 [ -f $HOME/.Xresources ] && xrdb \
 	-DDPI="$DPI" \
