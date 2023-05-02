@@ -25,6 +25,8 @@ setopt HIST_IGNORE_ALL_DUPS	# Remove old history duplicates.
 setopt HIST_IGNORE_SPACE	# Ignore commands starting with a space.
 
 #---- Completion ---------------------------------------------------------------
+# Autoload the 'compinit' function, and call it.
+autoload -U compinit; compinit
 # Auto-expand aliases
 zstyle ':completion:*' completer _expand_alias _complete _ignored
 
