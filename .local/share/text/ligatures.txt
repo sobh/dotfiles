@@ -1,0 +1,16 @@
+This text contains common programing operators that could represented by
+ligatures if the used font supports it. The first column has the operators'
+characters separted by a space character, thus won't get combined.
+
+Seperated	Combined
+! =		!=
+! = =		!==
+- >		->
+< = >		<=>
+= / =		=/=
+= =		==
+= = =		===
+= >		=>
+< =		<=
+> =		>=
+< = >		<=>
