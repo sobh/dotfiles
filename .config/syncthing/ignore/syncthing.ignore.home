@@ -18,6 +18,7 @@
 /service
 /test
 /videos
+/vm
 desktop.ini
 docker/**/data
 node_modules
