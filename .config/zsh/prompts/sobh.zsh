@@ -6,6 +6,7 @@
 P_BG='%F{yellow}%(1j.↓%j .)'
 P_PWD='%F{magenta}%~'
 P_EXIT='%(?..%B%F{red}:('
+P_NL="%(4~.$prompt_newline.)"
 
 # On an SSH session, or not?
 if [ $SSH_TTY ]; then
@@ -38,7 +39,7 @@ zle-keymap-select ()
 		# Set beam cursor
 		echo -ne '\e[5 q'
 	fi
-	export PROMPT="%B$VIMODE ${P_HOST}$P_PWD $P_BG$P_SYM %f%b"
+	export PROMPT="$prompt_newline%B$VIMODE ${P_HOST}$P_PWD$P_NL $P_BG$VIRTUAL_ENV_PROMPT$P_SYM %f%b"
 	zle reset-prompt
 }
 zle -N zle-keymap-select
