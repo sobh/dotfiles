@@ -4,32 +4,43 @@
 UI_ICON=nerd
 # This function return the emoji clock value closest to the current time.
 get_nerd_icon(){
-	icon=''
-	status=$1
-	capacity=$2
+	status=$1	# Battery Status ( Full | Charging | Discharginng | Not Charging )
+	charge=$2	# Battery Charge Level
 
 	# First Cover corner cases
 	case $status in
 		Full ) icon='' ;;
 		Charging )
-			status_inc=0xC
-			scale=16
-			[ $capacity -ge 96 ] && icon=''
+			if   [ $charge -le 5 ]; then icon='󰢟';	# nf-md-battery_charging_outline	\UF089F
+			elif [ $charge -le 15 ]; then icon='󰢜';	# nf-md-battery_charging_10		\UF089C
+			elif [ $charge -le 25 ]; then icon='󰂆';	# nf-md-battery_charging_20		\UF0086
+			elif [ $charge -le 35 ]; then icon='󰂇';	# nf-md-battery_charging_30		\UF0087
+			elif [ $charge -le 45 ]; then icon='󰂈';	# nf-md-battery_charging_40		\UF0088
+			elif [ $charge -le 55 ]; then icon='󰢝';	# nf-md-battery_charging_50		\UF089D
+			elif [ $charge -le 65 ]; then icon='󰂉';	# nf-md-battery_charging_60		\UF0089
+			elif [ $charge -le 75 ]; then icon='󰢞';	# nf-md-battery_charging_70		\UF089E
+			elif [ $charge -le 85 ]; then icon='󰂊';	# nf-md-battery_charging_80		\UF008A
+			elif [ $charge -le 95 ]; then icon='󰂋';	# nf-md-battery_charging_90		\UF008B
+			else	# [ $charge -ge 96 ]
+				icon='󰂅	'			# nf-md-battery_charging_100		\UF0085
+			fi
 			;;
-		*)
-			status_inc=0
-			scale=12
-			[ $capacity -ge 99 ] && icon=''
+		*)	# 'Discharging' | 'Not charging'
+			if   [ $charge -le 5 ]; then icon='󰂎';	# nf-md-battery_outline	\UF008E
+			elif [ $charge -le 15 ]; then icon='󰁺';	# nf-md-battery_10	\UF007A
+			elif [ $charge -le 25 ]; then icon='󰁻';	# nf-md-battery_20	\UF007B
+			elif [ $charge -le 35 ]; then icon='󰁼';	# nf-md-battery_30	\UF007C
+			elif [ $charge -le 45 ]; then icon='󰁽';	# nf-md-battery_40	\UF007D
+			elif [ $charge -le 55 ]; then icon='󰁾';	# nf-md-battery_50	\UF007E
+			elif [ $charge -le 65 ]; then icon='󰁿';	# nf-md-battery_60	\UF007F
+			elif [ $charge -le 75 ]; then icon='󰂀';	# nf-md-battery_70	\UF0080
+			elif [ $charge -le 85 ]; then icon='󰂁';	# nf-md-battery_80	\UF0081
+			elif [ $charge -le 95 ]; then icon='󰂂';	# nf-md-battery_90	\UF0082
+			else	# [ $charge -ge 96 ]
+				icon='󰁹'			# nf-md-battery		\UF0079
+			fi
 			;;
 	esac
-	# If icon is not set by corner cases, calculate it from capacity, and
-	# status
-	if [ -z "$icon" ] ; then
-		# Icon Capacity Representation
-		icon=0xF579
-		icon=$(( $icon + ( $capacity / $scale ) + $status_inc ))
-		icon=$(printf '\\U%08X' $icon)	# Icon in UTF-8 hexadecimal notation
-	fi
 
 	env printf $icon
 }
@@ -55,8 +66,8 @@ case $UI_ICON in
 		ICON_OFFLINE='🛑'
 		;;
 	nerd | *)
-		ICON_ONLINE='󰚥'
-		ICON_OFFLINE='󰚦'
+		ICON_ONLINE='󰚥'		# nf-md-power_plug	\UF06A5
+		ICON_OFFLINE='󰚦'	# nf-md-power_plug_off	\UF06A6
 		alias get_icon=get_nerd_icon ;;
 esac
 power_status=''
@@ -91,6 +102,5 @@ debug(){
 	printf "$s %2d%% %s   " $c $icon
 }
 
-
-# debug
+#debug
 
