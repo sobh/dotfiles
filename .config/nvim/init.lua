@@ -44,8 +44,12 @@ require('lazy').setup({
 	{ import = 'packages' },
 }, {})
 
+---- Load non-migrated Vim Configuration -------------------------------------------------------------------------------
+local vimrc = vim.fn.stdpath('config')..'/vimrc.vim'
+vim.cmd.source(vimrc)
+
 ---- Options -----------------------------------------------------------------------------------------------------------
-vim.cmd('colorscheme habamax')
+vim.cmd('colorscheme rose-pine')
 -- Tabs
 vim.o.tabstop = 8	-- Number of spaces of the <Tab>
 vim.o.shiftwidth = 8	-- Number of spaces for indents ('cinednt', '<<', '>>')
