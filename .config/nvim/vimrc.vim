@@ -9,42 +9,32 @@
 "  4 -> solid underscore
 "  5 -> blinking vertical bar
 "  6 -> solid vertical bar
-let &t_SI="\e[5 q" "SI = INSERT mode
-let &t_SR="\e[4 q" "SR = REPLACE mode
-let &t_EI="\e[2 q" "EI = NORMAL mode (ELSE)
-" Always start in Normal Mode
-silent !echo -ne "\e[2 q"
+" let &t_SI="\e[5 q" "SI = INSERT mode
+" let &t_SR="\e[4 q" "SR = REPLACE mode
+" let &t_EI="\e[2 q" "EI = NORMAL mode (ELSE)
+" " Always start in Normal Mode
+" silent !echo -ne "\e[2 q"
 
 " set conceallevel=3
 set autoindent		" Autoindent
 set cursorline		" Highlight current line
 set encoding=UTF-8	" Set UTF-8
 set hidden		" Enable hidden buffers
-set hlsearch		" Highlight Searched Words
-set incsearch		" Incremental Search
-set mouse=a		" Enable Mouse for all modes
-set number		" Show line numbers
-set relativenumber	" Show line numbers relative to current line
 set showcmd		" Show Command being typed
 "set spell spelllang=en_us	" English Spell Check
 set fileformat=unix	" Unix File Format
 "---- Format -------------------------------------------------------------------
-set foldcolumn=8	" Set Folding Column width
-set foldmethod=syntax	" Default foldmethod
 set formatoptions+=c	" Format Options
-set textwidth=80	" Set Text width
-set colorcolumn=+1      " Highlight end of text width
 set nowrap		" Disable line wrapping
-set ignorecase		" Ignore case in search patterns
-set smartcase		" Override 'ignorecase' if search pattern has uppercase
 
 "---- UI -----------------------------------------------------------------------
 set listchars=tab:\├─>,space:·	" String to use in 'list' mode
 set fillchars=vert:│		" Use Vertical Box Drawing for vertical seperator
 
+
 "---- Highlight and Remove Trailing Space --------------------------------------
-" highlight ExtraWhitespace ctermbg=red guibg=red
-" match ExtraWhitespace /\s\+$/
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
 function! StripTrailingWhiteSpace()
 	" Don't strip on these filetypes
 	if &filetype =~ 'tsv'
