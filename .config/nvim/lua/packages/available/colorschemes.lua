@@ -6,4 +6,9 @@ return {
 		lazy = true,
 		name = 'rose-pine'
 	},
+	{
+		-- Theme inspired by Atom
+		'navarasu/onedark.nvim',
+		priority = 1000,
+	},
 }

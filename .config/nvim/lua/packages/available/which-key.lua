@@ -13,9 +13,8 @@ return {
 	end,
 	config = function()
 		local wk = require('which-key')
-		wk.register({
-			f = 'Fuzzy Finder',
-		}, { prefix = '<leader>' })
+		local mappings = require('mappings').which_key
+		wk.register(mappings)
 	end,
 }
 
