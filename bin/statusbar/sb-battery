@@ -11,7 +11,7 @@ get_nerd_icon(){
 	case $status in
 		Full ) icon='' ;;
 		Charging )
-			if   [ $charge -le 5 ]; then icon='󰢟';	# nf-md-battery_charging_outline	\UF089F
+			if   [ $charge -le 5 ];  then icon='󰢟';	# nf-md-battery_charging_outline	\UF089F
 			elif [ $charge -le 15 ]; then icon='󰢜';	# nf-md-battery_charging_10		\UF089C
 			elif [ $charge -le 25 ]; then icon='󰂆';	# nf-md-battery_charging_20		\UF0086
 			elif [ $charge -le 35 ]; then icon='󰂇';	# nf-md-battery_charging_30		\UF0087
@@ -26,7 +26,7 @@ get_nerd_icon(){
 			fi
 			;;
 		*)	# 'Discharging' | 'Not charging'
-			if   [ $charge -le 5 ]; then icon='󰂎';	# nf-md-battery_outline	\UF008E
+			if   [ $charge -le 5 ];  then icon='󰂎';	# nf-md-battery_outline	\UF008E
 			elif [ $charge -le 15 ]; then icon='󰁺';	# nf-md-battery_10	\UF007A
 			elif [ $charge -le 25 ]; then icon='󰁻';	# nf-md-battery_20	\UF007B
 			elif [ $charge -le 35 ]; then icon='󰁼';	# nf-md-battery_30	\UF007C
