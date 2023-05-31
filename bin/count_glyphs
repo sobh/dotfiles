@@ -1,0 +1,42 @@
+#!/bin/sh
+#
+# Description:	Count number of glyphs in a font.
+#
+#
+
+#---- Functions ----------------------------------------------------------------
+usage()
+{
+	cat << _EOF
+
+Usage
+	$(basename $0) FONT
+	$(basename $0) FONT_FILE
+
+_EOF
+}
+
+#---- Main ---------------------------------------------------------------------
+font="$*"
+echo "Counting number of glyphs in font $font..." >&2
+
+if [ -f "$font" ]; then
+	charsets=$(fc-query --format '%{charset}\n' "$font")
+	if [ $? -ne 0 ] ; then
+		echo "Error: '$font' is not a font file supported by 'fc-query'." >&2
+		usage
+		exit
+	fi
+else
+	echo "Matched '$font' to '$(fc-match "$font" family)' ..." >&2
+	charsets=$(fc-match --format '%{charset}\n' "$font")
+fi
+
+glyph_count=0
+for charset in $charsets; do
+	start_point="0x${charset%%-*}"
+	end_point="0x${charset##*-}"
+	glyph_count=$(( $glyph_count + $end_point - $start_point + 1 ))
+	# echo "$start_point - $end_point => $glyph_count"
+done
+echo $glyph_count
