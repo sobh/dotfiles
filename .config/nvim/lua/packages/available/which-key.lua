@@ -11,10 +11,5 @@ return {
 		vim.o.timeout = true
 		vim.o.timeoutlen = 300
 	end,
-	config = function()
-		local wk = require('which-key')
-		local mappings = require('mappings').which_key
-		wk.register(mappings)
-	end,
 }
 

@@ -12,23 +12,8 @@ return {
 		'folke/which-key.nvim',
 	},
 	config = function()
-		-- See `:help telescope` and `:help telescope.setup()`
-
-		-- require('telescope').setup {
-		-- 	defaults = {
-		-- 		mappings = {
-		-- 			i = {
-		-- 				['<C-u>'] = false,
-		-- 				['<C-d>'] = false,
-		-- 			},
-		-- 		},
-		-- 	},
-		-- }
-
 		-- Load Key Mappings
-		local wk = require('which-key')
-		local mappings = require('mappings').telescope
-		wk.register(mappings)
+		require('mappings').load('telescope')
 
 		-- Enable telescope fzf native, if installed
 		pcall(require('telescope').load_extension, 'fzf')

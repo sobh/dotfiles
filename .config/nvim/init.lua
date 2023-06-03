@@ -18,6 +18,9 @@
 -- NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
 
+---- Leader ------------------------------------------------------------------------------------------------------------
+
+
 ---- Package Management ------------------------------------------------------------------------------------------------
 -- Instal the *lazy.nvim* package manager
 -- https://github.com/folke/lazy.nvim
@@ -49,9 +52,8 @@ local vimrc = vim.fn.stdpath('config')..'/vimrc.vim'
 vim.cmd.source(vimrc)
 
 ---- Mappings ----------------------------------------------------------------------------------------------------------
-local wk = require('which-key')
 local mappings = require('mappings')
-wk.register({mappings.general, { mode = 'n'}})
+mappings.load(mappings.general)
 
 ---- Options -----------------------------------------------------------------------------------------------------------
 -- See `:help vim.o`
@@ -112,7 +114,7 @@ vim.o.softtabstop = 8		-- Number of space of <Tab> while editing
 
 
 ---- Searching  ----------------------------------------------------------------
-vim.o.hlsearch = false			-- Highlihgt Search
+vim.o.hlsearch = true			-- Highlihgt Search
 vim.o.incsearch	= true			-- Incremental Search
 -- Case insensitive searching UNLESS /C or capital in search
 vim.o.ignorecase = true
