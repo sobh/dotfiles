@@ -35,9 +35,7 @@ return {
 			end
 
 			-- Load Key Mappings
-			local wk = require('which-key')
-			local mappings = require('mappings').lsp
-			wk.register(mappings)
+			require('mappings').load('lsp')
 
 			-- nmap('<leader>lr', vim.lsp.buf.rename, '[R]ename')
 			nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
