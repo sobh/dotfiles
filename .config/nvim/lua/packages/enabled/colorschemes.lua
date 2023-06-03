@@ -1,1 +1,1 @@
-../available/colorschemes.lua
+../available/ui/colorschemes.lua

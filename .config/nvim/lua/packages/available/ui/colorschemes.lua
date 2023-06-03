@@ -1,5 +1,12 @@
 -- Color Schemes Packages
 return {
+	-- Tokyo Night
+	{
+		"folke/tokyonight.nvim",
+		lazy = false,
+		priority = 1000,
+		opts = {},
+	}
 	-- Rose Pine
 	{
 		'rose-pine/neovim',
