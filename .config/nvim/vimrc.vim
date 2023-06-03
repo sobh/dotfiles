@@ -22,7 +22,7 @@ set encoding=UTF-8	" Set UTF-8
 set hidden		" Enable hidden buffers
 set showcmd		" Show Command being typed
 "set spell spelllang=en_us	" English Spell Check
-set fileformat=unix	" Unix File Format
+" set fileformat=unix	" Unix File Format
 "---- Format -------------------------------------------------------------------
 set formatoptions+=c	" Format Options
 set nowrap		" Disable line wrapping
