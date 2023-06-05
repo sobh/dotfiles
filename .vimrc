@@ -19,39 +19,40 @@ call plug#begin('$HOME/.vim/plugged')
 Plug 'junegunn/vim-plug'
 "---- Plugs --------------------------------------------------------------------
 "-------- UI --------------------------
-Plug 'nathanaelkane/vim-indent-guides'	" Indent Guides
-Plug 'majutsushi/tagbar',		{ 'on': 'TagbarToggle' }
-Plug 'scrooloose/nerdtree',		{ 'on': 'NERDTreeToggle' }
-Plug 'itchyny/lightline.vim'		" Status Line
-"-------- Code Completion -------------
-" Plug 'neoclide/coc.nvim',		{'branch': 'release'}
-"-------- Editing ---------------------
-" Plug 'tpope/vim-surround'		" Surrounded text
-Plug 'tpope/vim-commentary'		" Comment code
-Plug 'easymotion/vim-easymotion'	" Easy Motion
+Plug 'nathanaelkane/vim-indent-guides'  " Indent Guides
+Plug 'majutsushi/tagbar',              { 'on': 'TagbarToggle' }
+Plug 'scrooloose/nerdtree',            { 'on': 'NERDTreeToggle' }
+Plug 'itchyny/lightline.vim'            " Status Line
 "-------- Syntax ----------------------
-Plug 'jaxbot/semantic-highlight.vim'	    " Different Color for each word
-Plug 'Valloric/vim-operator-highlight'	    " Highlight Operator Characters
-Plug 'luochen1990/rainbow'		    " Rainbow Parentheses
-Plug 'PotatoesMaster/i3-vim-syntax'	    " i3 wm Configuration
-Plug 'gisphm/vim-gitignore'		    " Git Ignore
-Plug 'mechatroner/rainbow_csv'		    " CSV Rainbow Fields
-" Plug 'vim-python/python-syntax'		    " Python
-" Python Semantic Highlighting
-"Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
-Plug 'Glench/Vim-Jinja2-Syntax'		    " Python Jinja2
-Plug 'Matt-Deacalion/vim-systemd-syntax'    " systemd syntax
-Plug 'cespare/vim-toml'			    " TOML
+Plug 'ap/vim-css-color'                 " Preview colours in source code.
+Plug 'jaxbot/semantic-highlight.vim'    " Different Color for each word
+Plug 'Valloric/vim-operator-highlight'  " Highlight Operator Characters
+Plug 'luochen1990/rainbow'              " Rainbow Parentheses
+Plug 'PotatoesMaster/i3-vim-syntax'     " i3 wm Configuration
+Plug 'gisphm/vim-gitignore'             " Git Ignore
+Plug 'mechatroner/rainbow_csv'          " CSV Rainbow Fields
 "-------- Color Schemes ---------------
-Plug 'ap/vim-css-color'			" Preview colours in source code.
-Plug 'tomasiser/vim-code-dark'		" VS Code
-Plug 'dunstontc/vim-vscode-theme'	" VS Code +
+Plug 'tomasiser/vim-code-dark'         " VS Code
+Plug 'dunstontc/vim-vscode-theme'      " VS Code +
 Plug 'rafi/awesome-vim-colorschemes'
 " Plug 'tomasr/molokai'
 " Plug 'nanotech/jellybeans.vim'
 " Plug 'altercation/vim-colors-solarized'
 " Plug 'chriskempson/base16-vim'
 " Plug 'flazz/vim-colorschemes'
+"-------- LSP -------------------------
+"-------- Editing ---------------------
+Plug 'sobh/vim-stabs'                       " Tabs for indents, Spaces for alignment
+Plug 'tpope/vim-commentary'                 " Comment code
+Plug 'easymotion/vim-easymotion'            " Easy Motion
+Plug 'junegunn/vim-easy-align'              " Text Alignment
+Plug 'Glench/Vim-Jinja2-Syntax'             " Python Jinja2
+Plug 'Matt-Deacalion/vim-systemd-syntax'    " systemd syntax
+Plug 'cespare/vim-toml'                     " TOML
+" Plug 'tpope/vim-surround'            " Surrounded text
+" Plug 'vim-python/python-syntax'                " Python
+" Python Semantic Highlighting
+"Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 "-------- Last ------------------------
 " Adds file type icons to Vim plugins
 Plug 'ryanoasis/vim-devicons'
@@ -66,7 +67,6 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 "Plug 'scrooloose/syntastic'
 "Plug 'tpope/vim-fugitive'
 "Plug 'Shougo/neocomplete.vim'
-"Plug 'Valloric/YouCompleteMe'
 "Plug 'ervandew/supertab'
 " Plug 'Lokaltog/vim-easymotion'
 " Plug 'taglist.vim'
@@ -114,37 +114,37 @@ let &t_EI="\e[2 q" "EI = NORMAL mode (ELSE)
 silent !echo -ne "\e[2 q"
 
 " set conceallevel=3
-set autoindent		" Autoindent
-set cursorline		" Highlight current line
-set encoding=UTF-8	" Set UTF-8
-set hidden		" Enable hidden buffers
-set hlsearch		" Highlight Searched Words
-set incsearch		" Incremental Search
-set mouse=a		" Enable Mouse for all modes
-set number		" Show line numbers
-set relativenumber	" Show line numbers relative to current line
-set showcmd		" Show Command being typed
-"set spell spelllang=en_us	" English Spell Check
-set fileformat=unix	" Unix File Format
+set autoindent                    " Autoindent
+set cursorline                    " Highlight current line
+set encoding=UTF-8                " Set UTF-8
+set hidden                        " Enable hidden buffers
+set hlsearch                      " Highlight Searched Words
+set incsearch                     " Incremental Search
+set mouse=a                       " Enable Mouse for all modes
+set number                        " Show line numbers
+set relativenumber                " Show line numbers relative to current line
+set showcmd                       " Show Command being typed
+"set spell spelllang=en_us        " English Spell Check
+set fileformat=unix               " Unix File Format
 "---- Format -------------------------------------------------------------------
 " Tabs
-set tabstop=8		" Number of spaces of the <Tab>
-set shiftwidth=8	" Number of spaces for indents ('cinednt', '<<', '>>')
-set noexpandtab		" Do not expands <Tab> into spaces
-set softtabstop=8	" Number of space of <Tab> while editing
+set tabstop=8            " Number of spaces of the <Tab>
+set shiftwidth=8         " Number of spaces for indents ('cinednt', '<<', '>>')
+set noexpandtab          " Do not expands <Tab> into spaces
+set softtabstop=8        " Number of space of <Tab> while editing
 
-set foldcolumn=8	" Set Folding Column width
-set foldmethod=syntax	" Default foldmethod
-set formatoptions+=c	" Format Options
-set textwidth=80	" Set Text width
-set colorcolumn=+1      " Highlight end of text width
-set nowrap		" Disable line wrapping
-set ignorecase		" Ignore case in search patterns
-set smartcase		" Override 'ignorecase' if search pattern has uppercase
+set foldcolumn=8         " Set Folding Column width
+set foldmethod=syntax    " Default foldmethod
+set formatoptions+=c     " Format Options
+set textwidth=80         " Set Text width
+set colorcolumn=+1       " Highlight end of text width
+set nowrap               " Disable line wrapping
+set ignorecase           " Ignore case in search patterns
+set smartcase            " Override 'ignorecase' if search pattern has uppercase
 
 "---- UI -----------------------------------------------------------------------
-set listchars=tab:\├─>,space:·	" String to use in 'list' mode
-set fillchars=vert:│		" Use Vertical Box Drawing for vertical seperator
+set listchars=tab:\├─>,space:·      " String to use in 'list' mode
+set fillchars=vert:│            " Use Vertical Box Drawing for vertical seperator
 "---- Colorscheme --------------------------------------------------------------
 set background=dark
 if &term !=? 'linux'
@@ -173,6 +173,14 @@ autocmd BufWritePre * call StripTrailingWhiteSpace()
 " }}}
 
 "---- Plugin Options --------------------------------------------------------{{{
+"-------- Stabs ------------------------
+let g:stabs_align_width=4
+"-------- Easy Align -------------------
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xnoremap ga <Plug>(LiveEasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nnoremap ga <Plug>(LiveEasyAlign)
+
 "-------- Rainbo Parenthesese ----------
 let g:rainbow_active=1
 autocmd VimEnter * RainbowToggleOn
@@ -185,12 +193,12 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in
 " Close vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " Folder Characters
-" let g:NERDTreeDirArrowExpandable = ''		" 📁
-" let g:NERDTreeDirArrowCollapsible = ''		" 📂
+" let g:NERDTreeDirArrowExpandable = ''         " 📁
+" let g:NERDTreeDirArrowCollapsible = ''        " 📂
 "-------- DevIcons ---------------------
 let g:DevIconsEnableFoldersOpenClose = 1
-let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = ''	" 
-let g:DevIconsDefaultFolderOpenSymbol = ''			" 
+let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = '📁' "   
+let g:DevIconsDefaultFolderOpenSymbol = '📂'                    "   
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['html'] = ''
 " Fix brackets around icons
@@ -203,7 +211,7 @@ let g:indent_guides_start_level=2
 let g:indent_guides_enable_on_vim_startup = 1
 "-------- Status Bar - lightline -------
 set laststatus=2
-set noshowmode	    " No need to show mode as lightline shows it on the left
+set noshowmode          " No need to show mode as lightline shows it on the left
 "-------- GNUPG ------------------------
 let g:GPGPreferSymmetric=1
 
@@ -218,10 +226,10 @@ let g:python_highlight_all=1
 " }}}
 
 "---- Mappings --------------------------------------------------------------{{{
-let mapleader=" "	" Set <Leader> to space
+let mapleader=" "      " Set <Leader> to space
 " Save n Run
-noremap  <F2>            :w<CR>:!clear; %:p<CR>
-inoremap <F2>       <Esc>:w<CR>:!clear; %:p<CR>
+noremap  <F2>             :w<CR>:!clear; %:p<CR>
+inoremap <F2>        <Esc>:w<CR>:!clear; %:p<CR>
 " NERDTree
 noremap  <F11>            :NERDTreeToggle<CR>
 inoremap <F11>       <Esc>:NERDTreeToggle<CR>
