@@ -1,4 +1,5 @@
 -- Package: https://github.com/nvim-telescope/telescope.nvimrequ
+
 return {
 	-- Fuzzy Finder (files, lsp, etc)
 	'nvim-telescope/telescope.nvim',
@@ -12,6 +13,21 @@ return {
 		'folke/which-key.nvim',
 	},
 	config = function()
+		-- Requires
+		local telescope = require('telescope')
+		local actions = require('telescope.actions')
+		-- Configuration
+		telescope.setup({
+			defaults = {
+				mappings = {
+					i = {
+						-- Cycle through selections using home row keys
+						['<C-j>'] = actions.move_selection_next,
+						['<C-k>'] = actions.move_selection_previous,
+					},
+				},
+			},
+		})
 		-- Load Key Mappings
 		require('mappings').load('telescope')
 

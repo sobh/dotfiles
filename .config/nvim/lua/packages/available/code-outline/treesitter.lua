@@ -92,10 +92,15 @@ local sobh_config = function()
 end
 
 return {
-	'nvim-treesitter/nvim-treesitter',
-	dependencies = { 'nvim-treesitter/nvim-treesitter-textobjects' },
-	build = function()
-		require('nvim-treesitter.install').update({ with_sync = true })
-	end,
-	config = sobh_config,
+	-- NeoVim TreeSitter
+	{
+		'nvim-treesitter/nvim-treesitter',
+		dependencies = { 'nvim-treesitter/nvim-treesitter-textobjects' },
+		build = function()
+			require('nvim-treesitter.install').update({ with_sync = true })
+		end,
+		config = sobh_config,
+	},
+	-- TreeSitter Playground
+	{ 'nvim-treesitter/playground' }
 }
