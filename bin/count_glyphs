@@ -13,22 +13,38 @@ Usage
 	$(basename $0) FONT
 	$(basename $0) FONT_FILE
 
+Examples:
+	- To count the glyphs in a font file, pass the font file as the only argument:
+	$(basename $0) ~/Cantarell-VF.otf
+
+	- To count the glyphs in a system font, pass the font family name as the only argument:
+	$(basename $0) "Noto Sans"
+
+	- To only get the count without the verbose messages, throw away the 'stderr' output:
+	$(basename $0) "Noto Sans" 2>/dev/null
 _EOF
 }
 
 #---- Main ---------------------------------------------------------------------
-font="$*"
-echo "Counting number of glyphs in font $font..." >&2
+if [ $# -eq 0 ]; then
+	echo "Error: No aruments."
+	usage
+	exit -1
+fi
+
+font=$*
+echo "Counting number of glyphs in font $font ..." >&2
+
 
 if [ -f "$font" ]; then
 	charsets=$(fc-query --format '%{charset}\n' "$font")
 	if [ $? -ne 0 ] ; then
 		echo "Error: '$font' is not a font file supported by 'fc-query'." >&2
 		usage
-		exit
+		exit -1
 	fi
 else
-	echo "Matched '$font' to '$(fc-match "$font" family)' ..." >&2
+	echo "Matched family name: '$font' to system font: '$(fc-match "$font" family)' ..." >&2
 	charsets=$(fc-match --format '%{charset}\n' "$font")
 fi
 
