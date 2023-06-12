@@ -82,8 +82,9 @@ for file in $WORDS_LIST_FILES ; do
 	fi
 done
 if [ -z $WORDS_LIST ]; then
-	echo "Error: Unable to find a word file out of the following list:"
-	for file in $WORDS_LIST_FILES ; do printf "\t- $file\n"; done
+	echo "Error: Unable to find a word file out of the following list:" >&2
+	for file in $WORDS_LIST_FILES ; do printf "\t- $file\n" >&2 ; done
+	[ "$OS" = "Linux" ] && echo "On Linux you might want to install the 'words' package." >&2
 	exit -1
 fi
 
