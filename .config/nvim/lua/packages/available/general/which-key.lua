@@ -1,5 +1,5 @@
 -- Package:	Which-Key
--- Description:	Display oa popup with possible key bindings of the typed
+-- Description:	Display a popup with possible key bindings of the typed
 --		command.
 -- URL:		https://github.com/folke/which-key.nvim
 --

@@ -1,3 +1,4 @@
+-- vim: colorcolumn=121
 --
 -- Description:	NeoVim Lua Configruation.
 -- Derived From:
@@ -17,8 +18,6 @@
 -- See `:help mapleader`
 -- NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
-
----- Leader ------------------------------------------------------------------------------------------------------------
 
 
 ---- Package Management ------------------------------------------------------------------------------------------------
@@ -40,6 +39,28 @@ vim.opt.rtp:prepend(lazypath)
 --	Packages could be also configured after the setup call, as they
 --	will be available in your neovim runtime.
 require('lazy').setup({
+	-- General
+	require 'packages.available.general.which-key',            -- Keymaps Popup
+	-- UI
+	require 'packages.available.ui.dressing',                  -- dressing.nvim
+	require 'packages.available.ui.indent-blankline',          -- Indent Guides
+	-- Colors
+	require 'packages.available.ui.colorschemes',              -- Colorschemes
+	-- Editor
+	require 'packages.available.editor.vim-stabs',             -- Tabs for Indentations, Spaces for Alignment!
+	require 'packages.available.editor.vim-easy-align',        -- Text Alignment for those of us with OCD
+	{ 'numToStr/Comment.nvim', opts = {} },                    -- Comments (overides 'gc', and 'gb')
+	-- Code Outline
+	require 'packages.available.code-outline.treesitter',      -- Treesitter
+	require 'packages.available.code-outline.symbols-outline', -- Tag Bar/ Code Outline Pane
+
+	-- -- Git related plugins
+	-- 'tpope/vim-fugitive',
+	-- 'tpope/vim-rhubarb',
+	--
+	-- -- Detect tabstop and shiftwidth automatically
+	-- 'tpope/vim-sleuth',
+
 	-- Package Import Directory
 	--    For additional information See:
 	--     -> `help lazy.nvim-strcuturing-your-plugins`
@@ -59,8 +80,10 @@ mappings.load(mappings.general)
 -- See `:help vim.o`
 
 ---- UI ------------------------------------------------------------------------
-local colorscheme = 'rose-pine'
-if not pcall(vim.cmd,'colorscheme '..colorscheme) then
+-- local theme = 'rose-pine'
+vim.o.background='dark'
+local theme = 'rose-pine'
+if not pcall(vim.cmd.colorscheme, theme) then
 	vim.cmd('colorscheme slate')	-- Fallback to a NeoVim bundled coloscheme
 end
 
