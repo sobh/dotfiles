@@ -31,7 +31,8 @@ M.general = {
 		['<leader>'] = {
 			c = {
 				name='Configuration',
-				e = { '<cmd> vsplit $MYVIMRC <cr>', desc = '[C]onfiguration [E]dit' }
+				d = { function() vim.cmd.cd(vim.fn.stdpath('config')) end, '[C]onfiguration [D]irectory' },
+				e = { '<cmd> vsplit $MYVIMRC <cr>', '[C]onfiguration [E]dit' },
 			},
 			p = { name='Project' },
 		},
