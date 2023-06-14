@@ -1,0 +1,14 @@
+#!/bin/sh
+#
+# Description:  Start NeoVim with the different configuration, using the
+#               $NVIM_APPNAME environment variable.
+# Usage:        Create a 'symlink' to this script named by the configuration
+#               directory you'd like to use. Then, just start nvim using that
+#               symlink.
+#
+
+# The distro name is the basename of the script. If symlinked, then it would be
+# the name of the symlink.
+export NVIM_APPNAME=$(basename $0)
+# Start nvim: Tada
+nvim $*
