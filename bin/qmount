@@ -1,0 +1,60 @@
+#!/bin/sh
+#
+# Author:	Mohamed Sobh
+# Email:	mohamed.alhusieny@gmail.com
+#
+# Description:	Quick mount of block devices.
+#
+
+#---- Includes -----------------------------------------------------------------
+. $HOME/lib/sh/log.sh
+
+#---- Constatns ----------------------------------------------------------------
+BINNAME=$(basename $0)
+
+#---- Parameters ---------------------------------------------------------------
+ARG_DEVICE="$1"
+#---- Functions ----------------------------------------------------------------
+usage()
+{
+	cat << _EOF
+$BINNAME device
+_EOF
+}
+
+getdoas()
+{
+	command -v doas >/dev/null 2>&1 && { echo doas; return 0;}
+	command -v sudo >/dev/null 2>&1 && { echo sudo; return 0;}
+	return 1
+}
+#---- Main ---------------------------------------------------------------------
+DOAS=$(getdoas)
+if [ -z $DOAS ] ; then
+	error "Unable to find a supported privilege escalation command, (i.e. doas, sudo)."
+	exit 1
+fi
+
+# Usage error checks
+if [ $# -ne 1 ]; then
+	error "$BINNAME takes exactly 1 argument."
+	usage
+	exit 1
+fi
+
+if [ ! -b "$ARG_DEVICE" ]; then
+	error "$ARG_DEVICE is not a block device."
+	usage
+	exit 1
+fi
+
+# Create directory, and mount the device
+mnt_dir="/media/$(basename $ARG_DEVICE)"
+$DOAS mkdir $mnt_dir >/dev/null 2>&1
+if [ "$(ls -A $mnt_dir)" ]; then
+	error "The '$mn_dir' already exists, and is not empty. Is the device alreay mounted?"
+	exit 1
+fi
+
+group=$(id -gn)
+$DOAS mount -v "$ARG_DEVICE" "$mnt_dir" -o uid=$USER,gid=$group

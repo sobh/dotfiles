@@ -1,0 +1,24 @@
+#!/bin/sh
+#
+# Description:  Emulate typing the content of the CLIPBOARD selection.
+#
+
+error()
+{
+	if command -v notify-send >/dev/null ; then
+		notify-send --urgency critical "$*"
+	else
+		echo "$*" >&2
+	fi
+
+}
+#---- Constants ----------------------------------------------------------------
+
+if [ "$XDG_SESSION_TYPE" = "x11" ]; then
+	command -v xdotool > /dev/null || { error "'xdotool' is not available." ; exit -1; }
+	command -v xsel    > /dev/null || { error "'xsel' is not available."    ; exit -1; }
+	sleep 2
+	xdotool type "$(xsel -b)"
+else
+	error "Only X11 is supported."
+fi
