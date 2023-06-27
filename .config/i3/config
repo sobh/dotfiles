@@ -14,7 +14,7 @@ set_from_resource $font i3.font
 set_from_resource $status_cmd i3.status.cmd
 
 # Set prefered terminal emulator
-set $term lxterminal
+set $term i3-sensible-terminal
 
 # Home row direction keys, like vim
 set $left	h
