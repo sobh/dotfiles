@@ -1,0 +1,40 @@
+#!/bin/sh
+#
+# Description:  An `rsync` wrapper with synchronization options.
+# Usage:
+#   Pull:       ssync [OPTION...] [USER@]HOST:SRC... [DEST]
+#   Push:       ssync [OPTION...] SRC... [USER@]HOST:DEST
+#
+
+# Options:
+#   --verbose, -v           increase verbosity.
+#   --archive, -a           archive -rlptgoD
+#     --recursive, -r       recurse directories
+#     --links, -l	          copy symlinks as symlinks
+#     --perms, -p           preserve permissions
+#     --times, -t           preserve modifications times
+#     --group, -g           preserve group
+#     --owner, -o           preserve owner (super-user only)
+#     -D                    same as '--devices --specials'
+#   --hard-links, -H        preserve hard links
+#   --delete                delete extraneous files from the destination directories
+#   --progress              show progress during transfer
+#   --exclude-from=FILE     read exclude patterns from FILE
+#   --include-from=FILE     read include patterns from FILE
+#
+
+# Useful Additional invocation options:
+#   --relative, -R	use relative path
+#   --xattrs, -X        preserve extended attributes (For Linux Only)
+#   --dry-run, -n       perform a trial run with no changes made
+#
+
+rsync \
+	--verbose --verbose \
+	--archive           \
+	--hard-links        \
+	--delete            \
+	--progress          \
+	--exclude-from=$XDG_CONFIG_HOME/rsync/rsync.exclude.home    \
+	--include-from=$XDG_CONFIG_HOME/rsync/rsync.include.home    \
+	"$@"
