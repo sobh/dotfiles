@@ -72,31 +72,32 @@ st*color15:	term_color15
 !--- st }}}
 
 !-------- XTerm ---------------------{{{
-UXTerm*TermName:	xterm-256color
-UXTerm*FaceName:	font_name
-UXTerm*FaceSize:	font_size
+XTerm*TermName:	xterm-256color
+XTerm*FaceName:	font_name
+XTerm*FaceSize:	8
 
-UXTerm*CursorColor:	term_cursorcolor
-UXTerm*Background:	term_background
-UXTerm*Foreground:	term_foreground
+XTerm*scrollBar:	false
+XTerm*CursorColor:	term_cursorcolor
+XTerm*Background:	term_background
+XTerm*Foreground:	term_foreground
 
-UXTerm*color0:	term_color00
-UXTerm*color1:	term_color01
-UXTerm*color2:	term_color02
-UXTerm*color3:	term_color03
-UXTerm*color4:	term_color04
-UXTerm*color5:	term_color05
-UXTerm*color6:	term_color06
-UXTerm*color7:	term_color07
+XTerm*color0:	term_color00
+XTerm*color1:	term_color01
+XTerm*color2:	term_color02
+XTerm*color3:	term_color03
+XTerm*color4:	term_color04
+XTerm*color5:	term_color05
+XTerm*color6:	term_color06
+XTerm*color7:	term_color07
 
-UXTerm*color8:	term_color08
-UXTerm*color9:	term_color09
-UXTerm*color10:	term_color10
-UXTerm*color11:	term_color11
-UXTerm*color12:	term_color12
-UXTerm*color13:	term_color13
-UXTerm*color14:	term_color14
-UXTerm*color15:	term_color15
+XTerm*color8:	term_color08
+XTerm*color9:	term_color09
+XTerm*color10:	term_color10
+XTerm*color11:	term_color11
+XTerm*color12:	term_color12
+XTerm*color13:	term_color13
+XTerm*color14:	term_color14
+XTerm*color15:	term_color15
 
 !---- XTerm }}}
 
