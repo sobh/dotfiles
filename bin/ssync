@@ -30,11 +30,11 @@
 #
 
 rsync \
-	--verbose --verbose \
-	--archive           \
-	--hard-links        \
-	--delete            \
-	--progress          \
+	--verbose    \
+	--archive    \
+	--hard-links \
+	--delete     \
+	--progress   \
 	--exclude-from=$XDG_CONFIG_HOME/rsync/rsync.exclude.home    \
 	--include-from=$XDG_CONFIG_HOME/rsync/rsync.include.home    \
 	"$@"
