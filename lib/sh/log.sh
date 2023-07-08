@@ -31,11 +31,11 @@ log(){
 	# Colorize Output
 	if [ -t 2 ]; then
 		case $msg_type in
-			INFO) log_fmt="%s | $FG_BLUE%-8s$RESET | %s:%d | %s\n" ;;
-			WARNING) log_fmt="%s | $FG_YELLOW%-8s$RESET | %s:%d | %s\n" ;;
-			ERROR|FAILURE) log_fmt="%s | $FG_RED%-8s$RESET | %s:%d | %s\n" ;;
-			SUCCESS) log_fmt="%s | $FG_GREEN%-8s$RESET | %s:%d | %s\n" ;;
-			*) log_fmt="%s | $FG_MAGENTA%-8s$RESET | %s:%d | %s\n" ;;
+			INFO          ) log_fmt="%s | $FG_BLUE%-8s$RESET | %s:%d | %s\n" ;;
+			WARNING       ) log_fmt="%s | $FG_YELLOW%-8s$RESET | %s:%d | %s\n" ;;
+			ERROR|FAILURE ) log_fmt="%s | $FG_RED%-8s$RESET | %s:%d | %s\n" ;;
+			SUCCESS       ) log_fmt="%s | $FG_GREEN%-8s$RESET | %s:%d | %s\n" ;;
+			*             ) log_fmt="%s | $FG_MAGENTA%-8s$RESET | %s:%d | %s\n" ;;
 		esac
 	else
 		log_fmt='%s | %-8s | %s:%d | %s\n'
@@ -53,11 +53,11 @@ status()
 	# Colorize Output
 	if [ -t 1 ]; then
 		case $msg_type in
-			info|INFO) log_fmt="$FG_BLUE%-8s$RESET | %s\n" ;;
-			warning|WARNING) log_fmt="$FG_YELLOW%-8s$RESET | %s\n" ;;
-			error|ERROR|failure|FAILURE) log_fmt="$FG_RED%-8s$RESET | %s\n" ;;
-			success|SUCCESS) log_fmt="$FG_GREEN%-8s$RESET | %s\n" ;;
-			*) log_fmt="$FG_MAGENTA%-8s$RESET | %s\n" ;;
+			info|INFO                   ) log_fmt="$FG_BLUE%-8s$RESET | %s\n" ;;
+			warning|WARNING             ) log_fmt="$FG_YELLOW%-8s$RESET | %s\n" ;;
+			error|ERROR|failure|FAILURE ) log_fmt="$FG_RED%-8s$RESET | %s\n" ;;
+			success|SUCCESS             ) log_fmt="$FG_GREEN%-8s$RESET | %s\n" ;;
+			*                           ) log_fmt="$FG_MAGENTA%-8s$RESET | %s\n" ;;
 		esac
 	else
 		log_fmt='%-8s | %s\n'
