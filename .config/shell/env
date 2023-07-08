@@ -7,11 +7,15 @@
 #---- HOST ---------------------------------------------------------------------
 : ${HOST:=$(hostname)}; export HOST
 : ${HOSTNAME:=$HOST}; export HOSTNAME
+#---- Framework ----------------------------------------------------------------
+# This is the name used by scripts, and other utilities, to identify itself.
+export FRAMEWORK=sars
 #---- Set XDG Directories ------------------------------------------------------
 export XDG_CONFIG_HOME=$HOME/.config	# Configurations Directory (analogous to /etc).
 export XDG_CACHE_HOME=$HOME/.cache	# Non-essential (cached) data should be written (analogous to /var/cache).
 export XDG_LOCAL_HOME=$HOME/.local	# Local data (Not in the standarad)
 export XDG_DATA_HOME=$XDG_LOCAL_HOME/share	# User-specific Data Dreictory (analogous to /usr/share).
+export XDG_STATE_HOME=$XDG_LOCAL_HOME/state	# User-specific State Data (analogous to /var/lib).
 
 #---- Bash ---------------------------------------------------------------------
 #echo "Executing: shell env startup."
@@ -39,7 +43,6 @@ export EMAIL='mohamed.alhusieny@gmail.com'
 export EDITOR=nvim
 export VISUAL=$EDITOR
 export BROWSER=chromium
-export TERMINAL=uxterm
 export PAGER='less -r'
 
 #---- Configurations -----------------------------------------------------------
