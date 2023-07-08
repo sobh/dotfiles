@@ -1,5 +1,5 @@
 [Default Applications]
-application/pdf=org.pwmt.zathura.desktop
+application/pdf=org.gnome.Evince.desktop
 application/postscript=org.pwmt.zathura.desktop
 application/rss+xml=rss.desktop
 application/vnd.adobe.flash.movie=chromium.desktop
@@ -31,6 +31,6 @@ x-scheme-handler/webcal=chromium.desktop
 x-scheme-handler/mailto=chromium.desktop
 x-scheme-handler/http=chromium.desktop;firefox.desktop
 x-scheme-handler/https=chromium.desktop;firefox.desktop
-application/pdf=org.pwmt.zathura.desktop;evince.desktop
+application/pdf=org.gnome.Evince.desktop;org.pwmt.zathura.desktop
 application/vnd.adobe.flash.movie=chromium.desktop;
 application/xhtml+xml=chromium.desktop;
