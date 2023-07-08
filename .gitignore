@@ -1,20 +1,14 @@
-*
 **.cache
 .config/Insomnia
 .config/autostart
 .config/chromium
 .config/Code - OSS/*
-.config/Code - OSS/User/globalStorage
-.config/Code - OSS/User/snippets
-.config/Code - OSS/User/workspaceStorage
 !.config/Code - OSS/User
 .config/dconf
 .config/galculator
 .config/htop
 .config/l3afpad
 .config/menus
-.config/nvim/plugged
-.config/nvim/swap
 .local/lib/python*
 .local/bin/uimp
 .local/bin/w3imp
@@ -23,8 +17,8 @@
 .local/share/fonts
 .local/share/icons
 .local/share/meld
-.local/share/nvim/shada
-.local/share/nvim/swap
+.local/share/nvim
 .local/share/recently-used.xbel
 .local/share/xorg
 .local/share/zathura
+.vim/plugged
