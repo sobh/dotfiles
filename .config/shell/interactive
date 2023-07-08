@@ -34,8 +34,9 @@ fi
 unset _uname
 
 alias	\
-	cp='cp -v'		    \
-	diff='diff --color=auto'    \
+	cp='cp -v'                      \
+	cd..='cd ..'                    \
+	diff='diff --color=auto'        \
 	idate='date --iso'		\
 	idt='idate'			\
 	info='info --vi-keys'	    \
@@ -58,6 +59,7 @@ alias \
 	gc='git commit'	\
 	gd='git diff'	\
 	gs='git status'	\
+	gss='git status --untracked-files=all'	\
 
 #-------- pacman -----------------------
 alias	\
