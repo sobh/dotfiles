@@ -1,6 +1,6 @@
+.*
 !.stignore
 !.stfolder
-.*
 
 /LICENSE
 /README.md
@@ -29,6 +29,7 @@
 /service
 /sync
 /Sync
+/go
 
 desktop.ini
 docker/**/data

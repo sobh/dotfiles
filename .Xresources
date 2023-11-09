@@ -74,9 +74,9 @@ st*color15:	term_color15
 !-------- XTerm ---------------------{{{
 XTerm*TermName:	xterm-256color
 XTerm*FaceName:	font_name
-XTerm*FaceSize:	8
+XTerm*FaceSize: font_size
+XTerm*scrollBar:    false
 
-XTerm*scrollBar:	false
 XTerm*CursorColor:	term_cursorcolor
 XTerm*Background:	term_background
 XTerm*Foreground:	term_foreground
