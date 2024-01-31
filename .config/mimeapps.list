@@ -1,6 +1,10 @@
 [Default Applications]
 application/pdf=org.gnome.Evince.desktop
+<<<<<<< HEAD
+application/postscript=org.gnome.Evince.desktop
+=======
 application/postscript=org.pwmt.zathura.desktop
+>>>>>>> c5fa09797aa9dc9c9aebf585f74dade154d0a2c3
 application/rss+xml=rss.desktop
 application/vnd.adobe.flash.movie=chromium.desktop
 application/vnd.comicbook-rar=mcomix.desktop
@@ -26,6 +30,7 @@ x-scheme-handler/https=chromium.desktop
 x-scheme-handler/mailto=chromium.desktop
 x-scheme-handler/unknown=chromium.desktop
 x-scheme-handler/webcal=chromium.desktop
+x-scheme-handler/tel=chromium.desktop
 
 [Added Associations]
 x-scheme-handler/mailto=chromium.desktop

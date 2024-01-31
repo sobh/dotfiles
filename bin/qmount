@@ -51,7 +51,7 @@ fi
 # Create directory, and mount the device
 mnt_dir="/media/$(basename $ARG_DEVICE)"
 $DOAS mkdir $mnt_dir >/dev/null 2>&1
-if [ "$(ls -A $mnt_dir)" ]; then
+if [ "$($DOAS ls -A $mnt_dir)" ]; then
 	error "The '$mn_dir' already exists, and is not empty. Is the device alreay mounted?"
 	exit 1
 fi
