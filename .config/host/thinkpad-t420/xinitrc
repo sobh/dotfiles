@@ -4,6 +4,11 @@
 export DPI=96
 export UI_FONT_SIZE=14
 
+# ---- Scale Factors -----------------------------------------------------------
+# QT
+export QT_SCALE_FACTOR=1.2		# Scales fonts.
+#export QT_SCREEN_SCALE_FACTORS=2	# Does not scale fonts.
+
 #---- Input --------------------------------------------------------------------
 # Set Middle button Emulation for OpenBSD
 if [ $(uname -s) = OpenBSD ]; then
