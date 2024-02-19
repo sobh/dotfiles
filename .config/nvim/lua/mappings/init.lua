@@ -7,14 +7,19 @@ local wk = require('which-key')
 
 ---- Functions ---------------------------------------------------------------------------------------------------------
 
-M.set = function(mkeymap)
+M.set = function(mkeymap, opts)
 	for mode, keymap in pairs(mkeymap) do
-		wk.register(keymap, { mode = mode })
+		if type(opts) == 'table'  then
+			opts['mode'] = mode
+		else
+			opts = { mode=mode }
+		end
+		wk.register(keymap, opts)
 	end
 end
 
 -- Loads Package Mappings
-M.load = function(name)
+M.load = function(name, opts)
 	local keys
 	if type(name) == 'string' then
 		keys = require('mappings.'..name)
@@ -22,7 +27,7 @@ M.load = function(name)
 		keys = name
 	end
 
-	M.set(keys)
+	M.set(keys, opts)
 end
 
 ---- Keymaps -------------------------------------------------------------------
@@ -34,15 +39,16 @@ M.general = {
 				d = { function() vim.cmd.cd(vim.fn.stdpath('config')) end, '[C]onfiguration [D]irectory' },
 				e = { '<cmd> vsplit $MYVIMRC <cr>', '[C]onfiguration [E]dit' },
 			},
-			p = { name='Project' },
+			p = {
+				name='Project Navigation  ',
+				v = { vim.cmd.Ex, '[P]roject [V]iew' },
+			},
 		},
+		[']'] = { name='Various Motions' }
 	}
 }
 
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
-
----- Project Navigation
-vim.keymap.set('n', '<leader>pv', vim.cmd.Ex, { desc = '[P]roject [V]iew' })
 
 -- Save, and Run Script
 vim.keymap.set({'i', 'n'}, '<F2>', '<esc><cmd>w<CR> <cmd>!%:p<CR>', { desc = 'Execute Current File' })
