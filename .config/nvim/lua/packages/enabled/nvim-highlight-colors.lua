@@ -1,1 +1,0 @@
-../available/ui/nvim-highlight-colors.lua
