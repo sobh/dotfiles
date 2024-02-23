@@ -6,17 +6,27 @@
 #
 
 # Get user selection via dmenu from emoji file.
-chosen=$(cut -d ';' -f1 ~/.local/share/glyphs/* | dmenu -i -l 30 | sed "s/\s.*//")
+get_icon ()
+{
+	# Go through each file, and append the file name after the glyph, then
+	# pass it to dmenu
+	for fname in $(ls ~/.local/share/glyphs/*); do
+		base=$(basename $fname)
+		sed -e "s/\s/\t:$base:\t/" $fname
+	done | dmenu -i -l 30 | sed -e "s/\s.*//"
+}
+
+choice=$(get_icon)
 
 
-# Exit if none chosen.
-[ -z "$chosen" ] && exit
+# Exit if none choice.
+[ -z "$choice" ] && exit
 
 # If you run this command with an argument, it will automatically insert the
 # character. Otherwise, show a message that the emoji has been copied.
 if [ -n "$1" ]; then
-	xdotool type "$chosen"
+	xdotool type "$choice"
 else
-	printf "%s" "$chosen" | xclip -selection clipboard
-	notify-send "'$chosen' copied to clipboard." &
+	printf "%s" "$choice" | xclip -selection clipboard
+	notify-send "'$choice' copied to clipboard." &
 fi
