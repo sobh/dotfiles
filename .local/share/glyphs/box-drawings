@@ -1,0 +1,29 @@
+─   line single horizontal
+│   line single vertical
+┌   line single upper left corner
+┐   line single upper right corner
+└   line single lower left corner
+┘   line single lower right corner
+├   line single vertical right
+┤   line single vertical left
+┬   line single horizontal down
+┴   line single horizontal up
+┼   line single horizontal vertical
+═   line double horizontal
+║   line double vertical
+╔   line double upper left corner
+╗   line double upper right corner
+╚   line double lower left corner
+╝   line double lower right corner
+╠   line double vertical right
+╣   line double vertical left
+╦   line double horizontal down
+╩   line double horizontal up
+╬   line double horizontal vertical
+▀   block half top
+▄   block half bottom
+█   block ultra max
+░   block low
+▒   block medium
+▓   block high
+■   block half center square
