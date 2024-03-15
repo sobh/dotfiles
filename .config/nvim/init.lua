@@ -1,4 +1,3 @@
--- vim: colorcolumn=121
 --
 -- Description:	NeoVim Lua Configruation.
 -- Derived From:
@@ -39,20 +38,29 @@ vim.opt.rtp:prepend(lazypath)
 --	Packages could be also configured after the setup call, as they
 --	will be available in your neovim runtime.
 require('lazy').setup({
+
 	-- General
-	require 'packages.available.general.which-key',            -- Keymaps Popup
+	require 'packages.general.telescope',             -- Fuzzy Finder
+	require 'packages.general.telescope-fzf-native',  -- Fuzzy Finder
+	require 'packages.general.which-key',             -- Keymaps Popup
 	-- UI
-	require 'packages.available.ui.dressing',                  -- dressing.nvim
-	require 'packages.available.ui.indent-blankline',          -- Indent Guides
+	require 'packages.ui.dressing',                   -- dressing.nvim
+	require 'packages.ui.indent-blankline',           -- Indent Guides
 	-- Colors
-	require 'packages.available.ui.colorschemes',              -- Colorschemes
+	require 'packages.ui.colorschemes',               -- Colorschemes
 	-- Editor
-	require 'packages.available.editor.vim-stabs',             -- Tabs for Indentations, Spaces for Alignment!
-	require 'packages.available.editor.vim-easy-align',        -- Text Alignment for those of us with OCD
-	{ 'numToStr/Comment.nvim', opts = {} },                    -- Comments (overides 'gc', and 'gb')
+	require 'packages.editor.vim-stabs',              -- Tabs for Indentations, Spaces for Alignment!
+	require 'packages.editor.vim-easy-align',         -- Text Alignment for those of us with OCD
+	{ 'numToStr/Comment.nvim', opts = {} },           -- Comments (overides 'gc', and 'gb')
+	require 'packages.nvim-cmp',                      -- NeoVim Complete
+
 	-- Code Outline
-	require 'packages.available.code-outline.treesitter',      -- Treesitter
-	require 'packages.available.code-outline.symbols-outline', -- Tag Bar/ Code Outline Pane
+	require 'packages.code_outline.treesitter',       -- Treesitter
+	-- require 'packages.code_outline.symbols-outline',  -- Tag Bar/ Code Outline Pane
+	require 'packages.lsp.lspconfig',                   -- LSP Config
+	-- -- Manage installation of LSP servers, DAP servers, Linters, and formatters.
+	-- require 'packages.lsp.mason',
+	-- require 'packages.lsp.mason-lspconfig',
 
 	-- -- Git related plugins
 	-- 'tpope/vim-fugitive',
@@ -65,7 +73,6 @@ require('lazy').setup({
 	--    For additional information See:
 	--     -> `help lazy.nvim-strcuturing-your-plugins`
 	--     -> https://github.com/folke/lazy.nvim#-structuring-your-plugins
-	{ import = 'packages.enabled' },
 }, {})
 
 ---- Load non-migrated Vim Configuration -------------------------------------------------------------------------------
@@ -90,6 +97,7 @@ end
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
 
+vim.opt.laststatus = 3                  -- Global Status Line for all windows
 vim.o.wrap = false			-- Disable wrapping long lines
 -- Enable break indent for wrapped lines (Just in case)
 vim.o.breakindent = true
@@ -130,28 +138,28 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 -- Tabs and Indentations -------------------------------------------------------
-vim.o.tabstop = 8		-- Number of spaces of the <Tab>
-vim.o.shiftwidth = 8		-- Number of spaces for indents ('cinednt', '<<', '>>')
-vim.o.expandtab	= false		-- Do not expands <Tab> into spaces
-vim.o.softtabstop = 8		-- Number of space of <Tab> while editing
+vim.o.tabstop     = 8      -- Number of spaces of the <Tab>
+vim.o.shiftwidth  = 8      -- Number of spaces for indents ('cinednt', '<<', '>>')
+vim.o.expandtab   = false  -- Do not expands <Tab> into spaces
+vim.o.softtabstop = 8      -- Number of space of <Tab> while editing
 
 
 ---- Searching  ----------------------------------------------------------------
-vim.o.hlsearch = true			-- Highlihgt Search
-vim.o.incsearch	= true			-- Incremental Search
+vim.o.hlsearch   = true   -- Highlihgt Search
+vim.o.incsearch  = true   -- Incremental Search
 -- Case insensitive searching UNLESS /C or capital in search
 vim.o.ignorecase = true
-vim.o.smartcase = true
+vim.o.smartcase  = true
 
 ---- Other ---------------------------------------------------------------------
 -- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,noselect'
+vim.opt.completeopt = { 'menu', 'menuone', 'preview', 'noselect' }
 
-vim.o.undofile = true			-- Save undo history
+vim.o.undofile = true   -- Save undo history
 
 -- Timeout options are set by which-key
-vim.o.timeout = true			-- Enable timeout
-vim.o.timeoutlen = 300			-- Key Sequence timeout in mSec
+vim.o.timeout = true   -- Enable timeout
+vim.o.timeoutlen = 300   -- Key Sequence timeout in mSec
 
 -- Sync clipboard between OS and Neovim.
 -- vim.o.clipboard = 'unnamedplus'
