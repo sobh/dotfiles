@@ -43,6 +43,7 @@ M.general = {
 				name='Project Navigation  ',
 				v = { vim.cmd.Ex, '[P]roject [V]iew' },
 			},
+			s = {  [[:%s/\<<C-r><C-w>\>/]] , 'Substitute Word Under Cursor' },
 		},
 		[']'] = { name='Various Motions' }
 	}
@@ -54,17 +55,21 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set({'i', 'n'}, '<F2>', '<esc><cmd>w<CR> <cmd>!%:p<CR>', { desc = 'Execute Current File' })
 
 
--- Substitute word under cursor
--- vim.keymap.set('n', '<leader>s', ':%s/\<<C-r><C-w>\>/')
 
+---- Trick Maps ----------------------------------------------------------------
 -- Faster Insert -> Normal Transitions
 vim.keymap.set('i', 'jk', '<esc>')
 vim.keymap.set('i', 'jj', '<esc>')
+-- Faster Command Mode
+vim.keymap.set({'n','v'}, ';', ':')
+vim.keymap.set({'n','v'}, ':', ';')
+
 ---- Movement and Navigation ---------------------------------------------------
 vim.keymap.set('n', '<S-Tab>', '<cmd> b#<CR>', { desc = 'Switch to recent buffers'})
 -- Scrolling using CTRL-{jk}
 vim.keymap.set('n', '<C-j>', '<C-e>', { desc = 'Scroll Downward' })
 vim.keymap.set('n', '<C-k>', '<C-y>', { desc = 'Scroll Upwards' })
+--
 
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
