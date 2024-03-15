@@ -25,7 +25,6 @@ set showcmd		" Show Command being typed
 " set fileformat=unix	" Unix File Format
 "---- Format -------------------------------------------------------------------
 set formatoptions+=c	" Format Options
-set nowrap		" Disable line wrapping
 
 "---- UI -----------------------------------------------------------------------
 set listchars=tab:\├─>,space:·	" String to use in 'list' mode
@@ -78,9 +77,4 @@ let g:GPGPreferSymmetric=1
 
 
 
-" }}}
-
-"---- Mappings --------------------------------------------------------------{{{
-" Substitute word under cursor
-nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
 " }}}
