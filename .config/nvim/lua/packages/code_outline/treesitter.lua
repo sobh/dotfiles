@@ -101,6 +101,4 @@ return {
 		end,
 		config = sobh_config,
 	},
-	-- TreeSitter Playground
-	{ 'nvim-treesitter/playground' }
 }
