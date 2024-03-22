@@ -4,6 +4,7 @@
 local M = {}
 ---- Requires ----------------------------------------------------------------------------------------------------------
 local wk = require('which-key')
+local map = vim.keymap.set
 
 ---- Functions ---------------------------------------------------------------------------------------------------------
 
@@ -63,6 +64,9 @@ vim.keymap.set('i', 'jj', '<esc>')
 -- Faster Command Mode
 vim.keymap.set({'n','v'}, ';', ':')
 vim.keymap.set({'n','v'}, ':', ';')
+vim.keymap.set('n', 'q;', 'q:')
+-- Clear search with <esc>
+map({'i', 'n'}, '<esc>', '<cmd>nohlsearch<cr><esc>', { desc= 'Escape, and clear hlsearch' })
 
 ---- Movement and Navigation ---------------------------------------------------
 vim.keymap.set('n', '<S-Tab>', '<cmd> b#<CR>', { desc = 'Switch to recent buffers'})
