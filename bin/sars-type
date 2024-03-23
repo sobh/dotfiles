@@ -1,0 +1,18 @@
+#!/bin/sh
+# Description:	Type text either from command line arguments, or 'stdin' and
+#               type it using the most sinsible tool
+#
+
+if [ "$#" -gt 0 ]; then
+	input="$*"
+else
+	input=$(cat /dev/stdin)
+fi
+
+if [ "$XDG_SESSION_TYPE" = "wayland" ] ; then
+	wtype "$input"
+elif [ "$XDG_SESSION_TYPE" = "x11" ] ; then
+	xdotool type "$input"
+else
+	ydotool type "$input"
+fi
