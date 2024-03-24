@@ -19,6 +19,12 @@ return {
 		added    = " ",
 		modified = " ",
 		removed  = " ",
+		gutter = {
+			added     = " ",
+			modified  = "│",
+			removed   = " ",
+			untracked = "┆ ",
+		},
 	},
 	kinds = {
 		Array         = " ",
