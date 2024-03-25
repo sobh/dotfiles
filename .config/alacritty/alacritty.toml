@@ -1,0 +1,9 @@
+import = [
+	"~/.config/alacritty/colors.toml",
+	"~/.config/alacritty/keybindings.toml",
+]
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[font]
+size=16
