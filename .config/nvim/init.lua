@@ -38,29 +38,35 @@ vim.opt.rtp:prepend(lazypath)
 --	Packages could be also configured after the setup call, as they
 --	will be available in your neovim runtime.
 require('lazy').setup({
-
-	-- General
-	require 'packages.general.telescope',             -- Fuzzy Finder
-	require 'packages.general.telescope-fzf-native',  -- Fuzzy Finder
-	require 'packages.general.which-key',             -- Keymaps Popup
-	-- UI
-	require 'packages.ui.dressing',                   -- dressing.nvim
-	require 'packages.ui.indent-blankline',           -- Indent Guides
 	-- Colors
-	require 'packages.ui.colorschemes',               -- Colorschemes
+	require 'sobh.plugins.ui.colorschemes',               -- Colorschemes
+	-- require 'sobh.plugins.ui.ccc',                   -- Ok
+	-- require 'sobh.plugins.ui.colorizer',        -- Ok
+	-- require 'sobh.plugins.ui.colortils',
+	-- General
+	require 'sobh.plugins.general.telescope',             -- Fuzzy Finder
+	require 'sobh.plugins.general.telescope-fzf-native',  -- Fuzzy Finder
+	require 'sobh.plugins.general.which-key',             -- Keymaps Popup
+	-- UI
+	require 'sobh.plugins.ui.dressing',                 -- dressing.nvim
+	require 'sobh.plugins.ui.indent-blankline',         -- Indent Guides
+	require 'sobh.plugins.ui.nvim-highlight-colors',    -- Highlight Color Codes
+	-- require 'sobh.plugins.ui.vim-css-color',
 	-- Editor
-	require 'packages.editor.vim-stabs',              -- Tabs for Indentations, Spaces for Alignment!
-	require 'packages.editor.vim-easy-align',         -- Text Alignment for those of us with OCD
-	{ 'numToStr/Comment.nvim', opts = {} },           -- Comments (overides 'gc', and 'gb')
-	require 'packages.nvim-cmp',                      -- NeoVim Complete
+	-- require 'sobh.plugins.editor.neo-tree',      -- File System Explorer
+	require 'sobh.plugins.editor.vim-stabs',        -- Tabs for Indentations, Spaces for Alignment!
+	require 'sobh.plugins.editor.vim-easy-align',   -- Text Alignment for those of us with OCD
+	{ 'numToStr/Comment.nvim', opts = {} },     -- Comments (overides 'gc', and 'gb')
+	require 'sobh.plugins.nvim-cmp',                -- NeoVim Complete
+	require 'sobh.plugins.editor.gitsigns',         -- Git Integration
 
 	-- Code Outline
-	require 'packages.code_outline.treesitter',       -- Treesitter
-	-- require 'packages.code_outline.symbols-outline',  -- Tag Bar/ Code Outline Pane
-	require 'packages.lsp.lspconfig',                   -- LSP Config
+	require 'sobh.plugins.code_outline.treesitter',       -- Treesitter
+	-- require 'sobh.plugins.code_outline.symbols-outline',  -- Tag Bar/ Code Outline Pane
+	require 'sobh.plugins.lsp.lspconfig',               -- LSP Config
 	-- -- Manage installation of LSP servers, DAP servers, Linters, and formatters.
-	-- require 'packages.lsp.mason',
-	-- require 'packages.lsp.mason-lspconfig',
+	-- require 'sobh.plugins.lsp.mason',
+	-- require 'sobh.plugins.lsp.mason-lspconfig',
 
 	-- -- Git related plugins
 	-- 'tpope/vim-fugitive',
@@ -88,8 +94,7 @@ local vimrc = vim.fn.stdpath('config')..'/vimrc.vim'
 vim.cmd.source(vimrc)
 
 ---- Mappings ----------------------------------------------------------------------------------------------------------
-local mappings = require('mappings')
-mappings.load(mappings.general)
+require('sobh.mappings').setup()
 
 ---- Autocommands ------------------------------------------------------------------------------------------------------
 
@@ -105,4 +110,17 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 ---- Options -----------------------------------------------------------------------------------------------------------
-require('config.options')
+require('sobh.config.options').setup()
+
+function Xretab(ts)
+	local levels = 8
+	if ts == nil then
+		ts = 4
+	end
+	for i = levels, 1, -1 do
+		local spaces = string.rep(' ', ts*i)
+		local tabs   = string.rep('\t', i)
+		local command = '%s/^'..spaces..'/'..tabs..'/'
+		vim.cmd(command)
+	end
+end
