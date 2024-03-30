@@ -73,7 +73,7 @@ end
 local sobh_config = function()
 	require('nvim-treesitter.configs').setup {
 		-- Installed Languages
-		ensure_installed = { 'c', 'cpp', 'go', 'javascript', 'lua', 'python', 'rust', 'vim', 'vimdoc', },
+		ensure_installed = { 'c', 'cpp', 'go', 'javascript', 'lua', 'python', 'rust', 'vim'},
 		-- Install parsers synchronously (only applied to `ensure_installed`)
 		sync_install = false,
 
@@ -86,7 +86,7 @@ local sobh_config = function()
 
 		highlight = {
 			enable = true,
-			disable = { 'markdown' },
+			disable = { 'markdown', 'vimdoc'},
 		},
 	}
 end
