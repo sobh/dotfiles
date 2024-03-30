@@ -29,7 +29,7 @@ return {
 			},
 		})
 		-- Load Key Mappings
-		require('mappings').load('telescope')
+		require('sobh.mappings').load('telescope')
 
 		-- Enable telescope fzf native, if installed
 		pcall(require('telescope').load_extension, 'fzf')

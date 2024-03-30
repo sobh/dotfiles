@@ -5,7 +5,7 @@ return {
 	'junegunn/vim-easy-align',
 	config = function()
 		-- Load Key Mappings
-		require('mappings').load('vim-easy-align')
+		require('sobh.mappings').load('vim-easy-align')
 	end,
 }
 

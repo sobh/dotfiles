@@ -23,7 +23,7 @@ return {
 
 		local on_attach = function(_, bufnr)
 			-- Load Key Mappings only to the attached buffers
-			require("mappings").load("lsp", {buffer=bufnr})
+			require("sobh.mappings").load("lsp", {buffer=bufnr})
 
 			-- Create a command `:Format` local to the LSP buffer
 			vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
