@@ -35,9 +35,6 @@ fi
 unset _uname
 
 alias \
-	c='\cd' \
-	c..='c ..' \
-	cd='echo "Use c instead";cd ' \
 	cd..='cd ..' \
 	cp='cp -v' \
 	diff='diff --color=auto' \
