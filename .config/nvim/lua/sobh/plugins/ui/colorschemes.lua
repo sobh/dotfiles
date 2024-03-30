@@ -2,6 +2,21 @@
 local lazy = false
 local priority = 1000
 return {
+	-- Cairo Noon
+	{
+		'sobh/caironoon.nvim',
+		url = 'git@github.com:sobh/caironoon.nvim.git',
+		lazy = lazy,
+		priority = priority,
+	},
+
+	-- One Dark
+	{
+		'navarasu/onedark.nvim',
+		lazy = lazy,
+		priority = priority,
+	},
+
 	-- Tokyo Night
 	{
 		'folke/tokyonight.nvim',
@@ -17,6 +32,7 @@ return {
 			},
 		},
 	},
+
 	-- Catppuccin
 	{ 'catppuccin/nvim', name = 'catppuccin' },
 	-- Kanagawa
