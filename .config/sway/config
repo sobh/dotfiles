@@ -1,4 +1,4 @@
-# vim: filetype=i3 : foldmethod=marker
+# vim: filetype=i3config : foldmethod=marker
 #
 # sway config file
 #
@@ -10,7 +10,7 @@ set $mod Mod4
 # Used Font
 set $font 'systemui Light 18'
 # Set prefered terminal emulator
-set $term lxterminal
+set $term foot
 
 # Application launcher
 set $menu bemenu-run -n | xargs swaymsg exec
