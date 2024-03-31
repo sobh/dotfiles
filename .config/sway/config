@@ -24,6 +24,9 @@ set $right	l
 
 #---- Variabls Definitions }}}
 
+# Host specific confiugration
+include "$XDG_CONFIG_HOME/sway/hosts/$HOST"
+
 #---- Appearance ------------------------------------------------------------{{{
 # Set font
 font pango: $font
@@ -306,13 +309,14 @@ exec $XDG_CONFIG_HOME/sway/scripts/monitor_input.sh
 #---- Inputs ----------------------------------------------------------------{{{
 input type:keyboard {
 	xkb_layout	us,ara
-	xkb_variant	,qwerty_digits
+	# xkb_variant	,qwerty_digits
 	xkb_options	caps:escape,grp:alt_shift_toggle
 }
 #---- Inputs }}}
 
 #---- Outputs ---------------------------------------------------------------{{{
-output DP-1 resolution 2560x1440
+# Typically configured in the host specific confiugration
+# "$XDG_CONFIG_HOME/sway/hosts/$HOST"
 # Example
 # output HDMI-A-1 resolution 1920x1080 position 1920,0
 #---- Outputs }}}
