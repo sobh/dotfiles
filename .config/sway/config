@@ -125,7 +125,7 @@ bar {
 		background	$bg_color
 		separator	$seperator_color
 		# Workspace		Border		Background	Text
-		focused_workspace	$bg_color	$bg_color	$fg_color
+		focused_workspace	$bg_color	$arch_color	$fg_color
 		inactive_workspace	$bg_color	$bg_color	$inactive_bg
 		urgent_workspace	$urgent_color	$urgent_color	$focused_fg
 	}
