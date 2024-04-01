@@ -1,4 +1,4 @@
-# vim: filetype=i3config : foldmethod=marker
+# vim: filetype=swayconfig : foldmethod=marker
 # Description:  Host specific configuration for 'sway'
 
 #---- Outputs ---------------------------------------------------------------{{{
