@@ -1,4 +1,4 @@
-# vim: filetype=i3 : foldmethod=marker : tabstop=4 : shiftwidth=4
+# vim: filetype=swayconfig : foldmethod=marker
 #
 # Description: Host specific sway config file.
 #
