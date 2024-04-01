@@ -50,5 +50,5 @@ export XDG_SESSION_TYPE=wayland
 export BEMENU_OPTS="--fn $UI_FONT"
 
 #---- Window Manager -----------------------------------------------------------
-exec sway
+exec $WM
 
