@@ -11,7 +11,8 @@ set $mod Mod4
 set $font 'systemui Light 18'
 
 # Application launcher
-set $menu bemenu-run -n | xargs swaymsg exec
+# set $menu bemenu-run -n | xargs swaymsg exec
+set $menu path_exec | menu | xargs swaymsg exec
 
 # Home row direction keys, like vim
 set $left	h
@@ -103,9 +104,11 @@ assign [class="code-oss"]	$ws3
 assign [window_role="browser"] $ws1
 
 #---- Application Modes and Borders ------------------------
+for_window [app_id="^launcher$"]    floating enable, sticky enable, resize set 30 ppt 60 ppt, border pixel 10
+for_window [app_id="^menu$"]        floating enable, sticky enable, resize set 30 ppt 60 ppt, border pixel 10
+
 for_window [class="Bluetooth"]	    floating enable
-for_window [title="Open Folder"]    floating enable
-for_window [title="Open Font"]	    floating enable
+# for_window [title="Open.*"]		floating enable, resize set 70ppt 70ppt
 for_window [title="Warning"]	    floating enable
 for_window [title="FontForge"]	    floating enable
 for_window [instance="cal"]	    floating enable border none
@@ -117,7 +120,7 @@ for_window [class="Chromium"]	    border none
 bar {
 	mode dock
 	position top
-	status_command i3blocks
+	status_command $SWAY_STATUS_CMD
 	colors {
 		statusline	#FFFFFF
 		background	$bg_color
