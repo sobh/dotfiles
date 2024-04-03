@@ -1,8 +1,9 @@
 # vim: filetype=swayconfig : foldmethod=marker
 # Description:  Host specific configuration for 'sway'
 
+set $font 'systemui Light 16'
 #---- Outputs ---------------------------------------------------------------{{{
 output DP-1 resolution 2560x1440
-output eDP-1 resolution 1920x1080 transform 90
+output eDP-1 resolution 1920x1080 transform 90 scale 0.95
 #---- Outputs }}}
 
