@@ -7,10 +7,8 @@
 # Set modifier to Superkey
 set $mod Mod4
 
-# Used Font
+# Default Font (Override in the included host file below)
 set $font 'systemui Light 18'
-# Set prefered terminal emulator
-set $term foot
 
 # Application launcher
 set $menu bemenu-run -n | xargs swaymsg exec
@@ -135,7 +133,7 @@ bar {
 #---- Bindings --------------------------------------------------------------{{{
 #-------- General Bindings ------------------------------{{{
 # start a terminal
-bindsym $mod+Return exec $term
+bindsym $mod+Return exec $TERMINAL
 
 # kill focused window
 bindsym $mod+q kill
@@ -146,10 +144,6 @@ floating_modifier $mod normal
 
 # start (a program launcher)
 bindsym $mod+d exec $menu
-#bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
-#bindsym $mod+d exec rofi -show run -lines 5 -eh 2 -padding 100 -opacity "85" -bw 0 -hide-scrollbar -separator-style none \
-#	-font "System San Francisco Display 12"
-#-bw 0 -bc "$bg_color" -bg "$bg_color" -fg "$active-fg_color" -hlbg "$bg_color" -hlfg "#9575cd"
 
 # Split in horizontal/vertical orientation
 bindsym $mod+b split h
