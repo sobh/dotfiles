@@ -1,0 +1,17 @@
+# vim: filetype=sh
+
+# Display Resolution, and Fonts
+
+# DPI is exported to the '.Xresource' 'Xft.dpi' through the 'loadxresource'
+# script.
+export DPI=120
+export UI_FONT_SIZE=18
+
+# ---- Scale Factors -----------------------------------------------------------
+# QT
+export QT_SCALE_FACTOR=1.4		# Scales fonts.
+#export QT_SCREEN_SCALE_FACTORS=2	# Does not scale fonts.
+
+#---- Applications -------------------------------------------------------------
+#-------- i3 -----------------------------------------------
+export SWAY_STATUS_CMD="i3blocks -c $XDG_CONFIG_HOME/host/$HOSTNAME/i3blocks"
