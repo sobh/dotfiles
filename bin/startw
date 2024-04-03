@@ -2,38 +2,37 @@
 # Description:	Intialize, and start Wayland Session.
 #
 
-#---- Source X11/Wayland common configurations ---------------------------------
-# . $XDG_CONFIG_HOME/xw_common
-
 # Set Defautl UI icone style (values: emoji, nerd)
-: ${UI_ICON:=emoji}; export UI_ICON
+: ${UI_ICON:=emoji}
+export UI_ICON
+# Export Session Type
+export XDG_SESSION_TYPE=wayland
 
-# DPI Settings based on host
-case $HOST in
-	optiplex)
-		DPI=200
-		UI_FONT_SIZE=12
-		;;
-	satellite |t420 |ed)
-		DPI=96
-		UI_FONT_SIZE=18
-		;;
-	*)
-		DPI=92
-		UI_FONT_SIZE=12
-		;;
-esac
+# Terminal Emulator
+export TERMINAL=foot
 
-export DPI
-export UI_FONT_SIZE
+#---- Host Configuration -------------------------------------------------------
+HOST_CONFIG_DIR=$XDG_CONFIG_HOME/host/$HOST
+OS_CONFIG_DIR=$XDG_CONFIG_HOME/os/$(uname -s)
+# Load defualt host configuration
+. $XDG_CONFIG_HOME/host/default/$XDG_SESSION_TYPE
+# Load OS specific configuration
+[ -f $OS_CONFIG_DIR/$XDG_SESSION_TYPE ] && . $OS_CONFIG_DIR/$XDG_SESSION_TYPE
+# Load host specific configuration
+[ -f $HOST_CONFIG_DIR/$XDG_SESSION_TYPE ] && . $HOST_CONFIG_DIR/$XDG_SESSION_TYPE
+
+#---- UI Font ------------------------------------------------------------------
+# The host configuration must define the following Environment Variables:
+#	- $DPI
+#	- $UI_FONT_SIZE
 export UI_FONT_FAMILY='systemui'
 export UI_FONT_WEIGHT='Light'
 export UI_FONT="$UI_FONT_FAMILY $UI_FONT_WEIGHT $UI_FONT_SIZE"
 
 #---- HiDPI --------------------------------------------------------------------
-if [ $DPI -ge 90 ] ; then
+if [ $DPI -ge 90 ]; then
 	#-------- GTK-3.0 ----------------------
-	export GDK_SCALE=2		# Scale UI Element
+	export GDK_SCALE=2 # Scale UI Element
 	# export GDK_DPI_SCALE=0.5	# Scale Back Text
 	#-------- QT5 --------------------------
 	# Make QT5 Applications honor screen DPI
@@ -41,14 +40,12 @@ if [ $DPI -ge 90 ] ; then
 fi
 
 #---- Set the Environment Parameters -------------------------------------------
-# Export Session Type
-export XDG_SESSION_TYPE=wayland
-# Set Defautl window manager (values: i3, dwm)
-: ${WM:=sway}; export WM
+# Set Defautl window manager (values: sway, dwl, swc-launch -- velox)
+: ${WM:=sway}
+export WM
 
 # bemenu
 export BEMENU_OPTS="--fn $UI_FONT"
 
 #---- Window Manager -----------------------------------------------------------
 exec $WM
-
