@@ -1,0 +1,14 @@
+# vim: filetype=sh
+
+#---- System UI ----------------------------------------------------------------
+export DPI=96
+export UI_FONT_SIZE=12
+
+# ---- Scale Factors -----------------------------------------------------------
+# QT
+export QT_SCALE_FACTOR=1.4		# Scales fonts.
+#export QT_SCREEN_SCALE_FACTORS=2	# Does not scale fonts.
+
+#---- Applications -------------------------------------------------------------
+#-------- i3 -----------------------------------------------
+export SWAY_STATUS_CMD=i3status
