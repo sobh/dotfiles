@@ -53,17 +53,17 @@ require('lazy').setup({
 	require 'sobh.plugins.ui.nvim-highlight-colors',    -- Highlight Color Codes
 	-- require 'sobh.plugins.ui.vim-css-color',
 	-- Editor
-	-- require 'sobh.plugins.editor.neo-tree',      -- File System Explorer
-	require 'sobh.plugins.editor.vim-stabs',        -- Tabs for Indentations, Spaces for Alignment!
-	require 'sobh.plugins.editor.vim-easy-align',   -- Text Alignment for those of us with OCD
-	{ 'numToStr/Comment.nvim', opts = {} },     -- Comments (overides 'gc', and 'gb')
-	require 'sobh.plugins.nvim-cmp',                -- NeoVim Complete
-	require 'sobh.plugins.editor.gitsigns',         -- Git Integration
+	-- require 'sobh.plugins.editor.neo-tree',     -- File System Explorer
+	require 'sobh.plugins.editor.outline',         -- Code Outline Sidebar
+	require 'sobh.plugins.editor.vim-stabs',       -- Tabs for Indentations, Spaces for Alignment!
+	require 'sobh.plugins.editor.vim-easy-align',  -- Text Alignment for those of us with OCD
+	{ 'numToStr/Comment.nvim', opts = {} },        -- Comments (overides 'gc', and 'gb')
+	require 'sobh.plugins.nvim-cmp',               -- NeoVim Complete
+	require 'sobh.plugins.editor.gitsigns',        -- Git Integration
 
-	-- Code Outline
-	require 'sobh.plugins.code_outline.treesitter',       -- Treesitter
-	-- require 'sobh.plugins.code_outline.symbols-outline',  -- Tag Bar/ Code Outline Pane
-	require 'sobh.plugins.lsp.lspconfig',               -- LSP Config
+	-- Treesitter
+	require 'sobh.plugins.treesitter',             -- Treesitter
+	require 'sobh.plugins.lsp.lspconfig',          -- LSP Config
 	-- -- Manage installation of LSP servers, DAP servers, Linters, and formatters.
 	-- require 'sobh.plugins.lsp.mason',
 	-- require 'sobh.plugins.lsp.mason-lspconfig',
