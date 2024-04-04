@@ -32,6 +32,8 @@ font pango: $font
 
 # Set cursor theme
 seat seat0 xcursor_theme default 48
+seat seat0 hide_cursor when-typing enable
+seat seat0 hide_cursor 5000
 
 # Set Background
 #output * bg #000000 solid_color
