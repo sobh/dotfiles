@@ -4,11 +4,11 @@
 return {
 	{
 		"hedyhli/outline.nvim",
-		keys = function(_, opts)
-			return {
-				{ "<leader>ot", "<cmd>Outline<cr>", desc = "Toggle Outline" },
-				{ "<leader>of", "<cmd>OutlineFocus<cr>", desc = "Focus Outline" },
-			}
+		keys = function()
+			-- Load my keymappings
+			require("sobh.mappings").load("editor.outline")
+			-- Override LazyVim default mappings
+			return {}
 		end,
 	},
 }
