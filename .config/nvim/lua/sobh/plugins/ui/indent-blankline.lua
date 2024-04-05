@@ -41,7 +41,7 @@ return {
 		ibl.setup {
 			indent = { highlight = highlight },
 			exclude = {
-				filetypes = { "diff", "getsendemail" },
+				filetypes = { "diff", "gitsendemail" },
 			}
 		}
 	end,
