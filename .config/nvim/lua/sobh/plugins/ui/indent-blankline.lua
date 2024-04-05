@@ -38,7 +38,12 @@ return {
 			end
 		end)
 
-		ibl.setup { indent = { highlight = highlight } }
+		ibl.setup {
+			indent = { highlight = highlight },
+			exclude = {
+				filetypes = { "diff" },
+			}
+		}
 	end,
 
 }
