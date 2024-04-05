@@ -26,10 +26,6 @@ set showcmd		" Show Command being typed
 "---- Format -------------------------------------------------------------------
 set formatoptions+=c	" Format Options
 
-"---- UI -----------------------------------------------------------------------
-set listchars=tab:\├─>,space:·	" String to use in 'list' mode
-set fillchars=vert:│		" Use Vertical Box Drawing for vertical seperator
-
 
 "---- Highlight and Remove Trailing Space --------------------------------------
 highlight ExtraWhitespace ctermbg=red guibg=red
@@ -66,14 +62,6 @@ let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['html'] = ''
 " Fix brackets around icons
 " autocmd VimEnter * syntax enable | call webdevicons#refresh()
-"-------- Operator Highlight -----------
-let g:ophigh_highlight_link_group='Operator'
-"-------- Indent Guides ---------------
-let g:indent_guides_guide_size=1
-let g:indent_guides_start_level=2
-let g:indent_guides_enable_on_vim_startup = 1
-"-------- GNUPG ------------------------
-let g:GPGPreferSymmetric=1
 
 
 
