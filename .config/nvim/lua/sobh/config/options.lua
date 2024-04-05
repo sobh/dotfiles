@@ -11,6 +11,10 @@ M.setup = function ()
 	-- Enable break indent for wrapped lines (Just in case)
 	o.breakindent = true
 
+	-- List mode
+	o.list = false
+	o.listchars = { tab = "├─❭", space = "·" }
+
 	-- Set Cursor Shape
 	o.guicursor = {
 		'n-v-c-sm:block',
