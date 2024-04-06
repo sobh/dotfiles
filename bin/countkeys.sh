@@ -10,7 +10,7 @@ print_count()
 	[ -z "$fname" ] && fname="/dev/stdin"
 
 	count=$(grep -Eao "$key_ex" < $fname | wc -l)
-	printf "%${pad}d %s\n" $count $key
+	printf "%${pad}d %s\n" "$count" "$key"
 }
 
 #---- Parameters ---------------------------------------------------------------
@@ -30,7 +30,7 @@ doas cp /var/log/logkeys.log $keylog
 # doas tail -n5000 /var/log/logkeys.log > $keylog
 sed -e '/^Logging st/d' -i $keylog
 sed -e 's/^.* > //g' -i $keylog
-sed -e 's/<[^<>]*>//g' $keylog > $printable
+log2printable.sed < $keylog > $printable
 
 # Mod Keys
 print_count 'Shift' '<.Shft>' < $keylog > $modkeys
@@ -38,6 +38,12 @@ print_count 'Ctrl'  '<.Ctrl>' < $keylog >> $modkeys
 print_count 'Super' '<.Meta>' < $keylog >> $modkeys
 print_count 'Alt'   '<(LAlt|RAlt|AltGr)>' < $keylog >> $modkeys
 
+# Shift Classes Keys
+print_count 'Shift+[[:punct:]] (Symbols)' '<.Shft>[[:punct:]]' < $keylog >> $modkeys
+print_count 'Shift+[[:digit:]] (Number)'  '<.Shft>[[:digit:]]' < $keylog >> $modkeys
+print_count 'Shift+[[:alpha:]] (Letters)' '<.Shft>[[:alpha:]]' < $keylog >> $modkeys
+
+# Multi-Mods
 print_count 'Ctrl+Shift'    '(<.Ctrl><.Shft>|<.Shft><.Ctrl>)' < $keylog >> $modkeys
 print_count 'Alt+Shift'    '(<.Alt.*><.Shft>|<.Shft><.Alt.*>)' < $keylog >> $modkeys
 print_count 'Alt+Ctrl'    '(<.Alt.*><.Ctrl>|<.Ctrl><.Alt.*>)' < $keylog >> $modkeys
@@ -58,10 +64,10 @@ print_count 'Delete'    '<Del>'     < $keylog >> $commonkeys
 # print_count 'Home'      '<Home>' < $keylog >> $commonkeys
 
 # Symbol Keys
-symbols="'"' ! " # $ %% & ( ) \* + , - . \/ : ; < = > ? @ [ \\ ] ^ _ ` { | } ~'
+symbols="'"' ! " # $ % & ( ) \* + , - . / : ; < = > ? @ [ \\ ] ^ _ ` { | } ~'
 for c in $symbols; do
 	count=$(tr -cd "$c" < $printable | wc -m)
-	printf "%${pad}d $c \n" $count >> $symbolkeys
+	printf "%${pad}d %s\n" $count "${c#\\}"  >> $symbolkeys
 done
 
 # Numbers
@@ -79,31 +85,46 @@ for c in $letters; do
 done
 
 #---- Results ------------------------------------------------------------------
-echo "# Mod Keys"
-echo "------------"
-sort --numeric-sort --reverse < $modkeys
+if [ "$#" -eq 0 ]; then
+	echo "# Mod Keys"
+	echo "------------"
+	sort --numeric-sort --reverse < $modkeys
 
 
-printf "\n\n"
-echo "# Common Keys"
-echo "------------"
-sort --numeric-sort --reverse < $commonkeys
+	printf "\n\n"
+	echo "# Common Keys"
+	echo "------------"
+	sort --numeric-sort --reverse < $commonkeys
 
 
-printf "\n\n"
-echo "# Symbols' Keys"
-echo "----------------"
-sort --numeric-sort --reverse < $symbolkeys
+	printf "\n\n"
+	echo "# Symbols' Keys"
+	echo "----------------"
+	sort --numeric-sort --reverse < $symbolkeys
 
-printf "\n\n"
-echo "# Digits' Keys"
-echo "----------------"
-sort --numeric-sort --reverse < $digitkeys
+	printf "\n\n"
+	echo "# Digits' Keys"
+	echo "----------------"
+	sort --numeric-sort --reverse < $digitkeys
 
-printf "\n\n"
-echo "# Letters' Keys"
-echo "----------------"
-sort --numeric-sort --reverse < $letterkeys
+	printf "\n\n"
+	echo "# Letters' Keys"
+	echo "----------------"
+	sort --numeric-sort --reverse < $letterkeys
+else
+	case "$1" in
+		r|ra|raw)   cat $symbolkeys $digitkeys $letterkeys
+			;;
+		l)          cat $letterkeys
+			;;
+		n)          cat $numberkeys
+			;;
+		s)          cat $symbolkeys
+			;;
+		*)          cat $symbolkeys $digitkeys $letterkeys
+			;;
+	esac
+fi
 
 #---- Clean-up -----------------------------------------------------------------
 rm -f $keylog $modkeys $commonkeys $printable $digitkeys $symbolkeys $letterkeys
