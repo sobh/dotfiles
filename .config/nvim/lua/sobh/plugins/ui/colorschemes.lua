@@ -8,6 +8,9 @@ return {
 		url = 'git@github.com:sobh/caironoon.nvim.git',
 		lazy = lazy,
 		priority = priority,
+		opts = {
+			variant = "hsluv",
+		}
 	},
 
 	-- One Dark
