@@ -114,7 +114,7 @@ for_window [class="Bluetooth"]	    floating enable
 for_window [title="Warning"]	    floating enable
 for_window [title="FontForge"]	    floating enable
 for_window [instance="cal"]	    floating enable border none
-for_window [class="Chromium"]	    border none
+# for_window [app_id="chromium"]	    border none
 # }}}
 
 #---- Status Bar ------------------------------------------------------------{{{
