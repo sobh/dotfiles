@@ -13,9 +13,12 @@ return {
 			topdelete = { text = icons.git.gutter.removed },
 			untracked = { text = icons.git.gutter.untracked },
 		},
-		signcolumn = true,  -- Toggle with `:Gitsigns toggle_signs`
-		numhl      = true, -- Toggle with `:Gitsigns toggle_numhl`
-		linehl     = true, -- Toggle with `:Gitsigns toggle_linehl`
-		word_diff  = false, -- Toggle with `:Gitsigns toggle_word_diff`
+		signcolumn = true,     -- Toggle with `:Gitsigns toggle_signs`
+		numhl      = true,     -- Toggle with `:Gitsigns toggle_numhl`
+		linehl     = true,     -- Toggle with `:Gitsigns toggle_linehl`
+		word_diff  = false,    -- Toggle with `:Gitsigns toggle_word_diff`
+		on_attach = function ()
+			require("sobh.mappings").load("editor.gitsigns")
+		end
 	},
 }
