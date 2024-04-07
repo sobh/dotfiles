@@ -10,7 +10,7 @@ P_NL="%(4~.$prompt_newline.)"
 
 # On an SSH session, or not?
 if [ $SSH_TTY ]; then
-	P_HOST='%F{white}@%F{cyan}%m %F{white}: '
+	P_HOST='%f@%F{cyan}%m %f: '
 	P_SYM='%(!,%F{red}#,%F{blue}%%) >'
 else
 	P_HOST=''
