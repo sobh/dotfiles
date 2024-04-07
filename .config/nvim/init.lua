@@ -60,6 +60,7 @@ require('lazy').setup({
 	{ 'numToStr/Comment.nvim', opts = {} },        -- Comments (overides 'gc', and 'gb')
 	require 'sobh.plugins.nvim-cmp',               -- NeoVim Complete
 	require 'sobh.plugins.editor.gitsigns',        -- Git Integration
+	require 'sobh.plugins.editor.tmux',
 
 	-- Treesitter
 	require 'sobh.plugins.treesitter',             -- Treesitter
