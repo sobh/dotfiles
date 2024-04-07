@@ -9,6 +9,7 @@
 .config/htop
 .config/l3afpad
 .config/menus
+lazy-lock.json
 .local/lib/python*
 .local/bin/uimp
 .local/bin/w3imp
