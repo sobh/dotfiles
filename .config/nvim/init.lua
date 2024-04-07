@@ -38,33 +38,35 @@ vim.opt.rtp:prepend(lazypath)
 --	Packages could be also configured after the setup call, as they
 --	will be available in your neovim runtime.
 require('lazy').setup({
-	-- Colors
-	require 'sobh.plugins.ui.colorschemes',               -- Colorschemes
+
+	-- UI
+	require 'sobh.plugins.ui.colorschemes',           -- Colorschemes
+	require 'sobh.plugins.ui.dressing',               -- dressing.nvim
+	require 'sobh.plugins.ui.indent-blankline',       -- Indent Guides
+	require 'sobh.plugins.ui.nvim-highlight-colors',  -- Highlight Color Codes
+	require 'sobh.plugins.ui.outline',                -- Code Outline Sidebar
+	-- require 'sobh.plugins.ui.neo-tree',               -- File System Explorer
 	-- require 'sobh.plugins.ui.ccc',                   -- Ok
 	-- require 'sobh.plugins.ui.colorizer',        -- Ok
 	-- require 'sobh.plugins.ui.colortils',
-	-- General
-	require 'sobh.plugins.general.telescope',             -- Fuzzy Finder
-	require 'sobh.plugins.general.telescope-fzf-native',  -- Fuzzy Finder
-	require 'sobh.plugins.general.which-key',             -- Keymaps Popup
-	-- UI
-	require 'sobh.plugins.ui.dressing',                 -- dressing.nvim
-	require 'sobh.plugins.ui.indent-blankline',         -- Indent Guides
-	require 'sobh.plugins.ui.nvim-highlight-colors',    -- Highlight Color Codes
 	-- require 'sobh.plugins.ui.vim-css-color',
-	-- Editor
-	-- require 'sobh.plugins.editor.neo-tree',     -- File System Explorer
-	require 'sobh.plugins.editor.outline',         -- Code Outline Sidebar
-	require 'sobh.plugins.editor.vim-stabs',       -- Tabs for Indentations, Spaces for Alignment!
-	require 'sobh.plugins.editor.vim-easy-align',  -- Text Alignment for those of us with OCD
-	{ 'numToStr/Comment.nvim', opts = {} },        -- Comments (overides 'gc', and 'gb')
-	require 'sobh.plugins.nvim-cmp',               -- NeoVim Complete
-	require 'sobh.plugins.editor.gitsigns',        -- Git Integration
-	require 'sobh.plugins.editor.tmux',
 
-	-- Treesitter
-	require 'sobh.plugins.treesitter',             -- Treesitter
-	require 'sobh.plugins.lsp.lspconfig',          -- LSP Config
+	-- General
+	require 'sobh.plugins.general.telescope',            -- Fuzzy Finder
+	require 'sobh.plugins.general.telescope-fzf-native', -- Fuzzy Finder (Native)
+	require 'sobh.plugins.general.which-key',            -- Keymaps Popup
+	require 'sobh.plugins.general.gitsigns',             -- Git Integration
+	require 'sobh.plugins.general.tmux',                 -- tmux Navigation
+
+	-- Editor
+	require 'sobh.plugins.editor.vim-stabs',          -- Tabs for Indentations, Spaces for Alignment!
+	require 'sobh.plugins.editor.vim-easy-align',     -- Text Alignment for those of us with OCD
+	{ 'numToStr/Comment.nvim', opts = {} },           -- Comments (overides 'gc', and 'gb')
+	require 'sobh.plugins.editor.nvim-cmp',           -- NeoVim Complete
+
+	-- Syntax
+	require 'sobh.plugins.syntax.treesitter',         -- Treesitter
+	require 'sobh.plugins.syntax.lspconfig',          -- LSP Config
 	-- -- Manage installation of LSP servers, DAP servers, Linters, and formatters.
 	-- require 'sobh.plugins.lsp.mason',
 	-- require 'sobh.plugins.lsp.mason-lspconfig',
