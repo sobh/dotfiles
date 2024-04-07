@@ -5,6 +5,10 @@ local M = {}
 ---- Requires ----------------------------------------------------------------------------------------------------------
 local wk = require('which-key')
 
+---- Options -----------------------------------------------------------------------------------------------------------
+M.hrn = { left="h", down="j", up="k", right="l" }
+M.home_row_nav = M.hrn
+
 ---- Functions ---------------------------------------------------------------------------------------------------------
 
 M.set = function(mkeymap, opts)
@@ -33,6 +37,9 @@ end
 -- Setup Our Keymaps
 M.setup = function ()
 	local map = vim.keymap.set
+	local up   = M.hrn.up
+	local down = M.hrn.down
+
 	local mappings = {
 		n = {
 			['<leader>'] = {
@@ -40,6 +47,9 @@ M.setup = function ()
 					name='Configuration',
 					d = { function() vim.cmd.cd(vim.fn.stdpath('config')) end, '[C]onfiguration [D]irectory' },
 					e = { '<cmd> vsplit $MYVIMRC <cr>', '[C]onfiguration [E]dit' },
+				},
+				g = {
+					name = "Git",
 				},
 				p = {
 					name='Project Navigation  ',
@@ -57,8 +67,8 @@ M.setup = function ()
 	map({'i', 'n'}, '<F2>', '<esc><cmd>w<CR> <cmd>!%:p<CR>', { desc = 'Execute Current File' })
 	---- Trick Maps ----------------------------------------------------------------
 	-- Faster Insert -> Normal Transitions
-	map('i', 'jk', '<esc>')
-	map('i', 'jj', '<esc>')
+	map('i', down..up, '<esc>')
+	map('i', down..down, '<esc>')
 	-- Faster Command Mode
 	map({'n','v'}, ';', ':')
 	map({'n','v'}, ':', ';')
@@ -74,8 +84,8 @@ M.setup = function ()
 	--
 
 	-- Remap for dealing with word wrap
-	map('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-	map('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+	map('n', up,    "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+	map('n', down,  "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 	---- Diagnostic keymaps --------------------------------------------------------
 	-- map('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
