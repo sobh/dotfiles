@@ -71,35 +71,37 @@ st*color14:	term_color14
 st*color15:	term_color15
 !--- st }}}
 
-!-------- XTerm ---------------------{{{
-XTerm*TermName:	xterm-256color
-XTerm*FaceName:	font_name
-XTerm*FaceSize: font_size
-XTerm*scrollBar:    false
+!-------- VT100 ---------------------{{{
+! This applys to XTerm, and UXTerm as well
 
-XTerm*CursorColor:	term_cursorcolor
-XTerm*Background:	term_background
-XTerm*Foreground:	term_foreground
+*.vt100.TermName:       xterm-256color
+*.vt100.FaceName:       font_name
+*.vt100.FaceSize:       font_size
+*.vt100.scrollBar:      false
 
-XTerm*color0:	term_color00
-XTerm*color1:	term_color01
-XTerm*color2:	term_color02
-XTerm*color3:	term_color03
-XTerm*color4:	term_color04
-XTerm*color5:	term_color05
-XTerm*color6:	term_color06
-XTerm*color7:	term_color07
+*.vt100.CursorColor:    term_cursorcolor
+*.vt100.Background:     term_background
+*.vt100.Foreground:     term_foreground
 
-XTerm*color8:	term_color08
-XTerm*color9:	term_color09
-XTerm*color10:	term_color10
-XTerm*color11:	term_color11
-XTerm*color12:	term_color12
-XTerm*color13:	term_color13
-XTerm*color14:	term_color14
-XTerm*color15:	term_color15
+*.vt100.color0:         term_color00
+*.vt100.color1:         term_color01
+*.vt100.color2:         term_color02
+*.vt100.color3:         term_color03
+*.vt100.color4:         term_color04
+*.vt100.color5:         term_color05
+*.vt100.color6:         term_color06
+*.vt100.color7:         term_color07
 
-!---- XTerm }}}
+*.vt100.color8:         term_color08
+*.vt100.color9:         term_color09
+*.vt100.color10:        term_color10
+*.vt100.color11:        term_color11
+*.vt100.color12:        term_color12
+*.vt100.color13:        term_color13
+*.vt100.color14:        term_color14
+*.vt100.color15:        term_color15
+
+!---- VT100 }}}
 
 !-------- sxiv ----------------------{{{
 Sxiv*font:	display_font
