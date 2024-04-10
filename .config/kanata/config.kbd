@@ -53,6 +53,10 @@ configuration entries.
 (defalias
 	;; CapWord
 	cw (caps-word 2000)
+	;; Layers
+	sym (layer-while-held symbols)
+	;; Tap Hold
+	spc (tap-hold-release $tt $ht spc @sym)
 	;; Temporarly Disable Home Row Mods, and re-activate it when idle
 	tap (multi (layer-switch qwerty-nomods) (on-idle-fakekey to-qwerty-hrm tap $hrm-timeout))
 	;; Home Row Mods
@@ -82,7 +86,7 @@ configuration entries.
 	tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
 	esc  @a   @s   @d   @f   g    h    @j   @k   @l   @;   '    ret
 	lsft z    x    c    v    b    n    m    ,    .    /    rsft
-	lctl lalt lmet           spc            rctl ralt rmet
+	lctl lalt lmet          @spc            rctl ralt rmet
 )
 
 (deflayer qwerty-nomods
@@ -92,6 +96,44 @@ configuration entries.
 	tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
 	esc  a    s    d    f    g    h    j    k    l    ;    '    ret
 	lsft z    x    c    v    b    n    m    ,    .    /    rsft
-	lctl lalt lmet           spc            rctl ralt rmet
+	lctl lalt lmet          @spc            rctl ralt rmet
 )
 
+;; Shifted Symbols
+(defalias
+	~ S-grv
+
+	! S-1
+	@ S-2
+	# S-3
+	$ S-4
+	% S-5
+	^ S-6
+	& S-7
+	* S-8
+	lp S-9
+	rp S-0
+	_ S-min
+	+ S-=
+
+	{ S-[
+	} S-]
+	| S-\
+
+	: S-;
+	dqt S-'
+	< S-,
+	> S-.
+	? S-/
+)
+
+(deflayer symbols
+	;;                  |              |
+	;;   1    2    3    4    5    6    7    8    9    0    -    =
+	@cw  _    _    _    _    _    _    _    _    _    _    _    _
+	@~   @!   @@   @#   @$   @%   @^   @&   @*   @lp  @rp  @_   @+   _
+	_    _    @!   @{   @}   @%   @&   @<   @>   @+   _    _    _    @|
+	_    @dqt '    @lp  @rp  @~   \    @:   ,    @$   -    _    _
+	_    _    @?   [    ]    @^   @@   @|   `    @_   =    _
+	_    _    @_             spc            =    _    _
+)
