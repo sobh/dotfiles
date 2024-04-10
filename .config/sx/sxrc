@@ -12,6 +12,9 @@ export XDG_SESSION_TYPE='x11'
 # Set Defautl UI icon style (values: emoji, nerd)
 : ${UI_ICON:=emoji}; export UI_ICON
 
+# Terminal
+export TERMINAL=alacritty
+
 #---- Host Configuration -------------------------------------------------------
 HOST_CONFIG_DIR=$XDG_CONFIG_HOME/host/$HOST
 OS_CONFIG_DIR=$XDG_CONFIG_HOME/os/`uname -s`
