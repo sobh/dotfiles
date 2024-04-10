@@ -36,16 +36,13 @@ output * bg #444444 solid_color
 
 #---- Bindings --------------------------------------------------------------{{{
 
-#-------- General Bindings ------------------------------{{{
-# start a terminal
-bindsym $mod+Return exec $TERMINAL
+# Start the program launcher
+bindsym $mod+d exec path_exec | menu | xargs swaymsg exec
 
 # Exit sway (logs you out of your Wayland session)
 bindsym $mod+Shift+e exec "menu_prompt 'Exit sway?' 'swaymsg exit'"
 # Lock Screen
 bindsym $mod+Shift+x exec "swaylock"
-
-#-------- General Bindings }}}
 
 #---- Bindings }}}
 

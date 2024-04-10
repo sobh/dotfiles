@@ -83,8 +83,8 @@ set $ws10 "10"
 
 #---- Bindings --------------------------------------------------------------{{{
 #-------- General Bindings ------------------------------{{{
-# start a terminal
-# bindsym $mod+Return exec $TERMINAL
+# Start a terminal
+bindsym $mod+Return exec $TERMINAL
 
 # kill focused window
 bindsym $mod+q kill
@@ -93,20 +93,12 @@ bindsym $mod+q kill
 # Resize them with right mouse button + $mod.
 # floating_modifier $mod normal
 
-# start (a program launcher)
-# bindsym $mod+d exec $menu
-
 # Split in horizontal/vertical orientation
 bindsym $mod+b split h
 bindsym $mod+v split v
 
 # Reload confiugration file
 bindsym $mod+Shift+r reload
-
-# Exit sway (logs you out of your Wayland session)
-# bindsym $mod+Shift+e exec "menu_prompt 'Exit sway?' 'swaymsg exit'"
-# Lock Screen
-# bindsym $mod+Shift+x exec "swaylock"
 
 #---- General Bindings }}}
 
