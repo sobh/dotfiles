@@ -1,0 +1,16 @@
+[Unit]
+Description=Kanata keyboard remapper
+Documentation=https://github.com/jtroo/kanata
+
+[Service]
+Environment=PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin
+Environment=HOME=\$HOME
+Environment=DISPLAY=:0
+Type=simple
+ExecStart=kanata
+; ExecStart=$(which kanata) --cfg $XDG_CONFIG_HOME/kanata/kanata.kbd
+Restart=no
+
+[Install]
+WantedBy=default.target
+
