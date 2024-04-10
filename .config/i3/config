@@ -7,12 +7,6 @@
 # Set modifier to Superkey
 set $mod Mod4
 
-# Status Command
-set_from_resource $status_cmd i3.status.cmd
-
-# Set prefered terminal emulator
-set $term alacritty
-
 #---- Variabls Definitions }}}
 
 #---- Includes --------------------------------------------------------------{{{
@@ -27,7 +21,7 @@ include "$XDG_CONFIG_HOME/i3/common"
 
 # Terminals
 # assign [instance="xterm"]	$ws2
-# assign [instance="st"]		$ws2
+# assign [instance="st"]	$ws2
 
 # Text Editor
 assign [class="code-oss"]	$ws3
@@ -48,8 +42,6 @@ for_window [class="Chromium"]	    border none
 
 #---- Bindings --------------------------------------------------------------{{{
 #-------- General Bindings ------------------------------{{{
-# start a terminal
-bindsym $mod+Return exec --no-startup-id $term
 
 # Toggle keyboard Layout
 bindsym Mod1+Shift+Tab exec toggle_keyboard_layout && pkill -SIGRTMIN+1 i3blocks;
