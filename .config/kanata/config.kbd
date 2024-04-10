@@ -1,4 +1,4 @@
-#| vim: filetype=lisp
+#| vim: filetype=lisp : tabstop=8
 This minimal config changes Caps Lock to act as Caps Lock on quick tap, but
 if held, it will act as Left Ctrl. It also changes the backtick/grave key to
 act as backtick/grave on quick tap, but change ijkl keys to arrow keys on hold.
@@ -25,27 +25,73 @@ configuration entries.
   process-unmapped-keys yes
 )
 
-(defalias
-  ;; CapWord
-  cw (caps-word 2000)
+;;---- Home Row Mods -----------------------------------------------------------
+(defvar
+	;;-------- Timing --------;;
+	tt 500      ;; Tap  Time
+	ht 200      ;; Hold Time
+	;; Home Row Mods activation wait time after typing streak
+	hrm-timeout 20
 
+	;;-------- QWERTY --------;;
+	qwerty-left (
+		q w e r t
+		        g
+		z x c v b
+	)
+	qwerty-right (
+		 y u i o p
+		 h
+		 n m , . /
+	)
+)
+
+(deffakekeys
+	to-qwerty-hrm (layer-switch qwerty-hrm)
+)
+
+(defalias
+	;; CapWord
+	cw (caps-word 2000)
+	;; Temporarly Disable Home Row Mods, and re-activate it when idle
+	tap (multi (layer-switch qwerty-nomods) (on-idle-fakekey to-qwerty-hrm tap $hrm-timeout))
+	;; Home Row Mods
+	a (tap-hold-release-keys $tt $ht (multi a @tap) lalt $qwerty-left)
+	s (tap-hold-release-keys $tt $ht (multi s @tap) lsft $qwerty-left)
+	d (tap-hold-release-keys $tt $ht (multi d @tap) lctl $qwerty-left)
+	f (tap-hold-release-keys $tt $ht (multi f @tap) lmet $qwerty-left)
+	j (tap-hold-release-keys $tt $ht (multi j @tap) rmet $qwerty-right)
+	k (tap-hold-release-keys $tt $ht (multi k @tap) rctl $qwerty-right)
+	l (tap-hold-release-keys $tt $ht (multi l @tap) rsft $qwerty-right)
+	; (tap-hold-release-keys $tt $ht (multi ; @tap) ralt $qwerty-right)
 )
 
 (defsrc
-  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
-  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
-  caps a    s    d    f    g    h    j    k    l    ;    '    ret
-  lsft z    x    c    v    b    n    m    ,    .    /    rsft
-  lctl lmet lalt           spc            ralt rmet rctl
+	esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+	grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+	tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+	caps a    s    d    f    g    h    j    k    l    ;    '    ret
+	lsft z    x    c    v    b    n    m    ,    .    /    rsft
+	lctl lmet lalt           spc            ralt rmet rctl
 )
 
-(deflayer qwerty
-  @cw  lrld f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
-  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
-  esc  a    s    d    f    g    h    j    k    l    ;    '    ret
-  lsft z    x    c    v    b    n    m    ,    .    /    rsft
-  lctl lalt lmet           spc            rctl ralt rmet
+(deflayer qwerty-hrm
+	;;                                                          Live Re-load
+	@cw  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  lrld
+	grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+	tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+	esc  @a   @s   @d   @f   g    h    @j   @k   @l   @;   '    ret
+	lsft z    x    c    v    b    n    m    ,    .    /    rsft
+	lctl lalt lmet           spc            rctl ralt rmet
+)
+
+(deflayer qwerty-nomods
+	;;                                                          Live Re-load
+	@cw  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  lrld
+	grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+	tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+	esc  a    s    d    f    g    h    j    k    l    ;    '    ret
+	lsft z    x    c    v    b    n    m    ,    .    /    rsft
+	lctl lalt lmet           spc            rctl ralt rmet
 )
 
