@@ -11,4 +11,4 @@ export QT_SCALE_FACTOR=1.4		# Scales fonts.
 
 #---- Applications -------------------------------------------------------------
 #-------- i3 -----------------------------------------------
-export I3_STATUS_CMD=i3status
+export SWAY_I3_STATUS_CMD=i3status

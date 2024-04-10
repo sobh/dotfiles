@@ -1,0 +1,4 @@
+# vim: filetype=swayconfig : foldmethod=marker
+# Description:  Host specific configuration for 'sway'
+
+set $font 'systemui Light 16'
