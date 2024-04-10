@@ -1,0 +1,5 @@
+# vim: filetype=swayconfig : foldmethod=marker
+# Description:  Host specific configuration for 'i3'
+
+# Set font
+font pango: systemui Light 16

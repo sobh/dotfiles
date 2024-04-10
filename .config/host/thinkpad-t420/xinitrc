@@ -15,4 +15,8 @@ if [ $(uname -s) = OpenBSD ]; then
 	xinput set-prop "/dev/wsmouse" "WS Pointer Wheel Emulation" 1
 	xinput set-prop "/dev/wsmouse" "WS Pointer Wheel Emulation Button" 2
 	xinput set-prop "/dev/wsmouse" "WS Pointer Wheel Emulation Axes" 6 7 4 5
+
+	export SWAY_I3_STATUS_CMD="i3status"
+else
+	export SWAY_I3_STATUS_CMD="i3blocks -c $XDG_CONFIG_HOME/formfactor/laptop/i3blocks"
 fi
