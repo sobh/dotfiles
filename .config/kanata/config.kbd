@@ -1,18 +1,12 @@
-#| vim: filetype=lisp : tabstop=8
-This minimal config changes Caps Lock to act as Caps Lock on quick tap, but
-if held, it will act as Left Ctrl. It also changes the backtick/grave key to
-act as backtick/grave on quick tap, but change ijkl keys to arrow keys on hold.
-
-|#
-
+;; vim: filetype=lisp : tabstop=8
 
 #|
+ | One defcfg entry may be added, which is used for configuration key-pairs.
+ | These configurations change kanata's behaviour at a more global level than
+ | the other configuration entries.
+ |#
 
-One defcfg entry may be added, which is used for configuration key-pairs. These
-configurations change kanata's behaviour at a more global level than the other
-configuration entries.
-|#
-
+;;---- defcfg ------------------------------------------------------------------
 (defcfg
   #|
   This configuration will process all keys pressed inside of kanata, even if
@@ -23,6 +17,16 @@ configuration entries.
   file while unmapping lctl and ralt from defsrc.
   |#
   process-unmapped-keys yes
+)
+
+;;---- defsrc ------------------------------------------------------------------
+(defsrc
+	esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+	grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+	tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+	caps a    s    d    f    g    h    j    k    l    ;    '    ret
+	lsft z    x    c    v    b    n    m    ,    .    /    rsft
+	lctl lmet lalt           spc            ralt rmet rctl
 )
 
 ;;---- Home Row Mods -----------------------------------------------------------
@@ -70,15 +74,6 @@ configuration entries.
 	; (tap-hold-release-keys $tt $ht (multi ; @tap) ralt $qwerty-right)
 )
 
-(defsrc
-	esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
-	grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-	tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
-	caps a    s    d    f    g    h    j    k    l    ;    '    ret
-	lsft z    x    c    v    b    n    m    ,    .    /    rsft
-	lctl lmet lalt           spc            ralt rmet rctl
-)
-
 (deflayer qwerty-hrm
 	;;                                                          Live Re-load
 	@cw  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  lrld
@@ -90,14 +85,15 @@ configuration entries.
 )
 
 (deflayer qwerty-nomods
-	;;                                                          Live Re-load
-	@cw  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  lrld
+	_    f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  _
 	grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
 	tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
-	esc  a    s    d    f    g    h    j    k    l    ;    '    ret
+	_    a    s    d    f    g    h    j    k    l    ;    '    ret
 	lsft z    x    c    v    b    n    m    ,    .    /    rsft
-	lctl lalt lmet          @spc            rctl ralt rmet
+	_    _    _            @spc             _    _    _
 )
+
+;;---- Symbol Layer ------------------------------------------------------------
 
 ;; Shifted Symbols
 (defalias
@@ -130,7 +126,7 @@ configuration entries.
 (deflayer symbols
 	;;                  |              |
 	;;   1    2    3    4    5    6    7    8    9    0    -    =
-	@cw  _    _    _    _    _    _    _    _    _    _    _    _
+	_    _    _    _    _    _    _    _    _    _    _    _    _
 	@~   @!   @@   @#   @$   @%   @^   @&   @*   @lp  @rp  @_   @+   _
 	_    _    @!   @{   @}   @%   @&   @<   @>   @+   _    _    _    @|
 	_    @dqt '    @lp  @rp  @~   \    @:   ,    @$   -    _    _
