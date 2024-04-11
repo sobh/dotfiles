@@ -110,6 +110,6 @@
     "go.toolsManagement.autoUpdate": true,
     "window.zoomLevel": 2,
     "security.workspace.trust.untrustedFiles": "newWindow",
-    "workbench.colorTheme": "GitHub Light Default",
+    "workbench.colorTheme": "Default Light+",
 
 }
