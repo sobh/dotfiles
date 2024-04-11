@@ -1,25 +1,15 @@
 #!/bin/sh
 #
-# Description: This script shows, and control the volume of ALSA default card.
-#
-# Note: For this script to work properly, the default card must be set
-# correctly. Assuming we have 2 cards with index 0 and 1 respectively and wish
-# to simply change the default card to index 1, would lead to the following
-# configuration in `/etc/asound.conf` or the user-specific `~/.asoundrc` to
-# change both the playback and the mixer control card.
-#
-# ```~/.asoundrc
-#   defaults.pcm.card 1
-#   defaults.ctl.card 1
-# ```
+# Description: This script shows, and control the system volume using the
+#              $HOME/bin/volume script
 #
 
 # Set Volume based on mouse command
 case $BLOCK_BUTTON in
-	1) $TERMINAL -e "alsamixer;" ;;
-	3) amixer -q set Master toggle ;;
-	4) amixer -q set Master 5%+ ;;
-	5) amixer -q set Master 5%- ;;
+	1) $TERMINAL "alsamixer;" ;;
+	3) volume toggle;;
+	4) volume inc;;
+	5) volume dec;;
 esac
 
 # Set icon set based on style.
@@ -39,10 +29,9 @@ case $UI_ICON in
 esac
 
 # Check if sound is muted
-mute="$(amixer get Master | tail -1 | awk '{print $6}' | sed 's/[^a-z]*//g')"
-[ $mute = "off" ] && echo $VOL_MUTE_ICON && exit
+[ $(volume status) = "off" ] && echo $VOL_MUTE_ICON && exit
 
-volume="$(amixer get Master | awk -F"[][%]" '/Left:/ { print $2 }')"
+volume="$(volume get)"
 
 # Set Proper icon
 if [ $volume -lt 30 ]; then
@@ -54,3 +43,4 @@ else
 fi
 
 echo "$icon  $volume%"
+
