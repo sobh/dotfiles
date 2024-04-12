@@ -66,6 +66,7 @@ interval=60
 
 [sb-volume]
 interval=once
+signal=2
 
 [sb-brightness]
 interval=once
