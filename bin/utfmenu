@@ -13,7 +13,7 @@ get_icon ()
 	for fname in $(ls ~/.local/share/glyphs/*); do
 		base=$(basename $fname)
 		sed -e "s/\s/\t:$base:\t/" $fname
-	done | menu -i | sed -e "s/\s.*//"
+	done | menu -i -l 20 | sed -e "s/\s.*//"
 }
 
 choice=$(get_icon)
