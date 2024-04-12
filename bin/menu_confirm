@@ -1,0 +1,35 @@
+#!/bin/sh
+# Description:	X11/Wayland menu confirm.
+
+# Gives a menu prompt labeled with $1 to confirm execution of command $2.
+# For example:
+# menu_prompt "Do you want to shutdown?" "shutdown -h now"
+PROMPT=$1
+ACTION=$2
+shift 2
+
+# If the $MENU wasn't set by the envoker, get it youself.
+export MENU=${MENU:-$(get_menu_name)}
+
+OPTIONS="-i"
+case "$MENU" in
+	tmenu)  ;;
+	bemenu) OPTIONS="$OPTIONS --tb=#FF0000 --tf=#FFFFFF"
+		;;
+	dmenu)
+		OPTIONS="$OPTIONS -nb darkred -sb red -sf white -nf gray"
+		;;
+	# wmenu|dmenu|dmenu-wl|bemenu)
+	'')
+		echo "Error: No menu command was found." >&2
+		exit 1
+		;;
+	*)
+		echo "Error: The '$MENU' menu command is not supported." >&2
+		exit 1
+		;;
+esac
+
+answer=$(printf "No\\nYes\\n" | menu_prompt "$PROMPT" $OPTIONS)
+[ "$answer" = "Yes" ] && $ACTION
+
