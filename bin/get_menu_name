@@ -1,0 +1,16 @@
+#!/bin/sh
+#
+# Description:	Prints the name of the most reasonable X11/Wayland menu
+#
+
+if [ "$XDG_SESSION_TYPE" = "wayland" ] ; then
+	menus="bemenu wmenu dmenu-wl tmenu"
+else
+	menus="dmenu rlaunch bemenu tmenu"
+fi
+
+for menu in "$MENU" $menus; do
+	command -v "$menu" > /dev/null 2>&1 && break
+done
+echo $menu
+

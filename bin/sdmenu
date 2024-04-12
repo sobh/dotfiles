@@ -1,4 +1,0 @@
-#!/bin/sh
-DMENU_FONT_SIZE=$(($UI_FONT_SIZE/2))
-FONT="$UI_FONT_FAMILY:weight=$UI_FONT_WEIGHT:size=$DMENU_FONT_SIZE"
-dmenu -fn "$FONT" "$@"

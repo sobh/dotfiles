@@ -1,32 +1,23 @@
 #!/bin/sh
-#
-# Description:  Terminal base menu.
-#
-# Credit:        Simon Ser <contact@emersion.fr>
+# Description:	Start a X11/Wayland menu with proper font.
 #
 
-in_pipe="$XDG_RUNTIME_DIR/menu-in.$$.pipe"
-out_pipe="$XDG_RUNTIME_DIR/menu-out.$$.pipe"
+# If the $MENU wasn't set by the envoker, get it youself.
+: ${MENU:=$(get_menu_name)}
 
-# mkfifo "$in_pipe" "$out_pipe"
-mkfifo  "$out_pipe"
-cat > "$in_pipe"
-trap "rm -f $in_pipe $out_pipe" EXIT
-
-app_id=menu
-chooser="fzf $@ <$in_pipe >$out_pipe"
-
-case "$TERMINAL" in
-	alacritty)
-		alacritty --class "$app_id" --command sh -c "$chooser" &
-		;;
-	foot)
-		foot --app-id "$app_id" -- sh -c "$chooser" &
+case "$MENU" in
+	tmenu)  $MENU --reverse             "$@" ;;
+	wmenu)  $MENU -l 20   -f "$UI_FONT" "$@" ;;
+	dmenu|dmenu-wl)
+		$MENU -l 20  -fn "$UI_FONT" "$@" ;;
+	bemenu) $MENU -l 20 --fn "$UI_FONT" "$@" ;;
+	'')
+		echo "Error: No menu command was found." >&2
+		exit 1
 		;;
 	*)
-		notify-send "menu: unsupported terminal: $TERMINAL"
+		echo "Error: The '$MENU' menu command is not supported." >&2
 		exit 1
-esac
+		;;
+esac < /dev/stdin
 
-# cat >"$in_pipe"
-cat <"$out_pipe"
