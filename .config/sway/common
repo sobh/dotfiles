@@ -238,5 +238,15 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 #---- Resizing }}}
 
+#-------- Multimedia -----------------------------------{{{
+# Volume Control
+bindsym XF86AudioRaiseVolume exec volume inc && pkill -RTMIN+2 i3blocks
+bindsym XF86AudioLowerVolume exec volume dec && pkill -RTMIN+2 i3blocks
+bindsym XF86AudioMute exec volume toggle && pkill -RTMIN+2 i3blocks
+
+# Calculator
+bindsym XF86Calculator exec "pkill galculator || galculator"
+#---- Multimedia }}}
+
 #---- Bindings }}}
 
