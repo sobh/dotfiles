@@ -5,15 +5,15 @@
 # Description: The famous "get a menu of emojis to copy" script.
 #
 
-# Get user selection via dmenu from emoji file.
+# Get user selection via menu from emoji file.
 get_icon ()
 {
 	# Go through each file, and append the file name after the glyph, then
-	# pass it to dmenu
+	# pass it to menu
 	for fname in $(ls ~/.local/share/glyphs/*); do
 		base=$(basename $fname)
 		sed -e "s/\s/\t:$base:\t/" $fname
-	done | dmenu -i -l 30 | sed -e "s/\s.*//"
+	done | menu -i | sed -e "s/\s.*//"
 }
 
 choice=$(get_icon)
