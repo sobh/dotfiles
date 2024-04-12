@@ -1,3 +1,0 @@
-#!/bin/sh
-FONT="$UI_FONT_FAMILY $UI_FONT_WEIGHT $UI_FONT_SIZE"
-/bin/bemenu --fn "$FONT" "$@"
