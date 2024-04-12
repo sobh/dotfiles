@@ -6,11 +6,14 @@
 : ${MENU:=$(get_menu_name)}
 
 case "$MENU" in
-	tmenu)  $MENU --reverse             "$@" ;;
-	wmenu)  $MENU -l 20   -f "$UI_FONT" "$@" ;;
+	tmenu)
+		# Remove the list option.
+		$MENU --reverse "$(sed 's/-l\s*[0-9]\+//' <<< "$@")"
+		;;
+	wmenu)  $MENU    -f "$UI_FONT" "$@" ;;
 	dmenu|dmenu-wl)
-		$MENU -l 20  -fn "$UI_FONT" "$@" ;;
-	bemenu) $MENU -l 20 --fn "$UI_FONT" "$@" ;;
+		$MENU   -fn "$UI_FONT" "$@" ;;
+	bemenu) $MENU  --fn "$UI_FONT" "$@" ;;
 	'')
 		echo "Error: No menu command was found." >&2
 		exit 1
@@ -19,5 +22,5 @@ case "$MENU" in
 		echo "Error: The '$MENU' menu command is not supported." >&2
 		exit 1
 		;;
-esac < /dev/stdin
+esac
 
