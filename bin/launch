@@ -1,2 +1,2 @@
 #!/bin/sh
-dmenu_path | menu | ${SHELL:-"/bin/sh"} &
+path_exec | menu | ${SHELL:-"/bin/sh"} &
