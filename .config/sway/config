@@ -49,9 +49,6 @@ bindsym $mod+Shift+x exec "swaylock"
 #---- Application Configurations --------------------------------------------{{{
 #---- Assign Application to Workspace ----------------------
 
-# Terminals
-assign [app_id="foot"]      $ws2
-
 # Text Editor
 assign [class="code-oss"]   $ws3
 
