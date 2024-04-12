@@ -40,7 +40,7 @@ output * bg #444444 solid_color
 bindsym $mod+d exec path_exec | menu | xargs swaymsg exec
 
 # Exit sway (logs you out of your Wayland session)
-bindsym $mod+Shift+e exec "menu_prompt 'Exit sway?' 'swaymsg exit'"
+bindsym $mod+Shift+e exec "menu_confirm 'Exit sway?' 'swaymsg exit'"
 # Lock Screen
 bindsym $mod+Shift+x exec "swaylock"
 
@@ -56,8 +56,8 @@ assign [class="code-oss"]   $ws3
 assign [app_id="chromium"]  $ws1
 
 #---- Application Modes and Borders ------------------------
-for_window [app_id="^launcher$"]    floating enable, sticky enable, resize set 30 ppt 60 ppt, border pixel 10
-for_window [app_id="^menu$"]        floating enable, sticky enable, resize set 30 ppt 60 ppt, border pixel 10
+for_window [app_id="^launcher$"]    floating enable, sticky enable, resize set 60 ppt 60 ppt, border pixel 10
+for_window [app_id="^menu$"]        floating enable, sticky enable, resize set 60 ppt 60 ppt, border pixel 10
 
 # for_window [title="Open.*"]		floating enable, resize set 70ppt 70ppt
 for_window [title="Warning"]	    floating enable

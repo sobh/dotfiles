@@ -47,14 +47,14 @@ for_window [class="Chromium"]	    border none
 bindsym Mod1+Shift+Tab exec toggle_keyboard_layout && pkill -SIGRTMIN+1 i3blocks;
 
 # start (a program launcher)
-bindsym $mod+d exec --no-startup-id sdmenu_run
+bindsym $mod+d exec --no-startup-id dmenu_run
 
 
 # Reload confiugration file
 bindsym $mod+Shift+c restart
 
 # Exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "menu_prompt 'Exit i3?' 'i3-msg exit'"
+bindsym $mod+Shift+e exec "menu_confirm 'Exit i3?' 'i3-msg exit'"
 # Lock Screen
 bindsym $mod+Shift+x exec "i3lock"
 
