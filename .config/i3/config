@@ -16,30 +16,6 @@ include "$XDG_CONFIG_HOME/i3/hosts/$HOST"
 include "$XDG_CONFIG_HOME/i3/common"
 #---- Include }}}
 
-#---- Application Configurations --------------------------------------------{{{
-#---- Assign Application to Workspace ----------------------
-
-# Terminals
-# assign [instance="xterm"]	$ws2
-# assign [instance="st"]	$ws2
-
-# Text Editor
-assign [class="code-oss"]	$ws3
-
-# Web Browsers
-assign [window_role="^browser$"] $ws1
-
-#---- Application Modes and Borders ------------------------
-for_window [class="Galculator"]	    floating enable
-for_window [class="Bluetooth"]	    floating enable
-for_window [title="Open Folder"]    floating enable
-for_window [title="Open Font"]	    floating enable
-for_window [title="Warning"]	    floating enable
-for_window [title="FontForge"]	    floating enable
-for_window [class="Chromium"]	    border none
-
-# }}}
-
 #---- Bindings --------------------------------------------------------------{{{
 #-------- General Bindings ------------------------------{{{
 
