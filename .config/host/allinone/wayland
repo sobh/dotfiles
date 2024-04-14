@@ -13,5 +13,5 @@ export QT_SCALE_FACTOR=1.4		# Scales fonts.
 #export QT_SCREEN_SCALE_FACTORS=2	# Does not scale fonts.
 
 #---- Applications -------------------------------------------------------------
-#-------- i3 -----------------------------------------------
-export SWAY_STATUS_CMD="i3blocks -c $XDG_CONFIG_HOME/host/$HOSTNAME/i3blocks"
+#-------- sway - i3 --------------------
+export SWAY_I3_STATUS_CMD="i3blocks -c $XDG_CONFIG_HOME/formfactor/desktop/i3blocks"
