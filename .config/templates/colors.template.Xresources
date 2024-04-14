@@ -1,0 +1,38 @@
+! vim: ft=xdefaults
+! Description:	Generated Color Scheme
+!
+
+! black
+#define term_color00	#$normal_black
+#define term_color08	#$bright_black
+! red
+#define term_color01	#$normal_red
+#define term_color09	#$bright_red
+! green
+#define term_color02	#$normal_green
+#define term_color10	#$bright_green
+! yellow
+#define term_color03	#$normal_yellow
+#define term_color11	#$bright_yellow
+! blue
+#define term_color04	#$normal_blue
+#define term_color12	#$bright_blue
+! magenta
+#define term_color05	#$normal_magenta
+#define term_color13	#$bright_magenta
+! cyan
+#define term_color06	#$normal_cyan
+#define term_color14	#$bright_cyan
+! white
+#define term_color07	#$normal_white
+#define term_color15	#$bright_white
+
+! Accent Color
+#define accent_color	term_color04
+
+! special
+#define	term_opacity		0.98
+#define term_foreground		#$foreground
+#define term_background		#$background
+#define term_cursorcolor	#$foreground
+
