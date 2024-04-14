@@ -63,7 +63,7 @@ else
 	# Note: the $RESET resets all colors, text effects.
 	FG_DEFAULT="$ESC[39m"		; BG_DEFAULT="$ESC[49m"
 
-	# Dim Colors
+	# Normal Colors
 	FG_NOR_BLACK="$ESC[30m"		; BG_NOR_BLACK="$ESC[40m"
 	FG_NOR_RED="$ESC[31m"		; BG_NOR_RED="$ESC[41m"
 	FG_NOR_GREEN="$ESC[32m" 	; BG_NOR_GREEN="$ESC[42m"
