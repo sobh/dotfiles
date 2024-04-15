@@ -1,0 +1,27 @@
+#!/bin/sh
+#
+# Description:	Start a X11/Wayland menu with proper prompt flag.
+#
+
+# If the $MENU wasn't set by the envoker, get it youself.
+export MENU=${MENU:-$(get_menu_name)}
+PROMPT="$1"
+shift
+
+case "$MENU" in
+	tmenu)
+		menu --prompt "'$PROMPT'" "$@"
+		;;
+	dmenu|dmenu-wl|wmenu|bemenu)
+		menu -p "$PROMPT" "$@"
+		;;
+	'')
+		echo "Error: No menu command was found." >&2
+		exit 1
+		;;
+	*)
+		echo "Error: The '$MENU' menu command is not supported." >&2
+		exit 1
+		;;
+esac
+
