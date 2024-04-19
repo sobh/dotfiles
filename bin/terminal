@@ -1,0 +1,17 @@
+#!/bin/sh
+#
+# Description:	Starts the most reasonable X11/Wayland terminal emulator.
+#
+
+cross_terms="alacritty lxterminal"
+if [ "$XDG_SESSION_TYPE" = "wayland" ] ; then
+	terminals="foot $cross_terms"
+else
+	terminals="uxterm xterm st $cross_terms"
+fi
+
+for terminal in "$MENU" $terminals; do
+	command -v "$terminal" > /dev/null 2>&1 && break
+done
+exec "$terminal" "$@"
+
