@@ -17,9 +17,9 @@ M.setup = function ()
 
 	-- Set Cursor Shape
 	o.guicursor = {
-		'n-v-c-sm:block',
-		'i-ci-ve:ver25-blinkon500-blinkoff500',
-		'r-cr-o:hor20-blinkon500-blinkoff500',
+		'n-v-c-sm:block-Cursor/lCursor',
+		'i-ci-ve:ver25-blinkon500-blinkoff500-Cursor/lCursor',
+		'r-cr-o:hor20-blinkon500-blinkoff500-Cursor/lCursor',
 	}
 	o.mouse = 'a'			-- Enable mouse mode
 
