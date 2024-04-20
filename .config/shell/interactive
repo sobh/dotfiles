@@ -57,11 +57,13 @@ alias \
 
 #-------- git --------------------------
 alias \
-	ga='git add' \
-	gc='git commit' \
-	gd='git diff' \
-	gs='git status' \
-	gss='git status --untracked-files=all'
+	ga='git add'                           \
+	gc='git commit'                        \
+	gd='git diff'                          \
+	gl='git log --oneline'                 \
+	gs='git status'                        \
+	gsu='git status --untracked-files=all' \
+
 
 #-------- pacman -----------------------
 alias \
