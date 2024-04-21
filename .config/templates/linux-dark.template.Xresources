@@ -1,0 +1,33 @@
+! vim: ft=xdefaults
+! Description:	Generated Color Scheme for the linux console
+!
+! NOTE:         The linux console does not support light background colors.
+!               For more info check the 'ECMA-48 Select Graphic Rendition', in:
+!               $ man 4 console_codes
+!
+
+! Black
+#define term_color00	#$normal_black
+#define term_color08	#$bright_black
+! Red
+#define term_color01	#$normal_red
+#define term_color09	#$bright_red
+! Green
+#define term_color02	#$normal_green
+#define term_color10	#$bright_green
+! Yellow
+#define term_color03	#$normal_yellow
+#define term_color11	#$bright_yellow
+! Blue
+#define term_color04	#$normal_blue
+#define term_color12	#$bright_blue
+! Magenta
+#define term_color05	#$normal_magenta
+#define term_color13	#$bright_magenta
+! Cyan
+#define term_color06	#$normal_cyan
+#define term_color14	#$bright_cyan
+! White
+#define term_color07	#$bright_white
+#define term_color15	#$normal_white
+
