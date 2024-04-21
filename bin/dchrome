@@ -1,4 +1,12 @@
 #!/bin/sh
 # Description: Re-start Google Chrome in Dark Mode
-killall chrome
-google-chrome-stable --force-dark-mode $*
+UNAME=$(uname -s)
+case "$UNAME" in
+	Linux) CHROME_NAME=chromium ;;
+	OpenBSD) CHROME_NAME=chrome ;;
+	*) echo default
+	;;
+esac
+
+pkill $CHROME_NAME
+$CHROME_NAME --force-dark-mode $*
