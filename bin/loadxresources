@@ -3,8 +3,15 @@
 # Description:	loads the xresources from my custom directory
 #
 
+#---- Includs ------------------------------------------------------------------
 . $HOME/lib/sh/log.sh
 
+#---- Defaut Values ------------------------------------------------------------
+XRDB_FLAGS=""
+DEFAUT_DPI=92
+DEFAUT_MODE="light"
+
+#---- Sanity Checks ------------------------------------------------------------
 # Check if Preprocessor exists.
 if ! command -v cpp >/dev/null 2>&1; then
 	log_error "Unable to find the C preprocessor. Please install 'gcc'."
@@ -16,9 +23,27 @@ if ! command -v xrdb >/dev/null 2>&1; then
 	exit 1
 fi
 
-# Check if Preprocessor exists.
+#---- Parameters Checks --------------------------------------------------------
+if [ -z "$DPI" ]; then
+	DPI="$DEFAUT_DPI"
+	log_warning "The \$DPI pararmeter was not assigned, set to default: '$DPI'"
+fi
 
+MODE="$1"
+if [ -z "$MODE" ]; then
+	MODE="$DEFAUT_MODE"
+	log_warning "The \$MODE pararmeter was not assigned, set to default: '$MODE'"
+fi
+
+if [ "$MODE" = "light" ]; then
+	XRDB_FLAGS="$XRDB_FLAGS -DMODE_LIGHT"
+else
+	XRDB_FLAGS="$XRDB_FLAGS -DMODE_DARK"
+fi
+
+#---- Sanity Checks ------------------------------------------------------------
 [ -f $HOME/.Xresources ] && xrdb \
+	$XRDB_FLAGS \
 	-DDPI="$DPI" \
 	-DUI_FONT="$UI_FONT" \
 	-DI3_STATUS_CMD="$I3_STATUS_CMD" \
