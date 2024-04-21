@@ -19,7 +19,11 @@
 
 #define font_name	monospace
 !---- Color Scheme -------------------------------------------------------------
-#include ".config/xresources/colors/sobh.Xresources"
+#ifdef MODE_LIGHT
+#include ".config/xresources/colors/open-color_light.Xresources"
+#else
+#include ".config/xresources/colors/open-color_dark.Xresources"
+#endif
 
 !---- Fonts -----------------------------------------------------------------{{{
 ! DPI must be set in .xinit
