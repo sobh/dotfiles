@@ -10,7 +10,7 @@ else
 	terminals="uxterm xterm st $cross_terms"
 fi
 
-for terminal in "$MENU" $terminals; do
+for terminal in "$TERMINAL" $terminals; do
 	command -v "$terminal" > /dev/null 2>&1 && break
 done
 exec "$terminal" "$@"
