@@ -1,0 +1,15 @@
+#!/bin/sh
+
+_log_dir="/var/run/user/$UID/dwm"
+mkdir -p "$_log_dir"
+_log_file="$_log_dir/dwm.log"
+
+wmname LG3D
+while true; do
+	xsetroot -name " $(sb-date) | $(sb-time) "
+	sleep 60
+done &
+
+while true; do
+	/usr/local/bin/dwm 1>"$_log_file" 2>&1
+done
