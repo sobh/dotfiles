@@ -2,14 +2,12 @@
 
 _log_dir="/var/run/user/$UID/dwm"
 mkdir -p "$_log_dir"
-_log_file="$_log_dir/dwm.log"
+_dwm_log_file="$_log_dir/dwm.log"
+_dwmblocks_log_file="$_log_dir/dwmblocks.log"
 
 wmname LG3D
-while true; do
-	xsetroot -name " $(sb-date) | $(sb-time) "
-	sleep 60
-done &
+exec dwmblocks 1>"$_dwmblocks_log_file" 2>&1 &
 
 while true; do
-	/usr/local/bin/dwm 1>"$_log_file" 2>&1
+	/usr/local/bin/dwm 1>"$_dwm_log_file" 2>&1
 done
