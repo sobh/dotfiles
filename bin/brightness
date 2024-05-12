@@ -10,10 +10,10 @@ OS=$(uname -s)
 case "$OS" in
 	Linux)
 		case "$cmd" in
-			""|g|get) echo $(( $(brightnessctl --exponent get) * 100 / $(brightnessctl max) )) ;;
-			s|set) brightnessctl --quiet --exponent set  $value;;
-			i|inc|increment) brightnessctl --quiet --exponent set 5%+ ;;
-			d|dec|decrement) brightnessctl --quiet --exponent set 5%- ;;
+			""|g|get) echo $(( $(brightnessctl get) * 100 / $(brightnessctl max) )) ;;
+			s|set) brightnessctl --quiet set $value;;
+			i|inc|increment) brightnessctl --quiet set 5%+ ;;
+			d|dec|decrement) brightnessctl --quiet set 5%- ;;
 			*)
 				echo "Error: Uknown command: $cmd" >&2
 				exit 1
