@@ -1,0 +1,27 @@
+#!/bin/sh
+#
+# Description: Re-start Google Chrome/Chromium with proper flags
+#
+
+UNAME=$(uname -s)
+FLAGS=""
+
+case "$UNAME" in
+	Linux) CHROME_NAME=chromium ;;
+	OpenBSD) CHROME_NAME=chrome ;;
+	*) echo default
+	;;
+esac
+
+
+if [ "$XDG_SESSION_TYPE" = 'wayland' ]; then
+	FLAGS="$FLAGS --ozone-platform=wayland --enable-features=UseOzonePlatform"
+fi
+
+GTK_MODE=$(gsettings get org.gnome.desktop.interface color-scheme | tr -d \' )
+if [ "$GTK_MODE" = 'prefer-dark' ]; then
+	FLAGS="$FLAGS --force-dark-mode"
+fi
+
+pkill $CHROME_NAME
+$CHROME_NAME  "$FLAGS" $*
