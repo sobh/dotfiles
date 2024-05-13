@@ -3,8 +3,4 @@
 # Description:  Start the preferred web browser.
 #
 
-if [ "$XDG_SESSION_TYPE" = 'wayland' ]; then
-	chromium --ozone-platform=wayland --enable-features=UseOzonePlatform
-else
-	chromium
-fi
+runchromium
