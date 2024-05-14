@@ -1,0 +1,28 @@
+#!/bin/sh
+#
+# Description:  Switch between light, and dark modes.
+
+case $BLOCK_BUTTON in
+	2) mode toggle 1>/dev/null 2>&1 ;;
+esac
+
+# Set icon set based on the style.
+case $UI_ICON in
+	emoji)
+		LIGHT_MODE_ICON=☀
+		DARK_MODE_ICON=🌘
+		;;
+	nerd | *)
+		LIGHT_MODE_ICON=
+		DARK_MODE_ICON=
+		;;
+esac
+
+# Set Proper icon
+if [ "$(mode get)" = 'light' ]; then
+	icon="$LIGHT_MODE_ICON"
+else
+	icon="$DARK_MODE_ICON"
+fi
+
+echo "$icon"
