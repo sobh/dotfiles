@@ -1,5 +1,5 @@
 import = [
-	"~/.config/alacritty/colors.toml",
+	"~/.config/alacritty/themes/caironoon_light.toml",
 	"~/.config/alacritty/keybindings.toml",
 ]
 [colors]
