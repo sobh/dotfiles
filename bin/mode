@@ -1,0 +1,115 @@
+#!/bin/sh
+#
+# Description:  System them mode control script for switching between light, and
+#               dark modes.
+#
+
+#---- Functions ----------------------------------------------------------------
+set_mode_gtk()
+{
+	MODE="$1"
+	# GTK on Wayland
+	gsettings set org.gnome.desktop.interface color-scheme "prefer-${MODE}"
+
+	# GTK3
+	_opt='gtk-application-prefer-dark-theme'
+	[ "$MODE" = 'dark' ] && _value='true' || _value='false'
+	sed -Ei "s/${_opt}.*/${_opt}=${_value}/" "$XDG_CONFIG_HOME/gtk-3.0/settings.ini"
+}
+
+set_mode_neovim()
+{
+	MODE="$1"
+	# NeoVim
+	for server in $(nvr --serverlist); do
+		nvr --servername "$server" -cc "set background=${MODE}" &
+	done
+}
+
+set_mode_alacritty()
+{
+	MODE="$1"
+	CONF_FILE="$XDG_CONFIG_HOME/alacritty/alacritty.toml"
+	CUR_THEME=$(grep -Eo '~/.*/themes/.*\.toml' "$CONF_FILE")
+	NEW_THEME=$(sed -E "s/(light|dark)/$MODE/" <<< $CUR_THEME)
+	# We use eval in order to expand the '~'
+	if [ -f "$(eval echo "$NEW_THEME")" ];then
+		sed -i "s|$CUR_THEME|$NEW_THEME|" "$CONF_FILE"
+	fi
+}
+
+set_mode()
+{
+	MODE=$1
+	echo "Setting the theme mode to '$MODE'"
+
+	set_mode_neovim "$MODE" &
+	set_mode_gtk "$MODE" &
+	set_mode_alacritty "$MODE" &
+}
+
+get_mode()
+{
+	GTK_SCHEME=$(gsettings get org.gnome.desktop.interface color-scheme | tr -d \')
+	echo ${GTK_SCHEME##prefer-}
+}
+
+usage()
+{
+	cat  << _EOF_
+Usage: $(basename "$0") <command> [<mode>]
+
+Get, Set, and Toggle the system's theme mode (switch between ligth, and dark modes).
+
+Commands
+	h | help            Prints this message
+	g | get             Prints the current mode
+	s | set <mode>      Set the mode to either 'light', or 'dark'
+	t | toggle          Toggle the current mode.
+
+The Modules' mode could be set individually, by using their names as command
+	<module> <mode>
+
+Available Modules:
+	- all
+	- alacritty
+	- gtk
+	- neovim
+
+_EOF_
+}
+
+#---- Main ---------------------------------------------------------------------
+CMD=$1
+MODE="${2}"
+
+case "$CMD" in
+	h |help)    usage ;;
+	""|g|get)   get_mode ;;
+	s|set|all)
+		case "$MODE" in
+			light|dark) set_mode $MODE ;;
+			*)
+				echo "Error: Unkown mode: '$MODE'" >&2
+				usage
+				exit 1
+				;;
+		esac
+		;;
+	alacritty)  set_mode_alacritty  $MODE ;;
+	gtk)        set_mode_gtk        $MODE ;;
+	neovim)     set_mode_neovim     $MODE ;;
+	t|tog|toggle)
+		echo "Toggling the theme mode '$(get_mode)'"
+		if [ "$(get_mode)" = 'dark' ]; then
+			set_mode light
+		else
+			set_mode dark
+		fi
+		;;
+	*)
+		echo "Error: Uknown command: $CMD" >&2
+		usage
+		exit 1
+		;;
+esac
