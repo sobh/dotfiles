@@ -23,4 +23,4 @@ case $UI_ICON in
 	emoji)	ICON=$(get_emoji_icon);;
 	nerd | *) ICON= ;;
 esac
-printf "$ICON $(date '+%l:%M')\n"
+printf "$ICON $(date '+%l:%M')"
