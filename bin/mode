@@ -44,8 +44,8 @@ set_mode()
 	echo "Setting the theme mode to '$MODE'"
 
 	set_mode_neovim "$MODE" &
-	set_mode_gtk "$MODE" &
 	set_mode_alacritty "$MODE" &
+	set_mode_gtk "$MODE"
 }
 
 get_mode()
