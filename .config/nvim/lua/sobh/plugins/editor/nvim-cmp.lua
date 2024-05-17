@@ -47,7 +47,7 @@ return {
 				['<C-f>'] = cmp.mapping.abort(),            -- Close the complete window.
 				['<CR>'] = cmp.mapping.confirm {
 					behavior = cmp.ConfirmBehavior.Replace,
-					select = true,
+					select = false,
 				},
 				['<Tab>'] = cmp.mapping(function(fallback)
 					if cmp.visible() then
