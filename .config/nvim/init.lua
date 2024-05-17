@@ -85,11 +85,10 @@ require('lazy').setup({
 }, {})
 
 ---- UI ------------------------------------------------------------------------
--- local theme = 'rose-pine'
-vim.opt.background='light'
+require('sobh').set_background()
 local theme = 'caironoon'
 if not pcall(vim.cmd.colorscheme, theme) then
-	vim.cmd('colorscheme slate')	-- Fallback to a NeoVim bundled coloscheme
+	vim.cmd.colorscheme('habamax')	-- Fallback to a NeoVim bundled coloscheme
 end
 
 ---- Load non-migrated Vim Configuration -------------------------------------------------------------------------------
