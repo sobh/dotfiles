@@ -23,5 +23,5 @@ if [ "$GTK_MODE" = 'prefer-dark' ]; then
 	FLAGS="$FLAGS --force-dark-mode"
 fi
 
-pkill $CHROME_NAME
+pkill "^$CHROME_NAME$"
 $CHROME_NAME  "$FLAGS" $*
