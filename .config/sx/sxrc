@@ -53,30 +53,32 @@ fi
 	[ -f $HOST_CONFIG_DIR/xrandr ] && $HOST_CONFIG_DIR/xrandr
 } &
 
+#---- General Settings ---------------------------------------------------------
 # Initialize the keyboard
-exec keyboard init
+exec keyboard init &
+
 # Configure Logitech Trackman Marble
 #exec $XDG_CONFIG_HOME/trackman_marble/trackman-marble_xinput.sh
+
 # Disable Beeps
 xset -b
+
 # Hide mouse cursor when idle
 exec unclutter &
 
 #---- Xresources ---------------------------------------------------------------
 loadxresources
-xsetroot -solid SlateGrey
+xsetroot -solid black
 
 #---- Startup Applications -----------------------------------------------------
 
-if [ "$WM" = "i3" ] ; then
-	exec /usr/bin/nm-applet &
-	exec /usr/bin/syncthing-gtk -m &
-fi
-
+exec nm-applet &
+exec syncthing-gtk -m &
+exec gxkb &
 # Import DISPLAY from environemtn for Xapplication services (e.g. dunst)
 #systemctl --user import-environment DISPLAY XAUTHORITY
 
 #---- Window Manager -----------------------------------------------------------
 # Set Window Manger Name to be recogonized by Java
-wmname gnome
+wmname LG3D
 exec $WM
