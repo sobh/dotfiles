@@ -3,7 +3,7 @@
 #
 
 case $BLOCK_BUTTON in
-	3) toggle_keyboard_layout ;;
+	3) keyboard toggle ;;
 esac
 
 case $UI_ICON in
@@ -20,7 +20,7 @@ case $UI_ICON in
 		;;
 esac
 
-case $(get_keyboard_layout) in
+case $(keyboard get) in
 	'us') printf "$EN_ICON\n";;
 	'ara') printf "$AR_ICON\n";;
 	*) printf "$KNOWN_ICON\n" ;;

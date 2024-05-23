@@ -20,7 +20,7 @@ include "$XDG_CONFIG_HOME/i3/common"
 #-------- General Bindings ------------------------------{{{
 
 # Toggle keyboard Layout
-bindsym Mod1+Shift+Tab exec toggle_keyboard_layout && pkill -SIGRTMIN+1 i3blocks;
+bindsym Mod1+Shift+Tab exec keyboard toggle && pkill -SIGRTMIN+1 i3blocks;
 
 # start (a program launcher)
 bindsym $mod+d exec --no-startup-id dmenu_run

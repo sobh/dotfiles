@@ -53,8 +53,8 @@ fi
 	[ -f $HOST_CONFIG_DIR/xrandr ] && $HOST_CONFIG_DIR/xrandr
 } &
 
-# Set keyboard
-exec setkeyboard &
+# Initialize the keyboard
+exec keyboard init
 # Configure Logitech Trackman Marble
 #exec $XDG_CONFIG_HOME/trackman_marble/trackman-marble_xinput.sh
 # Disable Beeps
