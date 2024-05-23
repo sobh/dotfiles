@@ -1,0 +1,76 @@
+#!/bin/sh
+#
+# Description:  Keyboard Layout Control.
+#
+
+#---- Functions ----------------------------------------------------------------
+init()
+{
+	if [ $XDG_SESSION_TYPE = "x11" ]; then
+		setxkbmap -layout us,eg -option grp:ctrls_toggle,caps:escape_shifted_capslock
+	fi
+}
+
+get_layout()
+{
+	if [ $XDG_SESSION_TYPE = "x11" ]; then
+		LAYOUT=$(setxkbmap -print -v 7 | awk '/layout/ {print $2}')
+	else	# Only use sway for wayland
+		LAYOUT=$(swaymsg -rt get_inputs |
+			$XDG_CONFIG_HOME/sway/scripts/parse_keyboard_layout.sh)
+	fi
+	printf "$LAYOUT"
+}
+
+set_layout()
+{
+	LAYOUT="$1"
+	if [ $XDG_SESSION_TYPE = "x11" ]; then
+		# Use the Qwerty Digits variant for arabic
+		[ "$LAYOUT" = "ara" ] && VARIANT="-variant qwerty_digits"
+		setxkbmap -layout "$LAYOUT" $VARIANT
+	fi
+}
+
+toggle_layout()
+{
+	case "$(get_layout)" in
+		us)     set_layout ara ;;
+		ara)    set_layout us  ;;
+		*)      set_layout us ;;
+	esac
+}
+
+usage()
+{
+	cat  << _EOF_
+Usage: $(basename "$0") <command> [<layout>]
+
+Get, Set, and Toggle the keyboard layout.
+
+Commands
+	h | help            Prints this message
+	i | init            Initializes the keyboards.
+	g | get             Prints the current keyboard layout
+	s | set <layout>    Set the keyboard layout
+	t | toggle          Toggle the current keyboard layout.
+
+_EOF_
+}
+
+#---- Main ---------------------------------------------------------------------
+CMD=$1
+LAYOUT="${2}"
+
+case "$CMD" in
+	h |help)    usage ;;
+	i |init)    init ;;
+	""|g|get)   get_layout ;;
+	s|set)      set_layout "$LAYOUT" ;;
+	t|toggle)   toggle_layout ;;
+	*)
+		echo "Error: Uknown command: $CMD" >&2
+		usage
+		exit 1
+		;;
+esac
