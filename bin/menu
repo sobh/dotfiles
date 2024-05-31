@@ -8,7 +8,8 @@
 case "$MENU" in
 	tmenu)
 		# Remove the list option.
-		$MENU --reverse "$(sed 's/-l\s*[0-9]\+//' <<< "$@")"
+		ARGS=$(echo "$*" | sed -E 's/-l[[:space:]]*[0-9]+//')
+		$MENU --reverse $ARGS
 		;;
 	wmenu)  $MENU    -f "$UI_FONT" "$@" ;;
 	dmenu|dmenu-wl)
