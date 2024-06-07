@@ -5,9 +5,19 @@
 
 #---- Parameters ---------------------------------------------------------------
 CMD=$1
-FNAME="$HOME/screenshots/screenshot_%Y-%m-%d_%H:%M:%S.png"
+DIR="$HOME/screenshots"
+FNAME="$DIR/screenshot_%Y-%m-%d_%H:%M:%S.png"
 
 #---- Functions ----------------------------------------------------------------
+msg()
+{
+	MSG=$1
+	if [ -t 0 ]; then
+		echo "$MSG" | markupescape.pl
+	else
+		notify-send --icon=emblem-photos "Screenshot" "$MSG"
+	fi
+}
 monitor_shot()
 {
 	if [ $XDG_SESSION_TYPE = "x11" ]; then
@@ -39,3 +49,4 @@ case "$CMD" in
 		exit 1
 		;;
 esac
+msg "Your screenshot has been save to <i>'$DIR'</i> directory."
