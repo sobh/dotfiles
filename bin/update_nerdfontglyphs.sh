@@ -44,6 +44,6 @@ fi
 # A typical line looks like
 # i='<GLYPH>' i_seti_salesforce=$i
 grep "^i"  "$NF_GLYPH_CACHE_FNAME" |
-	sed -E "s/.*'(.+)'.*i_([^_]*)_(.*)=.*/\1 :nerd:\2: \3/" |
+	sed -E "s/.*'(.+)'.*i_([^_]*)_(.*)=.*/\1 :\2: \3/" |
 	tr '_' ' '| tee $NF_GLYPH_DATA_FNAME
 
