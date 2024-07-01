@@ -111,5 +111,10 @@
     "window.zoomLevel": 2,
     "security.workspace.trust.untrustedFiles": "newWindow",
     "workbench.colorTheme": "Default Light+",
+    "extensions.experimental.affinity": {
+        "asvetliakov.vscode-neovim": 1
+    },
+    "redhat.telemetry.enabled": false,
+    "python.analysis.completeFunctionParens": true,
 
 }
