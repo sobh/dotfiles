@@ -29,6 +29,7 @@ return {
 			local is_defined_hl = (next(vim.api.nvim_get_hl(0, {name=highlight[1]})) == nil)
 			if is_defined_hl then
 				vim.api.nvim_set_hl(0, "RainbowRed",    { fg = "#E06C75" })
+				vim.api.nvim_set_hl(0, "RainbowRed",    { fg = "#E06C75" })
 				vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#E5C07B" })
 				vim.api.nvim_set_hl(0, "RainbowBlue",   { fg = "#61AFEF" })
 				vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#D19A66" })
