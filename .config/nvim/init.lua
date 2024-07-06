@@ -64,6 +64,8 @@ require('lazy').setup({
 	{ 'numToStr/Comment.nvim', opts = {} },           -- Comments (overides 'gc', and 'gb')
 	require 'sobh.plugins.editor.nvim-cmp',           -- NeoVim Complete
 
+	-- Coding
+	require("sobh.plugins.code.formatter"), -- Code Formatter
 	-- Syntax
 	require 'sobh.plugins.syntax.treesitter',         -- Treesitter
 	require 'sobh.plugins.syntax.lspconfig',          -- LSP Config

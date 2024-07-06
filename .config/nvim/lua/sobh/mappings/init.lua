@@ -44,7 +44,7 @@ M.setup = function ()
 		n = {
 			['<leader>'] = {
 				c = {
-					name='Configuration',
+					name='Configuration / Code',
 					d = { function() vim.cmd.cd(vim.fn.stdpath('config')) end, '[C]onfiguration [D]irectory' },
 					e = { '<cmd> vsplit $MYVIMRC <cr>', '[C]onfiguration [E]dit' },
 				},
