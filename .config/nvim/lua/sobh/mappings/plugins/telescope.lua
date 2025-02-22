@@ -4,7 +4,7 @@ local telescope = require("telescope.builtin")
 return {
 	n = {
 		["<leader>"] = {
-			[" "] = { telescope.buffers, "[ ] Find existing Buffer" },
+			[" "] = { telescope.buffers, desc = "[ ] Find existing Buffer" },
 			["/"] = {
 				function()
 					-- You can pass additional configuration to telescope to change theme, layout, etc.
@@ -13,23 +13,23 @@ return {
 						previewer = false,
 					}))
 				end,
-				"[/] Fuzzily search in current buffer",
+				desc = "[/] Fuzzily search in current buffer",
 			},
 			f = {
-				name = "Fuzzy/File Finder",
-				-- b  = { builtin.buffers,     '[F]ind [B]uffer' },
-				d = { telescope.diagnostics, "[F]ind [D]ignostics" },
-				f = { telescope.find_files,  "[F]ind [F]iles" },
-				g = { telescope.git_files,   "[F]ind [G]it Files" },
-				h = { telescope.help_tags,   "[F]ind [H]elp" },
-				r = { telescope.oldfiles,    "[F]ind [R]ecently Opened Files" },
-				s = { telescope.live_grep,   "[F]ind [S]tring in Files" },
-				w = { telescope.grep_string, "[F]ind [W]ord under cursor in Files" },
+				group = "Fuzzy/File Finder",
+				-- b = { telescope.buffers,     "[F]ind [B]uffer" },
+				d = { telescope.diagnostics, desc = "[F]ind [D]ignostics" },
+				f = { telescope.find_files,  desc = "[F]ind [F]iles" },
+				g = { telescope.git_files,   desc = "[F]ind [G]it Files" },
+				h = { telescope.help_tags,   desc = "[F]ind [H]elp" },
+				r = { telescope.oldfiles,    desc = "[F]ind [R]ecently Opened Files" },
+				s = { telescope.live_grep,   desc = "[F]ind [S]tring in Files" },
+				w = { telescope.grep_string, desc = "[F]ind [W]ord under cursor in Files" },
 			},
 			g = {
-				name = "Git",
-				c = { telescope.git_commits, "Commits" },
-				a = { telescope.git_status,  "Status" },
+				group = "Git",
+				c = { telescope.git_commits, desc = "Commits" },
+				a = { telescope.git_status,  desc = "Status" },
 			},
 		},
 	},

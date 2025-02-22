@@ -4,7 +4,7 @@ return {
 	n = {
 		["<leader>"] = {
 			c = {
-				f = { conform.format,  "[C]ode [F]ormat" },
+				f = { conform.format,  desc = "[C]ode [F]ormat" },
 			},
 		},
 	},
