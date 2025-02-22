@@ -4,9 +4,9 @@ return {
 		['<leader>'] =
 		{
 		o = {
-			name = 'Outline',
-			t = { "<cmd>Outline<cr>", "Toggle Outline" },
-			f = { "<cmd>OutlineFocus<cr>", "Focus Outline" },
+			group = 'Outline',
+			t = { "<cmd>Outline<cr>",      desc = "Toggle Outline" },
+			f = { "<cmd>OutlineFocus<cr>", desc = "Focus Outline" },
 		},
 	}
 	}

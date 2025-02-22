@@ -11,6 +11,70 @@ M.home_row_nav = M.hrn
 
 ---- Functions ---------------------------------------------------------------------------------------------------------
 
+local tbl_extend =function (dest, src)
+	local ret = vim.deepcopy(dest)
+	for k,v in pairs(src) do
+		if type(k) == "number" then
+			table.insert(ret, v)
+		else
+			ret[k] = v
+		end
+	end
+	return ret
+end
+local function parse_map(map)
+	local opts = {}
+	local sub_maps = vim.deepcopy(map)
+	local opt_keys = { 'desc', 'group', 'mode', 'cond', 'hidden', 'icon', 'proxy' }
+	-- Extract Options from Sub-maps
+	for _, o in ipairs(opt_keys) do
+		opts[o] = map[o]
+		sub_maps[o] = nil
+	end
+	-- Extract RHS
+	local rhs = sub_maps[1]
+	sub_maps[1] = nil
+
+	if next(sub_maps) == nil then
+		sub_maps = nil
+	end
+	return rhs, sub_maps, opts
+end
+
+
+local function transform_keymap_to_wkspec(keymap, prefix)
+	local ret = {}
+	prefix = prefix or ""
+	for lhs, value in pairs(keymap) do
+		lhs = prefix .. lhs
+		if type(value) ~= "table" then
+			vim.print("LHS = "..lhs)
+			vim.print(value)
+		end
+		local rhs, sub_maps, opts = parse_map(value)
+		local map = { lhs, rhs }
+		if opts ~= nil then
+			map = vim.tbl_extend('error', map, opts)
+		end
+		if sub_maps ~= nil then
+			local parsed_submap = transform_keymap_to_wkspec(sub_maps, lhs)
+			map = tbl_extend(map, parsed_submap)
+		end
+		table.insert(ret, map)
+	end
+	return ret
+end
+
+local function transform_modemap_to_wkspec(mode_map)
+	local wkspec = {}
+	for mode, map_tree in pairs(mode_map) do
+		local flat_map = transform_keymap_to_wkspec(map_tree)
+		flat_map.mode = mode
+		table.insert(wkspec, flat_map)
+	end
+	return wkspec
+end
+
 M.set = function(mkeymap, opts)
 	for mode, keymap in pairs(mkeymap) do
 		if type(opts) == 'table'  then
@@ -18,20 +82,24 @@ M.set = function(mkeymap, opts)
 		else
 			opts = { mode=mode }
 		end
-		wk.register(keymap, opts)
+		wk.register(vim.deepcopy(keymap), opts)
 	end
 end
 
 -- Loads Package Mappings
 M.load = function(name, opts)
+	opts = opts or {}
 	local keys
 	if type(name) == 'string' then
 		keys = require('sobh.mappings.plugins.'..name)
 	elseif type(name) == 'table' then
 		keys = name
 	end
+	local wkmap = transform_modemap_to_wkspec(keys)
+	wkmap = vim.tbl_extend('error', wkmap, opts)
+	wk.add(wkmap)
 
-	M.set(keys, opts)
+	-- M.set(keys, opts)
 end
 
 -- Setup Our Keymaps
@@ -44,23 +112,25 @@ M.setup = function ()
 		n = {
 			['<leader>'] = {
 				c = {
-					name='Configuration / Code',
-					d = { function() vim.cmd.cd(vim.fn.stdpath('config')) end, '[C]onfiguration [D]irectory' },
-					e = { '<cmd> vsplit $MYVIMRC <cr>', '[C]onfiguration [E]dit' },
+					group='Configuration / Code',
+					d = { function() vim.cmd.cd(vim.fn.stdpath('config')) end, desc='[C]onfiguration [D]irectory' },
+					e = { '<cmd> vsplit $MYVIMRC <cr>', desc='[C]onfiguration [E]dit' },
 				},
 				g = {
-					name = "Git",
+					group = "Git",
 				},
 				p = {
-					name='Project Navigation  ',
-					v = { vim.cmd.Ex, '[P]roject [V]iew' },
+					group='Project Navigation  ',
+					v = { vim.cmd.Ex, desc='[P]roject [V]iew' },
 				},
-				s = {  [[:%s/\<<C-r><C-w>\>/]] , 'Substitute Word Under Cursor' },
+				s = {  [[:%s/\<<C-r><C-w>\>/]] , desc='Substitute Word Under Cursor' },
 			},
-			[']'] = { name='Various Motions' }
+			[']'] = { group='Various Motions' },
+			['g'] = { group='Go To' },
 		}
 	}
-	M.load(mappings)
+	-- M.load(mappings)
+	wk.add(transform_modemap_to_wkspec(mappings))
 
 	map({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 	-- Save, and Run Script
