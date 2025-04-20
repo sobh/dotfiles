@@ -33,17 +33,17 @@ return {
 
 		local servers = {
 			clangd = {},
-			-- gopls = {},
-			-- rust_analyzer = {},
-			-- tsserver = {},
-
+			gopls = {},
 			lua_ls = {
 				Lua = {
 					workspace = { checkThirdParty = false },
 					telemetry = { enable = false },
 				},
 			},
+			phpactor = {},
 			pyright = {},
+			rust_analyzer = {},
+			ts_ls = {},
 		}
 
 		-- Configure the LSP Servers
