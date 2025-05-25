@@ -27,6 +27,11 @@ return {
 					},
 				},
 			},
+			pickers = {
+				find_files = {
+					follow = true,  -- Follow symlinks
+				},
+			},
 		})
 		-- Load Key Mappings
 		require('sobh.mappings').load('telescope')
