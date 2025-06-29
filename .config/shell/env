@@ -40,7 +40,7 @@ export PIPENV_VENV_IN_PROJECT=1
 export NAME='Mohamed Sobh'
 export EMAIL='mohamed.alhusieny@gmail.com'
 #---- Default Applications -----------------------------------------------------
-export EDITOR=nvim
+export EDITOR=helix
 export VISUAL=$EDITOR
 export BROWSER=chromium
 export PAGER='less -r'

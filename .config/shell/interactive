@@ -61,8 +61,9 @@ alias \
 alias \
 	ga='git add'                           \
 	gc='git commit'                        \
+	gco='git checkout'                     \
 	gd='git diff'                          \
-	gl='git log --oneline'                 \
+	gl='git log --oneline --color=always'  \
 	gs='git status'                        \
 	gsu='git status --untracked-files=all' \
 
