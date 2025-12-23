@@ -25,10 +25,18 @@ setopt HIST_IGNORE_ALL_DUPS	# Remove old history duplicates.
 setopt HIST_IGNORE_SPACE	# Ignore commands starting with a space.
 
 #---- Completion ---------------------------------------------------------------
+# Enable bash completion compatibility
+autoload bashcompinit && bashcompinit
 # Autoload the 'compinit' function, and call it.
 autoload -U compinit; compinit
 # Auto-expand aliases
 zstyle ':completion:*' completer _expand_alias _complete _ignored
+
+# AWS
+if command -v aws_completer >/dev/null 2>&1; then
+	AWS_COMPLETER=$(which aws_completer)
+	complete -C "$AWS_COMPLETER" aws
+fi
 
 #---- Correction ---------------------------------------------------------------
 # Disable correction
