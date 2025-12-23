@@ -23,56 +23,12 @@ export LESS_TERMCAP_us=$'\E[4;92m'   # Begin underline -> Bright Green
 export GROFF_NO_SGR=1
 #---- GPG ----------------------------------------------------------------------
 export GPG_TTY=$(tty)
-#---- Aliases ------------------------------------------------------------------
-unalias lsd 2>/dev/null
-#-------- base -------------------------
-_uname=$(uname -s)
-if [ $_uname = "Linux" ]; then
-	alias \
-		grep='grep -E --color=auto' \
-		ls='ls --group-directories-first -X --human-readable --color=auto'
-else
-	alias grep='grep -E'
-fi
-unset _uname
-
-alias \
-	cd..='cd ..' \
-	cp='cp -v' \
-	diff='diff --color=auto' \
-	idate='date --iso' \
-	idt='idate' \
-	info='info --vi-keys' \
-	ka='killall' \
-	l='ls -1' \
-	la='ls -a' \
-	ll='ls -l' \
-	lv='lznvim' \
-	mkd='mkdir -pv' \
-	mv='mv -v' \
-	qmv='qmv -f destination-only' \
-	rm='trash'
 
 #-------- Preferred Apps ---------------
 alias \
 	e='$EDITOR'
 
-#-------- git --------------------------
-alias \
-	ga='git add'                           \
-	gc='git commit'                        \
-	gco='git checkout'                     \
-	gd='git diff'                          \
-	gl='git log --oneline --color=always'  \
-	gs='git status'                        \
-	gsu='git status --untracked-files=all' \
-
-
-#-------- pacman -----------------------
-alias \
-	p='pacman' \
-	pu='sudo pacman -Syu' \
-	pq='pacman -Q' \
-	po='pacman -Qo'
-
-poc() { pacman -Qo $(which $1); } # Package Owns Command
+#---- Modules ------------------------------------------------------------------
+ssource $XDG_CONFIG_HOME/shell/mods/core.sh
+ssource $XDG_CONFIG_HOME/shell/mods/git.sh
+ssource $XDG_CONFIG_HOME/shell/mods/arch.sh
