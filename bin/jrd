@@ -1,0 +1,87 @@
+#!/bin/sh
+#
+# Author: Mohamed Sobh <mohamed.alhusieny@gmail.com>
+# License: GPL-3.0-or-later
+#
+
+# jrd - Recursively decode JSON-encoded strings in JSON input
+# Usage: jrd [file]
+#        cat file.json | jrd
+#        echo '"{\"key\":\"value\"}"' | jrd
+
+set -e
+
+# ---- Dependencies ------------------------------------------------------------
+
+# Check if jq is available
+if ! command -v jq >/dev/null 2>&1; then
+	echo "Error: jq is required but not installed." >&2
+	echo "Please install jq to use this script." >&2
+	exit 1
+fi
+
+# ---- Functions ---------------------------------------------------------------
+# Function to show usage
+show_usage() {
+	echo "Usage: $0 [file]"
+	echo "	cat file.json | $0"
+	echo "	echo '{\"key\":\"value\"}' | $0"
+	echo ""
+	echo "Recursively decodes JSON-encoded strings in JSON input."
+	echo "Handles both regular JSON and JSON-encoded string input."
+	echo "If no file is specified, reads from stdin."
+	exit 1
+}
+
+# ---- Configuration -----------------------------------------------------------
+
+# Handle command line arguments
+case "${1:-}" in
+-h | --help)
+	show_usage
+	;;
+"")
+	# Read from stdin
+	input_source="stdin"
+	;;
+*)
+	# Read from file
+	if [ ! -f "$1" ]; then
+		echo "Error: File '$1' not found." >&2
+		exit 1
+	fi
+	input_source="$1"
+	;;
+esac
+
+# ---- Main --------------------------------------------------------------------
+
+# jq filter to recursively process all string values and attempt to decode them
+# as JSON
+jq_filter='
+def try_decode:
+	if type == "string" then
+		try (fromjson) catch .
+	else
+		.
+	end;
+
+def process_value:
+	if type == "object" then
+		with_entries(.value |= process_value)
+	elif type == "array" then
+		map(process_value)
+	else
+		try_decode
+	end;
+
+# First try to decode the entire input as a JSON string, then process
+try_decode | process_value
+'
+
+# Process the JSON
+if [ "$input_source" = "stdin" ]; then
+	jq "$jq_filter"
+else
+	jq "$jq_filter" "$1"
+fi

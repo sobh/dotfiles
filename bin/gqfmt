@@ -1,0 +1,111 @@
+#!/bin/sh
+#
+# Author: Mohamed Sobh <mohamed.alhusieny@gmail.com>
+# License: GPL-3.0-or-later
+# 
+
+# Configuration
+PRETTIER_GQL="--parser graphql --use-tabs --tab-width 4"
+PRETTIER_JSON="--parser json --use-tabs --tab-width 4"
+
+# 1. Determine the Prettier command (Global vs NPX)
+if command -v prettier >/dev/null 2>&1; then
+	PRETTIER_BIN="prettier"
+else
+	PRETTIER_BIN="npx --quiet prettier"
+fi
+
+# Color detection logic
+highlight() {
+	if [ -t 1 ]; then # Only color if outputting to a terminal
+		if command -v bat >/dev/null 2>&1; then
+			bat --language "$1" --style=plain --color=always
+		elif command -v pygmentize >/dev/null 2>&1; then
+			pygmentize -l "$1"
+		else
+			cat
+		fi
+	else
+		cat
+	fi
+}
+
+show_usage() {
+	cat <<EOF
+gqfmt: The Command Line GraphQL Formatter
+
+USAGE:
+  1. From Pipe (Auto-detects JSON or Raw GraphQL):
+     echo '{ "query": "..." }' | ./gqfmt.sh
+     cat query.graphql | ./gqfmt
+
+  2. Single File (Outputs to stdout with highlighting):
+     ./gqfmt.sh my-query.graphql
+
+  3. Multiple Files (Formats in-place, overwriting files):
+     ./gqfmt.sh *.graphql *.gql
+
+FEATURES:
+  - Detects JSON vs Raw: If input is a JSON object, it extracts and formats
+    both the 'query' and 'variables' keys separately.
+  - Tab Indentation: Uses tabs with a visual width of 4.
+  - Syntax Highlighting: Automatically uses 'bat' or 'pygmentize' if available.
+  - POSIX Compliant: Runs in sh, dash, zsh, and bash.
+
+DEPENDENCIES:
+  - Prettier
+  - jq (Required for JSON/Network request parsing)
+EOF
+}
+
+process_input() {
+	input=$(cat)
+	if [ -z "$input" ]; then return; fi
+
+	case "$input" in
+	"{"*) # Handle JSON payload (e.g., from DevTools)
+		if command -v jq >/dev/null 2>&1; then
+			printf "\n\033[1;34m---------------- QUERY ----------------\033[0m\n\n"
+			echo "$input" | jq -r '.query // empty' | npx --quiet prettier $PRETTIER_GQL | highlight graphql
+
+			# Only show variables section if they exist
+			vars=$(echo "$input" | jq -r '.variables // empty')
+			if [ "$vars" != "null" ] && [ -n "$vars" ]; then
+				printf "\n\n\n\n\033[1;34m---------------- VARIABLES ----------------\033[0m\n\n"
+				echo "$vars" | $PRETTIER_BIN $PRETTIER_JSON | highlight json
+			fi
+		else
+			echo "Warning: Install 'jq' to split JSON query/variables. Formatting as raw..." >&2
+			echo "$input" | $PRETTIER_BIN $PRETTIER_GQL | highlight graphql
+		fi
+		;;
+	*) # Handle Raw GraphQL
+		echo "$input" | $PRETTIER_BIN $PRETTIER_GQL | highlight graphql
+		;;
+	esac
+}
+
+# ---- Main --------------------------------------------------------------------
+
+# 1. Prioritize Stdin (Pipes)
+if [ ! -t 0 ]; then
+	process_input
+	exit 0
+fi
+
+# 2. Handle Arguments
+if [ "$#" -eq 0 ]; then
+	show_usage
+	exit 1
+elif [ "$#" -eq 1 ]; then
+	if [ -f "$1" ]; then
+		cat "$1" | process_input
+	else
+		echo "Error: File '$1' not found." >&2
+		exit 1
+	fi
+else
+	# Multiple files: Format in-place
+	echo "Formatting $# files in-place..."
+	$PRETTIER_BIN $PRETTIER_GQL --write "$@"
+fi
