@@ -60,10 +60,11 @@ esac
 # as JSON
 jq_filter='
 def try_decode:
+	. as $line |
 	if type == "string" then
-		try (fromjson) catch .
+		try (fromjson) catch $line
 	else
-		.
+		$line
 	end;
 
 def process_value:
