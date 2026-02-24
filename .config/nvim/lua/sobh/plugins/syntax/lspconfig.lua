@@ -15,29 +15,32 @@ return {
 
 		require('neodev').setup({})
 
-		local lspconfig = require("lspconfig")
-
 		-- LSP & Completion Integration
-		-- local capabilities_lsp = vim.lsp.protocol.make_client_capabilities()
 		local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-		local on_attach = function(_, bufnr)
-			-- Load Key Mappings only to the attached buffers
-			require("sobh.mappings").load("lsp", {buffer=bufnr})
+		vim.api.nvim_create_autocmd("LspAttach", {
+			group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+			callback = function(ev)
+				local bufnr = ev.buf
+				-- Load Key Mappings only to the attached buffers
+				require("sobh.mappings").load("lsp", { buffer = bufnr })
 
-			-- Create a command `:Format` local to the LSP buffer
-			vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
-				vim.lsp.buf.format()
-			end, { desc = "Format current buffer with LSP" })
-		end
+				-- Create a command `:Format` local to the LSP buffer
+				vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
+					vim.lsp.buf.format()
+				end, { desc = "Format current buffer with LSP" })
+			end,
+		})
 
 		local servers = {
 			clangd = {},
 			gopls = {},
 			lua_ls = {
-				Lua = {
-					workspace = { checkThirdParty = false },
-					telemetry = { enable = false },
+				settings = {
+					Lua = {
+						workspace = { checkThirdParty = false },
+						telemetry = { enable = false },
+					},
 				},
 			},
 			phpactor = {},
@@ -47,11 +50,10 @@ return {
 		}
 
 		-- Configure the LSP Servers
-		for server in pairs(servers) do
-			lspconfig[server].setup({
-				capabilities = capabilities,
-				on_attach = on_attach,
-			})
+		for server, config in pairs(servers) do
+			config.capabilities = vim.tbl_deep_extend("force", capabilities, config.capabilities or {})
+			vim.lsp.config(server, config)
+			vim.lsp.enable(server)
 		end
 	end,
 }
