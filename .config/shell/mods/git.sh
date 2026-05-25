@@ -11,11 +11,11 @@ alias \
 	gsu='git status --untracked-files=all' \
 	gwl='git worktree list'                \
 	gwr='git worktree remove'              \
- 
+
 #---- Functions ----------------------------------------------------------------
 
 # Adds a new Git worktree for a specified branch.
-# 
+#
 # @param The name of the branch to add as a worktree.
 #
 # @usage wta <BRANCH_NAME>
@@ -32,4 +32,14 @@ gwa() {
 	git fetch origin "$branch" >/dev/null 2>&1
 	git worktree add "$gitroot/../$branch" "$branch"
 
+}
+
+# Display a compact, colorized git log with short hash, date, author, subject,
+# and refs.
+glt() {
+	git log                     \
+		--color=always      \
+		--decorate=short    \
+		--pretty=format:"%C(yellow)%h%Creset %Cgreen%ad%Creset %Cblue| %<(20,trunc)%an%Creset | %s%C(auto)%d%Creset" \
+		--date=format:"%Y-%m-%d %H:%M" "$@"
 }
