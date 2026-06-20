@@ -1,0 +1,56 @@
+#!/bin/sh
+#
+# Description:  Notification control wrapper for dunst and mako.
+# Usage:        notifyctl <command>
+#   Commands:
+#     close       Close the most recent notification
+#     close-all   Close all notifications
+#     history     Show last notification from history
+#     toggle      Toggle do-not-disturb mode
+#     mode        Show current mode (normal/do-not-disturb)
+#
+
+CMD="$1"
+
+# Detect running notification daemon
+if pgrep -x dunst >/dev/null 2>&1; then
+	DAEMON=dunst
+elif pgrep -x mako >/dev/null 2>&1; then
+	DAEMON=mako
+else
+	notify-send "notifyctl" "No supported notification daemon running"
+	exit 1
+fi
+
+case "$DAEMON" in
+	dunst)
+		case "$CMD" in
+			c | close )     dunstctl close ;;
+			ca |close-all ) dunstctl close-all ;;
+			h |history )   dunstctl history-pop ;;
+			t | toggle )    dunstctl set-paused toggle ;;
+			mu | mute )     dunstctl set-paused true ;;
+			n | normal )    dunstctl set-paused false ;;
+			"" | m | mode )   dunstctl is-paused | awk '{print ($0=="true")?"muted":"normal"}' ;;
+			* )
+				echo "Error: Unknown command: $CMD" >&2
+				exit 1
+				;;
+		esac
+		;;
+	mako)
+		case "$CMD" in
+			c | close )     makoctl dismiss ;;
+			ca | close-all ) makoctl dismiss --all ;;
+			h | history )   makoctl restore ;;
+			t | toggle )    makoctl mode -t do-not-disturb ;;
+			mu | mute )     makoctl mode -s do-not-disturb ;;
+			n | normal )    makoctl mode -s default ;;
+			"" | m | mode )   makoctl mode | awk '{print ($0=="default")?"normal":"muted"}' ;;
+			* )
+				echo "Error: Unknown command: $CMD" >&2
+				exit 1
+				;;
+		esac
+		;;
+esac
