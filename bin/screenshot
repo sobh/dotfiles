@@ -1,52 +1,90 @@
 #!/bin/sh
 #
 # Description:  Take a screenshot.
+# Dependencies: scrot (X11), grim + slurp (Wayland)
 #
 
-#---- Parameters ---------------------------------------------------------------
+# ==== Parameters ==============================================================
 CMD=$1
 DIR="$HOME/screenshots"
-FNAME="$DIR/screenshot_%Y-%m-%d_%H:%M:%S.png"
+FNAME="screenshot_$(date +%Y-%m-%d_%H-%M-%S).png"
 
-#---- Functions ----------------------------------------------------------------
+# ==== Functions ===============================================================
 msg()
 {
-	MSG=$1
-	if [ -t 0 ]; then
-		echo "$MSG" | markupescape.pl
-	else
-		notify-send --icon=emblem-photos "Screenshot" "$MSG"
-	fi
+	# if [ -t 0 ]; then
+	# 	echo "$1"
+	# else
+		notify-send --icon=emblem-photos "Screenshot" "$1"
+	# fi
 }
+
 monitor_shot()
 {
-	if [ $XDG_SESSION_TYPE = "x11" ]; then
-		scrot "$FNAME"
+	if [ "$XDG_SESSION_TYPE" = "x11" ]; then
+		scrot "$DIR/$FNAME"
+	else
+		grim "$DIR/$FNAME"
 	fi
 }
 
 window_shot()
 {
-	if [ $XDG_SESSION_TYPE = "x11" ]; then
-		scrot -u "$FNAME"
+	if [ "$XDG_SESSION_TYPE" = "x11" ]; then
+		scrot -u "$DIR/$FNAME"
+	else
+		grim -g "$(slurp -o)" "$DIR/$FNAME"
 	fi
 }
 
 region_shot()
 {
-	if [ $XDG_SESSION_TYPE = "x11" ]; then
-		scrot -s "$FNAME"
+	if [ "$XDG_SESSION_TYPE" = "x11" ]; then
+		scrot -s "$DIR/$FNAME"
+	else
+		grim -g "$(slurp)" "$DIR/$FNAME"
 	fi
 }
 
-#---- Main ---------------------------------------------------------------------
+# ==== Dependency Check ========================================================
+check_cmd()
+{
+	if ! command -v "$1" >/dev/null 2>&1; then
+		msg "Missing dependency: <b>$1</b>"
+		exit 1
+	fi
+}
+
+if [ "$XDG_SESSION_TYPE" = "x11" ]; then
+	check_cmd scrot
+	check_cmd xclip
+else
+	check_cmd grim
+	check_cmd slurp
+	check_cmd wl-copy
+fi
+
+# ==== Main ====================================================================
+mkdir -p "$DIR"
+
 case "$CMD" in
 	""|d|display|m|monitor) monitor_shot ;;
 	w|window)               window_shot ;;
 	r|region|s|selection)   region_shot ;;
 	*)
-		echo "Error: Uknown command: $CMD" >&2
+		echo "Error: Unknown command: $CMD" >&2
 		exit 1
 		;;
 esac
-msg "Your screenshot has been save to <i>'$DIR'</i> directory."
+
+if [ $? -eq 0 ]; then
+	# Copy to clipboard
+	if [ "$XDG_SESSION_TYPE" = "x11" ]; then
+		xclip -selection clipboard -t image/png < "$DIR/$FNAME"
+	else
+		wl-copy < "$DIR/$FNAME"
+	fi
+	msg "Screenshot saved to <i>'$DIR'</i> and copied to clipboard."
+else
+	msg "Screenshot failed or was cancelled."
+fi
