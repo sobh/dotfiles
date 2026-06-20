@@ -1,48 +1,47 @@
 #!/bin/sh
+#
+# Description: Show and control display brightness using the brightness script.
+#
+# See: ~/bin/brightness
+#
 
-# Get list of DDCCI devices
-[ -f $HOST_CONFIG_DIR/ddcci ]			\
-    && DDCCI=$(cat $HOST_CONFIG_DIR/ddcci)	\
-    || DDCCI=""
-
-bctl () {
-	if [ -z "$DDCCI" ]; then
-		brightnessctl -q s "$*"
-		return
-	fi
-
-	for device in $DDCCI; do
-		brightnessctl -q --device $device s "$*"
-	done
-}
-# Set Brightness based on mouse command
+# Set brightness based on mouse command
 case $BLOCK_BUTTON in
-	1) bctl 100% ;;
-	2) bctl 60% ;;
-	3) bctl 30% ;;
-	4) bctl 5%+;;
-	5) bctl 5%-;;
+	1) brightness set 100 ;;
+	2) brightness set 60 ;;
+	3) brightness set 30 ;;
+	4) brightness inc 5 ;;
+	5) brightness dec 5 ;;
 esac
 
-# Set icon set based on style.
+brightness=$(brightness get)
+
+# Set icon based on brightness level (7 levels)
 case $UI_ICON in
 	emoji)
-		BRIGHT_LOW_ICON=🔅
-		BRIGHT_HIGH_ICON=🔆
+		if [ $brightness -lt 50 ]; then
+			icon=🔅
+		else
+			icon=🔆
+		fi
 		;;
 	nerd | *)
-		BRIGHT_LOW_ICON=
-		BRIGHT_HIGH_ICON=
+		if [ $brightness -le 14 ]; then
+			icon=󰃚
+		elif [ $brightness -le 28 ]; then
+			icon=󰃛
+		elif [ $brightness -le 42 ]; then
+			icon=󰃜
+		elif [ $brightness -le 57 ]; then
+			icon=󰃝
+		elif [ $brightness -le 71 ]; then
+			icon=󰃞
+		elif [ $brightness -le 85 ]; then
+			icon=󰃟
+		else
+			icon=󰃠
+		fi
 		;;
 esac
-
-brightness=$(( $(brightnessctl g) * 100 / $(brightnessctl m) ))
-
-# Set Proper icon
-if [ $brightness -lt 50 ]; then
-	icon=$BRIGHT_LOW_ICON
-else
-	icon=$BRIGHT_HIGH_ICON
-fi
 
 echo "$icon  $brightness%"
