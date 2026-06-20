@@ -6,8 +6,9 @@ _dwm_log_file="$_log_dir/dwm.log"
 _dwmblocks_log_file="$_log_dir/dwmblocks.log"
 
 wmname LG3D
-exec dwmblocks 1>"$_dwmblocks_log_file" 2>&1 &
 
 while true; do
+	dwmblocks 1>"$_dwmblocks_log_file" 2>&1 &
 	/usr/local/bin/dwm 1>"$_dwm_log_file" 2>&1
+	kill %dwmblocks 2>/dev/null
 done
