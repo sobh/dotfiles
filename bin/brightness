@@ -1,29 +1,195 @@
 #!/bin/sh
 #
-# Description:  Brightness control script for Unix systems.
+# Description:  Brightness control script for all displays.
+#               Uses brightnessctl for internal, ddcutil for external.
+#
+# Usage:        brightness [-d <device>|-o <output>] <command> [value]
+#
+# Commands:
+#   g | get           Show current brightness (internal)
+#   s | set <value>   Set brightness (0-100)
+#   i | inc [value]   Increase brightness (default: 5)
+#   d | dec [value]   Decrease brightness (default: 5)
+#   l | ls            List all displays
+#   r | refresh       Re-detect external monitor
+#   h | help          Show this message
+#
+# Options:
+#   -d <device>       Target device (e.g. intel_backlight, /dev/i2c-15)
+#   -o <output>       Target output (e.g. LVDS-1, DP-1-1)
+#
+# Dependencies: brightnessctl, ddcutil, xrandr (X11) or wlr-randr (Wayland)
 #
 
-cmd=$1
-value="${2}%"
-OS=$(uname -s)
+# DDC/CI VCP code for brightness
+VCP_BRIGHTNESS=10
+# Cache file for external monitor info (bus:output:name per line)
+EXT_BUS_CACHE="/var/run/user/$UID/brightness_ext_cache"
 
-case "$OS" in
-	Linux)
-		case "$cmd" in
-			""|g|get) echo $(( $(brightnessctl get) * 100 / $(brightnessctl max) )) ;;
-			s|set) brightnessctl --quiet set $value;;
-			i|inc|increment) brightnessctl --quiet set 5%+ ;;
-			d|dec|decrement) brightnessctl --quiet set 5%- ;;
-			*)
-				echo "Error: Uknown command: $cmd" >&2
-				exit 1
-				;;
+# Get external monitor info, using cache when available
+get_ext_buses() {
+	if [ -f "$EXT_BUS_CACHE" ]; then
+		cat "$EXT_BUS_CACHE"
+	else
+		info=$(ddcutil detect 2>&1 | awk '
+			/^Display/{found=1; bus=""; output=""; name=""}
+			found && /I2C bus:/{sub(/.*i2c-/,""); bus=$0}
+			found && /DRM_connector:/{sub(/.*card[0-9]+-/,""); output=$0}
+			found && /Model:/{sub(/.*Model: +/,""); name=$0; print bus":"output":"name; found=0}
+		')
+		if [ -n "$info" ]; then
+			echo "$info" > "$EXT_BUS_CACHE"
+			echo "$info"
+		fi
+	fi
+}
+
+# Clear cache and re-detect
+refresh_cache() {
+	rm -f "$EXT_BUS_CACHE"
+	get_ext_buses >/dev/null
+	echo "Cache refreshed: $(wc -l < "$EXT_BUS_CACHE" 2>/dev/null) external display(s) detected"
+}
+
+#---- Parse Options ------------------------------------------------------------
+
+target="all"
+if [ "$1" = "-d" ]; then
+	target="$2"
+	shift 2
+elif [ "$1" = "-o" ]; then
+	output="$2"
+	shift 2
+	# Map output name to device path
+	case "$output" in
+		LVDS*|eDP*)
+			target="$(brightnessctl -l 2>/dev/null | awk -F"'" '/Device/{print $2; exit}')"
+			;;
+		DP*|HDMI*)
+			target="$(ddcutil detect 2>&1 | awk -v out="$output" \
+				'/I2C bus:/{bus=$NF} /DRM/{if(index($0,out)) print bus}')"
+			;;
+	esac
+fi
+
+cmd="$1"
+value="${2:-5}"
+
+#---- Functions ----------------------------------------------------------------
+
+# Print usage information
+usage() {
+	cat <<EOF
+Usage: $(basename "$0") [-d <device>|-o <output>] <command> [value]
+
+Commands:
+  g | get           Show current brightness (internal)
+  s | set <value>   Set brightness (0-100)
+  i | inc [value]   Increase brightness (default: 5)
+  d | dec [value]   Decrease brightness (default: 5)
+  l | ls            List all displays
+  r | refresh       Re-detect external monitor
+  h | help          Show this message
+
+Options:
+  -d <device>       Target device (e.g. intel_backlight, /dev/i2c-15)
+  -o <output>       Target output (e.g. LVDS-1, DP-1-1)
+EOF
+}
+
+# Get internal display brightness as a percentage
+get_internal() {
+	echo $(( $(brightnessctl get) * 100 / $(brightnessctl max) ))
+}
+
+# Set internal (backlight) brightness
+set_internal() {
+	case "$cmd" in
+		s|set) brightnessctl --quiet set "${value}%" ;;
+		i|inc) brightnessctl --quiet set "${value}%+" ;;
+		d|dec) brightnessctl --quiet set "${value}%-" ;;
+	esac
+}
+
+# Set external brightness via DDC/CI on the given bus
+set_ddc() {
+	bus="$1"
+	case "$cmd" in
+		s|set) ddcutil --bus "$bus" setvcp $VCP_BRIGHTNESS "$value"     ;;
+		i|inc) ddcutil --bus "$bus" setvcp $VCP_BRIGHTNESS + "$value"   ;;
+		d|dec) ddcutil --bus "$bus" setvcp $VCP_BRIGHTNESS - "$value"   ;;
+	esac >/dev/null 2>&1
+}
+
+# Set brightness on all external monitors
+set_external() {
+	get_ext_buses | while IFS=: read -r bus _output _name; do
+		set_ddc "$bus"
+	done
+}
+
+# Set brightness on a specific device
+set_display() {
+	display="$1"
+	case "$display" in
+		/dev/i2c-*)
+			set_ddc "${display#/dev/i2c-}"
+			;;
+		*)
+			case "$cmd" in
+				s|set) brightnessctl --quiet -d "$display" set "${value}%" ;;
+				i|inc) brightnessctl --quiet -d "$display" set "${value}%+" ;;
+				d|dec) brightnessctl --quiet -d "$display" set "${value}%-" ;;
+			esac
+			;;
+	esac
+}
+
+# Get connected output names (session-type aware)
+get_outputs() {
+	if [ "$XDG_SESSION_TYPE" = "x11" ]; then
+		xrandr | awk '/ connected/{print $1}'
+	else
+		wlr-randr | awk '/^[^ ]/{print $1}'
+	fi
+}
+
+# List all displays with brightness, device, output, and name
+list_displays() {
+	int_output=$(get_outputs | awk '/^(LVDS|eDP)/{print; exit}')
+
+	printf "%-12s %-10s %-16s %-10s %s\n" \
+		"TYPE" "BRIGHTNESS" "DEVICE" "OUTPUT" "NAME"
+	printf "%-12s %-10s %-16s %-10s %s\n" \
+		"internal" "$(get_internal)%" \
+		"$(brightnessctl -l 2>/dev/null | awk -F"'" '/Device/{print $2; exit}')" \
+		"$int_output" ""
+
+	get_ext_buses | while IFS=: read -r bus output name; do
+		ext_brightness=$(ddcutil --bus "$bus" getvcp $VCP_BRIGHTNESS 2>&1 \
+			| awk -F'current value = *|,' '/current value/{print $2+0}')
+		printf "%-12s %-10s %-16s %-10s %s\n" \
+			"external" "${ext_brightness}%" \
+			"/dev/i2c-$bus" "$output" "$name"
+	done
+}
+
+#---- Main ---------------------------------------------------------------------
+
+case "$cmd" in
+	""|g|get)       get_internal ;;
+	l|ls|list)      list_displays ;;
+	r|refresh)      refresh_cache ;;
+	h|help)         usage ;;
+	s|set|i|inc|d|dec)
+		case "$target" in
+			all) set_internal; set_external ;;
+			*)   set_display "$target" ;;
 		esac
 		;;
-	# OpenBSD) echo "OS is OpenBSD"
-		# ;;
 	*)
-		echo "Error: Non-supported Operating System $OS" >&2
+		echo "Error: Unknown command: $cmd" >&2
+		usage
 		exit 1
 		;;
 esac
