@@ -8,12 +8,10 @@ return {
 	"neovim/nvim-lspconfig",
 	dependencies = {
 		'hrsh7th/cmp-nvim-lsp', -- Language Server Protocol (LSP)
-		'folke/neodev.nvim',    -- Configure LSP for NeoVim init.lua, and plugin developement.
+		{ 'folke/lazydev.nvim', ft = 'lua', opts = {} }, -- Configure LSP for NeoVim Lua development
 	},
 
 	config = function()
-
-		require('neodev').setup({})
 
 		-- LSP & Completion Integration
 		local capabilities = require('cmp_nvim_lsp').default_capabilities()
@@ -34,8 +32,10 @@ return {
 
 		local servers = {
 			clangd = {},
+			eslint = {},
 			gopls = {},
 			lua_ls = {
+				root_markers = { '.luarc.json', '.luarc.jsonc', '.stylua.toml', 'stylua.toml', '.luacheckrc', '.git' },
 				settings = {
 					Lua = {
 						workspace = { checkThirdParty = false },

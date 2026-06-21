@@ -33,98 +33,77 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--------- Package Installations -------------------------------------------------
+-------- Package Installations -----------------------------------------------------------------------------------------
 --	Packages could be configured using the `config` key.
 --	Packages could be also configured after the setup call, as they
 --	will be available in your neovim runtime.
 require('lazy').setup({
 
-	-- UI
-	require 'sobh.plugins.ui.colorschemes',           -- Colorschemes
-	require 'sobh.plugins.ui.dressing',               -- dressing.nvim
-	require 'sobh.plugins.ui.indent-blankline',       -- Indent Guides
-	require 'sobh.plugins.ui.nvim-highlight-colors',  -- Highlight Color Codes
-	require 'sobh.plugins.ui.outline',                -- Code Outline Sidebar
-	-- require 'sobh.plugins.ui.neo-tree',               -- File System Explorer
-	-- require 'sobh.plugins.ui.ccc',                   -- Ok
-	-- require 'sobh.plugins.ui.colorizer',        -- Ok
-	-- require 'sobh.plugins.ui.colortils',
-	-- require 'sobh.plugins.ui.vim-css-color',
+	-- UI ------------------------------------------------------------------
+	require('sobh.plugins.ui.colorschemes'),           -- Colorschemes
+	require('sobh.plugins.ui.dressing'),               -- UI for vim.ui.input/select
+	require('sobh.plugins.ui.snacks'),                 -- UI (notifications, words, lazygit)
+	require('sobh.plugins.ui.outline'),                -- Code Outline Sidebar
+	-- require('sobh.plugins.ui.indent-rainbowline'),     -- Rainbow Indent Guides
+	-- require('sobh.plugins.ui.indent-blankline'),    -- Indent Guides (plain)
+	require('sobh.plugins.ui.blink-indent'),        -- Indent Guides (performant)
+	require('sobh.plugins.ui.nvim-highlight-colors'),   -- Highlight Color Codes
+	-- require('sobh.plugins.ui.ccc'),                 -- Color Picker
+	-- require('sobh.plugins.ui.colorizer'),           -- Colorizer
+	-- require('sobh.plugins.ui.colortils'),           -- Color Utils
+	-- File Tree Explorers
+	require('sobh.plugins.ui.neo-tree'),               -- File Explorer (sidebar)
+	-- require('sobh.plugins.ui.snacks-explorer'),     -- File Explorer (snacks)
+	-- require('sobh.plugins.ui.nvim-tree'),           -- File Explorer (nvim-tree)
 
-	-- General
-	require 'sobh.plugins.general.telescope',            -- Fuzzy Finder
-	require 'sobh.plugins.general.telescope-fzf-native', -- Fuzzy Finder (Native)
-	require 'sobh.plugins.general.which-key',            -- Keymaps Popup
-	require 'sobh.plugins.general.gitsigns',             -- Git Integration
-	require 'sobh.plugins.general.tmux',                 -- tmux Navigation
+	-- General (pick one fuzzy finder)
+	-- require('sobh.plugins.general.telescope'),            -- Fuzzy Finder (Telescope)
+	-- require('sobh.plugins.general.telescope-fzf-native'), -- Fuzzy Finder (Native)
+	require('sobh.plugins.general.fzf-lua'),           -- Fuzzy Finder (fzf-lua, faster)
+	require('sobh.plugins.general.which-key'),            -- Keymaps Popup
+	-- require('sobh.plugins.general.tmux'),             -- tmux Navigation
+
+	-- VCS
+	require('sobh.plugins.vcs.gitsigns'),              -- Git Integration
+	require('sobh.plugins.vcs.diffview'),              -- Diff & File History Viewer
+	require('sobh.plugins.vcs.fugitive'),              -- Git Blame & Commands
 
 	-- Editor
-	require 'sobh.plugins.editor.vim-stabs',          -- Tabs for Indentations, Spaces for Alignment!
-	require 'sobh.plugins.editor.vim-easy-align',     -- Text Alignment for those of us with OCD
-	{ 'numToStr/Comment.nvim', opts = {} },           -- Comments (overides 'gc', and 'gb')
-	require 'sobh.plugins.editor.nvim-cmp',           -- NeoVim Complete
+	require('sobh.plugins.editor.vim-stabs'),          -- Tabs for Indentation, Spaces for Alignment
+	require('sobh.plugins.editor.vim-easy-align'),     -- Text Alignment
+	require('sobh.plugins.editor.grug-far'),           -- Search and Replace
+	{ 'numToStr/Comment.nvim', opts = {} },            -- Comments (gc, gb)
+	{ 'echasnovski/mini.ai', opts = {} },              -- Better text objects (around/inside)
+	require('sobh.plugins.editor.nvim-cmp'),           -- Completion
 
-	-- Coding
-	require("sobh.plugins.code.formatter"), -- Code Formatter
-	-- Syntax
-	require 'sobh.plugins.syntax.treesitter',         -- Treesitter
-	require 'sobh.plugins.syntax.lspconfig',          -- LSP Config
-	-- -- Manage installation of LSP servers, DAP servers, Linters, and formatters.
-	-- require 'sobh.plugins.lsp.mason',
-	-- require 'sobh.plugins.lsp.mason-lspconfig',
+	-- AI (use one at a time)
+	require('sobh.plugins.ai.avante'),
+	-- require('sobh.plugins.ai.agentic'),
+	-- require('sobh.plugins.ai.codecompanion'),
 
-	-- -- Git related plugins
-	-- 'tpope/vim-fugitive',
-	-- 'tpope/vim-rhubarb',
-	--
-	-- -- Detect tabstop and shiftwidth automatically
-	-- 'tpope/vim-sleuth',
+	-- Code
+	require('sobh.plugins.code.formatter'),            -- Code Formatter
+	require('sobh.plugins.code.lint'),                 -- Linter (cspell)
+	require('sobh.plugins.code.treesitter'),           -- Treesitter
+	require('sobh.plugins.code.lsp'),                  -- LSP
 
-	-- Package Import Directory
-	--    For additional information See:
-	--     -> `help lazy.nvim-strcuturing-your-plugins`
-	--     -> https://github.com/folke/lazy.nvim#-structuring-your-plugins
 }, {})
 
----- UI ------------------------------------------------------------------------
+---- UI ----------------------------------------------------------------------------------------------------------------
 require('sobh').set_background()
 local theme = 'caironoon'
 if not pcall(vim.cmd.colorscheme, theme) then
 	vim.cmd.colorscheme('habamax')	-- Fallback to a NeoVim bundled coloscheme
 end
 
----- Load non-migrated Vim Configuration -------------------------------------------------------------------------------
-local vimrc = vim.fn.stdpath('config')..'/vimrc.vim'
-vim.cmd.source(vimrc)
-
 ---- Mappings ----------------------------------------------------------------------------------------------------------
 require('sobh.mappings').setup()
-
----- Autocommands ------------------------------------------------------------------------------------------------------
-
--- [[ Highlight on yank ]]
--- See `:help vim.highlight.on_yank()`
-local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
-vim.api.nvim_create_autocmd('TextYankPost', {
-	callback = function()
-		vim.highlight.on_yank()
-	end,
-	group = highlight_group,
-	pattern = '*',
-})
 
 ---- Options -----------------------------------------------------------------------------------------------------------
 require('sobh.config.options').setup()
 
-function Xretab(ts)
-	local levels = 8
-	if ts == nil then
-		ts = 4
-	end
-	for i = levels, 1, -1 do
-		local spaces = string.rep(' ', ts*i)
-		local tabs   = string.rep('\t', i)
-		local command = '%s/^'..spaces..'/'..tabs..'/'
-		vim.cmd(command)
-	end
-end
+---- LSP & Diagnostics -------------------------------------------------------------------------------------------------
+require('sobh.config.lsp').setup()
+
+---- Autocommands ------------------------------------------------------------------------------------------------------
+require('sobh.config.autocmds').setup()

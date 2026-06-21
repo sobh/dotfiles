@@ -6,6 +6,7 @@ local icons = require('sobh.config.icons')
 return {
 	'lewis6991/gitsigns.nvim',
 	opts = {
+		current_line_blame_formatter = '<author>, <author_time:%Y-%m-%d> | <summary>',
 		signs = {
 			add       = { text = icons.git.gutter.added },
 			change    = { text = icons.git.gutter.modified },
@@ -18,7 +19,7 @@ return {
 		linehl     = false,    -- Toggle with `:Gitsigns toggle_linehl`
 		word_diff  = false,    -- Toggle with `:Gitsigns toggle_word_diff`
 		on_attach = function ()
-			require("sobh.mappings").load("editor.gitsigns")
+			require("sobh.mappings").load("vcs.gitsigns")
 		end
 	},
 }

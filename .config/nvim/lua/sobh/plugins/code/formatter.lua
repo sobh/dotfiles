@@ -8,8 +8,18 @@ return {
 
 	config = function()
 		require("conform").setup({
+			format_on_save = function(bufnr)
+				if vim.bo[bufnr].filetype == "lua" then return end
+				return { timeout_ms = 1000 }
+			end,
 			formatters_by_ft = {
+				javascript = { "prettier", "dprint", stop_after_first = true },
+				typescript = { "prettier", "dprint", stop_after_first = true },
+				typescriptreact = { "prettier", "dprint", stop_after_first = true },
+				javascriptreact = { "prettier", "dprint", stop_after_first = true },
+				json = { "dprint" },
 				lua = { "stylua" },
+				markdown = { "dprint", "prettier", "mdformat", stop_after_first = true },
 				php = { "php" },
 				python = { "isort", "black" },
 				xml = { "xml" },
