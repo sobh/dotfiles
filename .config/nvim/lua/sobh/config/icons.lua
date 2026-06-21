@@ -1,6 +1,79 @@
+local is_tty = require('sobh.utils').is_tty
+
+if is_tty() then
+	return {
+		misc = { dots = "..." },
+		fold = {
+			open = '▾',
+			close = '▸',
+			sep = ' ',
+		},
+		diagnostics = {
+			Error = "E",
+			Warn  = "W",
+			Hint  = "H",
+			Info  = "I",
+		},
+		git = {
+			added    = "+",
+			modified = "~",
+			removed  = "-",
+			gutter = {
+				added     = "+",
+				modified  = "|",
+				removed   = "-",
+				untracked = "?",
+			},
+		},
+		kinds = {
+			Array         = "[]",
+			Boolean       = "b",
+			Class         = "C",
+			Color         = "#",
+			Constant      = "c",
+			Constructor   = "C",
+			Enum          = "E",
+			EnumMember    = "e",
+			Event         = "!",
+			Field         = ".",
+			File          = "f",
+			Folder        = "d",
+			Function      = "fn",
+			Interface     = "I",
+			Key           = "k",
+			Keyword       = "K",
+			Method        = "m",
+			Module        = "M",
+			Namespace     = "N",
+			Null          = "0",
+			Number        = "#",
+			Object        = "O",
+			Operator      = "op",
+			Package       = "P",
+			Property      = ".",
+			Reference     = "&",
+			Snippet       = "S",
+			String        = "s",
+			Struct        = "S",
+			Text          = "T",
+			TypeParameter = "T",
+			Unit          = "U",
+			Value         = "v",
+			Variable      = "V",
+		},
+	}
+end
+
 return {
 	misc = {
 		dots = "󰇘",
+	},
+	fold = {
+		-- open = '',
+		-- close = '',
+		open = '▾',
+		close = '▸',
+		sep = ' ',
 	},
 	dap = {
 		Stopped             = { "󰁕 ", "DiagnosticWarn", "DapStoppedLine" },
@@ -66,5 +139,5 @@ return {
 		Unit          = " ",
 		Value         = " ",
 		Variable      = "󰀫 ",
-	}
+	},
 }

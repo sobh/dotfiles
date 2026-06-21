@@ -1,11 +1,10 @@
----- Code Formatter : conform.nvim ---------------------------------------------
-local conform = require("conform")
-return {
-	n = {
-		["<leader>"] = {
-			c = {
-				f = { conform.format,  desc = "[C]ode [F]ormat" },
-			},
-		},
-	},
-}
+local map = vim.keymap.set
+local conform = require('conform')
+
+return function(opts)
+	opts = opts or {}
+	local o = function(desc) return vim.tbl_extend('force', opts, { desc = desc }) end
+
+	map('n', '<leader>cf', conform.format, o('Code Format'))
+	map('v', '<leader>cf', conform.format, o('Code Format'))
+end

@@ -5,7 +5,7 @@ return {
 	'hedyhli/outline.nvim',
 	config = function()
 		-- Load Key Mappings
-		require('sobh.mappings').load('editor.outline')
+		require('sobh.mappings').load('ui.outline')
 		-- Setup the plugin
 		require("outline").setup({})
 	end,

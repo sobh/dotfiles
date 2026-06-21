@@ -1,38 +1,33 @@
----- Mapping - LSP -------------------------------------------------------------
-local lsp_desc = 'LSP: '
-local ts_builtin = require('telescope.builtin')
-return {
-	n = {
-		['<leader>'] = {
-			l = {
-				group = 'LSP',
-				r = { vim.lsp.buf.rename,      desc = lsp_desc .. '[R]name' },
-				c = { vim.lsp.buf.code_action, desc = lsp_desc .. '[C]ode Action' },
-				w = {
-					group = 'Workspace',
-					a = { vim.lsp.buf.add_workspace_folder,    desc = lsp_desc .. '[W]orkspace [A]dd Folder' },
-					r = { vim.lsp.buf.remove_workspace_folder, desc = lsp_desc .. '[W]orkspace [R]emove Folder' },
-					l = {
-						function()
-							print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-						end,
-						desc = '[W]orkspace [L]ist Folders',
-					},
-				},
-			},
-		},
+local map = vim.keymap.set
+local ts = require('telescope.builtin')
 
-		g = {
-			d = { vim.lsp.buf.definition,     desc = lsp_desc .. '[G]oto [D]efinition' },
-			D = { vim.lsp.buf.declaration,    desc = lsp_desc .. '[G]oto [D]eclaration' },
-			i = { vim.lsp.buf.implementation, desc = lsp_desc .. '[G]oto [I]mplemenation' },
-			r = { ts_builtin.lsp_references,  desc = lsp_desc .. '[G]oto [R]eferences' },
-		},
+return function(opts)
+	opts = opts or {}
+	local o = function(desc) return vim.tbl_extend('force', opts, { desc = desc }) end
 
-		-- See `:help K` for why this keymap
-		K         = { vim.lsp.buf.hover,          desc = lsp_desc .. 'Hover Documentation' },
-		['<C-k>'] = { vim.lsp.buf.signature_help, desc = lsp_desc .. 'Signature Documentation' },
-	}
-}
--- 	nmap("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
--- 	nmap("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
+	-- Goto
+	map('n', 'gd', vim.lsp.buf.definition,      o('LSP: Goto Definition'))
+	map('n', 'gD', vim.lsp.buf.declaration,     o('LSP: Goto Declaration'))
+	map('n', 'gi', vim.lsp.buf.implementation,  o('LSP: Goto Implementation'))
+	map('n', 'gr', ts.lsp_references,           o('LSP: Goto References'))
+	map('n', 'gy', vim.lsp.buf.type_definition, o('LSP: Goto Type Definition'))
+
+	-- Symbols
+	map('n', '<leader>cs', ts.lsp_document_symbols,          o('LSP: Document Symbols'))
+	map('n', '<leader>cS', ts.lsp_dynamic_workspace_symbols, o('LSP: Workspace Symbols'))
+
+	-- Info
+	map('n', 'K',      vim.lsp.buf.hover,          o('LSP: Hover Documentation'))
+	map('n', '<C-k>',  vim.lsp.buf.signature_help, o('LSP: Signature Help'))
+
+	-- Actions
+	map('n', '<leader>cr', vim.lsp.buf.rename,      o('LSP: Rename'))
+	map('n', '<leader>ca', vim.lsp.buf.code_action, o('LSP: Code Action'))
+
+	-- Workspace
+	map('n', '<leader>cwa', vim.lsp.buf.add_workspace_folder,    o('LSP: Workspace Add Folder'))
+	map('n', '<leader>cwr', vim.lsp.buf.remove_workspace_folder, o('LSP: Workspace Remove Folder'))
+	map('n', '<leader>cwl', function()
+		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+	end, o('LSP: Workspace List Folders'))
+end

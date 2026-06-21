@@ -1,1 +1,1 @@
-vim.keymap.set({'i', 'n'}, '<F2>', '<cmd>w<CR> <cmd>!lua %:p<CR>', { desc = 'Execute Current File' , buffer=true })
+vim.keymap.set('n', '<leader>x', '<cmd>w<CR><cmd>!lua %:p<CR>', { desc = 'Execute current file', buffer = true })
