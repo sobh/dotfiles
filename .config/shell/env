@@ -5,17 +5,19 @@
 #
 
 #---- HOST ---------------------------------------------------------------------
-: ${HOST:=$(hostname)}; export HOST
-: ${HOSTNAME:=$HOST}; export HOSTNAME
+: ${HOST:=$(hostname)}
+export HOST
+: ${HOSTNAME:=$HOST}
+export HOSTNAME
 #---- Framework ----------------------------------------------------------------
 # This is the name used by scripts, and other utilities, to identify itself.
 export FRAMEWORK=sars
 #---- Set XDG Directories ------------------------------------------------------
-export XDG_CONFIG_HOME=$HOME/.config	# Configurations Directory (analogous to /etc).
-export XDG_CACHE_HOME=$HOME/.cache	# Non-essential (cached) data should be written (analogous to /var/cache).
-export XDG_LOCAL_HOME=$HOME/.local	# Local data (Not in the standarad)
-export XDG_DATA_HOME=$XDG_LOCAL_HOME/share	# User-specific Data Dreictory (analogous to /usr/share).
-export XDG_STATE_HOME=$XDG_LOCAL_HOME/state	# User-specific State Data (analogous to /var/lib).
+export XDG_CONFIG_HOME=$HOME/.config        # Configurations Directory (analogous to /etc).
+export XDG_CACHE_HOME=$HOME/.cache          # Non-essential (cached) data should be written (analogous to /var/cache).
+export XDG_LOCAL_HOME=$HOME/.local          # Local data (Not in the standarad)
+export XDG_DATA_HOME=$XDG_LOCAL_HOME/share  # User-specific Data Dreictory (analogous to /usr/share).
+export XDG_STATE_HOME=$XDG_LOCAL_HOME/state # User-specific State Data (analogous to /var/lib).
 
 #---- Bash ---------------------------------------------------------------------
 #echo "Executing: shell env startup."
@@ -31,16 +33,12 @@ export BASH_ENV=$XDG_CONFIG_HOME/bash/env
 # Load Environment manipulation functions
 . $XDG_CONFIG_HOME/shell/env_functions
 
-#---- Python -------------------------------------------------------------------
-# Make pipenv creates the virtualenv inside the project's directory
-export PIPENV_VENV_IN_PROJECT=1
-
 #---- Personal Info ------------------------------------------------------------
 # Personal information
 export NAME='Mohamed Sobh'
 export EMAIL='mohamed.alhusieny@gmail.com'
 #---- Default Applications -----------------------------------------------------
-export EDITOR=helix
+export EDITOR=zvim
 export VISUAL=$EDITOR
 export BROWSER=chromium
 export PAGER='less -r'
@@ -69,6 +67,14 @@ pathprepend $HOME/bin/statusbar PATH
 pathprepend $HOME/bin PATH
 pathprepend $HOME/lib LD_LIBRARY_PATH
 pathprepend $HOME/include CPATH
+
+# ---- Code --------------------------------------------------------------------
+# -------- Node -------- #
+export npm_config_prefix=$XDG_LOCAL_HOME
+
+# -------- Python -------- #
+# Make pipenv creates the virtualenv inside the project's directory
+export PIPENV_VENV_IN_PROJECT=1
 
 # The current directory should never be in $PATH
 pathremove . PATH

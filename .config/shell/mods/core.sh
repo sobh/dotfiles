@@ -27,13 +27,12 @@ alias \
 #---- cat ----------------------------------------------------------------------
 if command -v bat >/dev/null 2>&1; then
 	alias \
-		c='bat --plain --paging=never'	\
-		cn='bat'	\
+		cat='bat --plain'   \
+		c='bat'	            \
 #
 else
 	alias \
-		c='cat'  \
-		cn='cat' \
+		c='cat'     \
 #
 fi
 
@@ -63,7 +62,7 @@ elif command -v lsd >/dev/null 2>&1; then
 		ta='lsd --tree'                             \
 		td='lsd --tree --depth 3 --directory-only'  \
 #
-else	
+else
 	alias \
 		l='ls -1'  \
 		la='ls -a' \

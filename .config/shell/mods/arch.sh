@@ -6,4 +6,5 @@ alias \
 	pq='pacman -Q' \
 	po='pacman -Qo'
 
+alias syay='yay --noconfirm'
 poc() { pacman -Qo "$(which $1)"; } # Package Owns Command

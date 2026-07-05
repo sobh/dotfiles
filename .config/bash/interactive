@@ -7,7 +7,7 @@
 [ $- = ${-%i*} ] && return
 
 . $HOME/.config/shell/interactive
-#---- Prompt -------------------------------------------------------------------
+# ==== Prompt ==================================================================
 # Define formatting
 BOLD='\e[1m'
 RESET='\e[0m'
@@ -24,3 +24,11 @@ _jobs () {
 P_PWD="$MAGENTA\w"
 P_SYM="$CYAN\\$ >"
 PS1="$BOLD $P_PWD \$(_jobs)$P_SYM $RESET"
+
+# ==== Integrations ============================================================
+command -v direnv >/dev/null 2>&1 && eval "$(direnv hook bash)"
+command -v fzf >/dev/null 2>&1 && eval "$(fzf --bash)"
+
+# ==== Modules =================================================================
+ssource "$XDG_CONFIG_HOME/bash/mods/jira.sh"
+

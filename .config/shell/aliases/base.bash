@@ -8,12 +8,11 @@ alias diff='colordiff'
 alias grep='grep --color=auto'
 alias ls='ls --group-directories-first -X --color=auto --human-readable'
 alias more='less'
-alias spacker='packer --noconfirm --noedit'
 # alias mkdir='mkdir -pv'
 # alias ping='ping -c 5'
 # alias dmesg='dmesg -HL'
 # # }}}
-# 
+#
 # ## ls ## {{{
 # alias lr='ls -R'                    # recursive ls
 # alias ll='ls -l'
@@ -23,7 +22,7 @@ alias spacker='packer --noconfirm --noedit'
 # alias lt='ll -rt'                   # sort by date
 # alias lm='la | more'
 # # }}}
-# 
+#
 # ## Safety features ## {{{
 # alias cp='cp -i'
 # alias mv='mv -i'
@@ -36,7 +35,7 @@ alias spacker='packer --noconfirm --noedit'
 # alias chgrp='chgrp --preserve-root'
 # alias cls=' echo -ne "\033c"'       # clear screen for real (it does not work in Terminology)
 # # }}}
-# 
+#
 # ## Make Bash error tolerant ## {{{
 # alias :q=' exit'
 # alias :Q=' exit'

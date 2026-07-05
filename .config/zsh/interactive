@@ -7,15 +7,18 @@
 # If not running interactively, don't do anything
 [ "$-" = "${-%i*}" ] && return
 
+# Kiro CLI pre block. Keep at the top of this file.
+# [[ -f "${HOME}/.local/share/kiro-cli/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/.local/share/kiro-cli/shell/zshrc.pre.zsh"
+
 # Source common interactive shell configurations
 . $XDG_CONFIG_HOME/shell/interactive
 
 setopt vi		# Set vi-mode
-#---- prompt -------------------------------------------------------------------
+# ==== prompt ==================================================================
 type prompt 1>/dev/null && prompt off		    # Disable GRML prompt
 . $XDG_CONFIG_HOME/zsh/prompts/sobh.zsh
 
-#---- History ------------------------------------------------------------------
+#==== History ==================================================================
 HISTFILE="$XDG_CACHE_HOME/zsh_history"
 SAVEHIST=100000	    # Number of lines to save to $HISTFILE.
 HISTSIZE=100000	    # Number of lines to read from $HISTFILE.
@@ -24,7 +27,7 @@ setopt HIST_EXPIRE_DUPS_FIRST	# Trim duplicates first.
 setopt HIST_IGNORE_ALL_DUPS	# Remove old history duplicates.
 setopt HIST_IGNORE_SPACE	# Ignore commands starting with a space.
 
-#---- Completion ---------------------------------------------------------------
+# ==== Completion ==============================================================
 # Enable bash completion compatibility
 autoload bashcompinit && bashcompinit
 # Autoload the 'compinit' function, and call it.
@@ -38,11 +41,14 @@ if command -v aws_completer >/dev/null 2>&1; then
 	complete -C "$AWS_COMPLETER" aws
 fi
 
-#---- Correction ---------------------------------------------------------------
+# PHP Composer
+ssource "$XDG_DATA_HOME/bash-completion/completions/composer"
+
+# ==== Correction ==============================================================
 # Disable correction
 unsetopt correct
 
-#---- Syntax Highlighting ------------------------------------------------------
+# ==== Syntax Highlighting =====================================================
 _uname=$(uname -s)
 if [ $_uname = "Linux" ]; then
 	. /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -50,3 +56,16 @@ elif [ $_uname = "OpenBSD" ]; then
 	. /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 
+
+# ==== Integrations ============================================================
+command -v direnv >/dev/null 2>&1 && eval "$(direnv hook zsh)"  # direnv
+command -v fzf >/dev/null 2>&1 && source <(fzf --zsh)           # fzf
+
+# ==== Modules =================================================================
+ssource "$XDG_CONFIG_HOME/zsh/mods/jira.sh"
+
+# Kiro CLI post block. Keep at the bottom of this file.
+# [[ -f "${HOME}/.local/share/kiro-cli/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/.local/share/kiro-cli/shell/zshrc.post.zsh"
+# [[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
+
+source /home/sobh/.config/broot/launcher/bash/br
