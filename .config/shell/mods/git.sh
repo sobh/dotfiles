@@ -2,15 +2,19 @@
 
 #---- Aliases ------------------------------------------------------------------
 alias \
-	ga='git add'                           \
-	gc='git commit'                        \
-	gco='git checkout'                     \
-	gd='git diff'                          \
-	gl='git log --oneline --color=always'  \
-	gs='git status'                        \
-	gsu='git status --untracked-files=all' \
-	gwl='git worktree list'                \
-	gwr='git worktree remove'              \
+    ga='git add' \
+    gc='git commit' \
+    gco='git checkout' \
+    gd='git diff' \
+    gds='git diff --staged' \
+    gl='git log --oneline --color=always' \
+    gr='git restore' \
+    grs='git restore --staged' \
+    gs='git status' \
+    gs.='git status .' \
+    gsu='git status --untracked-files=all' \
+    gwl='git worktree list' \
+    gwr='git worktree remove'
 
 #---- Functions ----------------------------------------------------------------
 
@@ -22,24 +26,25 @@ alias \
 #
 # @example gwa feature/my-new-feature
 gwa() {
-	branch="$1"
-	[ -z "$branch" ] && {
-		echo "Usage:	$0 <BRANCH>" 1>&2
-		return 1
-	}
-	gitroot=$(git rev-parse --show-toplevel)
-	echo "Fetching Remote Branch: $branch ..."
-	git fetch origin "$branch" >/dev/null 2>&1
-	git worktree add "$gitroot/../$branch" "$branch"
+    branch="$1"
+    [ -z "$branch" ] && {
+        echo "Usage:	$0 <BRANCH>" 1>&2
+        return 1
+    }
+    gitroot=$(git rev-parse --show-toplevel)
+    echo "Fetching Remote Branch: $branch ..."
+    git fetch origin "$branch" >/dev/null 2>&1
+    git worktree add "$gitroot/../$branch" "$branch"
 
 }
 
 # Display a compact, colorized git log with short hash, date, author, subject,
 # and refs.
 glt() {
-	git log                     \
-		--color=always      \
-		--decorate=short    \
-		--pretty=format:"%C(yellow)%h%Creset %Cgreen%ad%Creset %Cblue| %<(20,trunc)%an%Creset | %s%C(auto)%d%Creset" \
-		--date=format:"%Y-%m-%d %H:%M" "$@"
+    git log \
+        --color=always \
+        --decorate=short \
+        --pretty=format:"%C(yellow)%h%Creset %Cgreen%ad%Creset %Cblue| %<(20,trunc)%an%Creset | %s%C(auto)%d%Creset" \
+        --date=format:"%Y-%m-%d %H:%M" \
+        "$@"
 }
