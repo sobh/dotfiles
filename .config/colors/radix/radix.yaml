@@ -1,0 +1,1061 @@
+colors:
+  white: &color-white "#ffffff"
+  black: &color-black "#000000"
+  light:
+    amber:
+      1: &color-light-amber-1 "#fefdfb"
+      2: &color-light-amber-2 "#fefbe9"
+      3: &color-light-amber-3 "#fff7c2"
+      4: &color-light-amber-4 "#ffee9c"
+      5: &color-light-amber-5 "#fbe577"
+      6: &color-light-amber-6 "#f3d673"
+      7: &color-light-amber-7 "#e9c162"
+      8: &color-light-amber-8 "#e2a336"
+      9: &color-light-amber-9 "#ffc53d"
+      10: &color-light-amber-10 "#ffba18"
+      11: &color-light-amber-11 "#ab6400"
+      12: &color-light-amber-12 "#4f3422"
+    blue:
+      1: &color-light-blue-1 "#fbfdff"
+      2: &color-light-blue-2 "#f4faff"
+      3: &color-light-blue-3 "#e6f4fe"
+      4: &color-light-blue-4 "#d5efff"
+      5: &color-light-blue-5 "#c2e5ff"
+      6: &color-light-blue-6 "#acd8fc"
+      7: &color-light-blue-7 "#8ec8f6"
+      8: &color-light-blue-8 "#5eb1ef"
+      9: &color-light-blue-9 "#0090ff"
+      10: &color-light-blue-10 "#0588f0"
+      11: &color-light-blue-11 "#0d74ce"
+      12: &color-light-blue-12 "#113264"
+    bronze:
+      1: &color-light-bronze-1 "#fdfcfc"
+      2: &color-light-bronze-2 "#fdf7f5"
+      3: &color-light-bronze-3 "#f6edea"
+      4: &color-light-bronze-4 "#efe4df"
+      5: &color-light-bronze-5 "#e7d9d3"
+      6: &color-light-bronze-6 "#dfcdc5"
+      7: &color-light-bronze-7 "#d3bcb3"
+      8: &color-light-bronze-8 "#c2a499"
+      9: &color-light-bronze-9 "#a18072"
+      10: &color-light-bronze-10 "#957468"
+      11: &color-light-bronze-11 "#7d5e54"
+      12: &color-light-bronze-12 "#43302b"
+    brown:
+      1: &color-light-brown-1 "#fefdfc"
+      2: &color-light-brown-2 "#fcf9f6"
+      3: &color-light-brown-3 "#f6eee7"
+      4: &color-light-brown-4 "#f0e4d9"
+      5: &color-light-brown-5 "#ebdaca"
+      6: &color-light-brown-6 "#e4cdb7"
+      7: &color-light-brown-7 "#dcbc9f"
+      8: &color-light-brown-8 "#cea37e"
+      9: &color-light-brown-9 "#ad7f58"
+      10: &color-light-brown-10 "#a07553"
+      11: &color-light-brown-11 "#815e46"
+      12: &color-light-brown-12 "#3e332e"
+    crimson:
+      1: &color-light-crimson-1 "#fffcfd"
+      2: &color-light-crimson-2 "#fef7f9"
+      3: &color-light-crimson-3 "#ffe9f0"
+      4: &color-light-crimson-4 "#fedce7"
+      5: &color-light-crimson-5 "#facedd"
+      6: &color-light-crimson-6 "#f3bed1"
+      7: &color-light-crimson-7 "#eaacc3"
+      8: &color-light-crimson-8 "#e093b2"
+      9: &color-light-crimson-9 "#e93d82"
+      10: &color-light-crimson-10 "#df3478"
+      11: &color-light-crimson-11 "#cb1d63"
+      12: &color-light-crimson-12 "#621639"
+    cyan:
+      1: &color-light-cyan-1 "#fafdfe"
+      2: &color-light-cyan-2 "#f2fafb"
+      3: &color-light-cyan-3 "#def7f9"
+      4: &color-light-cyan-4 "#caf1f6"
+      5: &color-light-cyan-5 "#b5e9f0"
+      6: &color-light-cyan-6 "#9ddde7"
+      7: &color-light-cyan-7 "#7dcedc"
+      8: &color-light-cyan-8 "#3db9cf"
+      9: &color-light-cyan-9 "#00a2c7"
+      10: &color-light-cyan-10 "#0797b9"
+      11: &color-light-cyan-11 "#107d98"
+      12: &color-light-cyan-12 "#0d3c48"
+    gold:
+      1: &color-light-gold-1 "#fdfdfc"
+      2: &color-light-gold-2 "#faf9f2"
+      3: &color-light-gold-3 "#f2f0e7"
+      4: &color-light-gold-4 "#eae6db"
+      5: &color-light-gold-5 "#e1dccf"
+      6: &color-light-gold-6 "#d8d0bf"
+      7: &color-light-gold-7 "#cbc0aa"
+      8: &color-light-gold-8 "#b9a88d"
+      9: &color-light-gold-9 "#978365"
+      10: &color-light-gold-10 "#8c7a5e"
+      11: &color-light-gold-11 "#71624b"
+      12: &color-light-gold-12 "#3b352b"
+    grass:
+      1: &color-light-grass-1 "#fbfefb"
+      2: &color-light-grass-2 "#f5fbf5"
+      3: &color-light-grass-3 "#e9f6e9"
+      4: &color-light-grass-4 "#daf1db"
+      5: &color-light-grass-5 "#c9e8ca"
+      6: &color-light-grass-6 "#b2ddb5"
+      7: &color-light-grass-7 "#94ce9a"
+      8: &color-light-grass-8 "#65ba74"
+      9: &color-light-grass-9 "#46a758"
+      10: &color-light-grass-10 "#3e9b4f"
+      11: &color-light-grass-11 "#2a7e3b"
+      12: &color-light-grass-12 "#203c25"
+    gray:
+      1: &color-light-gray-1 "#fcfcfc"
+      2: &color-light-gray-2 "#f9f9f9"
+      3: &color-light-gray-3 "#f0f0f0"
+      4: &color-light-gray-4 "#e8e8e8"
+      5: &color-light-gray-5 "#e0e0e0"
+      6: &color-light-gray-6 "#d9d9d9"
+      7: &color-light-gray-7 "#cecece"
+      8: &color-light-gray-8 "#bbbbbb"
+      9: &color-light-gray-9 "#8d8d8d"
+      10: &color-light-gray-10 "#838383"
+      11: &color-light-gray-11 "#646464"
+      12: &color-light-gray-12 "#202020"
+    green:
+      1: &color-light-green-1 "#fbfefc"
+      2: &color-light-green-2 "#f4fbf6"
+      3: &color-light-green-3 "#e6f6eb"
+      4: &color-light-green-4 "#d6f1df"
+      5: &color-light-green-5 "#c4e8d1"
+      6: &color-light-green-6 "#adddc0"
+      7: &color-light-green-7 "#8eceaa"
+      8: &color-light-green-8 "#5bb98b"
+      9: &color-light-green-9 "#30a46c"
+      10: &color-light-green-10 "#2b9a66"
+      11: &color-light-green-11 "#218358"
+      12: &color-light-green-12 "#193b2d"
+    indigo:
+      1: &color-light-indigo-1 "#fdfdfe"
+      2: &color-light-indigo-2 "#f7f9ff"
+      3: &color-light-indigo-3 "#edf2fe"
+      4: &color-light-indigo-4 "#e1e9ff"
+      5: &color-light-indigo-5 "#d2deff"
+      6: &color-light-indigo-6 "#c1d0ff"
+      7: &color-light-indigo-7 "#abbdf9"
+      8: &color-light-indigo-8 "#8da4ef"
+      9: &color-light-indigo-9 "#3e63dd"
+      10: &color-light-indigo-10 "#3358d4"
+      11: &color-light-indigo-11 "#3a5bc7"
+      12: &color-light-indigo-12 "#1f2d5c"
+    iris:
+      1: &color-light-iris-1 "#fdfdff"
+      2: &color-light-iris-2 "#f8f8ff"
+      3: &color-light-iris-3 "#f0f1fe"
+      4: &color-light-iris-4 "#e6e7ff"
+      5: &color-light-iris-5 "#dadcff"
+      6: &color-light-iris-6 "#cbcdff"
+      7: &color-light-iris-7 "#b8baf8"
+      8: &color-light-iris-8 "#9b9ef0"
+      9: &color-light-iris-9 "#5b5bd6"
+      10: &color-light-iris-10 "#5151cd"
+      11: &color-light-iris-11 "#5753c6"
+      12: &color-light-iris-12 "#272962"
+    jade:
+      1: &color-light-jade-1 "#fbfefd"
+      2: &color-light-jade-2 "#f4fbf7"
+      3: &color-light-jade-3 "#e6f7ed"
+      4: &color-light-jade-4 "#d6f1e3"
+      5: &color-light-jade-5 "#c3e9d7"
+      6: &color-light-jade-6 "#acdec8"
+      7: &color-light-jade-7 "#8bceb6"
+      8: &color-light-jade-8 "#56ba9f"
+      9: &color-light-jade-9 "#29a383"
+      10: &color-light-jade-10 "#26997b"
+      11: &color-light-jade-11 "#208368"
+      12: &color-light-jade-12 "#1d3b31"
+    lime:
+      1: &color-light-lime-1 "#fcfdfa"
+      2: &color-light-lime-2 "#f8faf3"
+      3: &color-light-lime-3 "#eef6d6"
+      4: &color-light-lime-4 "#e2f0bd"
+      5: &color-light-lime-5 "#d3e7a6"
+      6: &color-light-lime-6 "#c2da91"
+      7: &color-light-lime-7 "#abc978"
+      8: &color-light-lime-8 "#8db654"
+      9: &color-light-lime-9 "#bdee63"
+      10: &color-light-lime-10 "#b0e64c"
+      11: &color-light-lime-11 "#5c7c2f"
+      12: &color-light-lime-12 "#37401c"
+    mauve:
+      1: &color-light-mauve-1 "#fdfcfd"
+      2: &color-light-mauve-2 "#faf9fb"
+      3: &color-light-mauve-3 "#f2eff3"
+      4: &color-light-mauve-4 "#eae7ec"
+      5: &color-light-mauve-5 "#e3dfe6"
+      6: &color-light-mauve-6 "#dbd8e0"
+      7: &color-light-mauve-7 "#d0cdd7"
+      8: &color-light-mauve-8 "#bcbac7"
+      9: &color-light-mauve-9 "#8e8c99"
+      10: &color-light-mauve-10 "#84828e"
+      11: &color-light-mauve-11 "#65636d"
+      12: &color-light-mauve-12 "#211f26"
+    mint:
+      1: &color-light-mint-1 "#f9fefd"
+      2: &color-light-mint-2 "#f2fbf9"
+      3: &color-light-mint-3 "#ddf9f2"
+      4: &color-light-mint-4 "#c8f4e9"
+      5: &color-light-mint-5 "#b3ecde"
+      6: &color-light-mint-6 "#9ce0d0"
+      7: &color-light-mint-7 "#7ecfbd"
+      8: &color-light-mint-8 "#4cbba5"
+      9: &color-light-mint-9 "#86ead4"
+      10: &color-light-mint-10 "#7de0cb"
+      11: &color-light-mint-11 "#027864"
+      12: &color-light-mint-12 "#16433c"
+    olive:
+      1: &color-light-olive-1 "#fcfdfc"
+      2: &color-light-olive-2 "#f8faf8"
+      3: &color-light-olive-3 "#eff1ef"
+      4: &color-light-olive-4 "#e7e9e7"
+      5: &color-light-olive-5 "#dfe2df"
+      6: &color-light-olive-6 "#d7dad7"
+      7: &color-light-olive-7 "#cccfcc"
+      8: &color-light-olive-8 "#b9bcb8"
+      9: &color-light-olive-9 "#898e87"
+      10: &color-light-olive-10 "#7f847d"
+      11: &color-light-olive-11 "#60655f"
+      12: &color-light-olive-12 "#1d211c"
+    orange:
+      1: &color-light-orange-1 "#fefcfb"
+      2: &color-light-orange-2 "#fff7ed"
+      3: &color-light-orange-3 "#ffefd6"
+      4: &color-light-orange-4 "#ffdfb5"
+      5: &color-light-orange-5 "#ffd19a"
+      6: &color-light-orange-6 "#ffc182"
+      7: &color-light-orange-7 "#f5ae73"
+      8: &color-light-orange-8 "#ec9455"
+      9: &color-light-orange-9 "#f76b15"
+      10: &color-light-orange-10 "#ef5f00"
+      11: &color-light-orange-11 "#cc4e00"
+      12: &color-light-orange-12 "#582d1d"
+    pink:
+      1: &color-light-pink-1 "#fffcfe"
+      2: &color-light-pink-2 "#fef7fb"
+      3: &color-light-pink-3 "#fee9f5"
+      4: &color-light-pink-4 "#fbdcef"
+      5: &color-light-pink-5 "#f6cee7"
+      6: &color-light-pink-6 "#efbfdd"
+      7: &color-light-pink-7 "#e7acd0"
+      8: &color-light-pink-8 "#dd93c2"
+      9: &color-light-pink-9 "#d6409f"
+      10: &color-light-pink-10 "#cf3897"
+      11: &color-light-pink-11 "#c2298a"
+      12: &color-light-pink-12 "#651249"
+    plum:
+      1: &color-light-plum-1 "#fefcff"
+      2: &color-light-plum-2 "#fdf7fd"
+      3: &color-light-plum-3 "#fbebfb"
+      4: &color-light-plum-4 "#f7def8"
+      5: &color-light-plum-5 "#f2d1f3"
+      6: &color-light-plum-6 "#e9c2ec"
+      7: &color-light-plum-7 "#deade3"
+      8: &color-light-plum-8 "#cf91d8"
+      9: &color-light-plum-9 "#ab4aba"
+      10: &color-light-plum-10 "#a144af"
+      11: &color-light-plum-11 "#953ea3"
+      12: &color-light-plum-12 "#53195d"
+    purple:
+      1: &color-light-purple-1 "#fefcfe"
+      2: &color-light-purple-2 "#fbf7fe"
+      3: &color-light-purple-3 "#f7edfe"
+      4: &color-light-purple-4 "#f2e2fc"
+      5: &color-light-purple-5 "#ead5f9"
+      6: &color-light-purple-6 "#e0c4f4"
+      7: &color-light-purple-7 "#d1afec"
+      8: &color-light-purple-8 "#be93e4"
+      9: &color-light-purple-9 "#8e4ec6"
+      10: &color-light-purple-10 "#8347b9"
+      11: &color-light-purple-11 "#8145b5"
+      12: &color-light-purple-12 "#402060"
+    red:
+      1: &color-light-red-1 "#fffcfc"
+      2: &color-light-red-2 "#fff7f7"
+      3: &color-light-red-3 "#feebec"
+      4: &color-light-red-4 "#ffdbdc"
+      5: &color-light-red-5 "#ffcdce"
+      6: &color-light-red-6 "#fdbdbe"
+      7: &color-light-red-7 "#f4a9aa"
+      8: &color-light-red-8 "#eb8e90"
+      9: &color-light-red-9 "#e5484d"
+      10: &color-light-red-10 "#dc3e42"
+      11: &color-light-red-11 "#ce2c31"
+      12: &color-light-red-12 "#641723"
+    ruby:
+      1: &color-light-ruby-1 "#fffcfd"
+      2: &color-light-ruby-2 "#fff7f8"
+      3: &color-light-ruby-3 "#feeaed"
+      4: &color-light-ruby-4 "#ffdce1"
+      5: &color-light-ruby-5 "#ffced6"
+      6: &color-light-ruby-6 "#f8bfc8"
+      7: &color-light-ruby-7 "#efacb8"
+      8: &color-light-ruby-8 "#e592a3"
+      9: &color-light-ruby-9 "#e54666"
+      10: &color-light-ruby-10 "#dc3b5d"
+      11: &color-light-ruby-11 "#ca244d"
+      12: &color-light-ruby-12 "#64172b"
+    sage:
+      1: &color-light-sage-1 "#fbfdfc"
+      2: &color-light-sage-2 "#f7f9f8"
+      3: &color-light-sage-3 "#eef1f0"
+      4: &color-light-sage-4 "#e6e9e8"
+      5: &color-light-sage-5 "#dfe2e0"
+      6: &color-light-sage-6 "#d7dad9"
+      7: &color-light-sage-7 "#cbcfcd"
+      8: &color-light-sage-8 "#b8bcba"
+      9: &color-light-sage-9 "#868e8b"
+      10: &color-light-sage-10 "#7c8481"
+      11: &color-light-sage-11 "#5f6563"
+      12: &color-light-sage-12 "#1a211e"
+    sand:
+      1: &color-light-sand-1 "#fdfdfc"
+      2: &color-light-sand-2 "#f9f9f8"
+      3: &color-light-sand-3 "#f1f0ef"
+      4: &color-light-sand-4 "#e9e8e6"
+      5: &color-light-sand-5 "#e2e1de"
+      6: &color-light-sand-6 "#dad9d6"
+      7: &color-light-sand-7 "#cfceca"
+      8: &color-light-sand-8 "#bcbbb5"
+      9: &color-light-sand-9 "#8d8d86"
+      10: &color-light-sand-10 "#82827c"
+      11: &color-light-sand-11 "#63635e"
+      12: &color-light-sand-12 "#21201c"
+    sky:
+      1: &color-light-sky-1 "#f9feff"
+      2: &color-light-sky-2 "#f1fafd"
+      3: &color-light-sky-3 "#e1f6fd"
+      4: &color-light-sky-4 "#d1f0fa"
+      5: &color-light-sky-5 "#bee7f5"
+      6: &color-light-sky-6 "#a9daed"
+      7: &color-light-sky-7 "#8dcae3"
+      8: &color-light-sky-8 "#60b3d7"
+      9: &color-light-sky-9 "#7ce2fe"
+      10: &color-light-sky-10 "#74daf8"
+      11: &color-light-sky-11 "#00749e"
+      12: &color-light-sky-12 "#1d3e56"
+    slate:
+      1: &color-light-slate-1 "#fcfcfd"
+      2: &color-light-slate-2 "#f9f9fb"
+      3: &color-light-slate-3 "#f0f0f3"
+      4: &color-light-slate-4 "#e8e8ec"
+      5: &color-light-slate-5 "#e0e1e6"
+      6: &color-light-slate-6 "#d9d9e0"
+      7: &color-light-slate-7 "#cdced6"
+      8: &color-light-slate-8 "#b9bbc6"
+      9: &color-light-slate-9 "#8b8d98"
+      10: &color-light-slate-10 "#80838d"
+      11: &color-light-slate-11 "#60646c"
+      12: &color-light-slate-12 "#1c2024"
+    teal:
+      1: &color-light-teal-1 "#fafefd"
+      2: &color-light-teal-2 "#f3fbf9"
+      3: &color-light-teal-3 "#e0f8f3"
+      4: &color-light-teal-4 "#ccf3ea"
+      5: &color-light-teal-5 "#b8eae0"
+      6: &color-light-teal-6 "#a1ded2"
+      7: &color-light-teal-7 "#83cdc1"
+      8: &color-light-teal-8 "#53b9ab"
+      9: &color-light-teal-9 "#12a594"
+      10: &color-light-teal-10 "#0d9b8a"
+      11: &color-light-teal-11 "#008573"
+      12: &color-light-teal-12 "#0d3d38"
+    tomato:
+      1: &color-light-tomato-1 "#fffcfc"
+      2: &color-light-tomato-2 "#fff8f7"
+      3: &color-light-tomato-3 "#feebe7"
+      4: &color-light-tomato-4 "#ffdcd3"
+      5: &color-light-tomato-5 "#ffcdc2"
+      6: &color-light-tomato-6 "#fdbdaf"
+      7: &color-light-tomato-7 "#f5a898"
+      8: &color-light-tomato-8 "#ec8e7b"
+      9: &color-light-tomato-9 "#e54d2e"
+      10: &color-light-tomato-10 "#dd4425"
+      11: &color-light-tomato-11 "#d13415"
+      12: &color-light-tomato-12 "#5c271f"
+    violet:
+      1: &color-light-violet-1 "#fdfcfe"
+      2: &color-light-violet-2 "#faf8ff"
+      3: &color-light-violet-3 "#f4f0fe"
+      4: &color-light-violet-4 "#ebe4ff"
+      5: &color-light-violet-5 "#e1d9ff"
+      6: &color-light-violet-6 "#d4cafe"
+      7: &color-light-violet-7 "#c2b5f5"
+      8: &color-light-violet-8 "#aa99ec"
+      9: &color-light-violet-9 "#6e56cf"
+      10: &color-light-violet-10 "#654dc4"
+      11: &color-light-violet-11 "#6550b9"
+      12: &color-light-violet-12 "#2f265f"
+    yellow:
+      1: &color-light-yellow-1 "#fdfdf9"
+      2: &color-light-yellow-2 "#fefce9"
+      3: &color-light-yellow-3 "#fffab8"
+      4: &color-light-yellow-4 "#fff394"
+      5: &color-light-yellow-5 "#ffe770"
+      6: &color-light-yellow-6 "#f3d768"
+      7: &color-light-yellow-7 "#e4c767"
+      8: &color-light-yellow-8 "#d5ae39"
+      9: &color-light-yellow-9 "#ffe629"
+      10: &color-light-yellow-10 "#ffdc00"
+      11: &color-light-yellow-11 "#9e6c00"
+      12: &color-light-yellow-12 "#473b1f"
+  dark:
+    amber:
+      1: &color-dark-amber-1 "#16120c"
+      2: &color-dark-amber-2 "#1d180f"
+      3: &color-dark-amber-3 "#302008"
+      4: &color-dark-amber-4 "#3f2700"
+      5: &color-dark-amber-5 "#4d3000"
+      6: &color-dark-amber-6 "#5c3d05"
+      7: &color-dark-amber-7 "#714f19"
+      8: &color-dark-amber-8 "#8f6424"
+      9: &color-dark-amber-9 "#ffc53d"
+      10: &color-dark-amber-10 "#ffd60a"
+      11: &color-dark-amber-11 "#ffca16"
+      12: &color-dark-amber-12 "#ffe7b3"
+    blue:
+      1: &color-dark-blue-1 "#0d1520"
+      2: &color-dark-blue-2 "#111927"
+      3: &color-dark-blue-3 "#0d2847"
+      4: &color-dark-blue-4 "#003362"
+      5: &color-dark-blue-5 "#004074"
+      6: &color-dark-blue-6 "#104d87"
+      7: &color-dark-blue-7 "#205d9e"
+      8: &color-dark-blue-8 "#2870bd"
+      9: &color-dark-blue-9 "#0090ff"
+      10: &color-dark-blue-10 "#3b9eff"
+      11: &color-dark-blue-11 "#70b8ff"
+      12: &color-dark-blue-12 "#c2e6ff"
+    bronze:
+      1: &color-dark-bronze-1 "#141110"
+      2: &color-dark-bronze-2 "#1c1917"
+      3: &color-dark-bronze-3 "#262220"
+      4: &color-dark-bronze-4 "#302a27"
+      5: &color-dark-bronze-5 "#3b3330"
+      6: &color-dark-bronze-6 "#493e3a"
+      7: &color-dark-bronze-7 "#5a4c47"
+      8: &color-dark-bronze-8 "#6f5f58"
+      9: &color-dark-bronze-9 "#a18072"
+      10: &color-dark-bronze-10 "#ae8c7e"
+      11: &color-dark-bronze-11 "#d4b3a5"
+      12: &color-dark-bronze-12 "#ede0d9"
+    brown:
+      1: &color-dark-brown-1 "#12110f"
+      2: &color-dark-brown-2 "#1c1816"
+      3: &color-dark-brown-3 "#28211d"
+      4: &color-dark-brown-4 "#322922"
+      5: &color-dark-brown-5 "#3e3128"
+      6: &color-dark-brown-6 "#4d3c2f"
+      7: &color-dark-brown-7 "#614a39"
+      8: &color-dark-brown-8 "#7c5f46"
+      9: &color-dark-brown-9 "#ad7f58"
+      10: &color-dark-brown-10 "#b88c67"
+      11: &color-dark-brown-11 "#dbb594"
+      12: &color-dark-brown-12 "#f2e1ca"
+    crimson:
+      1: &color-dark-crimson-1 "#191114"
+      2: &color-dark-crimson-2 "#201318"
+      3: &color-dark-crimson-3 "#381525"
+      4: &color-dark-crimson-4 "#4d122f"
+      5: &color-dark-crimson-5 "#5c1839"
+      6: &color-dark-crimson-6 "#6d2545"
+      7: &color-dark-crimson-7 "#873356"
+      8: &color-dark-crimson-8 "#b0436e"
+      9: &color-dark-crimson-9 "#e93d82"
+      10: &color-dark-crimson-10 "#ee518a"
+      11: &color-dark-crimson-11 "#ff92ad"
+      12: &color-dark-crimson-12 "#fdd3e8"
+    cyan:
+      1: &color-dark-cyan-1 "#0b161a"
+      2: &color-dark-cyan-2 "#101b20"
+      3: &color-dark-cyan-3 "#082c36"
+      4: &color-dark-cyan-4 "#003848"
+      5: &color-dark-cyan-5 "#004558"
+      6: &color-dark-cyan-6 "#045468"
+      7: &color-dark-cyan-7 "#12677e"
+      8: &color-dark-cyan-8 "#11809c"
+      9: &color-dark-cyan-9 "#00a2c7"
+      10: &color-dark-cyan-10 "#23afd0"
+      11: &color-dark-cyan-11 "#4ccce6"
+      12: &color-dark-cyan-12 "#b6ecf7"
+    gold:
+      1: &color-dark-gold-1 "#121211"
+      2: &color-dark-gold-2 "#1b1a17"
+      3: &color-dark-gold-3 "#24231f"
+      4: &color-dark-gold-4 "#2d2b26"
+      5: &color-dark-gold-5 "#38352e"
+      6: &color-dark-gold-6 "#444039"
+      7: &color-dark-gold-7 "#544f46"
+      8: &color-dark-gold-8 "#696256"
+      9: &color-dark-gold-9 "#978365"
+      10: &color-dark-gold-10 "#a39073"
+      11: &color-dark-gold-11 "#cbb99f"
+      12: &color-dark-gold-12 "#e8e2d9"
+    grass:
+      1: &color-dark-grass-1 "#0e1511"
+      2: &color-dark-grass-2 "#141a15"
+      3: &color-dark-grass-3 "#1b2a1e"
+      4: &color-dark-grass-4 "#1d3a24"
+      5: &color-dark-grass-5 "#25482d"
+      6: &color-dark-grass-6 "#2d5736"
+      7: &color-dark-grass-7 "#366740"
+      8: &color-dark-grass-8 "#3e7949"
+      9: &color-dark-grass-9 "#46a758"
+      10: &color-dark-grass-10 "#53b365"
+      11: &color-dark-grass-11 "#71d083"
+      12: &color-dark-grass-12 "#c2f0c2"
+    gray:
+      1: &color-dark-gray-1 "#111111"
+      2: &color-dark-gray-2 "#191919"
+      3: &color-dark-gray-3 "#222222"
+      4: &color-dark-gray-4 "#2a2a2a"
+      5: &color-dark-gray-5 "#313131"
+      6: &color-dark-gray-6 "#3a3a3a"
+      7: &color-dark-gray-7 "#484848"
+      8: &color-dark-gray-8 "#606060"
+      9: &color-dark-gray-9 "#6e6e6e"
+      10: &color-dark-gray-10 "#7b7b7b"
+      11: &color-dark-gray-11 "#b4b4b4"
+      12: &color-dark-gray-12 "#eeeeee"
+    green:
+      1: &color-dark-green-1 "#0e1512"
+      2: &color-dark-green-2 "#121b17"
+      3: &color-dark-green-3 "#132d21"
+      4: &color-dark-green-4 "#113b29"
+      5: &color-dark-green-5 "#174933"
+      6: &color-dark-green-6 "#20573e"
+      7: &color-dark-green-7 "#28684a"
+      8: &color-dark-green-8 "#2f7c57"
+      9: &color-dark-green-9 "#30a46c"
+      10: &color-dark-green-10 "#33b074"
+      11: &color-dark-green-11 "#3dd68c"
+      12: &color-dark-green-12 "#b1f1cb"
+    indigo:
+      1: &color-dark-indigo-1 "#11131f"
+      2: &color-dark-indigo-2 "#141726"
+      3: &color-dark-indigo-3 "#182449"
+      4: &color-dark-indigo-4 "#1d2e62"
+      5: &color-dark-indigo-5 "#253974"
+      6: &color-dark-indigo-6 "#304384"
+      7: &color-dark-indigo-7 "#3a4f97"
+      8: &color-dark-indigo-8 "#435db1"
+      9: &color-dark-indigo-9 "#3e63dd"
+      10: &color-dark-indigo-10 "#5472e4"
+      11: &color-dark-indigo-11 "#9eb1ff"
+      12: &color-dark-indigo-12 "#d6e1ff"
+    iris:
+      1: &color-dark-iris-1 "#13131e"
+      2: &color-dark-iris-2 "#171625"
+      3: &color-dark-iris-3 "#202248"
+      4: &color-dark-iris-4 "#262a65"
+      5: &color-dark-iris-5 "#303374"
+      6: &color-dark-iris-6 "#3d3e82"
+      7: &color-dark-iris-7 "#4a4a95"
+      8: &color-dark-iris-8 "#5958b1"
+      9: &color-dark-iris-9 "#5b5bd6"
+      10: &color-dark-iris-10 "#6e6ade"
+      11: &color-dark-iris-11 "#b1a9ff"
+      12: &color-dark-iris-12 "#e0dffe"
+    jade:
+      1: &color-dark-jade-1 "#0d1512"
+      2: &color-dark-jade-2 "#121c18"
+      3: &color-dark-jade-3 "#0f2e22"
+      4: &color-dark-jade-4 "#0b3b2c"
+      5: &color-dark-jade-5 "#114837"
+      6: &color-dark-jade-6 "#1b5745"
+      7: &color-dark-jade-7 "#246854"
+      8: &color-dark-jade-8 "#2a7e68"
+      9: &color-dark-jade-9 "#29a383"
+      10: &color-dark-jade-10 "#27b08b"
+      11: &color-dark-jade-11 "#1fd8a4"
+      12: &color-dark-jade-12 "#adf0d4"
+    lime:
+      1: &color-dark-lime-1 "#11130c"
+      2: &color-dark-lime-2 "#151a10"
+      3: &color-dark-lime-3 "#1f2917"
+      4: &color-dark-lime-4 "#29371d"
+      5: &color-dark-lime-5 "#334423"
+      6: &color-dark-lime-6 "#3d522a"
+      7: &color-dark-lime-7 "#496231"
+      8: &color-dark-lime-8 "#577538"
+      9: &color-dark-lime-9 "#bdee63"
+      10: &color-dark-lime-10 "#d4ff70"
+      11: &color-dark-lime-11 "#bde56c"
+      12: &color-dark-lime-12 "#e3f7ba"
+    mauve:
+      1: &color-dark-mauve-1 "#121113"
+      2: &color-dark-mauve-2 "#1a191b"
+      3: &color-dark-mauve-3 "#232225"
+      4: &color-dark-mauve-4 "#2b292d"
+      5: &color-dark-mauve-5 "#323035"
+      6: &color-dark-mauve-6 "#3c393f"
+      7: &color-dark-mauve-7 "#49474e"
+      8: &color-dark-mauve-8 "#625f69"
+      9: &color-dark-mauve-9 "#6f6d78"
+      10: &color-dark-mauve-10 "#7c7a85"
+      11: &color-dark-mauve-11 "#b5b2bc"
+      12: &color-dark-mauve-12 "#eeeef0"
+    mint:
+      1: &color-dark-mint-1 "#0e1515"
+      2: &color-dark-mint-2 "#0f1b1b"
+      3: &color-dark-mint-3 "#092c2b"
+      4: &color-dark-mint-4 "#003a38"
+      5: &color-dark-mint-5 "#004744"
+      6: &color-dark-mint-6 "#105650"
+      7: &color-dark-mint-7 "#1e685f"
+      8: &color-dark-mint-8 "#277f70"
+      9: &color-dark-mint-9 "#86ead4"
+      10: &color-dark-mint-10 "#a8f5e5"
+      11: &color-dark-mint-11 "#58d5ba"
+      12: &color-dark-mint-12 "#c4f5e1"
+    olive:
+      1: &color-dark-olive-1 "#111210"
+      2: &color-dark-olive-2 "#181917"
+      3: &color-dark-olive-3 "#212220"
+      4: &color-dark-olive-4 "#282a27"
+      5: &color-dark-olive-5 "#2f312e"
+      6: &color-dark-olive-6 "#383a36"
+      7: &color-dark-olive-7 "#454843"
+      8: &color-dark-olive-8 "#5c625b"
+      9: &color-dark-olive-9 "#687066"
+      10: &color-dark-olive-10 "#767d74"
+      11: &color-dark-olive-11 "#afb5ad"
+      12: &color-dark-olive-12 "#eceeec"
+    orange:
+      1: &color-dark-orange-1 "#17120e"
+      2: &color-dark-orange-2 "#1e160f"
+      3: &color-dark-orange-3 "#331e0b"
+      4: &color-dark-orange-4 "#462100"
+      5: &color-dark-orange-5 "#562800"
+      6: &color-dark-orange-6 "#66350c"
+      7: &color-dark-orange-7 "#7e451d"
+      8: &color-dark-orange-8 "#a35829"
+      9: &color-dark-orange-9 "#f76b15"
+      10: &color-dark-orange-10 "#ff801f"
+      11: &color-dark-orange-11 "#ffa057"
+      12: &color-dark-orange-12 "#ffe0c2"
+    pink:
+      1: &color-dark-pink-1 "#191117"
+      2: &color-dark-pink-2 "#21121d"
+      3: &color-dark-pink-3 "#37172f"
+      4: &color-dark-pink-4 "#4b143d"
+      5: &color-dark-pink-5 "#591c47"
+      6: &color-dark-pink-6 "#692955"
+      7: &color-dark-pink-7 "#833869"
+      8: &color-dark-pink-8 "#a84885"
+      9: &color-dark-pink-9 "#d6409f"
+      10: &color-dark-pink-10 "#de51a8"
+      11: &color-dark-pink-11 "#ff8dcc"
+      12: &color-dark-pink-12 "#fdd1ea"
+    plum:
+      1: &color-dark-plum-1 "#181118"
+      2: &color-dark-plum-2 "#201320"
+      3: &color-dark-plum-3 "#351a35"
+      4: &color-dark-plum-4 "#451d47"
+      5: &color-dark-plum-5 "#512454"
+      6: &color-dark-plum-6 "#5e3061"
+      7: &color-dark-plum-7 "#734079"
+      8: &color-dark-plum-8 "#92549c"
+      9: &color-dark-plum-9 "#ab4aba"
+      10: &color-dark-plum-10 "#b658c4"
+      11: &color-dark-plum-11 "#e796f3"
+      12: &color-dark-plum-12 "#f4d4f4"
+    purple:
+      1: &color-dark-purple-1 "#18111b"
+      2: &color-dark-purple-2 "#1e1523"
+      3: &color-dark-purple-3 "#301c3b"
+      4: &color-dark-purple-4 "#3d224e"
+      5: &color-dark-purple-5 "#48295c"
+      6: &color-dark-purple-6 "#54346b"
+      7: &color-dark-purple-7 "#664282"
+      8: &color-dark-purple-8 "#8457aa"
+      9: &color-dark-purple-9 "#8e4ec6"
+      10: &color-dark-purple-10 "#9a5cd0"
+      11: &color-dark-purple-11 "#d19dff"
+      12: &color-dark-purple-12 "#ecd9fa"
+    red:
+      1: &color-dark-red-1 "#191111"
+      2: &color-dark-red-2 "#201314"
+      3: &color-dark-red-3 "#3b1219"
+      4: &color-dark-red-4 "#500f1c"
+      5: &color-dark-red-5 "#611623"
+      6: &color-dark-red-6 "#72232d"
+      7: &color-dark-red-7 "#8c333a"
+      8: &color-dark-red-8 "#b54548"
+      9: &color-dark-red-9 "#e5484d"
+      10: &color-dark-red-10 "#ec5d5e"
+      11: &color-dark-red-11 "#ff9592"
+      12: &color-dark-red-12 "#ffd1d9"
+    ruby:
+      1: &color-dark-ruby-1 "#191113"
+      2: &color-dark-ruby-2 "#1e1517"
+      3: &color-dark-ruby-3 "#3a141e"
+      4: &color-dark-ruby-4 "#4e1325"
+      5: &color-dark-ruby-5 "#5e1a2e"
+      6: &color-dark-ruby-6 "#6f2539"
+      7: &color-dark-ruby-7 "#883447"
+      8: &color-dark-ruby-8 "#b3445a"
+      9: &color-dark-ruby-9 "#e54666"
+      10: &color-dark-ruby-10 "#ec5a72"
+      11: &color-dark-ruby-11 "#ff949d"
+      12: &color-dark-ruby-12 "#fed2e1"
+    sage:
+      1: &color-dark-sage-1 "#101211"
+      2: &color-dark-sage-2 "#171918"
+      3: &color-dark-sage-3 "#202221"
+      4: &color-dark-sage-4 "#272a29"
+      5: &color-dark-sage-5 "#2e3130"
+      6: &color-dark-sage-6 "#373b39"
+      7: &color-dark-sage-7 "#444947"
+      8: &color-dark-sage-8 "#5b625f"
+      9: &color-dark-sage-9 "#63706b"
+      10: &color-dark-sage-10 "#717d79"
+      11: &color-dark-sage-11 "#adb5b2"
+      12: &color-dark-sage-12 "#eceeed"
+    sand:
+      1: &color-dark-sand-1 "#111110"
+      2: &color-dark-sand-2 "#191918"
+      3: &color-dark-sand-3 "#222221"
+      4: &color-dark-sand-4 "#2a2a28"
+      5: &color-dark-sand-5 "#31312e"
+      6: &color-dark-sand-6 "#3b3a37"
+      7: &color-dark-sand-7 "#494844"
+      8: &color-dark-sand-8 "#62605b"
+      9: &color-dark-sand-9 "#6f6d66"
+      10: &color-dark-sand-10 "#7c7b74"
+      11: &color-dark-sand-11 "#b5b3ad"
+      12: &color-dark-sand-12 "#eeeeec"
+    sky:
+      1: &color-dark-sky-1 "#0d141f"
+      2: &color-dark-sky-2 "#111a27"
+      3: &color-dark-sky-3 "#112840"
+      4: &color-dark-sky-4 "#113555"
+      5: &color-dark-sky-5 "#154467"
+      6: &color-dark-sky-6 "#1b537b"
+      7: &color-dark-sky-7 "#1f6692"
+      8: &color-dark-sky-8 "#197cae"
+      9: &color-dark-sky-9 "#7ce2fe"
+      10: &color-dark-sky-10 "#a8eeff"
+      11: &color-dark-sky-11 "#75c7f0"
+      12: &color-dark-sky-12 "#c2f3ff"
+    slate:
+      1: &color-dark-slate-1 "#111113"
+      2: &color-dark-slate-2 "#18191b"
+      3: &color-dark-slate-3 "#212225"
+      4: &color-dark-slate-4 "#272a2d"
+      5: &color-dark-slate-5 "#2e3135"
+      6: &color-dark-slate-6 "#363a3f"
+      7: &color-dark-slate-7 "#43484e"
+      8: &color-dark-slate-8 "#5a6169"
+      9: &color-dark-slate-9 "#696e77"
+      10: &color-dark-slate-10 "#777b84"
+      11: &color-dark-slate-11 "#b0b4ba"
+      12: &color-dark-slate-12 "#edeef0"
+    teal:
+      1: &color-dark-teal-1 "#0d1514"
+      2: &color-dark-teal-2 "#111c1b"
+      3: &color-dark-teal-3 "#0d2d2a"
+      4: &color-dark-teal-4 "#023b37"
+      5: &color-dark-teal-5 "#084843"
+      6: &color-dark-teal-6 "#145750"
+      7: &color-dark-teal-7 "#1c6961"
+      8: &color-dark-teal-8 "#207e73"
+      9: &color-dark-teal-9 "#12a594"
+      10: &color-dark-teal-10 "#0eb39e"
+      11: &color-dark-teal-11 "#0bd8b6"
+      12: &color-dark-teal-12 "#adf0dd"
+    tomato:
+      1: &color-dark-tomato-1 "#181111"
+      2: &color-dark-tomato-2 "#1f1513"
+      3: &color-dark-tomato-3 "#391714"
+      4: &color-dark-tomato-4 "#4e1511"
+      5: &color-dark-tomato-5 "#5e1c16"
+      6: &color-dark-tomato-6 "#6e2920"
+      7: &color-dark-tomato-7 "#853a2d"
+      8: &color-dark-tomato-8 "#ac4d39"
+      9: &color-dark-tomato-9 "#e54d2e"
+      10: &color-dark-tomato-10 "#ec6142"
+      11: &color-dark-tomato-11 "#ff977d"
+      12: &color-dark-tomato-12 "#fbd3cb"
+    violet:
+      1: &color-dark-violet-1 "#14121f"
+      2: &color-dark-violet-2 "#1b1525"
+      3: &color-dark-violet-3 "#291f43"
+      4: &color-dark-violet-4 "#33255b"
+      5: &color-dark-violet-5 "#3c2e69"
+      6: &color-dark-violet-6 "#473876"
+      7: &color-dark-violet-7 "#56468b"
+      8: &color-dark-violet-8 "#6958ad"
+      9: &color-dark-violet-9 "#6e56cf"
+      10: &color-dark-violet-10 "#7d66d9"
+      11: &color-dark-violet-11 "#baa7ff"
+      12: &color-dark-violet-12 "#e2ddfe"
+    yellow:
+      1: &color-dark-yellow-1 "#14120b"
+      2: &color-dark-yellow-2 "#1b180f"
+      3: &color-dark-yellow-3 "#2d2305"
+      4: &color-dark-yellow-4 "#362b00"
+      5: &color-dark-yellow-5 "#433500"
+      6: &color-dark-yellow-6 "#524202"
+      7: &color-dark-yellow-7 "#665417"
+      8: &color-dark-yellow-8 "#836a21"
+      9: &color-dark-yellow-9 "#ffe629"
+      10: &color-dark-yellow-10 "#ffff57"
+      11: &color-dark-yellow-11 "#f5e147"
+      12: &color-dark-yellow-12 "#f6eeb4"
+
+semantic:
+  light:
+    bg:
+      primary: *color-white
+      subtle: *color-light-gray-2
+      muted: *color-light-gray-3
+      emphasized: *color-light-gray-4
+      inverted: *color-black
+      panel: *color-white
+      error: *color-light-red-2
+      warning: *color-light-orange-2
+      success: *color-light-green-2
+      info: *color-light-blue-2
+      hint: *color-light-purple-2
+    fg:
+      primary: *color-light-gray-12
+      muted: *color-light-gray-11
+      subtle: *color-light-gray-10
+      inverted: *color-white
+      error: *color-light-red-11
+      warning: *color-light-orange-11
+      success: *color-light-green-11
+      info: *color-light-blue-11
+      hint: *color-light-purple-11
+    border:
+      primary: *color-light-gray-6
+      muted: *color-light-gray-5
+      subtle: *color-light-gray-4
+      emphasized: *color-light-gray-7
+      inverted: *color-black
+      error: *color-light-red-6
+      warning: *color-light-orange-6
+      success: *color-light-green-6
+      info: *color-light-blue-6
+      hint: *color-light-purple-6
+    gray:
+      contrast: *color-white
+      fg: *color-light-gray-11
+      subtle: *color-light-gray-2
+      muted: *color-light-gray-3
+      emphasized: *color-light-gray-4
+      solid: *color-light-gray-9
+      focusRing: *color-light-gray-7
+      border: *color-light-gray-6
+    red:
+      contrast: *color-white
+      fg: *color-light-red-11
+      subtle: *color-light-red-2
+      muted: *color-light-red-3
+      emphasized: *color-light-red-4
+      solid: *color-light-red-9
+      focusRing: *color-light-red-7
+      border: *color-light-red-6
+    orange:
+      contrast: *color-white
+      fg: *color-light-orange-11
+      subtle: *color-light-orange-2
+      muted: *color-light-orange-3
+      emphasized: *color-light-orange-4
+      solid: *color-light-orange-9
+      focusRing: *color-light-orange-7
+      border: *color-light-orange-6
+    green:
+      contrast: *color-white
+      fg: *color-light-green-11
+      subtle: *color-light-green-2
+      muted: *color-light-green-3
+      emphasized: *color-light-green-4
+      solid: *color-light-green-9
+      focusRing: *color-light-green-7
+      border: *color-light-green-6
+    blue:
+      contrast: *color-white
+      fg: *color-light-blue-11
+      subtle: *color-light-blue-2
+      muted: *color-light-blue-3
+      emphasized: *color-light-blue-4
+      solid: *color-light-blue-9
+      focusRing: *color-light-blue-7
+      border: *color-light-blue-6
+    yellow:
+      contrast: *color-black
+      fg: *color-light-yellow-11
+      subtle: *color-light-yellow-2
+      muted: *color-light-yellow-3
+      emphasized: *color-light-yellow-4
+      solid: *color-light-yellow-9
+      focusRing: *color-light-yellow-7
+      border: *color-light-yellow-6
+    teal:
+      contrast: *color-white
+      fg: *color-light-teal-11
+      subtle: *color-light-teal-2
+      muted: *color-light-teal-3
+      emphasized: *color-light-teal-4
+      solid: *color-light-teal-9
+      focusRing: *color-light-teal-7
+      border: *color-light-teal-6
+    purple:
+      contrast: *color-white
+      fg: *color-light-purple-11
+      subtle: *color-light-purple-2
+      muted: *color-light-purple-3
+      emphasized: *color-light-purple-4
+      solid: *color-light-purple-9
+      focusRing: *color-light-purple-7
+      border: *color-light-purple-6
+    pink:
+      contrast: *color-white
+      fg: *color-light-pink-11
+      subtle: *color-light-pink-2
+      muted: *color-light-pink-3
+      emphasized: *color-light-pink-4
+      solid: *color-light-pink-9
+      focusRing: *color-light-pink-7
+      border: *color-light-pink-6
+    cyan:
+      contrast: *color-white
+      fg: *color-light-cyan-11
+      subtle: *color-light-cyan-2
+      muted: *color-light-cyan-3
+      emphasized: *color-light-cyan-4
+      solid: *color-light-cyan-9
+      focusRing: *color-light-cyan-7
+      border: *color-light-cyan-6
+  dark:
+    bg:
+      primary: *color-black
+      subtle: *color-dark-gray-2
+      muted: *color-dark-gray-3
+      emphasized: *color-dark-gray-4
+      inverted: *color-white
+      panel: *color-dark-gray-2
+      error: *color-dark-red-2
+      warning: *color-dark-orange-2
+      success: *color-dark-green-2
+      info: *color-dark-blue-2
+      hint: *color-dark-purple-2
+    fg:
+      primary: *color-dark-gray-12
+      muted: *color-dark-gray-11
+      subtle: *color-dark-gray-10
+      inverted: *color-black
+      error: *color-dark-red-11
+      warning: *color-dark-orange-11
+      success: *color-dark-green-11
+      info: *color-dark-blue-11
+      hint: *color-dark-purple-11
+    border:
+      primary: *color-dark-gray-6
+      muted: *color-dark-gray-5
+      subtle: *color-dark-gray-4
+      emphasized: *color-dark-gray-7
+      inverted: *color-white
+      error: *color-dark-red-6
+      warning: *color-dark-orange-6
+      success: *color-dark-green-6
+      info: *color-dark-blue-6
+      hint: *color-dark-purple-6
+    gray:
+      contrast: *color-white
+      fg: *color-dark-gray-11
+      subtle: *color-dark-gray-2
+      muted: *color-dark-gray-3
+      emphasized: *color-dark-gray-4
+      solid: *color-dark-gray-9
+      focusRing: *color-dark-gray-7
+      border: *color-dark-gray-6
+    red:
+      contrast: *color-white
+      fg: *color-dark-red-11
+      subtle: *color-dark-red-2
+      muted: *color-dark-red-3
+      emphasized: *color-dark-red-4
+      solid: *color-dark-red-9
+      focusRing: *color-dark-red-7
+      border: *color-dark-red-6
+    orange:
+      contrast: *color-white
+      fg: *color-dark-orange-11
+      subtle: *color-dark-orange-2
+      muted: *color-dark-orange-3
+      emphasized: *color-dark-orange-4
+      solid: *color-dark-orange-9
+      focusRing: *color-dark-orange-7
+      border: *color-dark-orange-6
+    green:
+      contrast: *color-white
+      fg: *color-dark-green-11
+      subtle: *color-dark-green-2
+      muted: *color-dark-green-3
+      emphasized: *color-dark-green-4
+      solid: *color-dark-green-9
+      focusRing: *color-dark-green-7
+      border: *color-dark-green-6
+    blue:
+      contrast: *color-white
+      fg: *color-dark-blue-11
+      subtle: *color-dark-blue-2
+      muted: *color-dark-blue-3
+      emphasized: *color-dark-blue-4
+      solid: *color-dark-blue-9
+      focusRing: *color-dark-blue-7
+      border: *color-dark-blue-6
+    yellow:
+      contrast: *color-black
+      fg: *color-dark-yellow-11
+      subtle: *color-dark-yellow-2
+      muted: *color-dark-yellow-3
+      emphasized: *color-dark-yellow-4
+      solid: *color-dark-yellow-9
+      focusRing: *color-dark-yellow-7
+      border: *color-dark-yellow-6
+    teal:
+      contrast: *color-white
+      fg: *color-dark-teal-11
+      subtle: *color-dark-teal-2
+      muted: *color-dark-teal-3
+      emphasized: *color-dark-teal-4
+      solid: *color-dark-teal-9
+      focusRing: *color-dark-teal-7
+      border: *color-dark-teal-6
+    purple:
+      contrast: *color-white
+      fg: *color-dark-purple-11
+      subtle: *color-dark-purple-2
+      muted: *color-dark-purple-3
+      emphasized: *color-dark-purple-4
+      solid: *color-dark-purple-9
+      focusRing: *color-dark-purple-7
+      border: *color-dark-purple-6
+    pink:
+      contrast: *color-white
+      fg: *color-dark-pink-11
+      subtle: *color-dark-pink-2
+      muted: *color-dark-pink-3
+      emphasized: *color-dark-pink-4
+      solid: *color-dark-pink-9
+      focusRing: *color-dark-pink-7
+      border: *color-dark-pink-6
+    cyan:
+      contrast: *color-white
+      fg: *color-dark-cyan-11
+      subtle: *color-dark-cyan-2
+      muted: *color-dark-cyan-3
+      emphasized: *color-dark-cyan-4
+      solid: *color-dark-cyan-9
+      focusRing: *color-dark-cyan-7
+      border: *color-dark-cyan-6

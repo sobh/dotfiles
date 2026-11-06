@@ -1,0 +1,525 @@
+# Tailwind Color Palette
+# All color values are converted to standard Hex
+# Semantic tokens are linked directly to base tokens using YAML anchors.
+
+# ==== Base Color Palette ======================================================
+colors:
+  black: &color-black "#000000"
+  white: &color-white "#ffffff>"
+  # ---- Gray Scale Swatches ---------------------------------------------------
+  slate:
+    50: &color-slate-50 "#f8fafc"
+    100: &color-slate-100 "#f1f5f9"
+    200: &color-slate-200 "#e2e8f0"
+    300: &color-slate-300 "#cbd5e1"
+    400: &color-slate-400 "#94a3b8"
+    500: &color-slate-500 "#64748b"
+    600: &color-slate-600 "#475569"
+    700: &color-slate-700 "#334155"
+    800: &color-slate-800 "#1e293b"
+    900: &color-slate-900 "#0f172a"
+    950: &color-slate-950 "#020617"
+  gray:
+    50: &color-gray-50 "#f9fafb"
+    100: &color-gray-100 "#f3f4f6"
+    200: &color-gray-200 "#e5e7eb"
+    300: &color-gray-300 "#d1d5db"
+    400: &color-gray-400 "#9ca3af"
+    500: &color-gray-500 "#6b7280"
+    600: &color-gray-600 "#4b5563"
+    700: &color-gray-700 "#374151"
+    800: &color-gray-800 "#1f2937"
+    900: &color-gray-900 "#111827"
+    950: &color-gray-950 "#030712"
+  zinc:
+    50: &color-zinc-50 "#fafafa"
+    100: &color-zinc-100 "#f4f4f5"
+    200: &color-zinc-200 "#e4e4e7"
+    300: &color-zinc-300 "#d4d4d8"
+    400: &color-zinc-400 "#a1a1aa"
+    500: &color-zinc-500 "#71717a"
+    600: &color-zinc-600 "#52525b"
+    700: &color-zinc-700 "#3f3f46"
+    800: &color-zinc-800 "#27272a"
+    900: &color-zinc-900 "#18181b"
+    950: &color-zinc-950 "#09090b"
+  neutral:
+    50: &color-neutral-50 "#fafafa"
+    100: &color-neutral-100 "#f5f5f5"
+    200: &color-neutral-200 "#e5e5e5"
+    300: &color-neutral-300 "#d4d4d4"
+    400: &color-neutral-400 "#a3a3a3"
+    500: &color-neutral-500 "#737373"
+    600: &color-neutral-600 "#525252"
+    700: &color-neutral-700 "#404040"
+    800: &color-neutral-800 "#262626"
+    900: &color-neutral-900 "#171717"
+    950: &color-neutral-950 "#0a0a0a"
+  stone:
+    50: &color-stone-50 "#fafaf9"
+    100: &color-stone-100 "#f5f5f4"
+    200: &color-stone-200 "#e7e5e4"
+    300: &color-stone-300 "#d6d3d1"
+    400: &color-stone-400 "#a8a29e"
+    500: &color-stone-500 "#78716c"
+    600: &color-stone-600 "#57534e"
+    700: &color-stone-700 "#44403c"
+    800: &color-stone-800 "#292524"
+    900: &color-stone-900 "#1c1917"
+    950: &color-stone-950 "#0c0a09"
+  # ---- Hue Swatches ----------------------------------------------------------
+  red:
+    50: &color-red-50 "#fef2f2"
+    100: &color-red-100 "#fee2e2"
+    200: &color-red-200 "#fecaca"
+    300: &color-red-300 "#fca5a5"
+    400: &color-red-400 "#f87171"
+    500: &color-red-500 "#ef4444"
+    600: &color-red-600 "#dc2626"
+    700: &color-red-700 "#b91c1c"
+    800: &color-red-800 "#991b1b"
+    900: &color-red-900 "#7f1d1d"
+    950: &color-red-950 "#450a0a"
+  orange:
+    50: &color-orange-50 "#fff7ed"
+    100: &color-orange-100 "#ffedd5"
+    200: &color-orange-200 "#fed7aa"
+    300: &color-orange-300 "#fdba74"
+    400: &color-orange-400 "#fb923c"
+    500: &color-orange-500 "#f97316"
+    600: &color-orange-600 "#ea580c"
+    700: &color-orange-700 "#c2410c"
+    800: &color-orange-800 "#9a3412"
+    900: &color-orange-900 "#7c2d12"
+    950: &color-orange-950 "#431407"
+  amber:
+    50: &color-amber-50 "#fffbeb"
+    100: &color-amber-100 "#fef3c7"
+    200: &color-amber-200 "#fde68a"
+    300: &color-amber-300 "#fcd34d"
+    400: &color-amber-400 "#fbbf24"
+    500: &color-amber-500 "#f59e0b"
+    600: &color-amber-600 "#d97706"
+    700: &color-amber-700 "#b45309"
+    800: &color-amber-800 "#92400e"
+    900: &color-amber-900 "#78350f"
+    950: &color-amber-950 "#451a03"
+  yellow:
+    50: &color-yellow-50 "#fefce8"
+    100: &color-yellow-100 "#fef9c3"
+    200: &color-yellow-200 "#fef08a"
+    300: &color-yellow-300 "#fde047"
+    400: &color-yellow-400 "#facc15"
+    500: &color-yellow-500 "#eab308"
+    600: &color-yellow-600 "#ca8a04"
+    700: &color-yellow-700 "#a16207"
+    800: &color-yellow-800 "#854d0e"
+    900: &color-yellow-900 "#713f12"
+    950: &color-yellow-950 "#422006"
+  lime:
+    50: &color-lime-50 "#f7fee7"
+    100: &color-lime-100 "#ecfccb"
+    200: &color-lime-200 "#d9f99d"
+    300: &color-lime-300 "#bef264"
+    400: &color-lime-400 "#a3e635"
+    500: &color-lime-500 "#84cc16"
+    600: &color-lime-600 "#65a30d"
+    700: &color-lime-700 "#4d7c0f"
+    800: &color-lime-800 "#3f6212"
+    900: &color-lime-900 "#365314"
+    950: &color-lime-950 "#1a2e05"
+  green:
+    50: &color-green-50 "#f0fdf4"
+    100: &color-green-100 "#dcfce7"
+    200: &color-green-200 "#bbf7d0"
+    300: &color-green-300 "#86efac"
+    400: &color-green-400 "#4ade80"
+    500: &color-green-500 "#22c55e"
+    600: &color-green-600 "#16a34a"
+    700: &color-green-700 "#15803d"
+    800: &color-green-800 "#166534"
+    900: &color-green-900 "#14532d"
+    950: &color-green-950 "#052e16"
+  emerald:
+    50: &color-emerald-50 "#ecfdf5"
+    100: &color-emerald-100 "#d1fae5"
+    200: &color-emerald-200 "#a7f3d0"
+    300: &color-emerald-300 "#6ee7b7"
+    400: &color-emerald-400 "#34d399"
+    500: &color-emerald-500 "#10b981"
+    600: &color-emerald-600 "#059669"
+    700: &color-emerald-700 "#047857"
+    800: &color-emerald-800 "#065f46"
+    900: &color-emerald-900 "#064e3b"
+    950: &color-emerald-950 "#022c22"
+  teal:
+    50: &color-teal-50 "#f0fdfa"
+    100: &color-teal-100 "#ccfbf1"
+    200: &color-teal-200 "#99f6e4"
+    300: &color-teal-300 "#5eead4"
+    400: &color-teal-400 "#2dd4bf"
+    500: &color-teal-500 "#14b8a6"
+    600: &color-teal-600 "#0d9488"
+    700: &color-teal-700 "#0f766e"
+    800: &color-teal-800 "#115e59"
+    900: &color-teal-900 "#134e4a"
+    950: &color-teal-950 "#042f2e"
+  cyan:
+    50: &color-cyan-50 "#ecfeff"
+    100: &color-cyan-100 "#cffafe"
+    200: &color-cyan-200 "#a5f3fc"
+    300: &color-cyan-300 "#67e8f9"
+    400: &color-cyan-400 "#22d3ee"
+    500: &color-cyan-500 "#06b6d4"
+    600: &color-cyan-600 "#0891b2"
+    700: &color-cyan-700 "#0e7490"
+    800: &color-cyan-800 "#155e75"
+    900: &color-cyan-900 "#164e63"
+    950: &color-cyan-950 "#083344"
+  sky:
+    50: &color-sky-50 "#f0f9ff"
+    100: &color-sky-100 "#e0f2fe"
+    200: &color-sky-200 "#bae6fd"
+    300: &color-sky-300 "#7dd3fc"
+    400: &color-sky-400 "#38bdf8"
+    500: &color-sky-500 "#0ea5e9"
+    600: &color-sky-600 "#0284c7"
+    700: &color-sky-700 "#0369a1"
+    800: &color-sky-800 "#075985"
+    900: &color-sky-900 "#0c4a6e"
+    950: &color-sky-950 "#082f49"
+  blue:
+    50: &color-blue-50 "#eff6ff"
+    100: &color-blue-100 "#dbeafe"
+    200: &color-blue-200 "#bfdbfe"
+    300: &color-blue-300 "#93c5fd"
+    400: &color-blue-400 "#60a5fa"
+    500: &color-blue-500 "#3b82f6"
+    600: &color-blue-600 "#2563eb"
+    700: &color-blue-700 "#1d4ed8"
+    800: &color-blue-800 "#1e40af"
+    900: &color-blue-900 "#1e3a8a"
+    950: &color-blue-950 "#172554"
+  indigo:
+    50: &color-indigo-50 "#eef2ff"
+    100: &color-indigo-100 "#e0e7ff"
+    200: &color-indigo-200 "#c7d2fe"
+    300: &color-indigo-300 "#a5b4fc"
+    400: &color-indigo-400 "#818cf8"
+    500: &color-indigo-500 "#6366f1"
+    600: &color-indigo-600 "#4f46e5"
+    700: &color-indigo-700 "#4338ca"
+    800: &color-indigo-800 "#3730a3"
+    900: &color-indigo-900 "#312e81"
+    950: &color-indigo-950 "#1e1b4b"
+  violet:
+    50: &color-violet-50 "#f5f3ff"
+    100: &color-violet-100 "#ede9fe"
+    200: &color-violet-200 "#ddd6fe"
+    300: &color-violet-300 "#c4b5fd"
+    400: &color-violet-400 "#a78bfa"
+    500: &color-violet-500 "#8b5cf6"
+    600: &color-violet-600 "#7c3aed"
+    700: &color-violet-700 "#6d28d9"
+    800: &color-violet-800 "#5b21b6"
+    900: &color-violet-900 "#4c1d95"
+    950: &color-violet-950 "#2e1065"
+  purple:
+    50: &color-purple-50 "#faf5ff"
+    100: &color-purple-100 "#f3e8ff"
+    200: &color-purple-200 "#e9d5ff"
+    300: &color-purple-300 "#d8b4fe"
+    400: &color-purple-400 "#c084fc"
+    500: &color-purple-500 "#a855f7"
+    600: &color-purple-600 "#9333ea"
+    700: &color-purple-700 "#7e22ce"
+    800: &color-purple-800 "#6b21a8"
+    900: &color-purple-900 "#581c87"
+    950: &color-purple-950 "#3b0764"
+  fuchsia:
+    50: &color-fuchsia-50 "#fdf4ff"
+    100: &color-fuchsia-100 "#fae8ff"
+    200: &color-fuchsia-200 "#f5d0fe"
+    300: &color-fuchsia-300 "#f0abfc"
+    400: &color-fuchsia-400 "#e879f9"
+    500: &color-fuchsia-500 "#d946ef"
+    600: &color-fuchsia-600 "#c026d3"
+    700: &color-fuchsia-700 "#a21caf"
+    800: &color-fuchsia-800 "#86198f"
+    900: &color-fuchsia-900 "#701a75"
+    950: &color-fuchsia-950 "#4a044e"
+  pink:
+    50: &color-pink-50 "#fdf2f8"
+    100: &color-pink-100 "#fce7f3"
+    200: &color-pink-200 "#fbcfe8"
+    300: &color-pink-300 "#f9a8d4"
+    400: &color-pink-400 "#f472b6"
+    500: &color-pink-500 "#ec4899"
+    600: &color-pink-600 "#db2777"
+    700: &color-pink-700 "#be185d"
+    800: &color-pink-800 "#9d174d"
+    900: &color-pink-900 "#831843"
+    950: &color-pink-950 "#500724"
+  rose:
+    50: &color-rose-50 "#fff1f2"
+    100: &color-rose-100 "#ffe4e6"
+    200: &color-rose-200 "#fecdd3"
+    300: &color-rose-300 "#fda4af"
+    400: &color-rose-400 "#fb7185"
+    500: &color-rose-500 "#f43f5e"
+    600: &color-rose-600 "#e11d48"
+    700: &color-rose-700 "#be123c"
+    800: &color-rose-800 "#9f1239"
+    900: &color-rose-900 "#881337"
+    950: &color-rose-950 "#4c0519"
+
+# ==== Semantic Color Palette ==================================================
+semantic:
+  light:
+    bg:
+      primary: *color-white
+      subtle: *color-gray-50
+      muted: *color-gray-100
+      emphasized: *color-gray-200
+      inverted: *color-black
+      panel: *color-white
+      error: *color-red-50
+      warning: *color-orange-50
+      success: *color-green-50
+      info: *color-blue-50
+      hint: *color-purple-50
+    fg:
+      primary: *color-black
+      muted: *color-gray-600
+      subtle: *color-gray-400
+      inverted: *color-gray-50
+      error: *color-red-500
+      warning: *color-orange-600
+      success: *color-green-600
+      info: *color-blue-600
+      hint: *color-purple-600
+    border:
+      primary: *color-gray-200
+      muted: *color-gray-100
+      subtle: *color-gray-50
+      emphasized: *color-gray-300
+      inverted: *color-gray-800
+      error: *color-red-500
+      warning: *color-orange-500
+      success: *color-green-500
+      info: *color-blue-500
+      hint: *color-purple-500
+    gray:
+      contrast: *color-white
+      fg: *color-gray-800
+      subtle: *color-gray-100
+      muted: *color-gray-200
+      emphasized: *color-gray-300
+      solid: *color-gray-900
+      focusRing: *color-gray-400
+      border: *color-gray-200
+    red:
+      contrast: *color-white
+      fg: *color-red-700
+      subtle: *color-red-100
+      muted: *color-red-200
+      emphasized: *color-red-300
+      solid: *color-red-600
+      focusRing: *color-red-500
+      border: *color-red-500
+    orange:
+      contrast: *color-white
+      fg: *color-orange-700
+      subtle: *color-orange-100
+      muted: *color-orange-200
+      emphasized: *color-orange-300
+      solid: *color-orange-600
+      focusRing: *color-orange-500
+      border: *color-orange-500
+    green:
+      contrast: *color-white
+      fg: *color-green-700
+      subtle: *color-green-100
+      muted: *color-green-200
+      emphasized: *color-green-300
+      solid: *color-green-600
+      focusRing: *color-green-500
+      border: *color-green-500
+    blue:
+      contrast: *color-white
+      fg: *color-blue-700
+      subtle: *color-blue-100
+      muted: *color-blue-200
+      emphasized: *color-blue-300
+      solid: *color-blue-600
+      focusRing: *color-blue-500
+      border: *color-blue-500
+    yellow:
+      contrast: *color-black
+      fg: *color-yellow-800
+      subtle: *color-yellow-100
+      muted: *color-yellow-200
+      emphasized: *color-yellow-300
+      solid: *color-yellow-300
+      focusRing: *color-yellow-500
+      border: *color-yellow-500
+    teal:
+      contrast: *color-white
+      fg: *color-teal-700
+      subtle: *color-teal-100
+      muted: *color-teal-200
+      emphasized: *color-teal-300
+      solid: *color-teal-600
+      focusRing: *color-teal-500
+      border: *color-teal-500
+    purple:
+      contrast: *color-white
+      fg: *color-purple-700
+      subtle: *color-purple-100
+      muted: *color-purple-200
+      emphasized: *color-purple-300
+      solid: *color-purple-600
+      focusRing: *color-purple-500
+      border: *color-purple-500
+    pink:
+      contrast: *color-white
+      fg: *color-pink-700
+      subtle: *color-pink-100
+      muted: *color-pink-200
+      emphasized: *color-pink-300
+      solid: *color-pink-600
+      focusRing: *color-pink-500
+      border: *color-pink-500
+    cyan:
+      contrast: *color-white
+      fg: *color-cyan-700
+      subtle: *color-cyan-100
+      muted: *color-cyan-200
+      emphasized: *color-cyan-300
+      solid: *color-cyan-600
+      focusRing: *color-cyan-500
+      border: *color-cyan-500
+  dark:
+    bg:
+      primary: *color-black
+      subtle: *color-gray-950
+      muted: *color-gray-900
+      emphasized: *color-gray-800
+      inverted: *color-white
+      panel: *color-gray-950
+      error: *color-red-950
+      warning: *color-orange-950
+      success: *color-green-950
+      info: *color-blue-950
+      hint: *color-purple-950
+    fg:
+      primary: *color-gray-50
+      muted: *color-gray-400
+      subtle: *color-gray-500
+      inverted: *color-black
+      error: *color-red-400
+      warning: *color-orange-300
+      success: *color-green-300
+      info: *color-blue-300
+      hint: *color-purple-300
+    border:
+      primary: *color-gray-800
+      muted: *color-gray-900
+      subtle: *color-gray-950
+      emphasized: *color-gray-700
+      inverted: *color-gray-200
+      error: *color-red-400
+      warning: *color-orange-400
+      success: *color-green-400
+      info: *color-blue-400
+      hint: *color-purple-400
+    gray:
+      contrast: *color-black
+      fg: *color-gray-200
+      subtle: *color-gray-900
+      muted: *color-gray-800
+      emphasized: *color-gray-700
+      solid: *color-white
+      focusRing: *color-gray-400
+      border: *color-gray-800
+    red:
+      contrast: *color-white
+      fg: *color-red-300
+      subtle: *color-red-900
+      muted: *color-red-800
+      emphasized: *color-red-700
+      solid: *color-red-600
+      focusRing: *color-red-500
+      border: *color-red-400
+    orange:
+      contrast: *color-black
+      fg: *color-orange-300
+      subtle: *color-orange-900
+      muted: *color-orange-800
+      emphasized: *color-orange-700
+      solid: *color-orange-500
+      focusRing: *color-orange-500
+      border: *color-orange-400
+    green:
+      contrast: *color-white
+      fg: *color-green-300
+      subtle: *color-green-900
+      muted: *color-green-800
+      emphasized: *color-green-700
+      solid: *color-green-600
+      focusRing: *color-green-500
+      border: *color-green-400
+    blue:
+      contrast: *color-white
+      fg: *color-blue-300
+      subtle: *color-blue-900
+      muted: *color-blue-800
+      emphasized: *color-blue-700
+      solid: *color-blue-600
+      focusRing: *color-blue-500
+      border: *color-blue-400
+    yellow:
+      contrast: *color-black
+      fg: *color-yellow-300
+      subtle: *color-yellow-900
+      muted: *color-yellow-800
+      emphasized: *color-yellow-700
+      solid: *color-yellow-300
+      focusRing: *color-yellow-500
+      border: *color-yellow-500
+    teal:
+      contrast: *color-white
+      fg: *color-teal-300
+      subtle: *color-teal-900
+      muted: *color-teal-800
+      emphasized: *color-teal-700
+      solid: *color-teal-600
+      focusRing: *color-teal-500
+      border: *color-teal-400
+    purple:
+      contrast: *color-white
+      fg: *color-purple-300
+      subtle: *color-purple-900
+      muted: *color-purple-800
+      emphasized: *color-purple-700
+      solid: *color-purple-600
+      focusRing: *color-purple-500
+      border: *color-purple-400
+    pink:
+      contrast: *color-white
+      fg: *color-pink-300
+      subtle: *color-pink-900
+      muted: *color-pink-800
+      emphasized: *color-pink-700
+      solid: *color-pink-600
+      focusRing: *color-pink-500
+      border: *color-pink-400
+    cyan:
+      contrast: *color-white
+      fg: *color-cyan-300
+      subtle: *color-cyan-900
+      muted: *color-cyan-800
+      emphasized: *color-cyan-700
+      solid: *color-cyan-600
+      focusRing: *color-cyan-500
+      border: *color-cyan-400

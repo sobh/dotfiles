@@ -1,0 +1,399 @@
+# Chakra UI v3 Color Definitions
+# All color values are converted to standard Hex
+# Semantic tokens are linked directly to base tokens using YAML anchors.
+
+# ==== Base Color Palette ======================================================
+colors:
+  black: &color-black "#09090b"
+  white: &color-white "#ffffff"
+
+  # Gray Palette
+  gray:
+    50: &color-gray-50 "#fafafa"
+    100: &color-gray-100 "#f4f4f5"
+    200: &color-gray-200 "#e4e4e7"
+    300: &color-gray-300 "#d4d4d8"
+    400: &color-gray-400 "#a1a1aa"
+    500: &color-gray-500 "#71717a"
+    600: &color-gray-600 "#52525b"
+    700: &color-gray-700 "#3f3f46"
+    800: &color-gray-800 "#27272a"
+    900: &color-gray-900 "#18181b"
+    950: &color-gray-950 "#111111"
+
+  # Red Palette
+  red:
+    50: &color-red-50 "#fef2f2"
+    100: &color-red-100 "#fee2e2"
+    200: &color-red-200 "#fecaca"
+    300: &color-red-300 "#fca5a5"
+    400: &color-red-400 "#f87171"
+    500: &color-red-500 "#ef4444"
+    600: &color-red-600 "#dc2626"
+    700: &color-red-700 "#991919"
+    800: &color-red-800 "#511111"
+    900: &color-red-900 "#300c0c"
+    950: &color-red-950 "#1f0808"
+
+  # Orange Palette
+  orange:
+    50: &color-orange-50 "#fff7ed"
+    100: &color-orange-100 "#ffedd5"
+    200: &color-orange-200 "#fed7aa"
+    300: &color-orange-300 "#fdba74"
+    400: &color-orange-400 "#fb923c"
+    500: &color-orange-500 "#f97316"
+    600: &color-orange-600 "#ea580c"
+    700: &color-orange-700 "#92310a"
+    800: &color-orange-800 "#6c2710"
+    900: &color-orange-900 "#3b1106"
+    950: &color-orange-950 "#220a04"
+
+  # Yellow Palette
+  yellow:
+    50: &color-yellow-50 "#fefce8"
+    100: &color-yellow-100 "#fef9c3"
+    200: &color-yellow-200 "#fef08a"
+    300: &color-yellow-300 "#fde047"
+    400: &color-yellow-400 "#facc15"
+    500: &color-yellow-500 "#eab308"
+    600: &color-yellow-600 "#ca8a04"
+    700: &color-yellow-700 "#845209"
+    800: &color-yellow-800 "#713f12"
+    900: &color-yellow-900 "#422006"
+    950: &color-yellow-950 "#281304"
+
+  # Green Palette
+  green:
+    50: &color-green-50 "#f0fdf4"
+    100: &color-green-100 "#dcfce7"
+    200: &color-green-200 "#bbf7d0"
+    300: &color-green-300 "#86efac"
+    400: &color-green-400 "#4ade80"
+    500: &color-green-500 "#22c55e"
+    600: &color-green-600 "#16a34a"
+    700: &color-green-700 "#116932"
+    800: &color-green-800 "#124a28"
+    900: &color-green-900 "#042713"
+    950: &color-green-950 "#03190c"
+
+  # Teal Palette
+  teal:
+    50: &color-teal-50 "#f0fdfa"
+    100: &color-teal-100 "#ccfbf1"
+    200: &color-teal-200 "#99f6e4"
+    300: &color-teal-300 "#5eead4"
+    400: &color-teal-400 "#2dd4bf"
+    500: &color-teal-500 "#14b8a6"
+    600: &color-teal-600 "#0d9488"
+    700: &color-teal-700 "#0c5d56"
+    800: &color-teal-800 "#114240"
+    900: &color-teal-900 "#032726"
+    950: &color-teal-950 "#021716"
+
+  # Blue Palette
+  blue:
+    50: &color-blue-50 "#eff6ff"
+    100: &color-blue-100 "#dbeafe"
+    200: &color-blue-200 "#bfdbfe"
+    300: &color-blue-300 "#a3cfff"
+    400: &color-blue-400 "#60a5fa"
+    500: &color-blue-500 "#3b82f6"
+    600: &color-blue-600 "#2563eb"
+    700: &color-blue-700 "#173da6"
+    800: &color-blue-800 "#1a3478"
+    900: &color-blue-900 "#14204a"
+    950: &color-blue-950 "#0c142e"
+
+  # Cyan Palette
+  cyan:
+    50: &color-cyan-50 "#ecfeff"
+    100: &color-cyan-100 "#cffafe"
+    200: &color-cyan-200 "#a5f3fc"
+    300: &color-cyan-300 "#67e8f9"
+    400: &color-cyan-400 "#22d3ee"
+    500: &color-cyan-500 "#06b6d4"
+    600: &color-cyan-600 "#0891b2"
+    700: &color-cyan-700 "#0c5c72"
+    800: &color-cyan-800 "#134152"
+    900: &color-cyan-900 "#072a38"
+    950: &color-cyan-950 "#051b24"
+
+  # Purple Palette
+  purple:
+    50: &color-purple-50 "#faf5ff"
+    100: &color-purple-100 "#f3e8ff"
+    200: &color-purple-200 "#e9d5ff"
+    300: &color-purple-300 "#d8b4fe"
+    400: &color-purple-400 "#c084fc"
+    500: &color-purple-500 "#a855f7"
+    600: &color-purple-600 "#9333ea"
+    700: &color-purple-700 "#641ba3"
+    800: &color-purple-800 "#4a1772"
+    900: &color-purple-900 "#2f0553"
+    950: &color-purple-950 "#1a032e"
+
+  # Pink Palette
+  pink:
+    50: &color-pink-50 "#fdf2f8"
+    100: &color-pink-100 "#fce7f3"
+    200: &color-pink-200 "#fbcfe8"
+    300: &color-pink-300 "#f9a8d4"
+    400: &color-pink-400 "#f472b6"
+    500: &color-pink-500 "#ec4899"
+    600: &color-pink-600 "#db2777"
+    700: &color-pink-700 "#a41752"
+    800: &color-pink-800 "#6d0e34"
+    900: &color-pink-900 "#45061f"
+    950: &color-pink-950 "#2c0514"
+
+# ==== Semantic Color Palette ==================================================
+semantic:
+  light:
+    bg:
+      primary: *color-white
+      subtle: *color-gray-50
+      muted: *color-gray-100
+      emphasized: *color-gray-200
+      inverted: *color-black
+      panel: *color-white
+      error: *color-red-50
+      warning: *color-orange-50
+      success: *color-green-50
+      info: *color-blue-50
+      hint: *color-purple-50
+    fg:
+      primary: *color-black
+      muted: *color-gray-600
+      subtle: *color-gray-400
+      inverted: *color-gray-50
+      error: *color-red-500
+      warning: *color-orange-600
+      success: *color-green-600
+      info: *color-blue-600
+      hint: *color-purple-600
+    border:
+      primary: *color-gray-200
+      muted: *color-gray-100
+      subtle: *color-gray-50
+      emphasized: *color-gray-300
+      inverted: *color-gray-800
+      error: *color-red-500
+      warning: *color-orange-500
+      success: *color-green-500
+      info: *color-blue-500
+      hint: *color-purple-500
+    gray:
+      contrast: *color-white
+      fg: *color-gray-800
+      subtle: *color-gray-100
+      muted: *color-gray-200
+      emphasized: *color-gray-300
+      solid: *color-gray-900
+      focusRing: *color-gray-400
+      border: *color-gray-200
+    red:
+      contrast: *color-white
+      fg: *color-red-700
+      subtle: *color-red-100
+      muted: *color-red-200
+      emphasized: *color-red-300
+      solid: *color-red-600
+      focusRing: *color-red-500
+      border: *color-red-500
+    orange:
+      contrast: *color-white
+      fg: *color-orange-700
+      subtle: *color-orange-100
+      muted: *color-orange-200
+      emphasized: *color-orange-300
+      solid: *color-orange-600
+      focusRing: *color-orange-500
+      border: *color-orange-500
+    green:
+      contrast: *color-white
+      fg: *color-green-700
+      subtle: *color-green-100
+      muted: *color-green-200
+      emphasized: *color-green-300
+      solid: *color-green-600
+      focusRing: *color-green-500
+      border: *color-green-500
+    blue:
+      contrast: *color-white
+      fg: *color-blue-700
+      subtle: *color-blue-100
+      muted: *color-blue-200
+      emphasized: *color-blue-300
+      solid: *color-blue-600
+      focusRing: *color-blue-500
+      border: *color-blue-500
+    yellow:
+      contrast: *color-black
+      fg: *color-yellow-800
+      subtle: *color-yellow-100
+      muted: *color-yellow-200
+      emphasized: *color-yellow-300
+      solid: *color-yellow-300
+      focusRing: *color-yellow-500
+      border: *color-yellow-500
+    teal:
+      contrast: *color-white
+      fg: *color-teal-700
+      subtle: *color-teal-100
+      muted: *color-teal-200
+      emphasized: *color-teal-300
+      solid: *color-teal-600
+      focusRing: *color-teal-500
+      border: *color-teal-500
+    purple:
+      contrast: *color-white
+      fg: *color-purple-700
+      subtle: *color-purple-100
+      muted: *color-purple-200
+      emphasized: *color-purple-300
+      solid: *color-purple-600
+      focusRing: *color-purple-500
+      border: *color-purple-500
+    pink:
+      contrast: *color-white
+      fg: *color-pink-700
+      subtle: *color-pink-100
+      muted: *color-pink-200
+      emphasized: *color-pink-300
+      solid: *color-pink-600
+      focusRing: *color-pink-500
+      border: *color-pink-500
+    cyan:
+      contrast: *color-white
+      fg: *color-cyan-700
+      subtle: *color-cyan-100
+      muted: *color-cyan-200
+      emphasized: *color-cyan-300
+      solid: *color-cyan-600
+      focusRing: *color-cyan-500
+      border: *color-cyan-500
+  dark:
+    bg:
+      primary: *color-black
+      subtle: *color-gray-950
+      muted: *color-gray-900
+      emphasized: *color-gray-800
+      inverted: *color-white
+      panel: *color-gray-950
+      error: *color-red-950
+      warning: *color-orange-950
+      success: *color-green-950
+      info: *color-blue-950
+      hint: *color-purple-950
+    fg:
+      primary: *color-gray-50
+      muted: *color-gray-400
+      subtle: *color-gray-500
+      inverted: *color-black
+      error: *color-red-400
+      warning: *color-orange-300
+      success: *color-green-300
+      info: *color-blue-300
+      hint: *color-purple-300
+    border:
+      primary: *color-gray-800
+      muted: *color-gray-900
+      subtle: *color-gray-950
+      emphasized: *color-gray-700
+      inverted: *color-gray-200
+      error: *color-red-400
+      warning: *color-orange-400
+      success: *color-green-400
+      info: *color-blue-400
+      hint: *color-purple-400
+    gray:
+      contrast: *color-black
+      fg: *color-gray-200
+      subtle: *color-gray-900
+      muted: *color-gray-800
+      emphasized: *color-gray-700
+      solid: *color-white
+      focusRing: *color-gray-400
+      border: *color-gray-800
+    red:
+      contrast: *color-white
+      fg: *color-red-300
+      subtle: *color-red-900
+      muted: *color-red-800
+      emphasized: *color-red-700
+      solid: *color-red-600
+      focusRing: *color-red-500
+      border: *color-red-400
+    orange:
+      contrast: *color-black
+      fg: *color-orange-300
+      subtle: *color-orange-900
+      muted: *color-orange-800
+      emphasized: *color-orange-700
+      solid: *color-orange-500
+      focusRing: *color-orange-500
+      border: *color-orange-400
+    green:
+      contrast: *color-white
+      fg: *color-green-300
+      subtle: *color-green-900
+      muted: *color-green-800
+      emphasized: *color-green-700
+      solid: *color-green-600
+      focusRing: *color-green-500
+      border: *color-green-400
+    blue:
+      contrast: *color-white
+      fg: *color-blue-300
+      subtle: *color-blue-900
+      muted: *color-blue-800
+      emphasized: *color-blue-700
+      solid: *color-blue-600
+      focusRing: *color-blue-500
+      border: *color-blue-400
+    yellow:
+      contrast: *color-black
+      fg: *color-yellow-300
+      subtle: *color-yellow-900
+      muted: *color-yellow-800
+      emphasized: *color-yellow-700
+      solid: *color-yellow-300
+      focusRing: *color-yellow-500
+      border: *color-yellow-500
+    teal:
+      contrast: *color-white
+      fg: *color-teal-300
+      subtle: *color-teal-900
+      muted: *color-teal-800
+      emphasized: *color-teal-700
+      solid: *color-teal-600
+      focusRing: *color-teal-500
+      border: *color-teal-400
+    purple:
+      contrast: *color-white
+      fg: *color-purple-300
+      subtle: *color-purple-900
+      muted: *color-purple-800
+      emphasized: *color-purple-700
+      solid: *color-purple-600
+      focusRing: *color-purple-500
+      border: *color-purple-400
+    pink:
+      contrast: *color-white
+      fg: *color-pink-300
+      subtle: *color-pink-900
+      muted: *color-pink-800
+      emphasized: *color-pink-700
+      solid: *color-pink-600
+      focusRing: *color-pink-500
+      border: *color-pink-400
+    cyan:
+      contrast: *color-white
+      fg: *color-cyan-300
+      subtle: *color-cyan-900
+      muted: *color-cyan-800
+      emphasized: *color-cyan-700
+      solid: *color-cyan-600
+      focusRing: *color-cyan-500
+      border: *color-cyan-400
