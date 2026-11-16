@@ -1,5 +1,5 @@
 ---
-name: change-request
+name: cr
 description: >-
   Draft CR.md (Freshservice change request) from PR_DESC.md, or from a PR with
   "release".

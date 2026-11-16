@@ -1,5 +1,5 @@
 ---
-name: review-staged
+name: rev
 description: >-
   Review staged files into REVIEW.md.
 ---

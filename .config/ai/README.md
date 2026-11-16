@@ -64,22 +64,25 @@ servers are not changed.
 Each entry links to `SYSTEM.md`, `skills/`, or `prompts/`. Pi and OMP append
 `SYSTEM.md` to their built-in prompts. OpenCode's `opencode.json` lists
 `skills/docs` last so the authored docs skill wins over the managed synced one.
+Shared entries from an earlier checkout location (paths ending in
+`/ai/SYSTEM.md`, `/ai/skills`, or `/ai/skills/docs`) are replaced rather than
+duplicated.
 
 ### ⌨️ Workflow shortcuts
 
 | Name | Action | Skill |
 | --- | --- | --- |
 | `commit` | 📝 Commit message | `commit-message` |
-| `pr-create` | 🔀 PR create | `pr` |
-| `pr-update` | 🔄 PR update | `pr` (update reference) |
-| `review-staged` | 🔍 Review staged changes | `review` |
-| `review-verify` | ✅ Verify review fixes | `review` (update reference) |
-| `change-request` | 📋 Change request; `release` for a PR | `fs-cr-new` |
+| `prc` | 🔀 PR create | `pr` |
+| `pru` | 🔄 PR update | `pr` (update reference) |
+| `rev` | 🔍 Review staged changes | `review` |
+| `revv` | ✅ Verify review fixes | `review` (update reference) |
+| `cr` | 📋 Change request; `release` for a PR | `fs-cr-new` |
 
-Use `/commit`, `/pr-create`, etc. in slash-command harnesses and `$commit`,
-`$pr-create`, etc. in Codex. `/change-request release 482` or a PR URL selects
-release mode; a bare number is a commit selection. Prompt names differ from
-skill names so no prompt is hidden by a skill. Update procedures live in
+Use `/commit`, `/prc`, etc. in slash-command harnesses and `$commit`, `$prc`,
+etc. in Codex. `/cr release 482` or a PR URL selects release mode; a bare
+number is a commit selection. Prompt names differ from skill names so no prompt
+is hidden by a skill. Update procedures live in
 `references/update.md` and load only for update requests.
 
 > [!TIP]

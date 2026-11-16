@@ -1,5 +1,5 @@
 ---
-name: review-verify
+name: revv
 description: >-
   Verify fixes from REVIEW.md and update statuses.
 ---

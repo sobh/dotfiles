@@ -1,5 +1,5 @@
 ---
-name: pr-create
+name: prc
 description: >-
   Write PR_DESC.md for the current branch.
 ---

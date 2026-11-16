@@ -12,7 +12,7 @@ description: >-
   unless the user asks to verify fixes or update an existing review.
 - Update mode: verify findings from `REVIEW.md`. Read and follow
   [the update procedure](references/update.md) instead of the initial procedure.
-  The `review-verify` prompt selects this mode.
+  The `revv` prompt selects this mode.
 
 ## Initial mode
 

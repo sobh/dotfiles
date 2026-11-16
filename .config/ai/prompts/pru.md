@@ -1,5 +1,5 @@
 ---
-name: pr-update
+name: pru
 description: >-
   Update PR_DESC.md with new commits.
 ---

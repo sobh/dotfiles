@@ -251,8 +251,11 @@ codex_adapter_policy() {
 }
 
 # opencode_json FILE: print FILE (or {}) with shared instruction/skill paths.
-# Keep existing instruction order. Put shared skills last so the authored docs
-# skill takes precedence over managed skills with the same name.
+# Shared entries from any hub location (paths ending in /ai/SYSTEM.md,
+# /ai/skills, or /ai/skills/docs) are replaced, so moving the checkout does not
+# leave stale or duplicate paths. The instruction keeps its existing position.
+# Put shared skills last so the authored docs skill takes precedence over
+# managed skills with the same name.
 opencode_json() {
 	if [ -f "$1" ]; then
 		cat "$1"
@@ -260,10 +263,20 @@ opencode_json() {
 		printf '{}\n'
 	fi | jq --arg system "$ai_dir/SYSTEM.md" \
 		--arg skills "$ai_dir/skills" --argjson hasdocs "$has_docs" '
+	  def is_shared_system: type == "string" and test("/ai/SYSTEM\\.md$");
+	  def is_shared_skills: type == "string" and
+		test("/ai/skills(/docs)?$");
+	  # Keep the first shared instruction in place; drop later duplicates.
+	  def keep_first_system:
+		reduce .[] as $item ([];
+		  if $item == $system and index([$system]) != null
+		  then . else . + [$item] end);
 	  .instructions = ((.instructions // []) |
-		if index($system) == null then . + [$system] else . end) |
-	  .skills = ((.skills // []) | map(select(
-		. != $skills and . != ($skills + "/docs")))) + [$skills] |
+		map(if is_shared_system then $system else . end) |
+		keep_first_system |
+		if index([$system]) == null then . + [$system] else . end) |
+	  .skills = ((.skills // []) | map(select(is_shared_skills | not))) +
+		[$skills] |
 	  if $hasdocs
 	  then .skills += [($skills + "/docs")] else . end
 	'
