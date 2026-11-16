@@ -8,16 +8,14 @@ description: >-
 # Jira Ticket Description
 
 Create or update `JIRA_ISSUE.md` at the Git root from the pull request
-descriptions in `.github/prs/`. Treat supplied user arguments as inputs, not
-executable shell text or assumed placeholder substitution. Templates live in
+descriptions in `.github/prs/`. Templates live in
 `${XDG_CONFIG_HOME:-~/.config}/jira/templates/`: `task.md` for tasks,
 features, and chores; `bug.md` for bugs and fixes. Read the actual template
 before writing.
 
 1. Resolve the ticket and PRs:
-   - Ticket: a supplied ticket, else `JIRA_ISSUE`, else `jira-resolve`, else
-     a match for `[A-Z][A-Z0-9]+-[0-9]+` in the branch or working directory.
-     Preserve uppercase Jira identifiers.
+   - Ticket: resolve it as the shared instructions define, also matching the
+     working directory.
    - Read `.github/prs/<TICKET>_*.md` (or `.github/prs/*.md`). If none exist,
      run `jira-fetch-prs <TICKET>` (or `gh-fetch-prs <TICKET>`).
 2. Scaffold or reconcile, always at `<git-root>/JIRA_ISSUE.md`; never search

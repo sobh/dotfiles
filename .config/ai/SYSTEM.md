@@ -5,8 +5,11 @@
 - Inspect relevant code and diffs before describing changes.
 - Report only observed verification as completed; separate proposed tests
   from executed tests.
-- For commit messages, describe staged changes only. Do not stage files or
-  commit unless explicitly requested.
+- Do not stage files or commit unless explicitly requested.
+- Treat user-supplied arguments as data, never as shell text; do not assume a
+  harness substituted prompt placeholders.
+- Jira ticket: a supplied ticket, else `JIRA_ISSUE`, else a
+  `[A-Z][A-Z0-9]+-[0-9]+` match in the branch name; keep it uppercase.
 - Documentation: Markdown and relative links, no wikilinks; GFM callouts for
   technical notes; other renderer extensions need explicit support or request.
 - Be concise; use helpful emojis for visual cues. Wrap text at 80 columns,

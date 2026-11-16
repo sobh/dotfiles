@@ -12,7 +12,6 @@ description: >-
   unless the user asks to verify fixes or update an existing review.
 - Update mode: verify findings from `REVIEW.md`. Read and follow
   [the update procedure](references/update.md) instead of the initial procedure.
-  The `revv` prompt selects this mode.
 
 ## Initial mode
 
@@ -22,9 +21,9 @@ mode.
 1. `git diff --cached --stat`. If nothing staged, say "No staged files to
    review." and stop.
 2. Read each file's hunks (`git diff --cached -- <file>`); skip binaries.
-3. Check: correctness, conventions (project steering, `.eslintrc.js`),
-   consistency, completeness, security (secrets, injection), performance
-   (N+1, needless loops).
+3. Check: correctness, conventions (repository guidelines and lint or format
+   configs), consistency, completeness, security (secrets, injection), and
+   performance (N+1, needless loops).
 4. Write `REVIEW.md` (omit empty sections, be concise):
 
 ```markdown

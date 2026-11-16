@@ -1,17 +1,16 @@
 # Release Pull Request Description
 
 Aggregate the pull request descriptions in `.github/prs/` into one release
-description in `PR_DESC.md` at the Git root. Treat supplied user arguments as
-inputs, not shell text or assumed placeholder substitution.
+description in `PR_DESC.md` at the Git root.
 
 1. Read the canonical skill entry at `../SKILL.md` relative to this reference
    if it has not already been read. Reuse its evidence, ticket, pruning, and
    formatting rules; this procedure replaces only commit selection and the
    title. Use the repository's `.github/pull_request_template.md` when present;
    otherwise use the template named in `../SKILL.md`.
-2. Tickets: use supplied tickets, else `JIRA_ISSUE`, else tickets matching
-   `[A-Z][A-Z0-9]+-[0-9]+` in the branch, working directory, or PR filenames.
-   A release can cover several space-separated tickets.
+2. Tickets: resolve them as the shared instructions define, also matching the
+   working directory and PR filenames. A release can cover several
+   space-separated tickets.
 3. Read `.github/prs/<TICKET>_*.md` for each ticket, or `.github/prs/*.md`
    when no ticket narrows the set. If the directory is missing or empty, run
    `jira-fetch-prs <TICKET>` (or `gh-fetch-prs <TICKET>`). Include `MERGED`

@@ -118,5 +118,12 @@ cost matters. Savings from caching or pricing were not measured.
   `~/.local/state/ai-bootstrap/backups/20261116-073547-670492/`. Discovery
   was checked in all harness skill and prompt locations; neither workflow was
   run end to end.
+- Prompt and skill clean-up (2026-11-16): the argument and Jira ticket rules
+  moved into `SYSTEM.md` (818 to 1,017 bytes) and were removed from prompts,
+  skills, and generated adapters. Prompts went from 3,252 to 1,613 bytes; all
+  authored prompts, skills, references, and `SYSTEM.md` from 35,647 to 33,171
+  bytes. These are byte counts, not tokens. Regenerated adapters and the stale
+  Antigravity `pr-update` and `review-update` skills are in
+  `~/.local/state/ai-bootstrap/backups/20261116-074017-674483/`.
 - The hub is tracked in the dotfiles repository at `.config/ai`; since
   2026-11-07, `~/.config` is a link to `~/dotfiles/.config`.

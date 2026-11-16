@@ -11,12 +11,12 @@ description: >-
    `git diff --cached`. Always read the diff, even when the stat appears clear.
    If there are no staged changes, stop and report that there is nothing to
    summarize; do not create or overwrite `COMMIT_MSG.md`.
-2. Ticket: use the `JIRA_ISSUE` env var if set, else match
-   `[A-Z][A-Z0-9]+-[0-9]+` in the branch name. If neither, omit it.
-   Preserve uppercase Jira identifiers; do not lowercase the ticket.
+2. Resolve the Jira ticket as the shared instructions define; omit it if
+   none is found.
 3. Write a conventional commit to `COMMIT_MSG.md`:
-   - `type(scope):[TICKET] Subject`; without a ticket, use
-     `type(scope): Subject`. Use lowercase type and scope, and a sentence-case
+   - `type(scope):[TICKET] subject`; without a ticket, use
+     `type(scope): subject`. Use lowercase type and scope, and a lowercase
      summary. Header ≤ 72 chars.
-   - Body wrapped at 80 chars, covering what and why based on the staged diff.
+   - Body wrapped at 80 chars, covering what and why. Describe only the staged
+     changes.
 4. Do not stage files or create a commit. Only write `COMMIT_MSG.md`.

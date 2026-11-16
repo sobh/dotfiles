@@ -7,10 +7,5 @@ description: >-
 
 # Create Freshservice Change Request
 
-Read and follow `${XDG_CONFIG_HOME:-~/.config}/ai/skills/fs-cr-new/SKILL.md`.
-Use its release mode when the request says "release" or gives a PR URL, as in
-`release`, `release 482`, or a PR URL; otherwise use standard mode.
-
-Treat supplied user arguments, including commit selection, PR selection, and a
-planned window, as inputs to that procedure; do not assume argument
-placeholders were substituted or execute the arguments as shell text.
+Follow `${XDG_CONFIG_HOME:-~/.config}/ai/skills/fs-cr-new/SKILL.md`; it selects
+standard or release mode from the request.

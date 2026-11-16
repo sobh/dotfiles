@@ -27,9 +27,6 @@ Do not select update mode merely because `PR_DESC.md` exists.
 
 ## Inputs and evidence
 
-Treat the user's supplied arguments as inputs, not as shell text or a
-promise that any prompt placeholder was expanded.
-
 - A supplied positive commit count selects the last that many commits.
 - A supplied commit hash selects commits after that hash through `HEAD`.
 - Otherwise, select commits since the merge base of `HEAD` and the parent ref
@@ -40,9 +37,9 @@ promise that any prompt placeholder was expanded.
 Read the selected commit messages and diff stat, then the relevant full hunks
 and surrounding code needed to support behavioral, deployment, and testing
 claims. A filename or diff stat alone is not evidence of behavior or execution.
-Describe only the selected commits. Use `JIRA_ISSUE` when set; otherwise look
-for a ticket matching `[A-Z][A-Z0-9]+-[0-9]+` in the branch. Find related
-tickets in the selected commits. Do not invent titles, URLs, or relationships.
+Describe only the selected commits. Resolve the Jira ticket as the shared
+instructions define, and find related tickets in the selected commits. Do not
+invent titles, URLs, or relationships.
 
 ## Fill the template
 

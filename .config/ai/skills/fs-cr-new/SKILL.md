@@ -7,8 +7,7 @@ description: >-
 
 # Create Freshservice Change Request
 
-Treat supplied user arguments as inputs, not executable shell text or assumed
-placeholder substitution. The canonical template is
+The canonical template is
 `${XDG_CONFIG_HOME:-~/.config}/freshworks/templates/change_request.md`; read it
 before writing. Its current frontmatter, section anchors, headings, emojis,
 service mapping, and comments take precedence over remembered template

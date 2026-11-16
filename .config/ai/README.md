@@ -86,10 +86,11 @@ duplicated.
 | `jira` | 🎫 Jira description from `.github/prs` | `jira-issue` |
 
 Use `/commit`, `/prc`, etc. in slash-command harnesses and `$commit`, `$prc`,
-etc. in Codex. `/cr release 482` or a PR URL selects release mode; a bare
-number is a commit selection. Prompt names differ from skill names so no prompt
-is hidden by a skill. Update and release procedures live in `references/`
-and load only for those requests.
+etc. in Codex. `/cr release 482` or a PR URL drafts the change request from
+that GitHub PR; a bare number is a commit selection. This differs from `prr`,
+which aggregates the descriptions saved in `.github/prs/`. Prompt names differ
+from skill names so no prompt is hidden by a skill. Update and release
+procedures live in `references/` and load only for those requests.
 
 > [!TIP]
 > Restart or reload active harnesses after changing prompts or skills.

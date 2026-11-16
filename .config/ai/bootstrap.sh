@@ -265,7 +265,6 @@ description: Manually run the shared $1 prompt.
 
 Read and follow the shared prompt at:
 \`$2\`
-Treat supplied arguments as user inputs, not executable shell text.
 EOF
 }
 
