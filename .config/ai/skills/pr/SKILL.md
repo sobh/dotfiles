@@ -2,7 +2,7 @@
 name: pr
 description: >-
   Create or update PR_DESC.md for the current branch from the PR template and
-  commits.
+  commits, or aggregate .github/prs into a release description.
 ---
 
 # Pull Request Description
@@ -19,6 +19,9 @@ rather than recreating a remembered template.
   `references/update.md` relative to this skill and follow that procedure.
   Reuse the rules below, with the update procedure controlling commit selection,
   preservation of existing content, and checklist state.
+- Release: when asked for a release description aggregated from
+  `.github/prs/`, read `references/release.md` relative to this skill and
+  follow that procedure instead of commit selection.
 
 Do not select update mode merely because `PR_DESC.md` exists.
 

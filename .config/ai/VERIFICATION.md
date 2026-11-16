@@ -112,5 +112,11 @@ cost matters. Savings from caching or pricing were not measured.
   `agy -p` runs then quoted `SYSTEM.md`, listed the hub skills and adapters,
   ran `echo`, and denied a force push via the guard. Adapter slash commands
   were not run end to end.
+- `jira-issue` and `pr-release` moved from Antigravity into the hub
+  (2026-11-16): `jira-issue` as a skill with a `jira` prompt, `pr-release` as
+  the `pr` release mode with a `prr` prompt. The Antigravity originals are in
+  `~/.local/state/ai-bootstrap/backups/20261116-073547-670492/`. Discovery
+  was checked in all harness skill and prompt locations; neither workflow was
+  run end to end.
 - The hub is tracked in the dotfiles repository at `.config/ai`; since
   2026-11-07, `~/.config` is a link to `~/dotfiles/.config`.

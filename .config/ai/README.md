@@ -79,15 +79,17 @@ duplicated.
 | `commit` | 📝 Commit message | `commit-message` |
 | `prc` | 🔀 PR create | `pr` |
 | `pru` | 🔄 PR update | `pr` (update reference) |
+| `prr` | 📦 Release PR from `.github/prs` | `pr` (release reference) |
 | `rev` | 🔍 Review staged changes | `review` |
 | `revv` | ✅ Verify review fixes | `review` (update reference) |
 | `cr` | 📋 Change request; `release` for a PR | `fs-cr-new` |
+| `jira` | 🎫 Jira description from `.github/prs` | `jira-issue` |
 
 Use `/commit`, `/prc`, etc. in slash-command harnesses and `$commit`, `$prc`,
 etc. in Codex. `/cr release 482` or a PR URL selects release mode; a bare
 number is a commit selection. Prompt names differ from skill names so no prompt
-is hidden by a skill. Update procedures live in
-`references/update.md` and load only for update requests.
+is hidden by a skill. Update and release procedures live in `references/`
+and load only for those requests.
 
 > [!TIP]
 > Restart or reload active harnesses after changing prompts or skills.
