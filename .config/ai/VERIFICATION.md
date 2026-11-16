@@ -103,5 +103,14 @@ cost matters. Savings from caching or pricing were not measured.
   `~/.config/ai/` entries were removed by hand. `bootstrap.sh` now replaces
   them itself; checked against an isolated fixture under a temporary `HOME`
   (stale paths replaced in place, user entries kept, rerun idempotent).
+- Antigravity added (2026-11-16, `agy` 1.1.26). Overlapping hand-written
+  skills (`commit`, `fs-cr-new`, `pr`, `review`) moved to
+  `~/.local/state/ai-bootstrap/backups/20261116-073054-665971/`;
+  `jira-issue`, `pr-release`, `pr-update`, and `review-update` were kept.
+  Probes: a workspace `.agents/hooks.json` was not loaded (only the global
+  one was); a `{}` hook reply denied the command; `ask` let it run. Live
+  `agy -p` runs then quoted `SYSTEM.md`, listed the hub skills and adapters,
+  ran `echo`, and denied a force push via the guard. Adapter slash commands
+  were not run end to end.
 - The hub is tracked in the dotfiles repository at `.config/ai`; since
   2026-11-07, `~/.config` is a link to `~/dotfiles/.config`.

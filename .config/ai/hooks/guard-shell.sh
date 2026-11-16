@@ -3,7 +3,8 @@
 #
 # Description:
 #   Block clearly destructive shell commands before an AI harness runs them.
-#   Used as a pre-tool hook by Kiro, Claude, Codex, Pi, OMP, and OpenCode.
+#   Used as a pre-tool hook by Kiro, Claude, Codex, Antigravity, Pi, OMP, and
+#   OpenCode.
 #   A guardrail against accidents, not a security boundary.
 #
 # Usage:

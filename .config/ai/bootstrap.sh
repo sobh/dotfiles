@@ -2,7 +2,7 @@
 # {{SCRIPT}}
 #
 # Description:
-#   Wire all six default AI harness locations to this shared configuration.
+#   Wire all seven default AI harness locations to this shared configuration.
 #   No installations, authentication changes, or model requests are made.
 #
 # Usage:
@@ -94,6 +94,7 @@ ai_dir=$(CDPATH='' cd -P "$(dirname "$0")" && pwd -P)
 config_dir=${XDG_CONFIG_HOME:-$HOME/.config}
 state_dir=${XDG_STATE_HOME:-$HOME/.local/state}
 codex_home=${CODEX_HOME:-$HOME/.codex}
+antigravity_dir=$HOME/.gemini/config
 for directory in "$config_dir" "$state_dir" "$codex_home"; do
 	case $directory in
 	/*) ;;
@@ -108,6 +109,9 @@ case $guard_script in
 *"'"*) fail "Hook path cannot contain a single quote: $guard_script" ;;
 esac
 guard_command="sh '$guard_script'"
+antigravity_guard=$ai_dir/hooks/antigravity-guard.sh
+[ -f "$antigravity_guard" ] || fail 'Missing hooks/antigravity-guard.sh'
+antigravity_guard_command="sh '$antigravity_guard'"
 
 # ==== Safe filesystem operations =============================================
 
@@ -230,8 +234,27 @@ kiro_hook_json() {
 	}'
 }
 
-# codex_adapter_skill NAME PROMPT: print an explicit-only Codex skill adapter.
-codex_adapter_skill() {
+# antigravity_hooks_json FILE: print FILE (or {}) with the named ai-guard hook
+# set to the current shim. The fixed name replaces an entry from an earlier
+# checkout location; other named hooks are kept.
+antigravity_hooks_json() {
+	if [ -f "$1" ]; then
+		cat "$1"
+	else
+		printf '{}\n'
+	fi | jq --arg command "$antigravity_guard_command" '
+	  .["ai-guard"] = {
+		PreToolUse: [{
+		  matcher: "run_command",
+		  hooks: [{type: "command", command: $command}]
+		}]
+	  }
+	'
+}
+
+# prompt_adapter_skill NAME PROMPT: print a skill that runs a shared prompt,
+# for harnesses that invoke skills but have no global prompt directory.
+prompt_adapter_skill() {
 	cat <<EOF
 ---
 name: $1
@@ -339,40 +362,73 @@ link "$ai_dir/SYSTEM.md" "$HOME/.kiro/steering/system.md"
 # Kiro needs a JSON hook file with an absolute command, so it is generated.
 install_generated kiro_hook_json "$HOME/.kiro/hooks/ai-guard.json"
 
+# ==== Shared skills linked one by one, plus prompt adapters ===================
+
+# install_skills_and_adapters SKILLS_DIR EXPLICIT_ONLY: link each shared skill
+# into SKILLS_DIR and generate an adapter skill per prompt. With EXPLICIT_ONLY
+# true, also write the Codex policy that disables implicit invocation.
+# Other entries in SKILLS_DIR are left alone.
+install_skills_and_adapters() {
+	skills_dir=$1
+	explicit_only=$2
+	for skill in "$ai_dir/skills"/*; do
+		[ -f "$skill/SKILL.md" ] || continue
+		link "$skill" "$skills_dir/${skill##*/}"
+	done
+
+	for prompt in "$ai_dir/prompts"/*.md; do
+		[ -f "$prompt" ] || continue
+		prompt_name=${prompt##*/}
+		prompt_name=${prompt_name%.md}
+		case $prompt_name in
+		'' | *[!a-z0-9-]*)
+			fail "Invalid prompt name: $prompt_name"
+			;;
+		esac
+		# A canonical skill with this name already provides manual invocation.
+		[ ! -f "$ai_dir/skills/$prompt_name/SKILL.md" ] || continue
+		adapter_dir=$skills_dir/$prompt_name
+		# Never write generated content through a directory symlink.
+		if [ -L "$adapter_dir" ]; then
+			preserve "$adapter_dir"
+			if [ "$dry_run" = true ]; then
+				printf 'Write: %s/SKILL.md\n' "$adapter_dir"
+				if [ "$explicit_only" = true ]; then
+					printf 'Write: %s/agents/openai.yaml\n' "$adapter_dir"
+				fi
+				continue
+			fi
+		fi
+		install_generated prompt_adapter_skill "$adapter_dir/SKILL.md" \
+			"$prompt_name" "$prompt"
+		if [ "$explicit_only" = true ]; then
+			install_generated codex_adapter_policy \
+				"$adapter_dir/agents/openai.yaml"
+		fi
+	done
+}
+
 # ==== Codex: shared skills and explicit-only prompt adapters ===================
 
 link "$ai_dir/SYSTEM.md" "$codex_home/AGENTS.md"
 merge_guard_hook "$codex_home/hooks.json"
-for skill in "$ai_dir/skills"/*; do
-	[ -f "$skill/SKILL.md" ] || continue
-	link "$skill" "$codex_home/skills/${skill##*/}"
-done
+install_skills_and_adapters "$codex_home/skills" true
 
-for prompt in "$ai_dir/prompts"/*.md; do
-	[ -f "$prompt" ] || continue
-	prompt_name=${prompt##*/}
-	prompt_name=${prompt_name%.md}
-	case $prompt_name in
-	'' | *[!a-z0-9-]*)
-		fail "Invalid prompt name: $prompt_name"
-		;;
-	esac
-	# A canonical skill with this name already provides manual invocation.
-	[ ! -f "$ai_dir/skills/$prompt_name/SKILL.md" ] || continue
-	adapter_dir=$codex_home/skills/$prompt_name
-	# Never write generated content through a directory symlink.
-	if [ -L "$adapter_dir" ]; then
-		preserve "$adapter_dir"
-		if [ "$dry_run" = true ]; then
-			printf 'Write: %s/SKILL.md\n' "$adapter_dir"
-			printf 'Write: %s/agents/openai.yaml\n' "$adapter_dir"
-			continue
-		fi
-	fi
-	install_generated codex_adapter_skill "$adapter_dir/SKILL.md" \
-		"$prompt_name" "$prompt"
-	install_generated codex_adapter_policy "$adapter_dir/agents/openai.yaml"
-done
+# ==== Antigravity: global rules, skills, prompt adapters, and guard hook ======
+
+# The CLI, IDE, and 2.0 app share ~/.gemini/config. Prompts become adapter
+# skills, invoked as slash commands; Antigravity has no explicit-only policy.
+link "$ai_dir/SYSTEM.md" "$antigravity_dir/AGENTS.md"
+install_skills_and_adapters "$antigravity_dir/skills" false
+antigravity_hooks=$antigravity_dir/hooks.json
+if [ -e "$antigravity_hooks" ] || [ -L "$antigravity_hooks" ]; then
+	[ -f "$antigravity_hooks" ] ||
+		fail "Not a readable configuration file: $antigravity_hooks"
+	jq -e 'type == "object"' "$antigravity_hooks" >/dev/null ||
+		fail "Hook settings must be an object: $antigravity_hooks"
+fi
+install_generated antigravity_hooks_json "$antigravity_hooks" \
+	"$antigravity_hooks"
 
 # ==== OpenCode: preserve settings while adding shared resource paths ===========
 

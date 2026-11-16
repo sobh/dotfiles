@@ -31,12 +31,13 @@ sh ~/.config/ai/bootstrap.sh      # Apply; refuse conflicting destinations
 sh ~/.config/ai/bootstrap.sh -b   # Apply, backing up conflicts (-nb previews)
 ```
 
-Requires POSIX `sh`, `jq`, and `readlink`. It wires all six default harness
+Requires POSIX `sh`, `jq`, and `readlink`. It wires all seven default harness
 locations, even for harnesses not installed yet, without installing,
 authenticating, or making model requests. It links shared instructions,
-skills, and prompts; generates explicit-only Codex prompt adapters (skipped
-when a skill has the same name); and merges shared paths and hooks into JSON
-settings while keeping unrelated keys. Codex bundled skills are untouched.
+skills, and prompts; generates prompt adapter skills for Codex (explicit-only)
+and Antigravity, skipped when a skill has the same name; and merges shared
+paths and hooks into JSON settings while keeping unrelated keys. Codex bundled
+skills and other skills in Antigravity's skill directory are untouched.
 
 > [!WARNING]
 > Without `-b`, any existing destination that differs is a conflict and the
@@ -59,11 +60,14 @@ servers are not changed.
 | Pi, OMP | `agent/APPEND_SYSTEM.md` | `agent/skills` | `agent/prompts` |
 | Kiro | `~/.kiro/steering/system.md` | `~/.kiro/skills` | `~/.kiro/prompts` |
 | Codex | `$CODEX_HOME/AGENTS.md` | Per-skill links | Generated adapters |
+| Antigravity | `~/.gemini/config/AGENTS.md` | Per-skill links | Generated adapters |
 | OpenCode | `instructions` in JSON | `skills` in JSON | `commands/` |
 
 Each entry links to `SYSTEM.md`, `skills/`, or `prompts/`. Pi and OMP append
 `SYSTEM.md` to their built-in prompts. OpenCode's `opencode.json` lists
 `skills/docs` last so the authored docs skill wins over the managed synced one.
+Antigravity's CLI, IDE, and 2.0 app share `~/.gemini/config/`; its links and
+adapters live in `skills/` there.
 Shared entries from an earlier checkout location (paths ending in
 `/ai/SYSTEM.md`, `/ai/skills`, or `/ai/skills/docs`) are replaced rather than
 duplicated.
@@ -102,13 +106,17 @@ guardrail, not a security boundary.
 | Claude | `hooks.PreToolUse` entry merged into `~/.claude/settings.json` |
 | Codex | Same entry merged into `$CODEX_HOME/hooks.json` |
 | Kiro | Generated `~/.kiro/hooks/ai-guard.json` (`PreToolUse`, `shell`) |
+| Antigravity | `ai-guard` entry in `~/.gemini/config/hooks.json` |
 | Pi, OMP | `hooks/pi-guard.ts` linked into `agent/extensions/` |
 | OpenCode | `hooks/opencode-guard.ts` linked into `plugins/` |
 
 Claude, Codex, and Kiro run the guard directly: it reads event JSON on stdin
 and blocks with exit code 2. Pi, OMP, and OpenCode shims run it and return
-their native block result. A guard entry from an earlier checkout location
-(`sh '…/hooks/guard-shell.sh'`) is replaced rather than duplicated.
+their native block result. `hooks/antigravity-guard.sh` maps Antigravity's
+`run_command` event to the guard and replies `deny` or `ask`; an empty reply
+would deny every command, and `ask` keeps normal permissions. A guard entry
+from an earlier checkout location (`sh '…/hooks/guard-shell.sh'`) is replaced
+rather than duplicated.
 
 > [!WARNING]
 > Codex skips new or changed hooks until you trust them with `/hooks`.
